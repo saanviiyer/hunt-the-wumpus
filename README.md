@@ -5,9 +5,11 @@ nathan was here first
 shunzo was here again
 
 ******************WUMPUS ROLES****************
-Cave object - Shunzo
-Graphical UI - Nathan
-Trivia - Jack
-Scoring - 
-Sound - Lily
-Wumpus object - 
+Trivia Management - Jack
+Cave Object - Shunzo
+GameLocations Object and Player Object - 
+Graphical Interface Object - Nathan
+Game Control Object - Saanvi
+High Score Management Object -
+Suond Object - 
+Wumpus Object - 
