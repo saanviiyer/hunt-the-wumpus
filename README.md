@@ -4,7 +4,7 @@ no
 nathan was here first
 shunzo was here again
 shunzo is testing <br>
-******************WUMPUS ROLES****************
+<h1>******************WUMPUS ROLES****************</h1>
 Trivia Management - Jack
 Cave Object - Shunzo
 GameLocations Object and Player Object - Pavan
