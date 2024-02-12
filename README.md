@@ -4,6 +4,7 @@ no
 nathan was here first
 shunzo was here again
 shunzo is testing
+jack is here
 ******************WUMPUS ROLES****************
 Trivia Management - Jack
 Cave Object - Shunzo
