@@ -1,9 +1,13 @@
 # hunt-the-wumpus
-the best ever wumpus that is hunted
-no
-nathan was here first
-shunzo was here again
+# BUMPELL
+the best ever wumpus that is hunted<br>
+no<br>
+nathan was here first<br>
+shunzo was here again<br>
 shunzo is testing <br>
+
+<br>hunt the womp womp wumpus<br>
+
 <h1>******************WUMPUS ROLES****************</h1>
 Trivia Management - Jack<br>
 Cave Object - Shunzo<br>
