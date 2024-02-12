@@ -3,6 +3,6 @@
 
 // new change
 
-public class GameControlTest {
+public class GameControl {
 
 }
