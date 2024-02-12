@@ -1,3 +1,8 @@
+//Nathan Chiu
+//UI test
+//Per. 5 
+//Reiber
+
 package UI;
 
 
@@ -6,16 +11,16 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 class Test {
-    private static Cave myCave;
+    private static UI myUI;
 
     public static void TestConstructor() {
-        myCave = new Cave();
+        myUI = new UI();
         System.out.println("Constructor called");
     }
 
-    public static void TestCaveDoStuff() {
+    public static void TestUIDoStuff() {
         int param = 5;
-        int result = myCave.DoStuff(param);
+        int result = myUI.DoStuff(param);
         System.out.println("DoStuff called with " + param + " and returned " + result);
     }
 
@@ -63,7 +68,7 @@ class Test {
 
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
-                    TestCaveDoStuff();
+                    TestUIDoStuff();
                 }
             });
             frame.getContentPane().add(button);
