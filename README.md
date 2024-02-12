@@ -5,11 +5,11 @@ nathan was here first
 shunzo was here again
 shunzo is testing <br>
 <h1>******************WUMPUS ROLES****************</h1>
-Trivia Management - Jack
-Cave Object - Shunzo
-GameLocations Object and Player Object - Pavan
-Graphical Interface Object - Nathan
-Game Control Object - Saanvi
-High Score Management Object - Yana
-Sound Object - Lily
+Trivia Management - Jack<br>
+Cave Object - Shunzo<br>
+GameLocations Object and Player Object - Pavan<br>
+Graphical Interface Object - Nathan<br>
+Game Control Object - Saanvi<br>
+High Score Management Object - Yana<br>
+Sound Object - Lily<br>
 Wumpus Object - Lily
