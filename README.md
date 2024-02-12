@@ -3,8 +3,8 @@ the best ever wumpus that is hunted
 no
 nathan was here first
 shunzo was here again
-shunzo is testing
-******************WUMPUS ROLES****************
+shunzo is testing <br>
+<h1>******************WUMPUS ROLES****************</h1>
 Trivia Management - Jack
 Cave Object - Shunzo
 GameLocations Object and Player Object - Pavan
