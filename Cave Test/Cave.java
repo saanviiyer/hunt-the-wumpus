@@ -4,7 +4,7 @@
  */
 
 
-package CaveTest;
+
 
 import javax.swing.*;
 import java.awt.*;
