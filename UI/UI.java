@@ -18,9 +18,10 @@ public class UI {
         JFrame frame = new JFrame("My First GUI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300,300);
-        JButton button = new JButton("Press");
-        frame.getContentPane().add(button);
+        JButton button1 = new JButton(Integer.toString(var));
+        frame.getContentPane().add(button1);
         frame.setVisible(true);
+
     }
 
     ////////////////////////
@@ -28,7 +29,7 @@ public class UI {
     ////////////////////////
 
     public int DoStuff(int i){
-        var = i;
+        var += i;
         return var;
     }
 }
