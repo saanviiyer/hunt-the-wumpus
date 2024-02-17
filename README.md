@@ -40,10 +40,12 @@ Go to [this guide](https://www.markdownguide.org/cheat-sheet/) for a detailed de
 
 ## Section Progress
 *If it helps, use this area to log your progress and what you plan to do.*
+
 ### Trivia - Jack
 
 ### Cave - Shunzo
-Working on creating a `Room` class that would contain a list of adjacent rooms.
+Working on creating a `Room` class that would contain a list of adjacent rooms.  
+The `Cave` class would hold the list of all the rooms.  
 
 ### GameLocations & Player - Pavan
 
