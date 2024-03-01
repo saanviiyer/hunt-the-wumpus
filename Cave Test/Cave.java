@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 class Cave {
+    static final String[] dirs = {"North", "Northeast", "Southeast", "South", "Southwest", "Northwest"};
     // rooms are represented by ints
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
@@ -23,7 +24,7 @@ class Cave {
             int col = i%6;
 
             // columns are aligned by even/oddness
-            if (col%2 == 0){
+            if (col%2 == 1){
                 this.adj[i][0] = (i-6+30)%30;
                 this.adj[i][1] = (i + 1 )%30;
                 this.adj[i][2] = (i + 7 )%30;
@@ -52,8 +53,21 @@ class Cave {
         return this.adj[id];
     }
     
-    public int DoStuff(int param) {
-        return param;
+    public String printAdj(int id){
+        return "{" + this.adj[id][0] + ", " + this.adj[id][1] + ", " + this.adj[id][2] + ", " 
+                + this.adj[id][3] + ", " + this.adj[id][4] + ", " + this.adj[id][5] + "}";
+    }
+
+    public String getPaths(int id){
+        String temp = new String();
+        for (int i = 0; i < 6; i++){
+            temp += dirs[i]+": " + this.adj[id][i] + "\n";
+        }
+        return temp;
+    }
+
+    public String DoStuff(int param) {
+        return this.getPaths(param);
     }
 }
 
@@ -66,8 +80,8 @@ class Test {
     }
 
     public static void TestCaveDoStuff() {
-        int param = 5;
-        int result = myCave.DoStuff(param);
+        int param = 8;
+        String result = myCave.DoStuff(param);
         System.out.println("DoStuff called with " + param + " and returned " + result);
     }
 
