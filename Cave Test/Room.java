@@ -1,7 +1,9 @@
 public class Room {
-  Room[] adj;
+  static int cid = 0;
+  Room[] adj = new Room[3];
   int id;
   public Room(){
+    this.id = cid++;
   }
   public Room(int i){
     this.id = i;
@@ -21,7 +23,9 @@ public class Room {
     this.adj = a;
   }
   public void setAdj(Room a, Room b, Room c){
-
+    this.adj[0] = a;
+    this.adj[1] = b;
+    this.adj[2] = c;
   }
 
   @Override
@@ -31,5 +35,9 @@ public class Room {
 
   public String paths(){
     return this.adj[0]+", "+this.adj[1]+", "+this.adj[2];
+  }
+
+  public Room[] adj(){
+    return this.adj;
   }
 }

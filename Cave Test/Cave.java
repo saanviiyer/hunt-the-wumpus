@@ -11,10 +11,17 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 class Cave {
+    int[][] adj = new int[30][3]; // rooms are represented by ints
     public Cave() {
-
+        // sets adjacencies: currently, each one is adjacent to the next three.
+        for (int i = 0; i < 30; i++){
+            for (int j = 1; j <= 3; j++)
+                this.adj[i][j-1] = (j+i)%30;
+        }
     }
-
+    public int[] getAdj(int id){
+        return this.adj[id];
+    }
     public int DoStuff(int param) {
         return param;
     }
