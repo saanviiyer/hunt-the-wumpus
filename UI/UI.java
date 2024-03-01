@@ -15,12 +15,22 @@ public class UI {
 
     public UI(){
         var = 1;
-        JFrame frame = new JFrame("My First GUI");
+        JFrame frame = new JFrame("Wumpus");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300,300);
+
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu = new JMenu("File");
+        JMenu menu2 = new JMenu("hello");
+        menuBar.add(menu2);
+        menuBar.add(menu);
+        frame.setJMenuBar(menuBar);
+        frame.setVisible(true);
+
+/* 
         JButton button1 = new JButton(Integer.toString(var));
         frame.getContentPane().add(button1);
-        frame.setVisible(true);
+        frame.setVisible(true);*/
 
     }
 

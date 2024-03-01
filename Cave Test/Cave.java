@@ -11,10 +11,47 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 class Cave {
+    // rooms are represented by ints
+    // adjacency list is represented by ints, going from north and proceeding clockwise
+    int[][] adj = new int[30][6];
+    // Cave is made up of hexagonal rooms with staggered columns
+    //   6 cols, 5 rows
     public Cave() {
+        //sets adjacencies
+        for (int i = 0; i < 30; i++){
+            int row = i/6;
+            int col = i%6;
 
+            // columns are aligned by even/oddness
+            if (col%2 == 0){
+                this.adj[i][0] = (i-6+30)%30;
+                this.adj[i][1] = (i + 1 )%30;
+                this.adj[i][2] = (i + 7 )%30;
+                this.adj[i][3] = (i + 6 )%30;
+                this.adj[i][4] = (i + 5 )%30;
+                this.adj[i][5] = (i-1+30)%30;
+            } else {
+                this.adj[i][0] = (i-6+30)%30;
+                this.adj[i][1] = (i-5+30)%30;
+                this.adj[i][2] = (i + 1 )%30;
+                this.adj[i][3] = (i + 6 )%30;
+                this.adj[i][4] = (i-1+30)%30;
+                this.adj[i][5] = (i-7+30)%30;
+            }
+        }
+        /* 
+        // sets adjacencies: currently, each one is adjacent to the next three.
+        for (int i = 0; i < 30; i++){
+            for (int j = 1; j <= 3; j++)
+                this.adj[i][j-1] = (j+i)%30;
+        }
+        */
     }
 
+    public int[] getAdj(int id){
+        return this.adj[id];
+    }
+    
     public int DoStuff(int param) {
         return param;
     }
