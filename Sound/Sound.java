@@ -5,4 +5,7 @@
 
 public class Sound {
 
+    public Sound() {
+        
+    }
 }
