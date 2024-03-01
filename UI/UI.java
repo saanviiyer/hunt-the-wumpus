@@ -21,7 +21,10 @@ public class UI {
 
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("File");
+        JMenu menu2 = new JMenu("hello");
+        menuBar.add(menu2);
         menuBar.add(menu);
+        frame.setJMenuBar(menuBar);
         frame.setVisible(true);
 
 /* 

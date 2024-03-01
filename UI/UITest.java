@@ -34,7 +34,7 @@ class Test {
         // Create a basic menu and add it to the top
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("File");
-        menuBar.add(menu);
+        
 
         JMenuItem menuItem = new JMenuItem("Exit");
         menuItem.addActionListener(new ActionListener() {
@@ -43,7 +43,9 @@ class Test {
             }
         });
         menu.add(menuItem);
-
+        
+        menuBar.add(menu);
+        
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
 
         // Add a constructor test button to content pane and make it visible
