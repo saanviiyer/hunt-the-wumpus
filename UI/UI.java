@@ -42,4 +42,16 @@ public class UI {
         var += i;
         return var;
     }
+
+    public void startNewGame(){
+
+    }
+
+    public void move(){
+
+    }
+
+    public void displayNearbyRooms(){
+        
+    }
 }
