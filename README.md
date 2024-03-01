@@ -14,5 +14,3 @@ Game Control Object - Saanvi<br>
 High Score Management Object - Yana<br>
 Sound Object - Lily<br>
 Wumpus Object - Lily
-
-MENTORS: 
