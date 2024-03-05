@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 
 class Cave {
     static final String[] dirs = {"North", "Northeast", "Southeast", "South", "Southwest", "Northwest"};
-    // rooms are represented by ints
+    // rooms are represented by ints [0,29]
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
     // Cave is made up of hexagonal rooms with staggered columns
@@ -20,24 +20,24 @@ class Cave {
     public Cave() {
         //sets adjacencies
         for (int i = 0; i < 30; i++){
-            int row = i/6;
-            int col = i%6;
+            int row = i/6; // [0,4]
+            int col = i%6; // [0,5]
 
             // columns are aligned by even/oddness
-            if (col%2 == 1){
-                this.adj[i][0] = (i-6+30)%30;
-                this.adj[i][1] = (i + 1 )%30;
-                this.adj[i][2] = (i + 7 )%30;
-                this.adj[i][3] = (i + 6 )%30;
-                this.adj[i][4] = (i + 5 )%30;
-                this.adj[i][5] = (i-1+30)%30;
-            } else {
-                this.adj[i][0] = (i-6+30)%30;
-                this.adj[i][1] = (i-5+30)%30;
-                this.adj[i][2] = (i + 1 )%30;
-                this.adj[i][3] = (i + 6 )%30;
-                this.adj[i][4] = (i-1+30)%30;
-                this.adj[i][5] = (i-7+30)%30;
+            if (col%2 == 1){ // lower columns
+                this.adj[i][0] = ( ((row-1+5)%5)*6 +  col        )%30; // previous row, same column
+                this.adj[i][1] = (   row        *6 + (col+1)  %6 )%30; // same row, next column
+                this.adj[i][2] = ( ((row+1)  %5)*6 + (col+1)  %6 )%30; // next row, next column
+                this.adj[i][3] = ( ((row+1)  %5)*6 +  col        )%30; // next row, same column
+                this.adj[i][4] = ( ((row+1)  %5)*6 + (col-1+6)%6 )%30; // next row, previous column
+                this.adj[i][5] = (   row        *6 + (col-1+6)%6 )%30; // same row, previous column
+            } else { // upper columns
+                this.adj[i][0] = ( ((row-1+5)%5)*6 +  col        )%30; // previous row, same column
+                this.adj[i][1] = ( ((row-1+5)%5)*6 +  (col+1)%6  )%30; // previous row, next column
+                this.adj[i][2] = (   row        *6 + (col+1)  %6 )%30; // same row, next column
+                this.adj[i][3] = ( ((row+1)  %5)*6 +  col        )%30; // next row, same column
+                this.adj[i][4] = (   row        *6 + (col-1+6)%6 )%30; // same row, previous column
+                this.adj[i][5] = ( ((row-1+5)%5)*6 + (col-1+6)%6 )%30; // previous row, previous column
             }
         }
         /* 
