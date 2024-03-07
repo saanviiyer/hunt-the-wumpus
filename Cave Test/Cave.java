@@ -72,7 +72,7 @@ class Cave {
 }
 
 class Test {
-    private static Cave myCave;
+    private static Cave myCave = new Cave();
 
     public static void TestConstructor() {
         myCave = new Cave();
@@ -88,9 +88,9 @@ class Test {
 
     public static void main(String args[])
     {
-        JFrame frame = new JFrame("My Wumpus GUI");
+        JFrame frame = new JFrame("Cave");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 400);
+        frame.setSize(1200, 1200);
 
         // Create a basic menu and add it to the top
         JMenuBar menuBar = new JMenuBar();
@@ -104,9 +104,33 @@ class Test {
             }
         });
         menu.add(menuItem);
-
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
 
+
+        Hex[][] hexes = new Hex[5][6];
+        int l = 50;
+        for(int row = 0; row < 5; row++){
+            for (int col = 0; col < 6; col++){
+                double x = col*1.5*l + l;
+                double y = row*l*1.732 + l;
+                if (col%2 == 1) y += l*1.732/2;
+                System.out.println(row+", "+col);
+                hexes[row][col] = new Hex(row, col);
+                //hexes[row][col].setLocation((int)x, (int)y);
+                //hexes[row][col].addActionListener(new ActionListener() {
+                //    public void actionPerformed(java.awt.event.ActionEvent e) {
+                //        TestCaveDoStuff();
+                //    }
+                //});
+                //Hex h1 = new Hex(row,col);
+                //h1.setSize(frame.getWidth(), 50);
+                //h1.setLocation(300, 300);
+                frame.getContentPane().add(hexes[row][col]);
+            }
+        }
+        for (Hex[] hl: hexes) for (Hex h: hl) frame.getContentPane().add(h);
+
+        /* 
         // Add a constructor test button to content pane and make it visible
         {
             JButton button = new JButton("Test Constructor");
@@ -133,7 +157,7 @@ class Test {
                 }
             });
             frame.getContentPane().add(button);
-        }
+        }*/
 
         frame.setVisible(true);
     }
