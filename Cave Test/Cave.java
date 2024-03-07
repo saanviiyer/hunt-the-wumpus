@@ -108,12 +108,12 @@ class Test {
 
 
         Hex[][] hexes = new Hex[5][6];
-        int l = 50;
+        //int l = 50;
         for(int row = 0; row < 5; row++){
             for (int col = 0; col < 6; col++){
-                double x = col*1.5*l + l;
-                double y = row*l*1.732 + l;
-                if (col%2 == 1) y += l*1.732/2;
+                //double x = col*1.5*l + l;
+                //double y = row*l*1.732 + l;
+                //if (col%2 == 1) y += l*1.732/2;
                 System.out.println(row+", "+col);
                 hexes[row][col] = new Hex(row, col);
                 //hexes[row][col].setLocation((int)x, (int)y);
