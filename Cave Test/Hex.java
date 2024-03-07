@@ -5,7 +5,7 @@ import java.awt.*;
 public class Hex extends JButton{
   static final int LENGTH = 50; // side length, in pixels
   // radius to an edge is sqrt3 * length/2
-  // radius to a vertex is 100
+  // radius to a vertex is length
   
   static int nRows = 5;
   static int nCols = 6;
@@ -19,11 +19,10 @@ public class Hex extends JButton{
     setContentAreaFilled(false);
     setFocusPainted(true);
     setBorderPainted(false);
-    setSize((int)LENGTH, (int)(LENGTH));
-    double x = c*1.5*LENGTH;
-    double y = r*LENGTH*1.732;
+    setSize((int)LENGTH*4, (int)(LENGTH*1.732*2));
+    double x = c*1.5*LENGTH+LENGTH;
+    double y = r*LENGTH*1.732+LENGTH;
     if (c%2 == 1) y += LENGTH*1.732/2;
-    setLocation((int)x, (int)y);
     //setBounds(0,0,(int)LENGTH, (int)(LENGTH));
 
   }
@@ -33,6 +32,7 @@ public class Hex extends JButton{
   }
 
   public double[][] getPoints(){
+    //*
     double[][] points = new double[4][2];
     points[0][0] = 0;
     points[0][1] = 0;
@@ -45,7 +45,8 @@ public class Hex extends JButton{
 
     points[3][0] = 0;
     points[3][1] = LENGTH;
-    /* 
+    /*
+    double[][]points = new double[6][2];
     points[0][0] = LENGTH/2+LENGTH;
     points[0][1] = LENGTH*1.732/2+LENGTH*1.732/2;
     
@@ -62,7 +63,8 @@ public class Hex extends JButton{
     points[4][1] = LENGTH*1.732/2;
     
     points[5][0] = LENGTH/2+LENGTH;
-    points[5][1] = LENGTH*1.732/2+LENGTH*1.732/2;*/
+    points[5][1] = LENGTH*1.732/2+LENGTH*1.732/2;
+    //*/
     return points;
   }
 
@@ -70,9 +72,13 @@ public class Hex extends JButton{
   public void paintComponent(Graphics g){
     super.paintComponent(g);
     Polygon hex = new Polygon();
+    double x = this.col*1.5*LENGTH+LENGTH;
+    double y = this.row*LENGTH*1.732+LENGTH;
+    if (this.col%2 == 1) y += LENGTH*1.732/2;
     for (double[] i: this.getPoints()){
       hex.addPoint((int)(i[0]), (int)(i[1]));
     }
+    setLocation((int)x, (int)y);
     //g.fillPolygon(hex);
     g.drawPolygon(hex);
 
