@@ -11,9 +11,11 @@ public class Hex extends JButton{
   static int nCols = 6;
   int row;
   int col;
+  int id;
   public Hex(int r, int c){
     //super(""+r+",");
     super(""+(r*6+c));
+    this.id = r*6+c;
     this.row = r;
     this.col = c;
     setContentAreaFilled(false);
@@ -23,7 +25,9 @@ public class Hex extends JButton{
     double x = c*1.5*LENGTH+LENGTH;
     double y = r*LENGTH*1.732+LENGTH;
     if (c%2 == 1) y += LENGTH*1.732/2;
-
+  }
+  public Hex(int i){
+    this(i/6, i%6);
   }
   public static void setDim(int nr, int nc){
     nRows = nr;
@@ -78,8 +82,9 @@ public class Hex extends JButton{
       hex.addPoint((int)(i[0]), (int)(i[1]));
     }
     //setLocation((int)x, (int)y);
+    //setSize((int)LENGTH, (int)(LENGTH));
     setBounds((int)x, (int)y,(int)LENGTH, (int)(LENGTH));
-
+    //
     //g.fillPolygon(hex);
     g.drawPolygon(hex);
 

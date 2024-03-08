@@ -75,17 +75,14 @@ class Cave {
         //int l = 50;
         for(int row = 0; row < 5; row++){
             for (int col = 0; col < 6; col++){
-                //double x = col*1.5*l + l;
-                //double y = row*l*1.732 + l;
-                //if (col%2 == 1) y += l*1.732/2;
                 System.out.println(row+", "+col);
                 hexes[row][col] = new Hex(row, col);
-                //hexes[row][col].setLocation((int)x, (int)y);
-                //hexes[row][col].addActionListener(new ActionListener() {
-                //    public void actionPerformed(java.awt.event.ActionEvent e) {
-                //        TestCaveDoStuff();
-                //    }
-                //});
+                int id = row*6+col;
+                hexes[row][col].addActionListener(new ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        System.out.println(getPaths(id));                        
+                    }
+                });
                 //Hex h1 = new Hex(row,col);
                 //h1.setSize(frame.getWidth(), 50);
                 //h1.setLocation(300, 300);
@@ -114,7 +111,7 @@ class Test {
     {
         JFrame frame = new JFrame("Cave");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1200, 1200);
+        frame.setSize(550, 600);
 
         // Create a basic menu and add it to the top
         JMenuBar menuBar = new JMenuBar();
