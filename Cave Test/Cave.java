@@ -69,6 +69,30 @@ class Cave {
     public String DoStuff(int param) {
         return this.getPaths(param);
     }
+
+    public void draw(JFrame frame){
+        Hex[][] hexes = new Hex[5][6];
+        //int l = 50;
+        for(int row = 0; row < 5; row++){
+            for (int col = 0; col < 6; col++){
+                //double x = col*1.5*l + l;
+                //double y = row*l*1.732 + l;
+                //if (col%2 == 1) y += l*1.732/2;
+                System.out.println(row+", "+col);
+                hexes[row][col] = new Hex(row, col);
+                //hexes[row][col].setLocation((int)x, (int)y);
+                //hexes[row][col].addActionListener(new ActionListener() {
+                //    public void actionPerformed(java.awt.event.ActionEvent e) {
+                //        TestCaveDoStuff();
+                //    }
+                //});
+                //Hex h1 = new Hex(row,col);
+                //h1.setSize(frame.getWidth(), 50);
+                //h1.setLocation(300, 300);
+                frame.getContentPane().add(hexes[row][col]);
+            }
+        }
+    }
 }
 
 class Test {
@@ -105,30 +129,9 @@ class Test {
         });
         menu.add(menuItem);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
+        myCave.draw(frame);
 
 
-        Hex[][] hexes = new Hex[5][6];
-        //int l = 50;
-        for(int row = 0; row < 5; row++){
-            for (int col = 0; col < 6; col++){
-                //double x = col*1.5*l + l;
-                //double y = row*l*1.732 + l;
-                //if (col%2 == 1) y += l*1.732/2;
-                System.out.println(row+", "+col);
-                hexes[row][col] = new Hex(row, col);
-                //hexes[row][col].setLocation((int)x, (int)y);
-                //hexes[row][col].addActionListener(new ActionListener() {
-                //    public void actionPerformed(java.awt.event.ActionEvent e) {
-                //        TestCaveDoStuff();
-                //    }
-                //});
-                //Hex h1 = new Hex(row,col);
-                //h1.setSize(frame.getWidth(), 50);
-                //h1.setLocation(300, 300);
-                frame.getContentPane().add(hexes[row][col]);
-            }
-        }
-        for (Hex[] hl: hexes) for (Hex h: hl) frame.getContentPane().add(h);
 
         /* 
         // Add a constructor test button to content pane and make it visible
