@@ -12,5 +12,5 @@ GameLocations Object and Player Object - Pavan<br>
 Graphical Interface Object - Nathan<br>
 Game Control Object - Saanvi<br>
 High Score Management Object - Yana<br>
-Sound Object - Lily<br>
+Sound  - Lily<br>
 Wumpus Object - Lily
