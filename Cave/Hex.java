@@ -19,9 +19,9 @@ public class Hex extends JButton{
     this.id = r*6+c;
     this.row = r;
     this.col = c;
-    setContentAreaFilled(false);
-    setFocusPainted(true);
-    setBorderPainted(false);
+    //setContentAreaFilled(false);
+    //setFocusPainted(true);
+    //setBorderPainted(false);
     setSize((int)LENGTH, (int)(LENGTH));
     //double x = c*1.5*LENGTH+LENGTH;
     //double y = r*LENGTH*1.732+LENGTH;

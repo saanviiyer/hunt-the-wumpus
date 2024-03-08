@@ -14,9 +14,15 @@ import java.awt.event.ActionListener;
 
 public class Cave {
     static final String[] dirs = {"North", "Northeast", "Southeast", "South", "Southwest", "Northwest"};
+
     // rooms are represented by ints [0,29]
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
+
+
+
+
+    
     // Cave is made up of hexagonal rooms with staggered columns
     //   6 cols, 5 rows
     public Cave() {
@@ -71,7 +77,6 @@ public class Cave {
         //int l = 50;
         for(int row = 0; row < 5; row++){
             for (int col = 0; col < 6; col++){
-                System.out.println(row+", "+col);
                 hexes[row][col] = new Hex(row, col);
                 int id = row*6+col;
                 hexes[row][col].addActionListener(new ActionListener() {
@@ -79,9 +84,6 @@ public class Cave {
                         System.out.println(getPaths(id));                        
                     }
                 });
-                //Hex h1 = new Hex(row,col);
-                //h1.setSize(frame.getWidth(), 50);
-                //h1.setLocation(300, 300);
                 frame.getContentPane().add(hexes[row][col]);
             }
         }
