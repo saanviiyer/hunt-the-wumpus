@@ -52,7 +52,7 @@ class Test {
         {
             JButton button = new JButton("Test Constructor");
             button.setSize(frame.getWidth(), 50);
-            button.setLocation(0, 0);
+            button.setLocation(0, 50);
 
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -66,7 +66,7 @@ class Test {
         {
             JButton button = new JButton("Test DoStuff");
             button.setSize(frame.getWidth(), 50);
-            button.setLocation(0, 50);
+            button.setLocation(0, 10);
 
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
