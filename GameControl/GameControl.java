@@ -26,4 +26,8 @@ public class GameControl {
         System.out.println("displaying board rn");
     }
 
+    public void movePlayer(String direction) {
+        System.out.println("moving player in direction " + direction);
+    }
+
 }
