@@ -22,7 +22,7 @@ public class Hex extends JButton{
     //setContentAreaFilled(false);
     //setFocusPainted(true);
     //setBorderPainted(false);
-    setSize((int)LENGTH, (int)(LENGTH));
+    setSize((int)LENGTH*2, (int)(LENGTH*1.732));
     //double x = c*1.5*LENGTH+LENGTH;
     //double y = r*LENGTH*1.732+LENGTH;
     //if (c%2 == 1) y += LENGTH*1.732/2;
@@ -36,7 +36,7 @@ public class Hex extends JButton{
   }
 
   public double[][] getPoints(){
-    //*
+    /*
     double[][] points = new double[4][2];
     points[0][0] = 0;
     points[0][1] = 0;
@@ -49,25 +49,26 @@ public class Hex extends JButton{
 
     points[3][0] = 0;
     points[3][1] = LENGTH;
-    /*
+    /*/
     double[][]points = new double[6][2];
-    points[0][0] = LENGTH/2+LENGTH;
-    points[0][1] = LENGTH*1.732/2+LENGTH*1.732/2;
+    // x, y
+    points[0][0] = LENGTH * 0.5;
+    points[0][1] = 0;
     
-    points[1][0] = LENGTH+LENGTH;
-    points[1][1] = LENGTH*1.732/2;
+    points[1][0] = LENGTH * 1.5;
+    points[1][1] = 0;
     
-    points[2][0] = LENGTH/2+LENGTH;
-    points[2][1] = LENGTH*1.732/2+LENGTH*1.732/2;
+    points[2][0] = LENGTH * 2;
+    points[2][1] = LENGTH * 1.732/2;
     
-    points[3][0] = LENGTH/2+LENGTH;
-    points[3][1] = LENGTH*1.732/2+LENGTH*1.732/2;
+    points[3][0] = LENGTH * 1.5;
+    points[3][1] = LENGTH * 1.732;
     
-    points[4][0] = LENGTH+LENGTH;
-    points[4][1] = LENGTH*1.732/2;
+    points[4][0] = LENGTH * 0.5;
+    points[4][1] = LENGTH * 1.732;
     
-    points[5][0] = LENGTH/2+LENGTH;
-    points[5][1] = LENGTH*1.732/2+LENGTH*1.732/2;
+    points[5][0] = 0;
+    points[5][1] = LENGTH * 1.732/2;
     //*/
     return points;
   }
@@ -84,7 +85,7 @@ public class Hex extends JButton{
     }
     //setLocation((int)x, (int)y);
     //setSize((int)LENGTH, (int)(LENGTH));
-    setBounds((int)x, (int)y,(int)LENGTH, (int)(LENGTH));
+    setBounds((int)x, (int)y, (int)LENGTH*2, (int)(LENGTH*1.732));
     //
     //g.fillPolygon(hex);
     g.drawPolygon(hex);
