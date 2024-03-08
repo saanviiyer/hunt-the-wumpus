@@ -22,9 +22,9 @@ public class Hex extends JButton{
     setFocusPainted(true);
     setBorderPainted(false);
     setSize((int)LENGTH, (int)(LENGTH));
-    double x = c*1.5*LENGTH+LENGTH;
-    double y = r*LENGTH*1.732+LENGTH;
-    if (c%2 == 1) y += LENGTH*1.732/2;
+    //double x = c*1.5*LENGTH+LENGTH;
+    //double y = r*LENGTH*1.732+LENGTH;
+    //if (c%2 == 1) y += LENGTH*1.732/2;
   }
   public Hex(int i){
     this(i/6, i%6);
