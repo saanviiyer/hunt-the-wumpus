@@ -3,6 +3,8 @@
 // Feb 2024
 // High Score Management Object
 
-public class HighScore{
-
+public class HighScore {
+    public HighScore() {
+        
+    }
 }
