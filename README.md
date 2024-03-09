@@ -44,8 +44,18 @@ Go to [this guide](https://www.markdownguide.org/cheat-sheet/) for a detailed de
 ### Trivia - Jack
 
 ### Cave - Shunzo
-Working on creating a `Room` class that would contain a list of adjacent rooms.  
-The `Cave` class would hold the list of all the rooms.  
+Each Hex in the cave is connected to its adjacent.
+The Hex class has been created. Constructed with id or row,column.  
+The Cave class draws the map of hexes with `draw(JFrame frame)`  
+Currently working on: drawing a different map based on current location of player.  
+- color current location a different color
+- color options a different color
+- enable clicking to move the player
+  
+Todo:  
+- create 5 different maps, or figure out how to randomly generate paths (3 paths per cave)
+  - keep in mind: paths should be 2-way
+- somehow work with GameLocations to keep track of Hazards
 
 ### GameLocations & Player - Pavan
 
