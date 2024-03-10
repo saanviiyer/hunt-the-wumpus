@@ -1,4 +1,5 @@
 package Cave;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,20 +14,28 @@ public class Hex extends JButton{
   int row;
   int col;
   int id;
+  Polygon hex;
   public Hex(int r, int c){
     //super(""+r+",");
     super(""+(r*6+c));
     this.id = r*6+c;
     this.row = r;
     this.col = c;
-
-    setSize((int)LENGTH*2, (int)(LENGTH*1.732));
+    double x = this.col*1.5*LENGTH+LENGTH;
+    double y = this.row*LENGTH*1.732+LENGTH;
+    if (this.col%2 == 1) y += LENGTH*1.732/2;
+    setBounds((int)x, (int)y, (int)LENGTH*2, (int)(LENGTH*1.732+2));
+    //setSize((int)LENGTH*2, (int)(LENGTH*1.732+2));
     setContentAreaFilled(false);
     setFocusPainted(true);
     setBorderPainted(false);
-    //double x = c*1.5*LENGTH+LENGTH;
-    //double y = r*LENGTH*1.732+LENGTH;
-    //if (c%2 == 1) y += LENGTH*1.732/2;
+
+    this.hex = new Polygon();
+    for (double[] i: this.getPoints()){
+      this.hex.addPoint((int)(i[0]), (int)(i[1]));
+    }
+    //setLocation((int)x, (int)y);
+    //setSize((int)LENGTH, (int)(LENGTH));
   }
   public Hex(int i){
     this(i/6, i%6);
@@ -77,19 +86,14 @@ public class Hex extends JButton{
   @Override
   public void paintComponent(Graphics g){
     super.paintComponent(g);
-    Polygon hex = new Polygon();
     double x = this.col*1.5*LENGTH+LENGTH;
     double y = this.row*LENGTH*1.732+LENGTH;
     if (this.col%2 == 1) y += LENGTH*1.732/2;
-    for (double[] i: this.getPoints()){
-      hex.addPoint((int)(i[0]), (int)(i[1]));
-    }
-    //setLocation((int)x, (int)y);
-    //setSize((int)LENGTH, (int)(LENGTH));
-    setBounds((int)x, (int)y, (int)LENGTH*2, (int)(LENGTH*1.732));
-    //
-    //g.fillPolygon(hex);
-    g.drawPolygon(hex);
-
+    setBounds((int)x, (int)y, (int)LENGTH*2, (int)(LENGTH*1.732+2));
+    g.drawPolygon(this.hex);
+  }
+  @Override
+  public boolean contains(int x, int y){
+    return this.hex.contains(x, y);
   }
 }
