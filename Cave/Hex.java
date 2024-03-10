@@ -14,6 +14,7 @@ public class Hex extends JButton{
   int row;
   int col;
   int id;
+  Color color = new Color(255,255,255);
   Polygon hex;
   public Hex(int r, int c){
     //super(""+r+",");
@@ -83,6 +84,8 @@ public class Hex extends JButton{
     return points;
   }
 
+  public void setColor(Color c){this.color = c; this.repaint();}
+  public void reset(){this.setColor(new Color(255,255,255));}
   @Override
   public void paintComponent(Graphics g){
     super.paintComponent(g);
@@ -91,6 +94,12 @@ public class Hex extends JButton{
     if (this.col%2 == 1) y += LENGTH*1.732/2;
     setBounds((int)x, (int)y, (int)LENGTH*2, (int)(LENGTH*1.732+2));
     g.drawPolygon(this.hex);
+    
+    g.setColor(this.color);
+    g.fillPolygon(this.hex);
+    
+    g.setColor(new Color(0,0,0));
+    g.drawString(""+(this.row*6+this.col), (int) (LENGTH), (int)(LENGTH*1.732/2));
   }
   @Override
   public boolean contains(int x, int y){

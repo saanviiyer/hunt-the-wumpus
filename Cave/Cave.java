@@ -18,8 +18,8 @@ public class Cave {
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
 
-
-
+    int playerPos = 0;
+    Hex[][] hexes = new Hex[5][6];
 
     
     // Cave is made up of hexagonal rooms with staggered columns
@@ -66,24 +66,40 @@ public class Cave {
         }
         return temp;
     }
+    public boolean isNextTo(int id){
+      for (int i: this.adj[playerPos]) if (i == id) return true;
+      return false;
+    }
 
+    public void goTo(int id){
+      for(int i: this.adj[this.playerPos]) this.hexes[i/6][i%6].reset();
+      this.hexes[this.playerPos/6][this.playerPos%6].reset();
+      if (this.isNextTo(id)) this.playerPos = id;
+      for(int i: this.adj[playerPos]) this.hexes[i/6][i%6].setColor(new Color(0,255,0));
+      this.hexes[this.playerPos/6][this.playerPos%6].setColor(new Color(255,0,0));
+    }
+
+  
     public String DoStuff(int param) {
         return this.getPaths(param);
     }
 
     public void draw(JFrame frame){
-        Hex[][] hexes = new Hex[5][6];
         //int l = 50;
         for(int row = 0; row < 5; row++){
             for (int col = 0; col < 6; col++){
-                hexes[row][col] = new Hex(row, col);
+                this.hexes[row][col] = new Hex(row, col);
                 int id = row*6+col;
-                hexes[row][col].addActionListener(new ActionListener() {
+                if (isNextTo(id)) this.hexes[row][col].setColor(new Color(0,255,0));
+                else if (id == playerPos) this.hexes[row][col].setColor(new Color(255,0,0));
+                    this.hexes[row][col].addActionListener(new ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
-                        System.out.println(getPaths(id));                        
+                        System.out.println(getPaths(id));
+                        goTo(id);
+                        //repaint();
                     }
                 });
-                frame.getContentPane().add(hexes[row][col]);
+                frame.getContentPane().add(this.hexes[row][col]);
             }
         }
     }
