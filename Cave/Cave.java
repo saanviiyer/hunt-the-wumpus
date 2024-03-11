@@ -20,11 +20,24 @@ public class Cave {
 
     int playerPos = 0;
     Hex[][] hexes = new Hex[5][6];
-
-    
+    /*
+    boolean[][][] openings = { // [row][col][dir]
+      {{true,true,true,true,true,true}, {true,true,true,true,true,true}},
+      {{true,true,true,true,true,true}, {true,true,true,true,true,true}}
+    };*/
+    boolean[][][] openings = { // [row][col][dir]
+      {{true,false,true,false,true,false}, {false,true,false,true,false,true}},
+      {{false,false,true,true,true,false}, {true,true,false,false,false,true}}
+    };
     // Cave is made up of hexagonal rooms with staggered columns
     //   6 cols, 5 rows
     public Cave() {
+      //*
+        //this.openings = {
+        //  {{false,false,false,false,false,false}, {false,false,false,false,false,false}},
+        //  {{false,false,false,false,false,false}, {false,false,false,false,false,false}}
+        //};
+//*/
         //sets adjacencies
         for (int i = 0; i < 30; i++){
             int row = i/6; // [0,4]
@@ -67,15 +80,23 @@ public class Cave {
         return temp;
     }
     public boolean isNextTo(int id){
-      for (int i: this.adj[playerPos]) if (i == id) return true;
+      int r = this.playerPos/6;
+      int c = this.playerPos%6;
+      for (int i = 0; i < 6; i++)
+        if (this.openings[r%2][c%2][i] && this.adj[this.playerPos][i] == id) return true;
       return false;
+      /*
+      for (int i: this.adj[playerPos]) if (i == id) return true;
+      return false;*/
     }
 
     public void goTo(int id){
-      for(int i: this.adj[this.playerPos]) this.hexes[i/6][i%6].reset();
+      for(int i: this.adj[this.playerPos]) if (this.isNextTo(i)) this.hexes[i/6][i%6].reset();
       this.hexes[this.playerPos/6][this.playerPos%6].reset();
       if (this.isNextTo(id)) this.playerPos = id;
-      for(int i: this.adj[playerPos]) this.hexes[i/6][i%6].setColor(new Color(0,255,0));
+      
+      for(int i = 0; i < 6; i++) if (this.openings[(id/6)%2][(id%6)%2][i]) 
+        this.hexes[this.adj[id][i]/6][this.adj[id][i]%6].setColor(new Color(0,255,0));
       this.hexes[this.playerPos/6][this.playerPos%6].setColor(new Color(255,0,0));
     }
 
@@ -96,7 +117,6 @@ public class Cave {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
                         System.out.println(getPaths(id));
                         goTo(id);
-                        //repaint();
                     }
                 });
                 frame.getContentPane().add(this.hexes[row][col]);
