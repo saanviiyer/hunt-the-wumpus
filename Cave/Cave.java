@@ -2,7 +2,7 @@ package Cave;
 
 /*
  * Last Editor(s): Shunzo Hida
- * Last Edit @ 1:14 pm
+ * Last Edit @ 12:03 pm 03-11-2024
  */
 
 
@@ -38,12 +38,6 @@ public class Cave {
     // Cave is made up of hexagonal rooms with staggered columns
     //   6 cols, 5 rows
     public Cave() {
-      //*
-        //this.openings = {
-        //  {{false,false,false,false,false,false}, {false,false,false,false,false,false}},
-        //  {{false,false,false,false,false,false}, {false,false,false,false,false,false}}
-        //};
-//*/
         //sets adjacencies
         for (int i = 0; i < 30; i++){
             int row = i/6; // [0,4]
