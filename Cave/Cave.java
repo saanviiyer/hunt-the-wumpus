@@ -10,10 +10,10 @@ package Cave;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-
+import java.util.Random;
 public class Cave {
     static final String[] dirs = {"North", "Northeast", "Southeast", "South", "Southwest", "Northwest"};
-
+    static Random RAND = new Random();
     // rooms are represented by ints [0,29]
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
@@ -95,14 +95,48 @@ public class Cave {
       for (int i: this.adj[playerPos]) if (i == id) return true;
       return false;*/
     }
-
+    /* 
+    public void randomOpen(){
+      // a-l
+      boolean a = RAND.nextBoolean();
+      this.openings[0][0][0] = a;
+      this.openings[0][0][1] = b;
+      this.openings[0][0][2] = c;
+      this.openings[0][0][3] = d;
+      this.openings[0][0][4] = e;
+      this.openings[0][0][5] = f;
+      this.openings[0][1][0] = g;
+      this.openings[0][1][1] = e;
+      this.openings[0][1][2] = l;
+      this.openings[0][1][3] = i;
+      this.openings[0][1][4] = j;
+      this.openings[0][1][5] = c;
+      this.openings[1][0][0] = d;
+      this.openings[1][0][1] = j;
+      this.openings[1][0][2] = k;
+      this.openings[1][0][3] = a;
+      this.openings[1][0][4] = h;
+      this.openings[1][0][5] = l;
+      this.openings[1][1][0] = i;
+      this.openings[1][1][1] = h;
+      this.openings[1][1][2] = f;
+      this.openings[1][1][3] = g;
+      this.openings[1][1][4] = b;
+      this.openings[1][1][5] = k;
+      this.openings = { // [row][col][dir]
+        //n, ne, se, s, sw, nw
+        {{a,b,c,d,e,f}, {g,e,l,i,j,c}},
+        {{d,j,k,a,h,l}, {i,h,f,g,b,k}}
+      };
+    }*/
     public void goTo(int id){
-      for(int i: this.adj[this.playerPos]) if (this.isNextTo(i)) this.hexes[i/6][i%6].reset();
+      System.out.println(playerPos);
+      for(int i: this.adj[this.playerPos]) this.hexes[i/6][i%6].reset();
       this.hexes[this.playerPos/6][this.playerPos%6].reset();
       if (this.isNextTo(id)) this.playerPos = id;
       
-      for(int i = 0; i < 6; i++) if (this.openings[(id/6)%2][(id%6)%2][i]) 
-        this.hexes[this.adj[id][i]/6][this.adj[id][i]%6].setColor(new Color(0,255,0));
+      for(int i = 0; i < 6; i++) if (this.openings[(this.playerPos/6)%2][(this.playerPos%6)%2][i]) 
+        this.hexes[this.adj[this.playerPos][i]/6][this.adj[this.playerPos][i]%6].setColor(new Color(0,255,0));
       this.hexes[this.playerPos/6][this.playerPos%6].setColor(new Color(255,0,0));
     }
 
