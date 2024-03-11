@@ -25,6 +25,12 @@ public class Cave {
       {{true,true,true,true,true,true}, {true,true,true,true,true,true}},
       {{true,true,true,true,true,true}, {true,true,true,true,true,true}}
     };*/
+    /*
+    boolean[][][] openings = { // [row][col][dir]
+      //n, ne, se, s, sw, nw
+      {{a,b,c,d,e,f}, {g,e,l,i,j,c}},
+      {{d,j,k,a,h,l}, {i,h,f,g,b,k}}
+    };*/
     boolean[][][] openings = { // [row][col][dir]
       {{true,false,true,false,true,false}, {false,true,false,true,false,true}},
       {{false,false,true,true,true,false}, {true,true,false,false,false,true}}
