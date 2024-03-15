@@ -40,38 +40,6 @@ public class CaveTest {
         menu.add(menuItem);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
         myCave.draw(frame);
-
-
-
-        /* 
-        // Add a constructor test button to content pane and make it visible
-        {
-            JButton button = new JButton("Test Constructor");
-            button.setSize(frame.getWidth(), 50);
-            button.setLocation(0, 0);
-
-            button.addActionListener(new ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent e) {
-                    TestConstructor();
-                }
-            });
-            frame.getContentPane().add(button);
-        }
-
-        // Add a constructor test button to content pane and make it visible
-        {
-            JButton button = new JButton("Test DoStuff");
-            button.setSize(frame.getWidth(), 50);
-            button.setLocation(0, 50);
-
-            button.addActionListener(new ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent e) {
-                    TestCaveDoStuff();
-                }
-            });
-            frame.getContentPane().add(button);
-        }*/
-
         frame.setVisible(true);
     }
 }
