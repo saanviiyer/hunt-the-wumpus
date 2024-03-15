@@ -35,6 +35,7 @@ public class Cave {
       {{true,false,true,false,true,false}, {false,true,false,true,false,true}},
       {{false,false,true,true,true,false}, {true,true,false,false,false,true}}
     };
+    boolean[][] paths = new boolean[30][6];
     // Cave is made up of hexagonal rooms with staggered columns
     //   6 cols, 5 rows
     public Cave() {
