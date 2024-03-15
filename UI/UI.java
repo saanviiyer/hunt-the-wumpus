@@ -10,43 +10,47 @@ import java.awt.event.*;
 
 public class UI implements ActionListener{
     int var;
-    
-    
-
     String permString = "Var equals: ";
-    JLabel label = new JLabel(permString);
+    JFrame frame = new JFrame("Wumpus");
     JMenuBar menuBar = new JMenuBar();
     JMenu menu = new JMenu("File");
     JMenu menu2 = new JMenu("hello");
     JButton button = new JButton("Increase var");
+    JLabel label = new JLabel(permString);
+    JMenuItem exit = new JMenuItem("Exit");
+
     ////////////////////////
     ////   CONSTRUCTOR  ////
     ////////////////////////
 
     public UI(){
         var = 1;
-
-        JFrame frame = new JFrame("Wumpus");
+        
+        //set frame behavior
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1920,1080);
         frame.setLayout(new FlowLayout());
-
-
+  
+        //adding items to menu
         menuBar.add(menu);
         menuBar.add(menu2);
+
+        menu.add(exit);
+        exit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                System.exit(0);
+            }
+        }); 
         
+        //adding menubar to frame
         frame.setJMenuBar(menuBar);
         
-
-
+        //adding ticker
+        frame.add(label);
  
         button.addActionListener(this);
-        frame.add(label);
-        frame.add(button);
-
         
-
-
+        frame.add(button);
         frame.setVisible(true);
 
 
@@ -79,6 +83,6 @@ public class UI implements ActionListener{
     }
 
     public void updateHighScore(){
-        
+        System.out.println("updating high score");
     }
 }
