@@ -62,6 +62,7 @@ Todo:
 ### Graphical Interface - Nathan
 
 ### Game Control - Saanvi
+i need everyone to finish their stuff so then i can connnect the stuff
 
 ### High Score - Yana
 
