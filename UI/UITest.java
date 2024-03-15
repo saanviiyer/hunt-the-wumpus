@@ -30,6 +30,7 @@ class Test {
         JFrame frame = new JFrame("My Wumpus GUI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 400);
+        frame.setLayout(new FlowLayout());
 
         // Create a basic menu and add it to the top
         JMenuBar menuBar = new JMenuBar();

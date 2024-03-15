@@ -11,7 +11,7 @@ import java.awt.event.*;
 public class UI implements ActionListener{
     int var;
     
-    JFrame frame = new JFrame("Wumpus");
+    
 
     String permString = "Var equals: ";
     JLabel label = new JLabel(permString);
@@ -25,13 +25,16 @@ public class UI implements ActionListener{
 
     public UI(){
         var = 1;
-        
+
+        JFrame frame = new JFrame("Wumpus");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1920,1080);
+        frame.setLayout(new FlowLayout());
 
 
         menuBar.add(menu);
         menuBar.add(menu2);
+        
         frame.setJMenuBar(menuBar);
         
 
