@@ -30,4 +30,12 @@ public class GameControl {
         System.out.println("moving player in direction " + direction);
     }
 
+    public void startTrivia() {
+        System.out.println("start trivia");
+    }
+
+    public void playSound() {
+        System.out.println("playing sound");
+    }
+
 }
