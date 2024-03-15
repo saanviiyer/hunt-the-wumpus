@@ -4,6 +4,11 @@
 // new change
 // Handles user input (except for High Score and Trivia), coordinates all the other parts of the game.
 
+import Player.*;
+import Trivia.*;
+import UI.*;
+import Cave.*;
+
 public class GameControl {
 
     // PROPERTIES
