@@ -1,6 +1,7 @@
 import Player.*;
 import Trivia.*;
 import UI.*;
+import Cave.*;
 
 public class Main{
     public static void main(String[] args){

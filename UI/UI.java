@@ -5,32 +5,47 @@
 
 package UI;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
-public class UI {
+public class UI implements ActionListener{
     int var;
+    
+    JFrame frame = new JFrame("Wumpus");
 
+    String permString = "Var equals: ";
+    JLabel label = new JLabel(permString);
+    JMenuBar menuBar = new JMenuBar();
+    JMenu menu = new JMenu("File");
+    JMenu menu2 = new JMenu("hello");
+    JButton button = new JButton("Increase var");
     ////////////////////////
     ////   CONSTRUCTOR  ////
     ////////////////////////
 
     public UI(){
         var = 1;
-        JFrame frame = new JFrame("Wumpus");
+        
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300,300);
+        frame.setSize(1920,1080);
 
-        JMenuBar menuBar = new JMenuBar();
-        JMenu menu = new JMenu("File");
-        JMenu menu2 = new JMenu("hello");
-        menuBar.add(menu2);
+
         menuBar.add(menu);
+        menuBar.add(menu2);
         frame.setJMenuBar(menuBar);
+        
+
+
+ 
+        button.addActionListener(this);
+        frame.add(label);
+        frame.add(button);
+
+        
+
+
         frame.setVisible(true);
 
-/* 
-        JButton button1 = new JButton(Integer.toString(var));
-        frame.getContentPane().add(button1);
-        frame.setVisible(true);*/
 
     }
 
@@ -38,20 +53,25 @@ public class UI {
     ////   METHODS      ////
     ////////////////////////
 
+    public void actionPerformed(ActionEvent e){
+        DoStuff(1);
+        label.setText(permString + var);
+    }
+
     public int DoStuff(int i){
         var += i;
         return var;
     }
 
     public void startNewGame(){
-
+        System.out.println("starting new game");
     }
 
     public void move(){
-
+        System.out.println("player moving");
     }
 
     public void displayNearbyRooms(){
-        
+        System.out.println("showing nearby rooms");
     }
 }
