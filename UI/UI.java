@@ -77,4 +77,8 @@ public class UI implements ActionListener{
     public void displayNearbyRooms(){
         System.out.println("showing nearby rooms");
     }
+
+    public void updateHighScore(){
+        
+    }
 }
