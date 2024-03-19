@@ -6,7 +6,7 @@ package Cave;
  */
 
 
-
+import GameLocations.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -14,11 +14,11 @@ import java.util.Random;
 public class Cave {
     static final String[] dirs = {"North", "Northeast", "Southeast", "South", "Southwest", "Northwest"};
     static Random RAND = new Random();
+    static GameLocations loc = new GameLocations();
     // rooms are represented by ints [0,29]
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
 
-    int playerPos = 0;
     Hex[][] hexes = new Hex[5][6];
     /*
     boolean[][][] openings = { // [row][col][dir]
@@ -81,13 +81,13 @@ public class Cave {
         return temp;
     }
     public boolean isNextTo(int id){
-      int r = this.playerPos/6;
-      int c = this.playerPos%6;
+      int r = loc.getPlayerPos()/6;
+      int c = loc.getPlayerPos()%6;
       for (int i = 0; i < 6; i++)
-        if (this.openings[r%2][c%2][i] && this.adj[this.playerPos][i] == id) return true;
+        if (this.openings[r%2][c%2][i] && this.adj[loc.getPlayerPos()][i] == id) return true;
       return false;
       /*
-      for (int i: this.adj[playerPos]) if (i == id) return true;
+      for (int i: this.adj[loc.getPlayerPos()]) if (i == id) return true;
       return false;*/
     }
     /* 
@@ -125,14 +125,14 @@ public class Cave {
       };
     }*/
     public void goTo(int id){
-      System.out.println(playerPos);
-      for(int i: this.adj[this.playerPos]) this.hexes[i/6][i%6].reset();
-      this.hexes[this.playerPos/6][this.playerPos%6].reset();
-      if (this.isNextTo(id)) this.playerPos = id;
+      System.out.println(loc.getPlayerPos());
+      for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i/6][i%6].reset();
+      this.hexes[loc.getPlayerPos()/6][loc.getPlayerPos()%6].reset();
+      if (this.isNextTo(id)) loc.setPlayerPos(id);
       
-      for(int i = 0; i < 6; i++) if (this.openings[(this.playerPos/6)%2][(this.playerPos%6)%2][i]) 
-        this.hexes[this.adj[this.playerPos][i]/6][this.adj[this.playerPos][i]%6].setColor(new Color(0,255,0));
-      this.hexes[this.playerPos/6][this.playerPos%6].setColor(new Color(255,0,0));
+      for(int i = 0; i < 6; i++) if (this.openings[(loc.getPlayerPos()/6)%2][(loc.getPlayerPos()%6)%2][i]) 
+        this.hexes[this.adj[loc.getPlayerPos()][i]/6][this.adj[loc.getPlayerPos()][i]%6].setColor(new Color(0,255,0));
+      this.hexes[loc.getPlayerPos()/6][loc.getPlayerPos()%6].setColor(new Color(255,0,0));
     }
 
   
@@ -147,7 +147,7 @@ public class Cave {
                 this.hexes[row][col] = new Hex(row, col);
                 int id = row*6+col;
                 if (isNextTo(id)) this.hexes[row][col].setColor(new Color(0,255,0));
-                else if (id == playerPos) this.hexes[row][col].setColor(new Color(255,0,0));
+                else if (id == loc.getPlayerPos()) this.hexes[row][col].setColor(new Color(255,0,0));
                     this.hexes[row][col].addActionListener(new ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
                         System.out.println(getPaths(id));
