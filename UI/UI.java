@@ -19,6 +19,9 @@ public class UI implements ActionListener{
     JLabel label = new JLabel(permString);
     JMenuItem exit = new JMenuItem("Exit");
 
+    JTextField textField = new JTextField(10);
+    JButton submitText = new JButton("Submit Text");
+   
     ////////////////////////
     ////   CONSTRUCTOR  ////
     ////////////////////////
@@ -49,8 +52,18 @@ public class UI implements ActionListener{
         frame.add(label);
  
         button.addActionListener(this);
-        
         frame.add(button);
+
+        frame.add(textField);
+
+        submitText.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                var = Integer.parseInt(textField.getText());
+                label.setText(permString + var);
+            }
+        });
+        frame.add(submitText);
+
         frame.setVisible(true);
 
 
