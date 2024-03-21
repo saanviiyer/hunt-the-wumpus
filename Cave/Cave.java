@@ -7,6 +7,7 @@ package Cave;
 
 
 import GameLocations.*;
+import Player.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -18,8 +19,8 @@ public class Cave {
     // rooms are represented by ints [0,29]
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
-
-    Hex[][] hexes = new Hex[5][6];
+    Player player;
+    Hex[][] hexes = new Hex[5][6]; // flatten to a 1-dim array? (ids)
     /*
     boolean[][][] openings = { // [row][col][dir]
       {{true,true,true,true,true,true}, {true,true,true,true,true,true}},
@@ -31,14 +32,17 @@ public class Cave {
       {{a,b,c,d,e,f}, {g,e,l,i,j,c}},
       {{d,j,k,a,h,l}, {i,h,f,g,b,k}}
     };*/
+    
     boolean[][][] openings = { // [row][col][dir]
       {{true,false,true,false,true,false}, {false,true,false,true,false,true}},
       {{false,false,true,true,true,false}, {true,true,false,false,false,true}}
     };
+
     boolean[][] paths = new boolean[30][6];
     // Cave is made up of hexagonal rooms with staggered columns
     //   6 cols, 5 rows
     public Cave() {
+        //this.randomOpen();
         //sets adjacencies
         for (int i = 0; i < 30; i++){
             int row = i/6; // [0,4]
@@ -90,40 +94,60 @@ public class Cave {
       for (int i: this.adj[loc.getPlayerPos()]) if (i == id) return true;
       return false;*/
     }
-    /* 
+    
     public void randomOpen(){
       // a-l
+      // a, b, c, d, e, f = 3
+      // g, e, l, i, j, c = 3
+      // d, j, k, a, h, l = 3
+      // i, h, f, g, b, k = 3
       boolean a = RAND.nextBoolean();
+      boolean b = RAND.nextBoolean();
+      boolean c = RAND.nextBoolean();
+      boolean d = RAND.nextBoolean();
+      boolean e = RAND.nextBoolean();
+      boolean f = RAND.nextBoolean();
+      boolean g = RAND.nextBoolean();
+      boolean h = RAND.nextBoolean();
+      boolean i = RAND.nextBoolean();
+      boolean j = RAND.nextBoolean();
+      boolean k = RAND.nextBoolean();
+      boolean l = RAND.nextBoolean();
+
       this.openings[0][0][0] = a;
       this.openings[0][0][1] = b;
       this.openings[0][0][2] = c;
       this.openings[0][0][3] = d;
       this.openings[0][0][4] = e;
       this.openings[0][0][5] = f;
+
       this.openings[0][1][0] = g;
       this.openings[0][1][1] = e;
       this.openings[0][1][2] = l;
       this.openings[0][1][3] = i;
       this.openings[0][1][4] = j;
       this.openings[0][1][5] = c;
+
       this.openings[1][0][0] = d;
       this.openings[1][0][1] = j;
       this.openings[1][0][2] = k;
       this.openings[1][0][3] = a;
       this.openings[1][0][4] = h;
       this.openings[1][0][5] = l;
+
       this.openings[1][1][0] = i;
       this.openings[1][1][1] = h;
       this.openings[1][1][2] = f;
       this.openings[1][1][3] = g;
       this.openings[1][1][4] = b;
       this.openings[1][1][5] = k;
+      /*
       this.openings = { // [row][col][dir]
         //n, ne, se, s, sw, nw
         {{a,b,c,d,e,f}, {g,e,l,i,j,c}},
         {{d,j,k,a,h,l}, {i,h,f,g,b,k}}
-      };
-    }*/
+      }; */
+    }
     public void goTo(int id){
       System.out.println(loc.getPlayerPos());
       for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i/6][i%6].reset();
