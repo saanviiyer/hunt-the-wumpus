@@ -36,13 +36,15 @@ public class Cave {
     boolean[][][] openings = { // [row][col][dir]
       {{true,false,true,false,true,false}, {false,true,false,true,false,true}},
       {{false,false,true,true,true,false}, {true,true,false,false,false,true}}
-    };
+    }; // connected to row, alternating column
+
 
     boolean[][] paths = new boolean[30][6];
     // Cave is made up of hexagonal rooms with staggered columns
     //   6 cols, 5 rows
     public Cave() {
         //this.randomOpen();
+        if (RAND.nextInt(3) != 0) this.connectByColumn();
         //sets adjacencies
         for (int i = 0; i < 30; i++){
             int row = i/6; // [0,4]
@@ -113,6 +115,111 @@ public class Cave {
       boolean j = RAND.nextBoolean();
       boolean k = RAND.nextBoolean();
       boolean l = RAND.nextBoolean();
+
+      this.openings[0][0][0] = a;
+      this.openings[0][0][1] = b;
+      this.openings[0][0][2] = c;
+      this.openings[0][0][3] = d;
+      this.openings[0][0][4] = e;
+      this.openings[0][0][5] = f;
+
+      this.openings[0][1][0] = g;
+      this.openings[0][1][1] = e;
+      this.openings[0][1][2] = l;
+      this.openings[0][1][3] = i;
+      this.openings[0][1][4] = j;
+      this.openings[0][1][5] = c;
+
+      this.openings[1][0][0] = d;
+      this.openings[1][0][1] = j;
+      this.openings[1][0][2] = k;
+      this.openings[1][0][3] = a;
+      this.openings[1][0][4] = h;
+      this.openings[1][0][5] = l;
+
+      this.openings[1][1][0] = i;
+      this.openings[1][1][1] = h;
+      this.openings[1][1][2] = f;
+      this.openings[1][1][3] = g;
+      this.openings[1][1][4] = b;
+      this.openings[1][1][5] = k;
+      /*
+      this.openings = { // [row][col][dir]
+        //n, ne, se, s, sw, nw
+        {{a,b,c,d,e,f}, {g,e,l,i,j,c}},
+        {{d,j,k,a,h,l}, {i,h,f,g,b,k}}
+      }; */
+    }
+    public void connectByColumn(){
+      // a-l
+      // a, b, c, d, e, f = 3
+      // g, e, l, i, j, c = 3
+      // d, j, k, a, h, l = 3
+      // i, h, f, g, b, k = 3
+
+      boolean a = true;
+      boolean b = false;
+      boolean c = false;
+      boolean d = true;
+      boolean e = false;
+      boolean f = false;
+      boolean g = true;
+      boolean h = false;
+      boolean i = true;
+      boolean j = false;
+      boolean k = false;
+      boolean l = false;
+
+      // one of b, c, e, f is true;
+
+
+      switch (RAND.nextInt(4)){
+        case 0:
+          b = true;
+          break;
+        case 1:
+          c = true;
+          break;
+        case 2:
+          e = true;
+          break;
+        case 3:
+          f = true;
+          break;
+        default: break;
+      }
+      if (b){
+        l = true;
+      } else if (c){
+        h = true;
+      } else if (e) {
+        k = true;
+      } else if (f){
+        j = true;
+      }
+/* 
+      if (b || c){
+        switch (RAND.nextInt(2)){
+          case 0:
+            h = true;
+            break;
+          case 1:
+            l = true;
+            break;
+          default: break;
+        }
+      } else if (e || f){
+        switch (RAND.nextInt(2)){
+          case 0:
+            j = true;
+            break;
+          case 1:
+            k = true;
+            break;
+          default: break;
+        }
+      }*/
+
 
       this.openings[0][0][0] = a;
       this.openings[0][0][1] = b;

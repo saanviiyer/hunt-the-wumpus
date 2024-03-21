@@ -53,7 +53,7 @@ The Cave class draws the map of hexes with `draw(JFrame frame)`
 - enable clicking to move the player
   
   
-Currently working on: create 5 different maps, or figure out how to randomly generate paths (3 paths per cave)
+**complete** Currently working on: create 5 different maps, or figure out how to randomly generate paths (3 paths per cave)
   - keep in mind: paths should be 2-way
   - Additionally, use a GameLocations to keep track
 
