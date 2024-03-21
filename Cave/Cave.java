@@ -131,8 +131,8 @@ public class Cave {
       if (this.isNextTo(id)) loc.setPlayerPos(id);
       
       for(int i = 0; i < 6; i++) if (this.openings[(loc.getPlayerPos()/6)%2][(loc.getPlayerPos()%6)%2][i]) 
-        this.hexes[this.adj[loc.getPlayerPos()][i]/6][this.adj[loc.getPlayerPos()][i]%6].setColor(new Color(0,255,0));
-      this.hexes[loc.getPlayerPos()/6][loc.getPlayerPos()%6].setColor(new Color(255,0,0));
+        this.hexes[this.adj[loc.getPlayerPos()][i]/6][this.adj[loc.getPlayerPos()][i]%6].setColor(Hex.GREEN);
+      this.hexes[loc.getPlayerPos()/6][loc.getPlayerPos()%6].setColor(Hex.RED);
     }
 
   
