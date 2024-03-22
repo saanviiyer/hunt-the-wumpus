@@ -69,11 +69,11 @@ public class GameControl {
 
     public void checkHazard(Player player) {
         if (checkBottomlessPit(player)) {
-
+            startTrivia();
         } 
         
         if (checkSuperBat(player)) {
-
+            // change player position to a random position
         }
     }
 
