@@ -15,11 +15,12 @@ public class GameLocations {
     int[] batPos;
     ArrayList<Integer> fallenArrows;
     int shopPos;
+    static final Random RAND = new Random();
 
     // CONSTRUCTOR
     public GameLocations() {
-        this.wumpusPos = 0;
-        this.playerPos = 15;
+        this.wumpusPos = RAND.nextInt(0,15);
+        this.playerPos = RAND.nextInt(15,30);
         this.pitPos = new int[0];
         this.batPos = new int[0];
         this.fallenArrows = new ArrayList<Integer>();
