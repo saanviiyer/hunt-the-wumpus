@@ -8,10 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class UI implements ActionListener{
+public class UI extends JFrame implements ActionListener{
     int var;
     String permString = "Var equals: ";
-    JFrame frame = new JFrame("Wumpus");
     JMenuBar menuBar = new JMenuBar();
     JMenu menu = new JMenu("File");
     JMenu menu2 = new JMenu("hello");
@@ -21,6 +20,12 @@ public class UI implements ActionListener{
 
     JTextField textField = new JTextField(10);
     JButton submitText = new JButton("Submit Text");
+
+    JMenuItem startNewGame = new JMenuItem("New Game");
+    JButton move = new JButton("Move");
+    JButton shoot = new JButton("shoot");
+    JButton buyArrows = new JButton("Purchase Arrows");
+    JButton buySecrets = new JButton("Purchase Secrets");
    
     ////////////////////////
     ////   CONSTRUCTOR  ////
@@ -30,15 +35,17 @@ public class UI implements ActionListener{
         var = 1;
         
         //set frame behavior
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1920,1080);
-        frame.setLayout(new FlowLayout());
+        setTitle("Hunt the Wumpus");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1920,1080);
+        setLayout(new FlowLayout());
   
         //adding items to menu
         menuBar.add(menu);
         menuBar.add(menu2);
 
         menu.add(exit);
+        menu.add(startNewGame);
         exit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 System.exit(0);
@@ -46,15 +53,15 @@ public class UI implements ActionListener{
         }); 
         
         //adding menubar to frame
-        frame.setJMenuBar(menuBar);
+        setJMenuBar(menuBar);
         
         //adding ticker
-        frame.add(label);
+        add(label);
  
         button.addActionListener(this);
-        frame.add(button);
+        add(button);
 
-        frame.add(textField);
+        add(textField);
 
         submitText.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -62,9 +69,37 @@ public class UI implements ActionListener{
                 label.setText(permString + var);
             }
         });
-        frame.add(submitText);
+        add(submitText);
 
-        frame.setVisible(true);
+        move.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                move();
+            }
+        });
+        add(move);
+
+        shoot.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                shoot();
+            }
+        });
+        add(shoot);
+
+        buyArrows.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                purchaseArrows();
+            }
+        });
+        add(buyArrows);
+
+        buySecrets.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                purchaseSecrets();
+            }
+        });
+        add(buySecrets);
+
+        setVisible(true);
 
 
     }
@@ -97,5 +132,21 @@ public class UI implements ActionListener{
 
     public void updateHighScore(){
         System.out.println("updating high score");
+    }
+
+    public void displayHazards(){
+        System.out.println("Displaying hazards");
+    }
+
+    public void shoot(){
+        System.out.println("shooting");
+    }
+
+    public void purchaseArrows(){
+        System.out.println("buy arrows");
+    }
+
+    public void purchaseSecrets(){
+        System.out.println("buy secrets");
     }
 }
