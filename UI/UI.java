@@ -39,7 +39,8 @@ public class UI extends JFrame implements ActionListener{
         setSize(1920,1080);
         setLayout(new FlowLayout());
         
-  
+        ImageIcon icon = new ImageIcon("wumpus.jpg");
+        setIconImage(icon.getImage());
         //adding items to menu
         menuBar.add(menu);
       
