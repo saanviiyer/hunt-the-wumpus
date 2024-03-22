@@ -23,6 +23,10 @@
 package Player;
 
 public class Player {
+    private int arrows;
+    private int goldCoins;
+    private int turns;
+    
     public Player() {
         // Initialize player inventory and turns
         this.arrows = 5; // Initial number of arrows
