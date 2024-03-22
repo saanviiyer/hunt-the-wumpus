@@ -37,6 +37,10 @@ public class GameControl {
         // will be updating value of player's current location
     }
 
+    public boolean checkWumpusNearby(Player player) {
+
+    }
+
     public void chooseCave() {
         System.out.println("choose cave");
         // change player's cave
@@ -49,6 +53,28 @@ public class GameControl {
 
     public void playSound() {
         System.out.println("playing sound");
+    }
+
+    // hazards:
+    // bottomless pit
+    // super bat
+
+    public boolean checkBottomlessPit(Player player) {
+        return true;
+    }
+
+    public boolean checkSuperBat(Player player) {
+        return true;
+    }
+
+    public void checkHazard(Player player) {
+        if (checkBottomlessPit(player)) {
+
+        } 
+        
+        if (checkSuperBat(player)) {
+
+        }
     }
 
     // public void moveWumpus() {
