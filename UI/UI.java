@@ -13,7 +13,6 @@ public class UI extends JFrame implements ActionListener{
     String permString = "Var equals: ";
     JMenuBar menuBar = new JMenuBar();
     JMenu menu = new JMenu("File");
-    JMenu menu2 = new JMenu("hello");
     JButton button = new JButton("Increase var");
     JLabel label = new JLabel(permString);
     JMenuItem exit = new JMenuItem("Exit");
@@ -37,21 +36,29 @@ public class UI extends JFrame implements ActionListener{
         //set frame behavior
         setTitle("Hunt the Wumpus");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1920,1080);
-        setLayout(new FlowLayout());
-  
+        setSize(1024,576);
+        setLayout(new GridLayout(3,3));
+        
+        ImageIcon icon = new ImageIcon("wumpus3.0.jpg");
+        setIconImage(icon.getImage());
         //adding items to menu
         menuBar.add(menu);
-        menuBar.add(menu2);
+        
 
-        menu.add(exit);
-        menu.add(startNewGame);
         exit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 System.exit(0);
             }
         }); 
-        
+        menu.add(exit);
+
+        startNewGame.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                startNewGame();
+            }
+        }); 
+        menu.add(startNewGame);
+
         //adding menubar to frame
         setJMenuBar(menuBar);
         
