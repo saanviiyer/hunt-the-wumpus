@@ -23,9 +23,41 @@
 package Player;
 
 public class Player {
-
+    private int arrows;
+    private int goldCoins;
+    private int turns;
     
     public Player() {
-        
+        // Initialize player inventory and turns
+        this.arrows = 5; // Initial number of arrows
+        this.goldCoins = 0;
+        this.turns = 0;
     }
+
+    public int getArrows() {
+        return arrows;
+    }
+
+    public void decrementArrows() {
+        // Decrease the arrow count when the player shoots an arrow
+        arrows--;
+    }
+
+    public int getGoldCoins() {
+        return goldCoins;
+    }
+
+    public void setGoldCoins(int goldCoins) {
+        this.goldCoins = goldCoins;
+    }
+
+    public int getTurns() {
+        return turns;
+    }
+
+    public void incrementTurns() {
+        turns++;
+    }
+
+    // Additional methods and attributes as needed
 }
