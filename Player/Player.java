@@ -26,10 +26,10 @@ public class Player {
     private int arrows;
     private int goldCoins;
     private int turns;
-    
+
     public Player() {
         // Initialize player inventory and turns
-        this.arrows = 5; // Initial number of arrows
+        this.arrows = 3; // Initial number of arrows
         this.goldCoins = 0;
         this.turns = 0;
     }
@@ -39,8 +39,15 @@ public class Player {
     }
 
     public void decrementArrows() {
-        // Decrease the arrow count when the player shoots an arrow
         arrows--;
+    }
+
+    public String haveArrows(){
+        if (arrows == 0){ 
+            this.turns = 0;
+            return "GAME OVER";
+        }
+        return "The player has " + arrows + " arrows";
     }
 
     public int getGoldCoins() {
@@ -59,5 +66,8 @@ public class Player {
         turns++;
     }
 
-    // Additional methods and attributes as needed
+    public void getSecret() {
+        
+    }
+
 }
