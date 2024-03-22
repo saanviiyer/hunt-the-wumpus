@@ -21,7 +21,7 @@ public class Cave {
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
     Player player;
-    Hex[] hexes = new Hex[30]; // flatten to a 1-dim array? (ids)
+    Hex[] hexes = new Hex[30]; // row = i/6, col = i%6
     /*
     boolean[][][] openings = { // [row][col][dir]
       {{true,true,true,true,true,true}, {true,true,true,true,true,true}},
@@ -189,28 +189,6 @@ public class Cave {
       } else if (f){
         j = true;
       }
-/* 
-      if (b || c){
-        switch (RAND.nextInt(2)){
-          case 0:
-            h = true;
-            break;
-          case 1:
-            l = true;
-            break;
-          default: break;
-        }
-      } else if (e || f){
-        switch (RAND.nextInt(2)){
-          case 0:
-            j = true;
-            break;
-          case 1:
-            k = true;
-            break;
-          default: break;
-        }
-      }*/
 
 
       this.openings[0][0][0] = a;

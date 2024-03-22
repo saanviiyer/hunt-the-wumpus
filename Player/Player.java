@@ -23,9 +23,51 @@
 package Player;
 
 public class Player {
+    private int arrows;
+    private int goldCoins;
+    private int turns;
 
-    
     public Player() {
+        // Initialize player inventory and turns
+        this.arrows = 3; // Initial number of arrows
+        this.goldCoins = 0;
+        this.turns = 0;
+    }
+
+    public int getArrows() {
+        return arrows;
+    }
+
+    public void decrementArrows() {
+        arrows--;
+    }
+
+    public String haveArrows(){
+        if (arrows == 0){ 
+            this.turns = 0;
+            return "GAME OVER";
+        }
+        return "The player has " + arrows + " arrows";
+    }
+
+    public int getGoldCoins() {
+        return goldCoins;
+    }
+
+    public void setGoldCoins(int goldCoins) {
+        this.goldCoins = goldCoins;
+    }
+
+    public int getTurns() {
+        return turns;
+    }
+
+    public void incrementTurns() {
+        turns++;
+    }
+
+    public void getSecret() {
         
     }
+
 }
