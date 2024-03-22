@@ -30,6 +30,7 @@ class Test {
         JFrame frame = new JFrame("My Wumpus GUI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 400);
+        frame.setLayout(new FlowLayout());
 
         // Create a basic menu and add it to the top
         JMenuBar menuBar = new JMenuBar();
@@ -52,7 +53,7 @@ class Test {
         {
             JButton button = new JButton("Test Constructor");
             button.setSize(frame.getWidth(), 50);
-            button.setLocation(0, 0);
+            button.setLocation(0, 50);
 
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -66,7 +67,7 @@ class Test {
         {
             JButton button = new JButton("Test DoStuff");
             button.setSize(frame.getWidth(), 50);
-            button.setLocation(0, 50);
+            button.setLocation(0, 10);
 
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {

@@ -22,15 +22,7 @@
 
 package Player;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-class Player {
-    private int arrows;
-    private int goldCoins;
-    private int turns;
-
+public class Player {
     public Player() {
         // Initialize player inventory and turns
         this.arrows = 5; // Initial number of arrows

@@ -5,32 +5,67 @@
 
 package UI;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
-public class UI {
+public class UI implements ActionListener{
     int var;
+    String permString = "Var equals: ";
+    JFrame frame = new JFrame("Wumpus");
+    JMenuBar menuBar = new JMenuBar();
+    JMenu menu = new JMenu("File");
+    JMenu menu2 = new JMenu("hello");
+    JButton button = new JButton("Increase var");
+    JLabel label = new JLabel(permString);
+    JMenuItem exit = new JMenuItem("Exit");
 
+    JTextField textField = new JTextField(10);
+    JButton submitText = new JButton("Submit Text");
+   
     ////////////////////////
     ////   CONSTRUCTOR  ////
     ////////////////////////
 
     public UI(){
         var = 1;
-        JFrame frame = new JFrame("Wumpus");
+        
+        //set frame behavior
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300,300);
-
-        JMenuBar menuBar = new JMenuBar();
-        JMenu menu = new JMenu("File");
-        JMenu menu2 = new JMenu("hello");
-        menuBar.add(menu2);
+        frame.setSize(1920,1080);
+        frame.setLayout(new FlowLayout());
+  
+        //adding items to menu
         menuBar.add(menu);
+        menuBar.add(menu2);
+
+        menu.add(exit);
+        exit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                System.exit(0);
+            }
+        }); 
+        
+        //adding menubar to frame
         frame.setJMenuBar(menuBar);
+        
+        //adding ticker
+        frame.add(label);
+ 
+        button.addActionListener(this);
+        frame.add(button);
+
+        frame.add(textField);
+
+        submitText.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                var = Integer.parseInt(textField.getText());
+                label.setText(permString + var);
+            }
+        });
+        frame.add(submitText);
+
         frame.setVisible(true);
 
-/* 
-        JButton button1 = new JButton(Integer.toString(var));
-        frame.getContentPane().add(button1);
-        frame.setVisible(true);*/
 
     }
 
@@ -38,20 +73,29 @@ public class UI {
     ////   METHODS      ////
     ////////////////////////
 
+    public void actionPerformed(ActionEvent e){
+        DoStuff(1);
+        label.setText(permString + var);
+    }
+
     public int DoStuff(int i){
         var += i;
         return var;
     }
 
     public void startNewGame(){
-
+        System.out.println("starting new game");
     }
 
     public void move(){
-
+        System.out.println("player moving");
     }
 
     public void displayNearbyRooms(){
-        
+        System.out.println("showing nearby rooms");
+    }
+
+    public void updateHighScore(){
+        System.out.println("updating high score");
     }
 }
