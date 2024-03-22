@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Random;
+
 public class Cave {
     static final String[] dirs = {"North", "Northeast", "Southeast", "South", "Southwest", "Northwest"};
     static Random RAND = new Random();
@@ -20,7 +21,7 @@ public class Cave {
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
     Player player;
-    Hex[][] hexes = new Hex[5][6]; // flatten to a 1-dim array? (ids)
+    Hex[] hexes = new Hex[30]; // flatten to a 1-dim array? (ids)
     /*
     boolean[][][] openings = { // [row][col][dir]
       {{true,true,true,true,true,true}, {true,true,true,true,true,true}},
@@ -86,16 +87,7 @@ public class Cave {
         }
         return temp;
     }
-    public boolean isNextTo(int id){
-      int r = loc.getPlayerPos()/6;
-      int c = loc.getPlayerPos()%6;
-      for (int i = 0; i < 6; i++)
-        if (this.openings[r%2][c%2][i] && this.adj[loc.getPlayerPos()][i] == id) return true;
-      return false;
-      /*
-      for (int i: this.adj[loc.getPlayerPos()]) if (i == id) return true;
-      return false;*/
-    }
+
     
     public void randomOpen(){
       // a-l
@@ -255,17 +247,34 @@ public class Cave {
         {{d,j,k,a,h,l}, {i,h,f,g,b,k}}
       }; */
     }
+    public boolean isNextTo(int id){
+      int r = loc.getPlayerPos()/6;
+      int c = loc.getPlayerPos()%6;
+      for (int i = 0; i < 6; i++)
+        if (this.openings[r%2][c%2][i] && this.adj[loc.getPlayerPos()][i] == id) return true;
+      return false;
+      /*
+      for (int i: this.adj[loc.getPlayerPos()]) if (i == id) return true;
+      return false;*/
+    }
     public void goTo(int id){
       System.out.println(loc.getPlayerPos());
-      for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i/6][i%6].reset();
-      this.hexes[loc.getPlayerPos()/6][loc.getPlayerPos()%6].reset();
+      for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
+      this.hexes[loc.getPlayerPos()].reset();
       if (this.isNextTo(id)) loc.setPlayerPos(id);
       
       for(int i = 0; i < 6; i++) if (this.openings[(loc.getPlayerPos()/6)%2][(loc.getPlayerPos()%6)%2][i]) 
-        this.hexes[this.adj[loc.getPlayerPos()][i]/6][this.adj[loc.getPlayerPos()][i]%6].setColor(Hex.GREEN);
-      this.hexes[loc.getPlayerPos()/6][loc.getPlayerPos()%6].setColor(Hex.RED);
+        this.hexes[this.adj[loc.getPlayerPos()][i]].setColor(Hex.GREEN);
+      this.hexes[loc.getPlayerPos()].setColor(Hex.RED);
     }
 
+    public int shoot(int dir, int len){ // dir = [0,5]
+      int cur = loc.getPlayerPos();
+      for (int i = 0; i < len; i++){
+        if (this.openings[(cur/6)%2][(cur%6)%2][dir]) cur = this.adj[cur][dir];
+      }
+      return cur;
+    }
   
     public String DoStuff(int param) {
         return this.getPaths(param);
@@ -275,17 +284,18 @@ public class Cave {
         //int l = 50;
         for(int row = 0; row < 5; row++){
             for (int col = 0; col < 6; col++){
-                this.hexes[row][col] = new Hex(row, col);
                 int id = row*6+col;
-                if (isNextTo(id)) this.hexes[row][col].setColor(new Color(0,255,0));
-                else if (id == loc.getPlayerPos()) this.hexes[row][col].setColor(new Color(255,0,0));
-                    this.hexes[row][col].addActionListener(new ActionListener() {
+                this.hexes[id] = new Hex(row, col);
+                if (isNextTo(id)) this.hexes[id].setColor(new Color(0,255,0));
+                else if (id == loc.getPlayerPos()) this.hexes[id].setColor(new Color(255,0,0));
+                    this.hexes[id].addActionListener(new ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
                         System.out.println(getPaths(id));
                         goTo(id);
+                        System.out.println(shoot(0, 1));
                     }
                 });
-                frame.getContentPane().add(this.hexes[row][col]);
+                frame.getContentPane().add(this.hexes[id]);
             }
         }
     }
