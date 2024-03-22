@@ -2,7 +2,7 @@ package Cave;
 
 /*
  * Last Editor(s): Shunzo Hida
- * Last Edit @ 12:03 pm 03-11-2024
+ * Last Edit @ 03-22-2024
  */
 
 
@@ -253,6 +253,10 @@ public class Cave {
       }
       return cur;
     }
+
+    public int pathFind(){
+      return 0;
+    }
   
     public String DoStuff(int param) {
         return this.getPaths(param);
@@ -270,7 +274,7 @@ public class Cave {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
                         System.out.println(getPaths(id));
                         goTo(id);
-                        System.out.println(shoot(0, 1));
+                        System.out.println(shoot(0, RAND.nextInt(5)));
                     }
                 });
                 frame.getContentPane().add(this.hexes[id]);

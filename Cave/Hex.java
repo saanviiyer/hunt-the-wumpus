@@ -13,6 +13,7 @@ public class Hex extends JButton{
   static final Color RED = new Color(255,0,0);
   static final Color GREEN = new Color(0,255,0);
   static final Color BLUE = new Color(0,0,255);
+  //static 
 
   static final int nRows = 5;
   static final int nCols = 6;
