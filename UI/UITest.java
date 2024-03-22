@@ -28,7 +28,7 @@ class Test {
     public static void main(String args[])
     {
         JFrame frame = new JFrame("My Wumpus GUI");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(800, 400);
         frame.setLayout(new FlowLayout());
 

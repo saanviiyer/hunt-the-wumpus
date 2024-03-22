@@ -39,8 +39,9 @@ public class UI extends JFrame implements ActionListener{
         setSize(1024,576);
         setLayout(new GridLayout(3,3));
         
-        ImageIcon icon = new ImageIcon("wumpus3.0.jpg");
+        ImageIcon icon = new ImageIcon("wumpus4.png");
         setIconImage(icon.getImage());
+        
         //adding items to menu
         menuBar.add(menu);
         
