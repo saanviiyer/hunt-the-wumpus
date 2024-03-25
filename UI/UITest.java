@@ -9,8 +9,8 @@ package UI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.awt.Font;
+
 
 class Test {
     private static UI myUI;
@@ -83,6 +83,10 @@ class Test {
     // }
 
     public static void main(String[] args){
+        try { 
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); 
+            System.out.println("laf changed");
+        } catch(Exception ignored){}
         UI myUI = new UI();
 
         // Font serif = null;
