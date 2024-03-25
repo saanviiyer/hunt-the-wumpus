@@ -43,8 +43,6 @@ public class UI extends JFrame implements ActionListener{
 
     JLabel currentPlayerLabel = new JLabel();
 
-    Font serif = new Font(Font.SERIF, Font.BOLD, 20);
-
    
     ////////////////////////
     ////   CONSTRUCTOR  ////
@@ -213,13 +211,13 @@ public class UI extends JFrame implements ActionListener{
 
         //add new font
         {
-            Font montserrat = null;
+            Font montserratBold = null;
             try{
-                montserrat = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\Montserrat\\Montserrat-Bold.ttf"));
+                montserratBold = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\Montserrat\\Montserrat-Bold.ttf"));
             } catch(Exception e){}
 
-            Font size20 = montserrat.deriveFont(Font.PLAIN, 20);
-            changeFont(this, size20);
+            Font size10bold = montserratBold.deriveFont(Font.PLAIN, 10);
+            changeFont(this, size10bold);
         }
 
         //set frame to visible
