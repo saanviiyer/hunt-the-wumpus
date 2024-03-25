@@ -26,7 +26,7 @@ public class UI extends JFrame implements ActionListener{
     JTextField roomInput = new JTextField("enter room number");
     JButton move = new JButton("Move");
 
-    JButton shoot = new JButton("shoot");
+    JButton shoot = new JButton("Shoot");
 
     JButton buyArrows = new JButton("Purchase Arrows");
     JButton buySecrets = new JButton("Purchase Secrets");
@@ -40,6 +40,8 @@ public class UI extends JFrame implements ActionListener{
     JLabel highScoreLabel = new JLabel("High Score: " + highScore);
 
     JLabel hazards = new JLabel("Hazards: ");
+
+    JLabel currentPlayerLabel = new JLabel();
 
     Font serif = new Font(Font.SERIF, Font.BOLD, 20);
 
@@ -56,8 +58,6 @@ public class UI extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920,1080);
         setLayout(new GridBagLayout());
-        changeFont(this, serif);
-        hazards.setFont(serif);
         
         //change icon of frame
         ImageIcon icon = new ImageIcon("wumpus4.png");
@@ -211,13 +211,14 @@ public class UI extends JFrame implements ActionListener{
             add(hazards, c);
         }
 
+        //add new font
         {
-            Font starjedi = null;
+            Font montserrat = null;
             try{
-                starjedi = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\Starjedi.ttf"));
+                montserrat = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\Montserrat\\Montserrat-Bold.ttf"));
             } catch(Exception e){}
 
-            Font size20 = starjedi.deriveFont(Font.PLAIN, 20);
+            Font size20 = montserrat.deriveFont(Font.PLAIN, 20);
             changeFont(this, size20);
         }
 
