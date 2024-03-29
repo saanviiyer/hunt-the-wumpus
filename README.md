@@ -57,6 +57,8 @@ The Cave class draws the map of hexes with `draw(JFrame frame)`
   - keep in mind: paths should be 2-way
   - Additionally, use a GameLocations to keep track
 
+Currently working on: completely randomize map
+  - for each hex unconnected, break open a wall
 
 To-do:  
 - somehow work with GameLocations to keep track of Hazards

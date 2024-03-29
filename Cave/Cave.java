@@ -2,7 +2,7 @@ package Cave;
 
 /*
  * Last Editor(s): Shunzo Hida
- * Last Edit @ 12:03 pm 03-11-2024
+ * Last Edit @ 03-22-2024
  */
 
 
@@ -12,6 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.util.ArrayList;
+
 
 public class Cave {
     static final String[] dirs = {"North", "Northeast", "Southeast", "South", "Southwest", "Northwest"};
@@ -225,7 +227,40 @@ public class Cave {
         {{d,j,k,a,h,l}, {i,h,f,g,b,k}}
       }; */
     }
-    public boolean isNextTo(int id){
+
+    public void open(int id, int dir){
+      this.paths[id][dir] = true;
+      this.paths[this.adj[id][dir]][(dir+3)%6] = true;
+    }
+
+    public void openPaths(){
+      int start = 0;
+      ArrayList<Integer> open = new ArrayList<Integer>();
+      open.add(start);
+      ArrayList<Integer> finished = new ArrayList<Integer>();
+      ArrayList<Integer> closed = new ArrayList<Integer>();
+      for (int i = 0; i < 30; i++) if (i!=start) closed.add(i);
+      while (!closed.isEmpty()){
+        break;
+      }
+    }
+
+    public int count(int id){
+      int c = 0;
+      for (boolean[] bo: this.paths) for (boolean b: bo) if (b) c++;
+      return c;
+    }
+
+    public boolean isNextTo(int cur, int tar){
+      int r = cur/6;
+      int c = cur%6;
+      for (int i = 0; i < 6; i++)
+        if (this.openings[r%2][c%2][i] && this.adj[cur][i] == tar) return true;
+      return false;
+    }
+    public boolean isNextTo(int id){ // if there is a path there
+      return this.isNextTo(loc.getPlayerPos(), id);
+      /*
       int r = loc.getPlayerPos()/6;
       int c = loc.getPlayerPos()%6;
       for (int i = 0; i < 6; i++)
@@ -253,6 +288,10 @@ public class Cave {
       }
       return cur;
     }
+
+    public int pathFind(){
+      return 0;
+    }
   
     public String DoStuff(int param) {
         return this.getPaths(param);
@@ -260,6 +299,7 @@ public class Cave {
 
     public void draw(JFrame frame){
         //int l = 50;
+        Hex.setOffset(100,100);
         for(int row = 0; row < 5; row++){
             for (int col = 0; col < 6; col++){
                 int id = row*6+col;
@@ -270,7 +310,7 @@ public class Cave {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
                         System.out.println(getPaths(id));
                         goTo(id);
-                        System.out.println(shoot(0, 1));
+                        System.out.println(shoot(0, RAND.nextInt(5)));
                     }
                 });
                 frame.getContentPane().add(this.hexes[id]);
