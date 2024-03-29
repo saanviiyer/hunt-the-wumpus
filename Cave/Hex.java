@@ -5,7 +5,7 @@ import java.awt.*;
 
 
 public class Hex extends JButton{
-  static final int LENGTH = 25; // side length, in pixels
+  static int LENGTH = 25; // side length, in pixels
   // radius to an edge is sqrt3 * length/2
   // radius to a vertex is length
   static int offsetX = LENGTH;
@@ -102,6 +102,8 @@ public class Hex extends JButton{
     offsetX = x;
     offsetY = y;
   }
+
+  public static void setLength(int l){LENGTH=l;}
 
   @Override
   public void paintComponent(Graphics g){
