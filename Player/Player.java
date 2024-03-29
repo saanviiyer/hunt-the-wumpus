@@ -26,9 +26,9 @@ public class Player {
     private int arrows;
     private int goldCoins;
     private int turns;
+    private String[] secret;
 
     public Player() {
-        // Initialize player inventory and turns
         this.arrows = 3; // Initial number of arrows
         this.goldCoins = 0;
         this.turns = 0;
@@ -67,7 +67,13 @@ public class Player {
     }
 
     public void getSecret() {
-        
+        String[] secret = new String[6];
+        secret[0] = "Their is a bat in room ";
+        secret[1] = "Their is a pit in room ";
+        secret[2] = "Their is a wumpus in room ";
+        secret[3] = "You are in room ";
+        secret[4] = "Trivia answer ##";
+        secret[5] = "The Wumpus is two rooms away";
     }
 
 }

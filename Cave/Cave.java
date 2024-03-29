@@ -251,7 +251,16 @@ public class Cave {
       return c;
     }
 
-    public boolean isNextTo(int id){
+    public boolean isNextTo(int cur, int tar){
+      int r = cur/6;
+      int c = cur%6;
+      for (int i = 0; i < 6; i++)
+        if (this.openings[r%2][c%2][i] && this.adj[cur][i] == tar) return true;
+      return false;
+    }
+    public boolean isNextTo(int id){ // if there is a path there
+      return this.isNextTo(loc.getPlayerPos(), id);
+      /*
       int r = loc.getPlayerPos()/6;
       int c = loc.getPlayerPos()%6;
       for (int i = 0; i < 6; i++)
@@ -290,6 +299,7 @@ public class Cave {
 
     public void draw(JFrame frame){
         //int l = 50;
+        Hex.setOffset(100,100);
         for(int row = 0; row < 5; row++){
             for (int col = 0; col < 6; col++){
                 int id = row*6+col;
