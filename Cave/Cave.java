@@ -12,6 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.util.ArrayList;
+
 
 public class Cave {
     static final String[] dirs = {"North", "Northeast", "Southeast", "South", "Southwest", "Northwest"};
@@ -225,6 +227,30 @@ public class Cave {
         {{d,j,k,a,h,l}, {i,h,f,g,b,k}}
       }; */
     }
+
+    public void open(int id, int dir){
+      this.paths[id][dir] = true;
+      this.paths[this.adj[id][dir]][(dir+3)%6] = true;
+    }
+
+    public void openPaths(){
+      int start = 0;
+      ArrayList<Integer> open = new ArrayList<Integer>();
+      open.add(start);
+      ArrayList<Integer> finished = new ArrayList<Integer>();
+      ArrayList<Integer> closed = new ArrayList<Integer>();
+      for (int i = 0; i < 30; i++) if (i!=start) closed.add(i);
+      while (!closed.isEmpty()){
+        break;
+      }
+    }
+
+    public int count(int id){
+      int c = 0;
+      for (boolean[] bo: this.paths) for (boolean b: bo) if (b) c++;
+      return c;
+    }
+
     public boolean isNextTo(int id){
       int r = loc.getPlayerPos()/6;
       int c = loc.getPlayerPos()%6;
