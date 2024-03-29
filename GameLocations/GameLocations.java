@@ -5,6 +5,8 @@
 package GameLocations;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
+import java.util.HashSet;
 
 public class GameLocations {
 
@@ -15,15 +17,41 @@ public class GameLocations {
     int[] batPos;
     ArrayList<Integer> fallenArrows;
     int shopPos;
+    static final Random RAND = new Random();
+    Set<Integer> taken = new HashSet<Integer>();
 
     // CONSTRUCTOR
     public GameLocations() {
-        this.wumpusPos = 0;
-        this.playerPos = 15;
-        this.pitPos = new int[0];
-        this.batPos = new int[0];
+        this.wumpusPos = RAND.nextInt(0,30);
+        taken.add(this.wumpusPos);
+
+        this.playerPos = RAND.nextInt(0,30);
+        while (taken.contains(this.playerPos)) this.playerPos = RAND.nextInt(0,30);
+        taken.add(this.playerPos);
+
+        this.pitPos = new int[2];
+        this.pitPos[0] = RAND.nextInt(0,30);
+        while (taken.contains(this.pitPos[0])) this.pitPos[0] = RAND.nextInt(0,30);
+        taken.add(this.pitPos[0]);
+
+        this.pitPos[1] = RAND.nextInt(0,30);
+        while (taken.contains(this.pitPos[1])) this.pitPos[1] = RAND.nextInt(0,30);
+        taken.add(this.pitPos[1]);
+
+        this.batPos = new int[2];
+        this.batPos[0] = RAND.nextInt(0,30);
+        while (taken.contains(this.batPos[0])) this.batPos[0] = RAND.nextInt(0,30);
+        taken.add(this.batPos[0]);
+
+        this.batPos[1] = RAND.nextInt(0,30);
+        while (taken.contains(this.batPos[1])) this.batPos[1] = RAND.nextInt(0,30);
+        taken.add(this.batPos[1]);
+
         this.fallenArrows = new ArrayList<Integer>();
-        this.shopPos = 2;
+
+        this.shopPos = RAND.nextInt(0,30);
+        while (taken.contains(this.shopPos)) this.shopPos = RAND.nextInt(0,30);
+        taken.add(this.shopPos);
     }
 
     // METHOD (add getters and setters)

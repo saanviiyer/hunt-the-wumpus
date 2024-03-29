@@ -2,7 +2,7 @@ package Cave;
 
 /*
  * Last Editor(s): Shunzo Hida
- * Last Edit @ 12:03 pm 03-11-2024
+ * Last Edit @ 03-22-2024
  */
 
 
@@ -12,6 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.util.ArrayList;
+
 
 public class Cave {
     static final String[] dirs = {"North", "Northeast", "Southeast", "South", "Southwest", "Northwest"};
@@ -21,7 +23,7 @@ public class Cave {
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
     Player player;
-    Hex[] hexes = new Hex[30]; // flatten to a 1-dim array? (ids)
+    Hex[] hexes = new Hex[30]; // row = i/6, col = i%6
     /*
     boolean[][][] openings = { // [row][col][dir]
       {{true,true,true,true,true,true}, {true,true,true,true,true,true}},
@@ -189,28 +191,6 @@ public class Cave {
       } else if (f){
         j = true;
       }
-/* 
-      if (b || c){
-        switch (RAND.nextInt(2)){
-          case 0:
-            h = true;
-            break;
-          case 1:
-            l = true;
-            break;
-          default: break;
-        }
-      } else if (e || f){
-        switch (RAND.nextInt(2)){
-          case 0:
-            j = true;
-            break;
-          case 1:
-            k = true;
-            break;
-          default: break;
-        }
-      }*/
 
 
       this.openings[0][0][0] = a;
@@ -247,6 +227,30 @@ public class Cave {
         {{d,j,k,a,h,l}, {i,h,f,g,b,k}}
       }; */
     }
+
+    public void open(int id, int dir){
+      this.paths[id][dir] = true;
+      this.paths[this.adj[id][dir]][(dir+3)%6] = true;
+    }
+
+    public void openPaths(){
+      int start = 0;
+      ArrayList<Integer> open = new ArrayList<Integer>();
+      open.add(start);
+      ArrayList<Integer> finished = new ArrayList<Integer>();
+      ArrayList<Integer> closed = new ArrayList<Integer>();
+      for (int i = 0; i < 30; i++) if (i!=start) closed.add(i);
+      while (!closed.isEmpty()){
+        break;
+      }
+    }
+
+    public int count(int id){
+      int c = 0;
+      for (boolean[] bo: this.paths) for (boolean b: bo) if (b) c++;
+      return c;
+    }
+
     public boolean isNextTo(int id){
       int r = loc.getPlayerPos()/6;
       int c = loc.getPlayerPos()%6;
@@ -275,6 +279,10 @@ public class Cave {
       }
       return cur;
     }
+
+    public int pathFind(){
+      return 0;
+    }
   
     public String DoStuff(int param) {
         return this.getPaths(param);
@@ -292,7 +300,7 @@ public class Cave {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
                         System.out.println(getPaths(id));
                         goTo(id);
-                        System.out.println(shoot(0, 1));
+                        System.out.println(shoot(0, RAND.nextInt(5)));
                     }
                 });
                 frame.getContentPane().add(this.hexes[id]);
