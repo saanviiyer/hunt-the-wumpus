@@ -299,6 +299,7 @@ public class Cave {
 
     public void draw(JFrame frame){
         //int l = 50;
+        Hex.setOffset(100,100);
         for(int row = 0; row < 5; row++){
             for (int col = 0; col < 6; col++){
                 int id = row*6+col;
