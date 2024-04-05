@@ -22,11 +22,18 @@
 
 package Player;
 
+import java.util.Random;
+
 public class Player {
     private int arrows;
     private int goldCoins;
     private int turns;
-    private String[] secret;
+    int wumpusPos;
+    int playerPos;
+    int[] pitPos;
+    int[] batPos;
+    Random rand = new Random();
+    int int_random = rand.nextInt(6);
 
     public Player() {
         this.arrows = 3; // Initial number of arrows
@@ -66,14 +73,15 @@ public class Player {
         turns++;
     }
 
-    public void getSecret() {
+    public String getSecret(int int_rand) {
         String[] secret = new String[6];
-        secret[0] = "Their is a bat in room ";
-        secret[1] = "Their is a pit in room ";
-        secret[2] = "Their is a wumpus in room ";
-        secret[3] = "You are in room ";
+        secret[0] = "Their is a bat in room " + batPos;
+        secret[1] = "Their is a pit in room " + pitPos;
+        secret[2] = "Their is a wumpus in room " + wumpusPos;
+        secret[3] = "You are in room " + playerPos;
         secret[4] = "Trivia answer ##";
         secret[5] = "The Wumpus is two rooms away";
+        return secret[int_rand];
     }
 
 }
