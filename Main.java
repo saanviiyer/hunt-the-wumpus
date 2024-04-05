@@ -17,6 +17,6 @@ public class Main{
         Wumpus wumpus = new Wumpus();
         curGame.initBoard();
 
-        cave.draw(ui);
+        //cave.draw(ui);
     }
 }

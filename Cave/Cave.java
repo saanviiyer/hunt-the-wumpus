@@ -70,7 +70,7 @@ public class Cave {
                 this.adj[i][5] = ( ((row-1+5)%5)*6 + (col-1+6)%6 )%30; // previous row, previous column
             }
         }
-
+        this.openPaths();
     }
 
     public int[] getAdj(int id){
@@ -231,6 +231,8 @@ public class Cave {
     public void open(int id, int dir){
       this.paths[id][dir] = true;
       this.paths[this.adj[id][dir]][(dir+3)%6] = true;
+      System.out.println("opened path between " + id + " and " + this.adj[id][dir]);
+      System.out.println(id + ", dir" + dir);
     }
 
     public void openPaths(){
@@ -241,7 +243,29 @@ public class Cave {
       ArrayList<Integer> closed = new ArrayList<Integer>();
       for (int i = 0; i < 30; i++) if (i!=start) closed.add(i);
       while (!closed.isEmpty()){
-        break;
+        if (open.size() == 0){
+          System.out.println("failed");
+          break;
+        }
+        int curHex = open.get(0);
+        open.remove(0);
+        int nToOpen = 3-this.count(curHex);//Math.max(RAND.nextInt(1, 3)-this.count(curHex), 0);
+        ArrayList<Integer> avail = new ArrayList<Integer>();
+        for (int i = 0; i < 6; i++){
+          if (this.count(this.adj[curHex][i]) < 3 && !this.paths[curHex][i] && !finished.contains(this.adj[curHex][i])) avail.add(i);
+        }
+        ArrayList<Integer> pathsToOpen = new ArrayList<Integer>();
+        for (int i = 0; i < nToOpen && !avail.isEmpty(); i++){
+          int chI = RAND.nextInt(0,avail.size());
+          pathsToOpen.add(avail.get(chI));
+          avail.remove(chI);
+        }
+        for (int dir: pathsToOpen){
+          open.add(this.adj[curHex][dir]);
+          this.open(curHex, dir);
+          closed.remove(Integer.valueOf(dir));
+        }
+        finished.add(curHex);
       }
     }
 
@@ -255,7 +279,8 @@ public class Cave {
       int r = cur/6;
       int c = cur%6;
       for (int i = 0; i < 6; i++)
-        if (this.openings[r%2][c%2][i] && this.adj[cur][i] == tar) return true;
+        //if (this.openings[r%2][c%2][i] && this.adj[cur][i] == tar) return true;
+        if (this.paths[cur][i] && this.adj[cur][i] == tar) return true;
       return false;
     }
     public boolean isNextTo(int id){ // if there is a path there
@@ -271,12 +296,21 @@ public class Cave {
       return false;*/
     }
     public void goTo(int id){
+      /* 
       System.out.println(loc.getPlayerPos());
       for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
       this.hexes[loc.getPlayerPos()].reset();
       if (this.isNextTo(id)) loc.setPlayerPos(id);
       
       for(int i = 0; i < 6; i++) if (this.openings[(loc.getPlayerPos()/6)%2][(loc.getPlayerPos()%6)%2][i]) 
+        this.hexes[this.adj[loc.getPlayerPos()][i]].setColor(Hex.GREEN);
+      this.hexes[loc.getPlayerPos()].setColor(Hex.RED);*/
+      System.out.println(loc.getPlayerPos());
+      for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
+      this.hexes[loc.getPlayerPos()].reset();
+      if (this.isNextTo(id)) loc.setPlayerPos(id);
+      
+      for(int i = 0; i < 6; i++) if (this.paths[loc.getPlayerPos()][i]) 
         this.hexes[this.adj[loc.getPlayerPos()][i]].setColor(Hex.GREEN);
       this.hexes[loc.getPlayerPos()].setColor(Hex.RED);
     }
