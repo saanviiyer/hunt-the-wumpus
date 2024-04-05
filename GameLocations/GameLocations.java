@@ -1,7 +1,7 @@
 // Saanvi Subramanian
 // Period 5
 // 3/15/24
-// saanvi doing pavan's work
+
 package GameLocations;
 import java.util.ArrayList;
 import java.util.Random;
@@ -87,7 +87,6 @@ public class GameLocations {
     public void setBatPos(int[] pos) {
         this.batPos = pos;
     }
-
 
 
     public int getShopPos() {
