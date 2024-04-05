@@ -5,6 +5,8 @@
 
 package UI;
 import javax.swing.*;
+
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -42,6 +44,7 @@ public class UI extends JFrame implements ActionListener{
     JLabel hazards = new JLabel("Hazards: ");
 
     JLabel currentPlayerLabel = new JLabel("Player: ");
+    JLabel currentCaveLabel = new JLabel("Cave: ");
 
    
     ////////////////////////
@@ -67,9 +70,6 @@ public class UI extends JFrame implements ActionListener{
         c.fill = GridBagConstraints.BOTH;
         c.ipadx = 10;
         c.ipady = 10;
-        c.weightx = 1;
-        c.weighty = 1;
-        c.insets = new Insets(10,10,10,10);
 
         //add menu and menuitems
         {
@@ -95,27 +95,40 @@ public class UI extends JFrame implements ActionListener{
             setJMenuBar(menuBar);
         }
         
-        //add score and high score and player labels
+        //add score, high score, player, cave, arrows labels
         {
             c.gridx = 0;
             c.gridwidth = 1;
             c.gridy = 0;
             c.anchor = GridBagConstraints.FIRST_LINE_START;
             scoreLabel.setHorizontalAlignment(SwingConstants.LEFT);
-            c.insets = new Insets(0, 0, 100, 100);
+            c.insets = new Insets(0, 0, 300, 250);
             add(scoreLabel, c);
-
+            
             c.gridx = 1;
             c.gridwidth = 1;
             c.gridy = 0;
-            // c.anchor = GridBagConstraints.FIRST_LINE_END;
             highScoreLabel.setHorizontalAlignment(SwingConstants.LEFT);
             add(highScoreLabel, c);
+
+            c.gridx = 2;
+            c.gridy = 0;
+            c.gridwidth = 1;
+            add(currentCaveLabel, c);
+
+            c.gridx = 3;
+            c.gridy = 0;
+            c.gridwidth = 1;
+            add(arrowLabel, c);
 
             c.gridy = 1;
             c.gridx = 0;
             c.gridwidth = 1;
+            c.anchor = GridBagConstraints.FIRST_LINE_START;
+            c.insets = new Insets(0, 0, 310, 310);
             add(currentPlayerLabel, c);
+
+
         }
 
         // //int incrementer and label
@@ -291,6 +304,7 @@ public class UI extends JFrame implements ActionListener{
             for ( Component child : ( ( Container ) component ).getComponents () )
             {
                 changeFont ( child, font );
+            
             }
         }
     }
