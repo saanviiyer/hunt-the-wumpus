@@ -231,8 +231,8 @@ public class Cave {
     public void open(int id, int dir){
       this.paths[id][dir] = true;
       this.paths[this.adj[id][dir]][(dir+3)%6] = true;
-      System.out.println("opened path between " + id + " and " + this.adj[id][dir]);
-      System.out.println(id + ", dir" + dir);
+      //System.out.println("opened path between " + id + " and " + this.adj[id][dir]);
+      //System.out.println(id + ", dir" + dir);
     }
 
     public void openPaths(){
@@ -271,7 +271,11 @@ public class Cave {
 
     public int count(int id){
       int c = 0;
-      for (boolean[] bo: this.paths) for (boolean b: bo) if (b) c++;
+      System.out.print(id);
+      for (boolean b: this.paths[id]) {
+        if (b) c++;
+        System.out.print(b);
+      }
       return c;
     }
 
