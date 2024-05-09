@@ -263,18 +263,18 @@ public class Cave {
         for (int dir: pathsToOpen){
           open.add(this.adj[curHex][dir]);
           this.open(curHex, dir);
-          closed.remove(Integer.valueOf(dir));
+          closed.remove(Integer.valueOf(this.adj[curHex][dir]));
+          System.out.println("removed: " + this.adj[curHex][dir]);
         }
         finished.add(curHex);
       }
+      System.out.println("closed: " + closed.size());
     }
 
     public int count(int id){
       int c = 0;
-      System.out.print(id);
       for (boolean b: this.paths[id]) {
         if (b) c++;
-        System.out.print(b);
       }
       return c;
     }
@@ -309,7 +309,7 @@ public class Cave {
       for(int i = 0; i < 6; i++) if (this.openings[(loc.getPlayerPos()/6)%2][(loc.getPlayerPos()%6)%2][i]) 
         this.hexes[this.adj[loc.getPlayerPos()][i]].setColor(Hex.GREEN);
       this.hexes[loc.getPlayerPos()].setColor(Hex.RED);*/
-      System.out.println(loc.getPlayerPos());
+      //System.out.println(loc.getPlayerPos());
       for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
       this.hexes[loc.getPlayerPos()].reset();
       if (this.isNextTo(id)) loc.setPlayerPos(id);
@@ -346,9 +346,9 @@ public class Cave {
                 else if (id == loc.getPlayerPos()) this.hexes[id].setColor(new Color(255,0,0));
                     this.hexes[id].addActionListener(new ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
-                        System.out.println(getPaths(id));
+                        //System.out.println(getPaths(id));
                         goTo(id);
-                        System.out.println(shoot(0, RAND.nextInt(5)));
+                        //System.out.println(shoot(0, RAND.nextInt(5)));
                     }
                 });
                 frame.getContentPane().add(this.hexes[id]);
