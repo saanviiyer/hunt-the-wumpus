@@ -8,6 +8,8 @@ import java.util.Random;
 import java.util.Set;
 import java.util.HashSet;
 
+
+// two pits, two bats, arraylist of arrows, one shop
 public class GameLocations {
 
     // PROPERTIES
@@ -70,6 +72,19 @@ public class GameLocations {
 
     public void setPlayerPos(int pos) {
         this.playerPos = pos;
+        if (pos == this.batPos[0] || pos == this.batPos[1]){
+            System.out.println("bats!");
+        } else if (pos == this.pitPos[0] || pos == this.pitPos[1]){
+            System.out.println("pit!");
+        } else if (pos == this.wumpusPos){
+            System.out.println("wumpus!");
+        } else if (pos == this.shopPos){
+            System.out.println("a shop!");
+        }
+
+        if (this.fallenArrows.contains(pos)){
+            System.out.println("a dropped arrow!");
+        } 
     }
 
     public int[] getPitPos() {
@@ -95,5 +110,9 @@ public class GameLocations {
 
     public ArrayList<Integer> getFallenArrows() {
         return this.fallenArrows;
+    }
+    
+    public void addFallenArrow(int id){
+        this.fallenArrows.add(id);
     }
 }
