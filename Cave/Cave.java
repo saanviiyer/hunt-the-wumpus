@@ -22,7 +22,6 @@ public class Cave {
     // rooms are represented by ints [0,29]
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
-    Player player;
     Hex[] hexes = new Hex[30]; // row = i/6, col = i%6
     /*
     boolean[][][] openings = { // [row][col][dir]
@@ -39,7 +38,7 @@ public class Cave {
 
 
 
-    boolean[][] paths = new boolean[30][6];
+    boolean[][] paths = new boolean[30][6]; // for each hex, if that path is open
     // Cave is made up of hexagonal rooms with staggered columns
     //   6 cols, 5 rows
     public Cave() {
@@ -141,7 +140,7 @@ public class Cave {
       return c;
     }
 
-    public boolean isNextTo(int cur, int tar){
+    public boolean isNextTo(int cur, int tar){ // if you can walk from cur to tar in one step
       for (int i = 0; i < 6; i++)
         //if (this.openings[r%2][c%2][i] && this.adj[cur][i] == tar) return true;
         if (this.paths[cur][i] && this.adj[cur][i] == tar) return true;
@@ -149,7 +148,6 @@ public class Cave {
     }
     public boolean isNextTo(int id){ // if there is a path there
       return this.isNextTo(loc.getPlayerPos(), id);
-
     }
     public void goTo(int id){ // moves the player;
 

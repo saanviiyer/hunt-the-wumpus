@@ -111,6 +111,7 @@ public class GameLocations {
     public ArrayList<Integer> getFallenArrows() {
         return this.fallenArrows;
     }
+    
     public void addFallenArrow(int id){
         this.fallenArrows.add(id);
     }
