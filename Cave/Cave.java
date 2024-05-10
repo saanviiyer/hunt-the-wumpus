@@ -151,7 +151,7 @@ public class Cave {
       return this.isNextTo(loc.getPlayerPos(), id);
 
     }
-    public void goTo(int id){
+    public void goTo(int id){ // moves the player;
 
       for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
       this.hexes[loc.getPlayerPos()].reset();
@@ -166,13 +166,13 @@ public class Cave {
       int cur = loc.getPlayerPos();
       for (int i = 0; i < len; i++){
         if (this.paths[cur][dir]) cur = this.adj[cur][dir];
+        if (cur == loc.getWumpusPos()) System.out.println("Hit the wumpus!");
       }
+      loc.addFallenArrow(cur);
       return cur;
     }
 
-    public int pathFind(){
-      return 0;
-    }
+
   
     public String DoStuff(int param) {
         return this.getPaths(param);
