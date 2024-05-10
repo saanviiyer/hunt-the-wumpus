@@ -7,9 +7,7 @@ package Cave;
 
 
 import GameLocations.*;
-import Player.*;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Random;
 import java.util.ArrayList;
@@ -23,11 +21,7 @@ public class Cave {
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
     Hex[] hexes = new Hex[30]; // row = i/6, col = i%6
-    /*
-    boolean[][][] openings = { // [row][col][dir]
-      {{true,true,true,true,true,true}, {true,true,true,true,true,true}},
-      {{true,true,true,true,true,true}, {true,true,true,true,true,true}}
-    };*/
+
     /*
     boolean[][][] openings = { // [row][col][dir]
       //n, ne, se, s, sw, nw
@@ -42,7 +36,6 @@ public class Cave {
     // Cave is made up of hexagonal rooms with staggered columns
     //   6 cols, 5 rows
     public Cave() {
-        //this.randomOpen();
         //sets adjacencies
         for (int i = 0; i < 30; i++){
             int row = i/6; // [0,4]
@@ -68,15 +61,18 @@ public class Cave {
         this.openPaths();
     }
 
+    // returns an array of adjacencies
     public int[] getAdj(int id){
         return this.adj[id];
     }
     
+    // returns a string displaying adjacencies
     public String printAdj(int id){
         return "{" + this.adj[id][0] + ", " + this.adj[id][1] + ", " + this.adj[id][2] + ", " 
                 + this.adj[id][3] + ", " + this.adj[id][4] + ", " + this.adj[id][5] + "}";
     }
 
+    // returns a string with adjacencies and directions
     public String getPaths(int id){
         String temp = new String();
         for (int i = 0; i < 6; i++){
@@ -85,10 +81,8 @@ public class Cave {
         return temp;
     }
 
-    
 
-
-
+    // opens a wall between two adjacent hexes
     public void open(int id, int dir){
       this.paths[id][dir] = true;
       this.paths[this.adj[id][dir]][(dir+3)%6] = true;
@@ -96,6 +90,7 @@ public class Cave {
       //System.out.println(id + ", dir" + dir);
     }
 
+    // generates random openings. Mostly 3 per hex.
     public void openPaths(){
       int start = 0;
       ArrayList<Integer> open = new ArrayList<Integer>();
@@ -132,6 +127,7 @@ public class Cave {
       //System.out.println("closed: " + closed.size());
     }
 
+    //returns the amount of openings the hex has
     public int count(int id){
       int c = 0;
       for (boolean b: this.paths[id]) {
@@ -140,16 +136,20 @@ public class Cave {
       return c;
     }
 
-    public boolean isNextTo(int cur, int tar){ // if you can walk from cur to tar in one step
+    // if Hex tar is open to cur
+    public boolean isNextTo(int cur, int tar){
       for (int i = 0; i < 6; i++)
         //if (this.openings[r%2][c%2][i] && this.adj[cur][i] == tar) return true;
         if (this.paths[cur][i] && this.adj[cur][i] == tar) return true;
       return false;
     }
+    // Same thing, except only with player location
     public boolean isNextTo(int id){ // if there is a path there
       return this.isNextTo(loc.getPlayerPos(), id);
     }
-    public void goTo(int id){ // moves the player;
+
+    // moves the player and redraws hexes
+    public void goTo(int id){
 
       for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
       this.hexes[loc.getPlayerPos()].reset();
@@ -160,6 +160,7 @@ public class Cave {
       this.hexes[loc.getPlayerPos()].setColor(Hex.RED);
     }
 
+    // shoots an arrow in a direction dir, continues for len hexes or until it hits a wall
     public int shoot(int dir, int len){ // dir = [0,5]
       int cur = loc.getPlayerPos();
       for (int i = 0; i < len; i++){
@@ -171,11 +172,13 @@ public class Cave {
     }
 
 
-  
+    // idk
     public String DoStuff(int param) {
         return this.getPaths(param);
     }
 
+    // draws onto frame using frame.getContentPane().add(Hex)
+    // See Hex.java for more information on how hexes are drawn.
     public void draw(JFrame frame){
         //int l = 50;
         Hex.setOffset(100,100);
@@ -183,8 +186,8 @@ public class Cave {
             for (int col = 0; col < 6; col++){
                 int id = row*6+col;
                 this.hexes[id] = new Hex(row, col);
-                if (isNextTo(id)) this.hexes[id].setColor(new Color(0,255,0));
-                else if (id == loc.getPlayerPos()) this.hexes[id].setColor(new Color(255,0,0));
+                if (isNextTo(id)) this.hexes[id].setColor(Hex.GREEN);
+                else if (id == loc.getPlayerPos()) this.hexes[id].setColor(Hex.RED);
                     this.hexes[id].addActionListener(new ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
                         //System.out.println(getPaths(id));
