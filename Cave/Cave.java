@@ -126,11 +126,11 @@ public class Cave {
           open.add(this.adj[curHex][dir]);
           this.open(curHex, dir);
           closed.remove(Integer.valueOf(this.adj[curHex][dir]));
-          System.out.println("removed: " + this.adj[curHex][dir]);
+          //System.out.println("removed: " + this.adj[curHex][dir]);
         }
         finished.add(curHex);
       }
-      System.out.println("closed: " + closed.size());
+      //System.out.println("closed: " + closed.size());
     }
 
     public int count(int id){
