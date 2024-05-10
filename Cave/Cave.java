@@ -142,8 +142,6 @@ public class Cave {
     }
 
     public boolean isNextTo(int cur, int tar){
-      int r = cur/6;
-      int c = cur%6;
       for (int i = 0; i < 6; i++)
         //if (this.openings[r%2][c%2][i] && this.adj[cur][i] == tar) return true;
         if (this.paths[cur][i] && this.adj[cur][i] == tar) return true;
