@@ -48,6 +48,7 @@ public class UI extends JFrame implements ActionListener{
     JButton goS = new JButton("S");
     JButton goSW = new JButton("SW");
     JButton goW = new JButton("W");
+    JButton goNW = new JButton("NW");
 
    
     ////////////////////////
@@ -138,8 +139,19 @@ public class UI extends JFrame implements ActionListener{
 
         }
 
-        
+        //add movement buttons
+        {
+            c.gridx = 0;
+            c.gridy = 2;
+            c.fill = GridBagConstraints.BOTH;
+            c.gridheight = 1;
+            c.gridwidth = 1;
+            add(goNW, c);
 
+            c.gridx = 1;
+            c.gridy = 2;
+            add(goN, c);
+        }
     
         //add new font
         {
