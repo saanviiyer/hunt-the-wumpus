@@ -38,7 +38,7 @@ public class GameControl {
     }
 
     public boolean checkWumpusNearby(Player player) {
-
+        return false;
     }
 
     public void chooseCave() {
