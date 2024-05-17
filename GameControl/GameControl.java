@@ -60,7 +60,7 @@ public class GameControl {
     // super bat
 
     public boolean checkBottomlessPit(Player player) {
-        return true;
+        GameLocations;
     }
 
     public boolean checkSuperBat(Player player) {
