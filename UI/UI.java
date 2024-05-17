@@ -182,7 +182,8 @@ public class UI extends JFrame implements ActionListener{
         }
 
         //set frame to visible
-        
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
         setVisible(true);
 
     }
