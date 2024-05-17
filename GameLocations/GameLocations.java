@@ -85,16 +85,28 @@ public class GameLocations {
         return (canMoveTo(batPos[0]) || canMoveTo(batPos[1]));
     }
 
+    public boolean atWumpus(){
+        return (playerPos == wumpusPos);
+    }
+    public boolean atPit(){
+        return (playerPos == pitPos[0] || playerPos == pitPos[1]);
+    }
+    public boolean atBats(){
+        return (playerPos == batPos[0] || playerPos == batPos[1]);
+    }
+    public boolean atShop(){
+        return (playerPos == shopPos);
+    }
 
     public void setPlayerPos(int pos) {
         playerPos = pos;
-        if (pos == batPos[0] || pos == batPos[1]){
+        if (this.atBats()){
             System.out.println("bats!");
-        } else if (pos == pitPos[0] || pos == pitPos[1]){
+        } else if (this.atPit()){
             System.out.println("pit!");
-        } else if (pos == wumpusPos){
+        } else if (this.atWumpus()){
             System.out.println("wumpus!");
-        } else if (pos == shopPos){
+        } else if (this.atShop()){
             System.out.println("a shop!");
         }
         if (fallenArrows.contains(pos)){
