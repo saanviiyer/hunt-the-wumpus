@@ -74,8 +74,8 @@ public class UI extends JFrame implements ActionListener{
         c.ipadx = 10;
         c.ipady = 10;
         c.fill = GridBagConstraints.BOTH;
-        c.weightx = 1;
-        c.weighty = 1;
+        // c.weightx = 1;
+        // c.weighty = 1;
 
         //add menu and menuitems
         {
@@ -104,56 +104,42 @@ public class UI extends JFrame implements ActionListener{
         //add score, high score, player, cave, arrows labels
         {
             c.gridx = 0;
-            c.gridwidth = 1;
+            c.gridwidth = 3;
             c.gridy = 0;
-            // c.anchor = GridBagConstraints.FIRST_LINE_START;
-            // scoreLabel.setHorizontalAlignment(SwingConstants.LEFT);
-            // c.insets = new Insets(0, 0, 300, 250);
             add(scoreLabel, c);
             
-            c.gridx = 1;
-            c.gridwidth = 1;
-            c.gridy = 0;
-            c.weightx = 1;
-            // highScoreLabel.setHorizontalAlignment(SwingConstants.LEFT);
-            add(highScoreLabel, c);
-
-            c.gridx = 2;
-            c.gridy = 0;
-            c.gridwidth = 1;
-            // c.anchor = GridBagConstraints.FIRST_LINE_END;
-            // currentCaveLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-            add(currentCaveLabel, c);
-
             c.gridx = 3;
             c.gridy = 0;
-            c.gridwidth = 1;
-            // arrowLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+            add(highScoreLabel, c);
+
+            c.gridx = 6;
+            c.gridy = 0;
+            add(currentCaveLabel, c);
+
+            c.gridx = 9;
+            c.gridy = 0;
             add(arrowLabel, c);
 
             c.gridy = 1;
             c.gridx = 0;
-            c.gridwidth = 1;
-            // c.anchor = GridBagConstraints.FIRST_LINE_START;
-            // c.insets = new Insets(0, 0, 310, 310);
+            c.gridwidth = 12;
             add(currentPlayerLabel, c);
-
-
         }
 
         //add movement buttons
         {
+            c.gridwidth = 4;
             c.gridx = 0;
             c.gridy = 2;
             c.weightx = 1;
             c.weighty = 1;
             add(goNW, c);
 
-            c.gridx = 1;
+            c.gridx = 4;
             c.gridy = 2;
             add(goN, c);
 
-            c.gridx = 2;
+            c.gridx = 8;
             c.gridy = 2;
             add(goNE, c);
 
@@ -161,11 +147,11 @@ public class UI extends JFrame implements ActionListener{
             c.gridy = 3;
             add(goSW, c);
 
-            c.gridx = 1;
+            c.gridx = 4;
             c.gridy = 3;
             add(goS, c);
 
-            c.gridx = 2;
+            c.gridx = 8;
             c.gridy = 3;
             add(goSE, c);
         }
