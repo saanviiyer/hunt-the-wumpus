@@ -150,7 +150,6 @@ public class Cave {
 
     // moves the player and redraws hexes
     public void goTo(int id){
-
       for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
       this.hexes[loc.getPlayerPos()].reset();
       if (this.isNextTo(id)) loc.setPlayerPos(id);
@@ -192,6 +191,7 @@ public class Cave {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
                         //System.out.println(getPaths(id));
                         goTo(id);
+                        //if (isNextTo(id)) loc.setPlayerPos(id);
                         //System.out.println(shoot(0, RAND.nextInt(5)));
                     }
                 });
