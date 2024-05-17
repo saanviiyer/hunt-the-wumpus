@@ -5,9 +5,11 @@ import java.awt.*;
 
 
 public class Hex extends JButton{
-  static final int LENGTH = 50; // side length, in pixels
+  static int LENGTH = 25; // side length, in pixels
   // radius to an edge is sqrt3 * length/2
   // radius to a vertex is length
+  static int offsetX = LENGTH;
+  static int offsetY = LENGTH;
   static final Color WHITE = new Color(255,255,255);
   static final Color BLACK = new Color(0,0,0);
   static final Color RED = new Color(255,0,0);
@@ -23,7 +25,6 @@ public class Hex extends JButton{
   double x, y;
   Color color = new Color(255,255,255);
   Polygon hex;
-  int adj[] = new int[6];
 
   public Hex(int r, int c){
     super(""+(r*nCols+c));
@@ -39,27 +40,12 @@ public class Hex extends JButton{
       this.hex.addPoint((int)(i[0]), (int)(i[1]));
     }
     
-    this.x = this.col*1.5*LENGTH+LENGTH;
-    this.y = this.row*LENGTH*1.732+LENGTH;
+    this.x = this.col*1.5*LENGTH+offsetX;
+    this.y = this.row*LENGTH*1.732+offsetY;
     if (this.col%2 == 1) this.y += LENGTH*1.732/2;
     setBounds((int)this.x, (int)this.y, (int)LENGTH*2, (int)(LENGTH*1.732+2));
 
-    // columns are aligned by even/oddness
-    if (col%2 == 1){ // lower columns
-        this.adj[0] = ( ((row-1+5)%5)*6 +  col        )%30; // previous row, same column
-        this.adj[1] = (   row        *6 + (col+1)  %6 )%30; // same row, next column
-        this.adj[2] = ( ((row+1)  %5)*6 + (col+1)  %6 )%30; // next row, next column
-        this.adj[3] = ( ((row+1)  %5)*6 +  col        )%30; // next row, same column
-        this.adj[4] = ( ((row+1)  %5)*6 + (col-1+6)%6 )%30; // next row, previous column
-        this.adj[5] = (   row        *6 + (col-1+6)%6 )%30; // same row, previous column
-    } else { // upper columns
-        this.adj[0] = ( ((row-1+5)%5)*6 +  col        )%30; // previous row, same column
-        this.adj[1] = ( ((row-1+5)%5)*6 +  (col+1)%6  )%30; // previous row, next column
-        this.adj[2] = (   row        *6 + (col+1)  %6 )%30; // same row, next column
-        this.adj[3] = ( ((row+1)  %5)*6 +  col        )%30; // next row, same column
-        this.adj[4] = (   row        *6 + (col-1+6)%6 )%30; // same row, previous column
-        this.adj[5] = ( ((row-1+5)%5)*6 + (col-1+6)%6 )%30; // previous row, previous column
-    }
+
   }
 
   public Hex(int i){
@@ -95,6 +81,13 @@ public class Hex extends JButton{
   public void setColor(Color c){this.color = c; this.repaint();}
 
   public void reset(){this.setColor(WHITE);}
+
+  public static void setOffset(int x, int y){
+    offsetX = x;
+    offsetY = y;
+  }
+
+  public static void setLength(int l){LENGTH=l;}
 
   @Override
   public void paintComponent(Graphics g){

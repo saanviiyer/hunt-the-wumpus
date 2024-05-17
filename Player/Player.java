@@ -22,18 +22,29 @@
 
 package Player;
 
+import java.util.Random;
+
 public class Player {
+
+// PROPERTIES ------------------------------------------------------------------------
     private int arrows;
     private int goldCoins;
     private int turns;
+    int wumpusPos;
+    int playerPos;
+    int[] pitPos;
+    int[] batPos;
+    Random rand = new Random();
+    int int_random = rand.nextInt(5);
 
+// CONSTRUCTOR -------------------------------------------------------------------------------
     public Player() {
-        // Initialize player inventory and turns
         this.arrows = 3; // Initial number of arrows
         this.goldCoins = 0;
         this.turns = 0;
     }
 
+// METHODS ------------------------------------------------------------------------------------
     public int getArrows() {
         return arrows;
     }
@@ -66,8 +77,14 @@ public class Player {
         turns++;
     }
 
-    public void getSecret() {
-        
+    public String getSecret(int int_rand) {
+        String[] secret = new String[5];
+        secret[0] = "Their is a bat in room " + batPos;
+        secret[1] = "Their is a pit in room " + pitPos;
+        secret[2] = "Their is a wumpus in room " + wumpusPos;
+        secret[3] = "You are in room " + playerPos;
+        secret[4] = "Trivia answer: ";
+        return secret[int_rand];
     }
 
 }

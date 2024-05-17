@@ -5,6 +5,8 @@
 
 package UI;
 import javax.swing.*;
+
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -23,9 +25,6 @@ public class UI extends JFrame implements ActionListener{
 
     JMenuItem startNewGame = new JMenuItem("New Game");
 
-    JTextField roomInput = new JTextField("enter room number");
-    JButton move = new JButton("Move");
-
     JButton shoot = new JButton("Shoot");
 
     JButton buyArrows = new JButton("Purchase Arrows");
@@ -39,9 +38,17 @@ public class UI extends JFrame implements ActionListener{
     JLabel scoreLabel = new JLabel("Score: " + score);
     JLabel highScoreLabel = new JLabel("High Score: " + highScore);
 
-    JLabel hazards = new JLabel("Hazards: ");
+    JLabel currentPlayerLabel = new JLabel("Player: ");
+    JLabel currentCaveLabel = new JLabel("Cave: ");
 
-    JLabel currentPlayerLabel = new JLabel();
+    JButton goN = new JButton("N");
+    JButton goNE = new JButton("NE");
+    JButton goE = new JButton("NE");
+    JButton goSE = new JButton("SE");
+    JButton goS = new JButton("S");
+    JButton goSW = new JButton("SW");
+    JButton goW = new JButton("W");
+    JButton goNW = new JButton("NW");
 
    
     ////////////////////////
@@ -67,7 +74,6 @@ public class UI extends JFrame implements ActionListener{
         c.fill = GridBagConstraints.BOTH;
         c.ipadx = 10;
         c.ipady = 10;
-        c.insets = new Insets(10,10,10,10);
 
         //add menu and menuitems
         {
@@ -93,122 +99,60 @@ public class UI extends JFrame implements ActionListener{
             setJMenuBar(menuBar);
         }
         
-        //add score and high score labels
+        //add score, high score, player, cave, arrows labels
         {
             c.gridx = 0;
             c.gridwidth = 1;
             c.gridy = 0;
             c.anchor = GridBagConstraints.FIRST_LINE_START;
+            scoreLabel.setHorizontalAlignment(SwingConstants.LEFT);
+            c.insets = new Insets(0, 0, 300, 250);
             add(scoreLabel, c);
+            
+            c.gridx = 1;
+            c.gridwidth = 3;
+            c.gridy = 0;
+            c.weightx = 1;
+            highScoreLabel.setHorizontalAlignment(SwingConstants.LEFT);
+            add(highScoreLabel, c);
+
+            c.gridx = 4;
+            c.gridy = 0;
+            c.gridwidth = 1;
+            c.anchor = GridBagConstraints.FIRST_LINE_END;
+            currentCaveLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+            add(currentCaveLabel, c);
 
             c.gridx = 5;
-            c.gridwidth = 1;
             c.gridy = 0;
-            c.anchor = GridBagConstraints.FIRST_LINE_END;
-            highScoreLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-            add(highScoreLabel, c);
-        }
+            c.gridwidth = 1;
+            arrowLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+            add(arrowLabel, c);
 
-        //int incrementer and label
-        {
-            //adding button incrementer
-            button.addActionListener(this);
-            c.gridx = 0;
-            c.gridwidth = 3;
             c.gridy = 1;
-            add(button, c);
+            c.gridx = 0;
+            c.gridwidth = 1;
+            c.anchor = GridBagConstraints.FIRST_LINE_START;
+            c.insets = new Insets(0, 0, 310, 310);
+            add(currentPlayerLabel, c);
 
-            //adding var label
-            c.gridx = 3;
-            c.gridwidth = 3;
-            // c.gridy = 1;
-            label.setHorizontalAlignment(SwingConstants.CENTER);
-            add(label, c);
 
-            
         }
 
-        //adding input for changing int
+        //add movement buttons
         {
             c.gridx = 0;
             c.gridy = 2;
-            add(textField, c);
-
-            submitText.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    var = Integer.parseInt(textField.getText());
-                    label.setText(permString + var);
-                }
-            });
-            c.gridx = GridBagConstraints.RELATIVE;
-            add(submitText, c);
-        }
-
-        //adds room input, moving, shooting
-        {
-            c.gridx = 0;
-            c.gridwidth = 2;
-            c.gridy = 3;
-            add(roomInput, c);
-
-            move.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    move(Integer.parseInt(roomInput.getText()));
-                }
-            });
-            c.gridx = 2;
-            add(move, c);
-
-            shoot.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    shoot(Integer.parseInt(roomInput.getText()));
-                }
-            });
-            c.gridx = 4;
-            add(shoot, c);
-
-
-        }
-
-        //buying arrows and secrets
-        {
-            buyArrows.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    purchaseArrows();
-                }
-            });
-            c.gridx = 0;
-            c.gridwidth = 2;
-            c.gridy = 4;
-            // c.ipadx = 100;
-            add(buyArrows, c);
-
-            c.gridx = 2;
+            c.fill = GridBagConstraints.BOTH;
+            c.gridheight = 1;
             c.gridwidth = 1;
-            arrowLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            add(arrowLabel, c);
+            add(goNW, c);
 
-            buySecrets.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    purchaseSecrets();
-                }
-            });
-            c.gridx = 3;
-            c.gridwidth = 3;
-            add(buySecrets, c);
-
-            
+            c.gridx = 1;
+            c.gridy = 2;
+            add(goN, c);
         }
-
-        //adding hazards
-        {
-            c.gridx = 0;
-            c.gridy = 5;
-            c.gridwidth = 6;
-            hazards.setHorizontalAlignment(SwingConstants.CENTER);
-            add(hazards, c);
-        }
-
+    
         //add new font
         {
             Font montserratBold = null;
@@ -257,6 +201,7 @@ public class UI extends JFrame implements ActionListener{
 
     public void displayHazards(){
         System.out.println("Displaying hazards");
+
     }
 
     public void shoot(int room){
@@ -280,6 +225,7 @@ public class UI extends JFrame implements ActionListener{
             for ( Component child : ( ( Container ) component ).getComponents () )
             {
                 changeFont ( child, font );
+            
             }
         }
     }
