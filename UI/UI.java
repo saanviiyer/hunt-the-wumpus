@@ -74,8 +74,8 @@ public class UI extends JFrame implements ActionListener{
         c.ipadx = 10;
         c.ipady = 10;
         c.fill = GridBagConstraints.BOTH;
-        c.weightx = 1;
-        c.weighty = 1;
+        // c.weightx = 1;
+        // c.weighty = 1;
 
         //add menu and menuitems
         {
@@ -104,69 +104,86 @@ public class UI extends JFrame implements ActionListener{
         //add score, high score, player, cave, arrows labels
         {
             c.gridx = 0;
-            c.gridwidth = 1;
+            c.gridwidth = 3;
             c.gridy = 0;
-            // c.anchor = GridBagConstraints.FIRST_LINE_START;
-            // scoreLabel.setHorizontalAlignment(SwingConstants.LEFT);
-            // c.insets = new Insets(0, 0, 300, 250);
             add(scoreLabel, c);
             
-            c.gridx = 1;
-            c.gridwidth = 1;
-            c.gridy = 0;
-            c.weightx = 1;
-            // highScoreLabel.setHorizontalAlignment(SwingConstants.LEFT);
-            add(highScoreLabel, c);
-
-            c.gridx = 2;
-            c.gridy = 0;
-            c.gridwidth = 1;
-            // c.anchor = GridBagConstraints.FIRST_LINE_END;
-            // currentCaveLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-            add(currentCaveLabel, c);
-
             c.gridx = 3;
             c.gridy = 0;
-            c.gridwidth = 1;
-            // arrowLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+            add(highScoreLabel, c);
+
+            c.gridx = 6;
+            c.gridy = 0;
+            add(currentCaveLabel, c);
+
+            c.gridx = 9;
+            c.gridy = 0;
             add(arrowLabel, c);
 
             c.gridy = 1;
             c.gridx = 0;
-            c.gridwidth = 1;
-            // c.anchor = GridBagConstraints.FIRST_LINE_START;
-            // c.insets = new Insets(0, 0, 310, 310);
+            c.gridwidth = 12;
             add(currentPlayerLabel, c);
-
-
         }
 
         //add movement buttons
         {
+            c.gridwidth = 4;
             c.gridx = 0;
             c.gridy = 2;
             c.weightx = 1;
             c.weighty = 1;
+
+            goNW.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goNW();
+                }
+            });
             add(goNW, c);
 
-            c.gridx = 1;
+            c.gridx = 4;
             c.gridy = 2;
+            goN.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goN();
+                }
+            });
             add(goN, c);
 
-            c.gridx = 2;
+            c.gridx = 8;
             c.gridy = 2;
+            goNE.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goNE();
+                }
+            });
             add(goNE, c);
 
             c.gridx = 0;
             c.gridy = 3;
+            goSW.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goSW();
+                }
+            });
             add(goSW, c);
 
-            c.gridx = 1;
+            c.gridx = 4;
             c.gridy = 3;
+            goS.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goS();
+                }
+            });
             add(goS, c);
 
-            c.gridx = 2;
+            c.gridx = 8;
             c.gridy = 3;
+            goSE.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goSE();
+                }
+            });
             add(goSE, c);
         }
     
@@ -181,9 +198,9 @@ public class UI extends JFrame implements ActionListener{
             changeFont(this, size10bold);
         }
 
-        //set frame to visible
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(true);
+        //set frame to visible and fullscreen
+        // setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // setUndecorated(true);
         setVisible(true);
 
     }
@@ -192,14 +209,28 @@ public class UI extends JFrame implements ActionListener{
     ////   METHODS      ////
     ////////////////////////
 
-    public void actionPerformed(ActionEvent e){
-        DoStuff(1);
-        label.setText(permString + var);
+    private void goNW(){
+        System.out.println("going NW");
     }
 
-    public int DoStuff(int i){
-        var += i;
-        return var;
+    private void goN(){
+        System.out.println("going N");
+    }
+
+    private void goNE(){
+        System.out.println("going NE");
+    }
+
+    private void goSW(){
+        System.out.println("going SW");
+    }
+
+    private void goS(){
+        System.out.println("going S");
+    }
+
+    private void goSE(){
+        System.out.println("going SE");
     }
 
     public void startNewGame(){
@@ -220,7 +251,6 @@ public class UI extends JFrame implements ActionListener{
 
     public void displayHazards(){
         System.out.println("Displaying hazards");
-
     }
 
     public void shoot(int room){
@@ -237,15 +267,15 @@ public class UI extends JFrame implements ActionListener{
         System.out.println("buy secrets");
     }
 
-    public static void changeFont ( Component component, Font font ){
-        component.setFont ( font );
-        if ( component instanceof Container )
+    public static void changeFont (Component component, Font font ){
+        component.setFont(font);
+        if (component instanceof Container)
         {
-            for ( Component child : ( ( Container ) component ).getComponents () )
+            for (Component child : ((Container) component).getComponents())
             {
-                changeFont ( child, font );
-            
+                changeFont (child, font);
             }
         }
     }
+
 }

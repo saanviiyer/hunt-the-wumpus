@@ -8,12 +8,14 @@ import Player.*;
 import Trivia.*;
 import UI.*;
 import Cave.*;
+import GameLocations.GameLocations;
 
 public class GameControl {
 
     // PROPERTIES
     Player player = new Player();
     UI ui = new UI();
+    GameLocations gl = new GameLocations();
 
 // work with UI object to start the game and display the current room.
 
@@ -60,7 +62,14 @@ public class GameControl {
     // super bat
 
     public boolean checkBottomlessPit(Player player) {
-        GameLocations;
+        if (gl.atPit() == true) {
+            // bottomless pit function
+            System.out.println("in a pit");
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public boolean checkSuperBat(Player player) {
