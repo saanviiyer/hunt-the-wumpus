@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class Hex extends JButton{
-  static int LENGTH = 40; // side length, in pixels
+public class MiniHex extends JButton{
+  static int LENGTH = 20; // side length, in pixels
   // radius to an edge is sqrt3 * length/2
   // radius to a vertex is length
   static int offsetX = LENGTH;
@@ -17,29 +17,39 @@ public class Hex extends JButton{
   static final Color BLUE = new Color(0,0,255);
   //static 
 
-  static final int nRows = 3;
-  static final int nCols = 3;
-
+  static final int nRows = 5;
+  static final int nCols = 6;
+  int row;
+  int col;
   int id;
   double x, y;
   Color color = new Color(255,255,255);
   Polygon hex;
 
-  public Hex(int i){
-    this.id = i;
+  public MiniHex(int r, int c){
+    super(""+(r*nCols+c));
+    this.id = r*nCols+c;
+    this.row = r;
+    this.col = c;
     setContentAreaFilled(false);
     setFocusPainted(true);
     setBorderPainted(false);
+
     this.hex = new Polygon();
-    double[][] pts = this.getPoints();
-    for (double[] d: pts){
-      this.hex.addPoint((int)(d[0]), (int)(d[1]));
+    for (double[] i: this.getPoints()){
+      this.hex.addPoint((int)(i[0]), (int)(i[1]));
     }
-    this.x = pts[this.id][0] + offsetX;
-    this.y = pts[this.id][0] + offsetY;
-    if (i == 0 || i==3) this.y += LENGTH*1.732/2;
+    
+    this.x = this.col*1.5*LENGTH+offsetX;
+    this.y = this.row*LENGTH*1.732+offsetY;
+    if (this.col%2 == 1) this.y += LENGTH*1.732/2;
     setBounds((int)this.x, (int)this.y, (int)LENGTH*2, (int)(LENGTH*1.732+2));
 
+
+  }
+
+  public MiniHex(int i){
+    this(i/nCols, i%nCols);
   }
 
 
@@ -89,7 +99,7 @@ public class Hex extends JButton{
     g.fillPolygon(this.hex);
     
     g.setColor(new Color(0,0,0));
-    g.drawString(""+(this.id), (int) (LENGTH), (int)(LENGTH*1.732/2));
+    g.drawString(""+(this.row*6+this.col), (int) (LENGTH), (int)(LENGTH*1.732/2));
   }
 
   @Override

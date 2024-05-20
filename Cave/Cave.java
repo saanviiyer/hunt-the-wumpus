@@ -20,7 +20,9 @@ public class Cave {
     // rooms are represented by ints [0,29]
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
-    Hex[] hexes = new Hex[30]; // row = i/6, col = i%6
+    MiniHex[] hexes = new MiniHex[30]; // row = i/6, col = i%6
+    Hex[] view = new Hex[6];
+    Hex current = new Hex(loc.getPlayerPos());
 
     /*
     boolean[][][] openings = { // [row][col][dir]
@@ -176,17 +178,35 @@ public class Cave {
         return this.getPaths(param);
     }
 
+    public void drawCave(JFrame frame){
+        //int l = 50;
+        Hex.setOffset(50,50);
+        for(int i = 0; i < 6; i++){
+            int id = i;
+            this.view[i] = new Hex(id);
+            if (isNextTo(id)) this.view[id].setColor(Hex.GREEN);
+            else if (id == loc.getPlayerPos()) this.view[id].setColor(Hex.RED);
+            this.view[i].addActionListener(new ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    goTo(adj[loc.getPlayerPos()][id]);
+                }
+            });
+            frame.getContentPane().add(this.view[i]);
+        }
+        
+    }
+
     // draws onto frame using frame.getContentPane().add(Hex)
     // See Hex.java for more information on how hexes are drawn.
-    public void draw(JFrame frame){
+    public void drawMiniMap(JFrame frame){
         //int l = 50;
-        Hex.setOffset(100,100);
+        MiniHex.setOffset(300,300);
         for(int row = 0; row < 5; row++){
             for (int col = 0; col < 6; col++){
                 int id = row*6+col;
-                this.hexes[id] = new Hex(row, col);
-                if (isNextTo(id)) this.hexes[id].setColor(Hex.GREEN);
-                else if (id == loc.getPlayerPos()) this.hexes[id].setColor(Hex.RED);
+                this.hexes[id] = new MiniHex(row, col);
+                if (isNextTo(id)) this.hexes[id].setColor(MiniHex.GREEN);
+                else if (id == loc.getPlayerPos()) this.hexes[id].setColor(MiniHex.RED);
                     this.hexes[id].addActionListener(new ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
                         //System.out.println(getPaths(id));

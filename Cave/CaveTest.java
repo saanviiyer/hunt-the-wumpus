@@ -38,7 +38,8 @@ public class CaveTest {
         });
         menu.add(menuItem);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
-        myCave.draw(frame);
+        myCave.drawMiniMap(frame);
+        myCave.drawCave(frame);
         frame.setVisible(true);
     }
 }

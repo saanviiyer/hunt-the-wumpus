@@ -12,19 +12,14 @@ import java.awt.event.*;
 import java.io.File;
 
 public class UI extends JFrame implements ActionListener{
-    int var = 0;
-    String permString = "Var equals: ";
+
+
     JMenuBar menuBar = new JMenuBar();
     JMenu menu = new JMenu("File");
-    JButton button = new JButton("Increase var");
-    JLabel label = new JLabel(permString + var);
     JMenuItem exit = new JMenuItem("Exit");
-
-    JTextField textField = new JTextField(10);
-    JButton submitText = new JButton("Submit Text");
-
     JMenuItem startNewGame = new JMenuItem("New Game");
 
+    
     JButton shoot = new JButton("Shoot");
 
     JButton buyArrows = new JButton("Purchase Arrows");
@@ -41,14 +36,14 @@ public class UI extends JFrame implements ActionListener{
     JLabel currentPlayerLabel = new JLabel("Player: ");
     JLabel currentCaveLabel = new JLabel("Cave: ");
 
-    JButton goN = new JButton("N");
-    JButton goNE = new JButton("NE");
-    JButton goE = new JButton("NE");
-    JButton goSE = new JButton("SE");
-    JButton goS = new JButton("S");
-    JButton goSW = new JButton("SW");
-    JButton goW = new JButton("W");
-    JButton goNW = new JButton("NW");
+    JButton goN = new JButton();
+    JButton goNE = new JButton();
+    JButton goE = new JButton();
+    JButton goSE = new JButton();
+    JButton goS = new JButton();
+    JButton goSW = new JButton();
+    JButton goW = new JButton();
+    JButton goNW = new JButton();
 
    
     ////////////////////////
@@ -56,7 +51,6 @@ public class UI extends JFrame implements ActionListener{
     ////////////////////////
 
     public UI(){
-        var = 1;
         
         //set frame behavior
         setTitle("Hunt the Wumpus");
@@ -133,26 +127,62 @@ public class UI extends JFrame implements ActionListener{
             c.gridy = 2;
             c.weightx = 1;
             c.weighty = 1;
+            goNW.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goNW();
+                }
+            });
+            goNW.setIcon(new ImageIcon("UI/left_top.png"));
             add(goNW, c);
 
             c.gridx = 4;
             c.gridy = 2;
+            goN.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goN();
+                }
+            });
+            goN.setIcon(new ImageIcon("UI/top_mid.png"));
             add(goN, c);
 
             c.gridx = 8;
             c.gridy = 2;
+            goNE.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goNE();
+                }
+            });
+            goNE.setIcon(new ImageIcon("UI/right_top.png"));
             add(goNE, c);
 
             c.gridx = 0;
             c.gridy = 3;
+            goSW.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goSW();
+                }
+            });
+            goSW.setIcon(new ImageIcon("UI/left_bottom.png"));
             add(goSW, c);
 
             c.gridx = 4;
             c.gridy = 3;
+            goS.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goS();
+                }
+            });
+            goS.setIcon(new ImageIcon("UI/bottom_mid.png"));
             add(goS, c);
 
             c.gridx = 8;
             c.gridy = 3;
+            goSE.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goSE();
+                }
+            });
+            goSE.setIcon(new ImageIcon("UI/right_bottom.png"));
             add(goSE, c);
         }
     
@@ -167,9 +197,9 @@ public class UI extends JFrame implements ActionListener{
             changeFont(this, size10bold);
         }
 
-        //set frame to visible
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(true);
+        //set frame to visible and fullscreen
+        // setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // setUndecorated(true);
         setVisible(true);
 
     }
@@ -178,14 +208,28 @@ public class UI extends JFrame implements ActionListener{
     ////   METHODS      ////
     ////////////////////////
 
-    public void actionPerformed(ActionEvent e){
-        DoStuff(1);
-        label.setText(permString + var);
+    private void goNW(){
+        System.out.println("going NW");
     }
 
-    public int DoStuff(int i){
-        var += i;
-        return var;
+    private void goN(){
+        System.out.println("going N");
+    }
+
+    private void goNE(){
+        System.out.println("going NE");
+    }
+
+    private void goSW(){
+        System.out.println("going SW");
+    }
+
+    private void goS(){
+        System.out.println("going S");
+    }
+
+    private void goSE(){
+        System.out.println("going SE");
     }
 
     public void startNewGame(){
@@ -206,7 +250,6 @@ public class UI extends JFrame implements ActionListener{
 
     public void displayHazards(){
         System.out.println("Displaying hazards");
-
     }
 
     public void shoot(int room){
@@ -223,15 +266,15 @@ public class UI extends JFrame implements ActionListener{
         System.out.println("buy secrets");
     }
 
-    public static void changeFont ( Component component, Font font ){
-        component.setFont ( font );
-        if ( component instanceof Container )
+    public static void changeFont (Component component, Font font ){
+        component.setFont(font);
+        if (component instanceof Container)
         {
-            for ( Component child : ( ( Container ) component ).getComponents () )
+            for (Component child : ((Container) component).getComponents())
             {
-                changeFont ( child, font );
-            
+                changeFont (child, font);
             }
         }
     }
+
 }
