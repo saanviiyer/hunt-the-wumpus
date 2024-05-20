@@ -36,14 +36,14 @@ public class UI extends JFrame implements ActionListener{
     JLabel currentPlayerLabel = new JLabel("Player: ");
     JLabel currentCaveLabel = new JLabel("Cave: ");
 
-    JButton goN = new JButton("N");
-    JButton goNE = new JButton("NE");
-    JButton goE = new JButton("NE");
-    JButton goSE = new JButton("SE");
-    JButton goS = new JButton("S");
-    JButton goSW = new JButton("SW");
-    JButton goW = new JButton("W");
-    JButton goNW = new JButton("NW");
+    JButton goN = new JButton();
+    JButton goNE = new JButton();
+    JButton goE = new JButton();
+    JButton goSE = new JButton();
+    JButton goS = new JButton();
+    JButton goSW = new JButton();
+    JButton goW = new JButton();
+    JButton goNW = new JButton();
 
    
     ////////////////////////
