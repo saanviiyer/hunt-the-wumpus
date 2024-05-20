@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class Hex extends JButton{
-  static int LENGTH = 60; // side length, in pixels
+public class MiniHex extends JButton{
+  static int LENGTH = 10; // side length, in pixels
   // radius to an edge is sqrt3 * length/2
   // radius to a vertex is length
   static int offsetX = LENGTH;
@@ -26,7 +26,7 @@ public class Hex extends JButton{
   Color color = new Color(255,255,255);
   Polygon hex;
 
-  public Hex(int r, int c){
+  public MiniHex(int r, int c){
     super(""+(r*nCols+c));
     this.id = r*nCols+c;
     this.row = r;
@@ -48,7 +48,7 @@ public class Hex extends JButton{
 
   }
 
-  public Hex(int i){
+  public MiniHex(int i){
     this(i/nCols, i%nCols);
   }
 
