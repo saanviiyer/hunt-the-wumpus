@@ -176,17 +176,39 @@ public class Cave {
         return this.getPaths(param);
     }
 
-    // draws onto frame using frame.getContentPane().add(Hex)
-    // See Hex.java for more information on how hexes are drawn.
-    public void draw(JFrame frame){
+    public void drawCave(JFrame frame){
         //int l = 50;
-        Hex.setOffset(100,100);
+        MiniHex.setOffset(50,50);
         for(int row = 0; row < 5; row++){
             for (int col = 0; col < 6; col++){
                 int id = row*6+col;
                 this.hexes[id] = new Hex(row, col);
-                if (isNextTo(id)) this.hexes[id].setColor(Hex.GREEN);
-                else if (id == loc.getPlayerPos()) this.hexes[id].setColor(Hex.RED);
+                if (isNextTo(id)) this.hexes[id].setColor(MiniHex.GREEN);
+                else if (id == loc.getPlayerPos()) this.hexes[id].setColor(MiniHex.RED);
+                    this.hexes[id].addActionListener(new ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        //System.out.println(getPaths(id));
+                        goTo(id);
+                        //if (isNextTo(id)) loc.setPlayerPos(id);
+                        //System.out.println(shoot(0, RAND.nextInt(5)));
+                    }
+                });
+                frame.getContentPane().add(this.hexes[id]);
+            }
+        }
+    }
+
+    // draws onto frame using frame.getContentPane().add(Hex)
+    // See Hex.java for more information on how hexes are drawn.
+    public void drawMiniMap(JFrame frame){
+        //int l = 50;
+        MiniHex.setOffset(300,300);
+        for(int row = 0; row < 5; row++){
+            for (int col = 0; col < 6; col++){
+                int id = row*6+col;
+                this.hexes[id] = new Hex(row, col);
+                if (isNextTo(id)) this.hexes[id].setColor(MiniHex.GREEN);
+                else if (id == loc.getPlayerPos()) this.hexes[id].setColor(MiniHex.RED);
                     this.hexes[id].addActionListener(new ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
                         //System.out.println(getPaths(id));
