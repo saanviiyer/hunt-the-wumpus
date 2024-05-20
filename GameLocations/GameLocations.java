@@ -100,6 +100,7 @@ public class GameLocations {
 
     public void setPlayerPos(int pos) {
         playerPos = pos;
+        //cave.goTo(pos);
         if (this.atBats()){
             System.out.println("bats!");
         } else if (this.atPit()){
