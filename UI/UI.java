@@ -132,7 +132,7 @@ public class UI extends JFrame implements ActionListener{
                     goNW();
                 }
             });
-            goNW.setIcon(new ImageIcon());
+            goNW.setIcon(new ImageIcon("UI/left_top.png"));
             add(goNW, c);
 
             c.gridx = 4;
@@ -142,6 +142,7 @@ public class UI extends JFrame implements ActionListener{
                     goN();
                 }
             });
+            goN.setIcon(new ImageIcon("UI/top_mid.png"));
             add(goN, c);
 
             c.gridx = 8;
@@ -151,6 +152,7 @@ public class UI extends JFrame implements ActionListener{
                     goNE();
                 }
             });
+            goNE.setIcon(new ImageIcon("UI/right_top.png"));
             add(goNE, c);
 
             c.gridx = 0;
@@ -160,6 +162,7 @@ public class UI extends JFrame implements ActionListener{
                     goSW();
                 }
             });
+            goSW.setIcon(new ImageIcon("UI/left_bottom.png"));
             add(goSW, c);
 
             c.gridx = 4;
@@ -169,6 +172,7 @@ public class UI extends JFrame implements ActionListener{
                     goS();
                 }
             });
+            goS.setIcon(new ImageIcon("UI/bottom_mid.png"));
             add(goS, c);
 
             c.gridx = 8;
@@ -178,6 +182,7 @@ public class UI extends JFrame implements ActionListener{
                     goSE();
                 }
             });
+            goSE.setIcon(new ImageIcon("UI/right_bottom.png"));
             add(goSE, c);
         }
     
