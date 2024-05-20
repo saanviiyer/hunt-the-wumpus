@@ -73,7 +73,13 @@ public class GameControl {
     }
 
     public boolean checkSuperBat(Player player) {
-        return true;
+        if (gl.atBats() == true) {
+            System.out.println("in a bat");
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public void checkHazard(Player player) {
