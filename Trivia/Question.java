@@ -6,19 +6,24 @@ public class Question {
     int points;
     boolean correct;
 
-    public Question {
-
-    }
-
-    public void setQuestion(String q) {
+    public Question(String q, String a) {
+        this.correct = false;
+        this.points = 100;
         this.question = q;
-    }
-
-    public void setAnswer(String a) {
         this.answer = a;
     }
 
-    public void answerQ() {
-        
+    // public void setQuestion(String q) {
+    //     this.question = q;
+    // }
+
+    // public void setAnswer(String a) {
+    //     this.answer = a;
+    // }
+
+    public void answerQ(String a) {
+        if (a == answer) {
+            this.correct = true;
+        }
     }
 }
