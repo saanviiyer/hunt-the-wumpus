@@ -12,19 +12,14 @@ import java.awt.event.*;
 import java.io.File;
 
 public class UI extends JFrame implements ActionListener{
-    int var = 0;
-    String permString = "Var equals: ";
+
+
     JMenuBar menuBar = new JMenuBar();
     JMenu menu = new JMenu("File");
-    JButton button = new JButton("Increase var");
-    JLabel label = new JLabel(permString + var);
     JMenuItem exit = new JMenuItem("Exit");
-
-    JTextField textField = new JTextField(10);
-    JButton submitText = new JButton("Submit Text");
-
     JMenuItem startNewGame = new JMenuItem("New Game");
 
+    
     JButton shoot = new JButton("Shoot");
 
     JButton buyArrows = new JButton("Purchase Arrows");
@@ -56,7 +51,6 @@ public class UI extends JFrame implements ActionListener{
     ////////////////////////
 
     public UI(){
-        var = 1;
         
         //set frame behavior
         setTitle("Hunt the Wumpus");
@@ -133,12 +127,12 @@ public class UI extends JFrame implements ActionListener{
             c.gridy = 2;
             c.weightx = 1;
             c.weighty = 1;
-
             goNW.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     goNW();
                 }
             });
+            goNW.setIcon(new ImageIcon());
             add(goNW, c);
 
             c.gridx = 4;
