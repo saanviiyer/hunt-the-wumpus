@@ -5,7 +5,7 @@ import java.awt.*;
 
 
 public class Hex extends JButton{
-  static int LENGTH = 40; // side length, in pixels
+  static int LENGTH = 70; // side length, in pixels
   // radius to an edge is sqrt3 * length/2
   // radius to a vertex is length
   static int offsetX = LENGTH;
@@ -19,7 +19,7 @@ public class Hex extends JButton{
 
   static final int nRows = 3;
   static final int nCols = 3;
-
+  String label = "";
   int id;
   double x, y;
   Color color = new Color(255,255,255);
@@ -35,38 +35,23 @@ public class Hex extends JButton{
     for (double[] d: pts){
       this.hex.addPoint((int)(d[0]), (int)(d[1]));
     }
-    this.x = pts[5-this.id][1]*1.732 + offsetX;
-    this.y = pts[5-this.id][0]*1.732 + offsetY;
+    if (i != 6) {
+      this.x = pts[5-this.id][1]*1.732 + offsetX;
+      this.y = pts[5-this.id][0]*1.732 + offsetY;
+    } else {    
+      this.x = 2*1.5*LENGTH+offsetX;
+      this.y = (2)*LENGTH*1.732+offsetY;
+    }
+  
     //if (i == 0 || i==3) this.y += LENGTH*1.732/2;
-    //this.x = (i%nCols)*1.5*LENGTH+offsetX;
-    //this.y = (i/nCols)*LENGTH*1.732+offsetY;
+
     //if ((i%nCols)%2 == 1) this.y += LENGTH*1.732/2;
     //if (i == 1) this.y -=1.732*LENGTH;
     setBounds((int)this.x, (int)this.y, (int)LENGTH*2, (int)(LENGTH*1.732+2));
 
   }
-  public double[][] getEdges(){
-    double[][] pts = new double[6][2];
-    pts[0][0] = LENGTH * 0.5;
-    pts[0][1] = 0;
-    
-    pts[1][0] = LENGTH * 1.5;
-    pts[1][1] = 0;
-    
-    pts[2][0] = LENGTH * 2;
-    pts[2][1] = LENGTH * 1.732/2;
-    
-    pts[3][0] = LENGTH * 1.5;
-    pts[3][1] = LENGTH * 1.732;
-    
-    pts[4][0] = LENGTH * 0.5;
-    pts[4][1] = LENGTH * 1.732;
-    
-    pts[5][0] = 0;
-    pts[5][1] = LENGTH * 1.732/2;
-    return pts;
-  }
 
+  public void changeLabel(String s){this.label = s;}
   public double[][] getPoints(){
 
     double[][]points = new double[6][2];
@@ -113,7 +98,7 @@ public class Hex extends JButton{
     g.fillPolygon(this.hex);
     
     g.setColor(new Color(0,0,0));
-    g.drawString(""+(this.id), (int) (LENGTH), (int)(LENGTH*1.732/2));
+    g.drawString(this.label, (int) (LENGTH), (int)(LENGTH*1.732/2));
   }
 
   @Override

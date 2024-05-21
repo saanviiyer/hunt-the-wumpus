@@ -23,7 +23,7 @@ public class CaveTest {
     {
         JFrame frame = new JFrame("Cave");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(550, 600);
+        frame.setSize(700, 700);
 
         // Create a basic menu and add it to the top
         JMenuBar menuBar = new JMenuBar();
@@ -39,7 +39,7 @@ public class CaveTest {
         menu.add(menuItem);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
         //JPanel p = new JPanel();
-        myCave.drawCave();
+        //myCave.drawCave();
         
         frame.add(myCave.drawMiniMap());
         frame.setVisible(true);
