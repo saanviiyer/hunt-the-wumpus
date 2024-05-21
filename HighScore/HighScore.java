@@ -5,6 +5,7 @@
 
 public class HighScore {
     private int score;
+    private int correctStreak;
 
     public HighScore() {
         this.score = 0;    
@@ -27,6 +28,13 @@ public class HighScore {
             resetScores();
         }
     }
+
+    // After Trivia pushes code, have public void streakScore() where
+    // correctStreak is initialized and then incremented by Trivia 
+    // depending on how many Q's have been answered correct in a row, 
+    // then make that the exponent for Math.pow(score, correctStreak)
+    // If streak is broken in Trivia, it is set to 0 so score won't benefit
+    // from method when user get question right again after
 
     public int getScore() {
         return this.score;
