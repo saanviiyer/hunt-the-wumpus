@@ -6,6 +6,7 @@
 package UI;
 import javax.swing.*;
 
+import Cave.Cave;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -45,7 +46,7 @@ public class UI extends JFrame implements ActionListener{
     JButton goW = new JButton();
     JButton goNW = new JButton();
 
-    JPanel miniMap = new JPanel();
+    JPanel miniMap;
 
    
     ////////////////////////
@@ -70,6 +71,12 @@ public class UI extends JFrame implements ActionListener{
         c.ipadx = 10;
         c.ipady = 10;
         c.fill = GridBagConstraints.BOTH;
+
+        Cave cave = new Cave();
+        miniMap = cave.drawMiniMap();
+        miniMap.setSize(new Dimension(200, 200));
+        miniMap.setMaximumSize(new Dimension(100, 100));
+
 
         //add menu and menuitems
         {
@@ -125,8 +132,8 @@ public class UI extends JFrame implements ActionListener{
             c.gridwidth = 3;
             c.gridx = 0;
             c.gridy = 2;
-            c.weightx = 1;
-            c.weighty = 1;
+            c.weightx = 0;
+            c.weighty = 0;
             goNW.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     goNW();
@@ -135,7 +142,7 @@ public class UI extends JFrame implements ActionListener{
             goNW.setIcon(new ImageIcon("UI/left_top.png"));
             add(goNW, c);
 
-            c.gridx = 4;
+            c.gridx = 3;
             c.gridy = 2;
             goN.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
@@ -145,7 +152,7 @@ public class UI extends JFrame implements ActionListener{
             goN.setIcon(new ImageIcon("UI/top_mid.png"));
             add(goN, c);
 
-            c.gridx = 8;
+            c.gridx = 6;
             c.gridy = 2;
             goNE.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
@@ -165,7 +172,7 @@ public class UI extends JFrame implements ActionListener{
             goSW.setIcon(new ImageIcon("UI/left_bottom.png"));
             add(goSW, c);
 
-            c.gridx = 4;
+            c.gridx = 3;
             c.gridy = 3;
             goS.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
@@ -175,7 +182,7 @@ public class UI extends JFrame implements ActionListener{
             goS.setIcon(new ImageIcon("UI/bottom_mid.png"));
             add(goS, c);
 
-            c.gridx = 8;
+            c.gridx = 6;
             c.gridy = 3;
             goSE.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
@@ -190,6 +197,10 @@ public class UI extends JFrame implements ActionListener{
         {
             c.gridheight = 2;
             c.gridwidth = 3;
+            c.gridx = 9;
+            c.gridy = 2;
+            c.weightx = 1;
+            c.weighty = 1;
             add(miniMap, c);
         }
 
