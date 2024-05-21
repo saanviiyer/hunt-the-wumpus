@@ -22,7 +22,7 @@ public class Cave {
     int[][] adj = new int[30][6];
     MiniHex[] hexes = new MiniHex[30]; // row = i/6, col = i%6
     Hex[] view = new Hex[6];
-    Hex current = new Hex(2);
+    Hex current = new Hex(6);
     JPanel panel = new JPanel();
     /*
     boolean[][][] openings = { // [row][col][dir]
@@ -155,9 +155,10 @@ public class Cave {
       for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
       this.hexes[loc.getPlayerPos()].reset();
       if (this.isNextTo(id)) loc.setPlayerPos(id);
-      for (int i = 0; i < 6; i++){
-        if (this.paths[loc.getPlayerPos()][(i+1)%6]) this.view[i].setColor(Hex.GREEN);
+      if (this.view[0] != null) for (int i = 0; i < 6; i++){
+        if (this.paths[loc.getPlayerPos()][i]) this.view[i].setColor(Hex.GREEN);
         else this.view[i].reset();
+        this.view[i].changeLabel(""+adj[loc.getPlayerPos()][i]);
       }
       
       for(int i = 0; i < 6; i++) if (this.paths[loc.getPlayerPos()][i]) 
@@ -195,11 +196,12 @@ public class Cave {
 
     public JPanel drawCave(){
         //int l = 50;
-        Hex.setOffset(100,100);
+        Hex.setOffset(40,30);
         for(int i = 0; i < 6; i++){
-            int id = i;//(6-i)%6;
+            int id = 5-i;//(6-i)%6;
             this.view[id] = new Hex(id);
             if (paths[loc.getPlayerPos()][id]) this.view[id].setColor(Hex.GREEN);
+            this.view[id].changeLabel(""+adj[loc.getPlayerPos()][id]);
             this.view[id].addActionListener(new ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
                     move(id);
@@ -207,6 +209,7 @@ public class Cave {
             });
             this.panel.add(this.view[id]);
         }
+        this.panel.add(this.current);
         return panel;
     }
 
@@ -214,7 +217,7 @@ public class Cave {
     // See Hex.java for more information on how hexes are drawn.
     public JPanel drawMiniMap(){
         //int l = 50;
-        MiniHex.setOffset(300,300);
+        MiniHex.setOffset(400,400);
         for(int row = 0; row < 5; row++){
             for (int col = 0; col < 6; col++){
                 int id = row*6+col;
