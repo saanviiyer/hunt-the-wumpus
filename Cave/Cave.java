@@ -23,7 +23,7 @@ public class Cave {
     MiniHex[] hexes = new MiniHex[30]; // row = i/6, col = i%6
     Hex[] view = new Hex[6];
     Hex current = new Hex(2);
-
+    JPanel panel = new JPanel();
     /*
     boolean[][][] openings = { // [row][col][dir]
       //n, ne, se, s, sw, nw
@@ -193,11 +193,11 @@ public class Cave {
         return this.getPaths(param);
     }
 
-    public void drawCave(JPanel panel){
+    public JPanel drawCave(){
         //int l = 50;
         Hex.setOffset(100,100);
         for(int i = 0; i < 6; i++){
-            int id = (6-i)%6;
+            int id = i;//(6-i)%6;
             this.view[id] = new Hex(id);
             if (paths[loc.getPlayerPos()][id]) this.view[id].setColor(Hex.GREEN);
             this.view[id].addActionListener(new ActionListener() {
@@ -205,14 +205,14 @@ public class Cave {
                     move(id);
                 }
             });
-            panel.add(this.view[id]);
+            this.panel.add(this.view[id]);
         }
-        
+        return panel;
     }
 
     // draws onto frame using frame.getContentPane().add(Hex)
     // See Hex.java for more information on how hexes are drawn.
-    public void drawMiniMap(JPanel panel){
+    public JPanel drawMiniMap(){
         //int l = 50;
         MiniHex.setOffset(300,300);
         for(int row = 0; row < 5; row++){
@@ -229,9 +229,10 @@ public class Cave {
                         //System.out.println(shoot(0, RAND.nextInt(5)));
                     }
                 });
-                panel.add(this.hexes[id]);
+                this.panel.add(this.hexes[id]);
             }
         }
+        return this.panel;
     }
 }
 

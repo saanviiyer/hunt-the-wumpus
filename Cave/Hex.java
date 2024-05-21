@@ -35,8 +35,8 @@ public class Hex extends JButton{
     for (double[] d: pts){
       this.hex.addPoint((int)(d[0]), (int)(d[1]));
     }
-    this.x = pts[this.id][1]*1.732 + offsetX;
-    this.y = pts[this.id][0]*1.732 + offsetY;
+    this.x = pts[5-this.id][1]*1.732 + offsetX;
+    this.y = pts[5-this.id][0]*1.732 + offsetY;
     //if (i == 0 || i==3) this.y += LENGTH*1.732/2;
     //this.x = (i%nCols)*1.5*LENGTH+offsetX;
     //this.y = (i/nCols)*LENGTH*1.732+offsetY;
