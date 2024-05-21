@@ -22,7 +22,7 @@ public class Cave {
     int[][] adj = new int[30][6];
     MiniHex[] hexes = new MiniHex[30]; // row = i/6, col = i%6
     Hex[] view = new Hex[6];
-    Hex current = new Hex(loc.getPlayerPos());
+    Hex current = new Hex(2);
 
     /*
     boolean[][][] openings = { // [row][col][dir]
@@ -155,11 +155,26 @@ public class Cave {
       for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
       this.hexes[loc.getPlayerPos()].reset();
       if (this.isNextTo(id)) loc.setPlayerPos(id);
+      for (int i = 0; i < 6; i++){
+        if (this.paths[loc.getPlayerPos()][(i+1)%6]) this.view[i].setColor(Hex.GREEN);
+        else this.view[i].reset();
+      }
       
       for(int i = 0; i < 6; i++) if (this.paths[loc.getPlayerPos()][i]) 
         this.hexes[this.adj[loc.getPlayerPos()][i]].setColor(Hex.GREEN);
       this.hexes[loc.getPlayerPos()].setColor(Hex.RED);
     }
+
+    public void move(int dir){
+      this.goTo(this.adj[loc.getPlayerPos()][dir]);
+    }
+
+
+
+
+
+
+
 
     // shoots an arrow in a direction dir, continues for len hexes or until it hits a wall
     public int shoot(int dir, int len){ // dir = [0,5]
@@ -178,27 +193,26 @@ public class Cave {
         return this.getPaths(param);
     }
 
-    public void drawCave(JFrame frame){
+    public void drawCave(JPanel panel){
         //int l = 50;
-        Hex.setOffset(50,50);
+        Hex.setOffset(100,100);
         for(int i = 0; i < 6; i++){
-            int id = i;
-            this.view[i] = new Hex(id);
-            if (isNextTo(id)) this.view[id].setColor(Hex.GREEN);
-            else if (id == loc.getPlayerPos()) this.view[id].setColor(Hex.RED);
-            this.view[i].addActionListener(new ActionListener() {
+            int id = (6-i)%6;
+            this.view[id] = new Hex(id);
+            if (paths[loc.getPlayerPos()][id]) this.view[id].setColor(Hex.GREEN);
+            this.view[id].addActionListener(new ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
-                    goTo(adj[loc.getPlayerPos()][id]);
+                    move(id);
                 }
             });
-            frame.getContentPane().add(this.view[i]);
+            panel.add(this.view[id]);
         }
         
     }
 
     // draws onto frame using frame.getContentPane().add(Hex)
     // See Hex.java for more information on how hexes are drawn.
-    public void drawMiniMap(JFrame frame){
+    public void drawMiniMap(JPanel panel){
         //int l = 50;
         MiniHex.setOffset(300,300);
         for(int row = 0; row < 5; row++){
@@ -215,7 +229,7 @@ public class Cave {
                         //System.out.println(shoot(0, RAND.nextInt(5)));
                     }
                 });
-                frame.getContentPane().add(this.hexes[id]);
+                panel.add(this.hexes[id]);
             }
         }
     }

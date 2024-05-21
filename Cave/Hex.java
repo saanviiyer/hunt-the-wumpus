@@ -35,13 +35,37 @@ public class Hex extends JButton{
     for (double[] d: pts){
       this.hex.addPoint((int)(d[0]), (int)(d[1]));
     }
-    this.x = pts[this.id][0] + offsetX;
-    this.y = pts[this.id][0] + offsetY;
-    if (i == 0 || i==3) this.y += LENGTH*1.732/2;
+    this.x = pts[this.id][1]*1.732 + offsetX;
+    this.y = pts[this.id][0]*1.732 + offsetY;
+    //if (i == 0 || i==3) this.y += LENGTH*1.732/2;
+    //this.x = (i%nCols)*1.5*LENGTH+offsetX;
+    //this.y = (i/nCols)*LENGTH*1.732+offsetY;
+    //if ((i%nCols)%2 == 1) this.y += LENGTH*1.732/2;
+    //if (i == 1) this.y -=1.732*LENGTH;
     setBounds((int)this.x, (int)this.y, (int)LENGTH*2, (int)(LENGTH*1.732+2));
 
   }
-
+  public double[][] getEdges(){
+    double[][] pts = new double[6][2];
+    pts[0][0] = LENGTH * 0.5;
+    pts[0][1] = 0;
+    
+    pts[1][0] = LENGTH * 1.5;
+    pts[1][1] = 0;
+    
+    pts[2][0] = LENGTH * 2;
+    pts[2][1] = LENGTH * 1.732/2;
+    
+    pts[3][0] = LENGTH * 1.5;
+    pts[3][1] = LENGTH * 1.732;
+    
+    pts[4][0] = LENGTH * 0.5;
+    pts[4][1] = LENGTH * 1.732;
+    
+    pts[5][0] = 0;
+    pts[5][1] = LENGTH * 1.732/2;
+    return pts;
+  }
 
   public double[][] getPoints(){
 

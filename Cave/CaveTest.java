@@ -38,8 +38,10 @@ public class CaveTest {
         });
         menu.add(menuItem);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
-        myCave.drawMiniMap(frame);
-        myCave.drawCave(frame);
+        JPanel p = new JPanel();
+        myCave.drawCave(p);
+        myCave.drawMiniMap(p);
+        frame.add(p);
         frame.setVisible(true);
     }
 }
