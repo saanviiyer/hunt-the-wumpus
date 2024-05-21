@@ -156,7 +156,7 @@ public class Cave {
       this.hexes[loc.getPlayerPos()].reset();
       if (this.isNextTo(id)) loc.setPlayerPos(id);
       for (int i = 0; i < 6; i++){
-        if (this.paths[loc.getPlayerPos()][(i+1)%6]) this.view[i].setColor(Hex.GREEN);
+        if (this.paths[loc.getPlayerPos()][i]) this.view[i].setColor(Hex.GREEN);
         else this.view[i].reset();
       }
       
@@ -197,7 +197,7 @@ public class Cave {
         //int l = 50;
         Hex.setOffset(100,100);
         for(int i = 0; i < 6; i++){
-            int id = i;//(6-i)%6;
+            int id = 5-i;//(6-i)%6;
             this.view[id] = new Hex(id);
             if (paths[loc.getPlayerPos()][id]) this.view[id].setColor(Hex.GREEN);
             this.view[id].addActionListener(new ActionListener() {
