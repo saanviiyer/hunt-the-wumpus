@@ -45,6 +45,8 @@ public class UI extends JFrame implements ActionListener{
     JButton goW = new JButton();
     JButton goNW = new JButton();
 
+    JPanel miniMap = new JPanel();
+
    
     ////////////////////////
     ////   CONSTRUCTOR  ////
@@ -68,8 +70,6 @@ public class UI extends JFrame implements ActionListener{
         c.ipadx = 10;
         c.ipady = 10;
         c.fill = GridBagConstraints.BOTH;
-        // c.weightx = 1;
-        // c.weighty = 1;
 
         //add menu and menuitems
         {
@@ -122,7 +122,7 @@ public class UI extends JFrame implements ActionListener{
 
         //add movement buttons
         {
-            c.gridwidth = 4;
+            c.gridwidth = 3;
             c.gridx = 0;
             c.gridy = 2;
             c.weightx = 1;
@@ -185,7 +185,14 @@ public class UI extends JFrame implements ActionListener{
             goSE.setIcon(new ImageIcon("UI/right_bottom.png"));
             add(goSE, c);
         }
-    
+        
+        //add map panel
+        {
+            c.gridheight = 2;
+            c.gridwidth = 3;
+            add(miniMap, c);
+        }
+
         //add new font
         {
             Font montserratBold = null;
