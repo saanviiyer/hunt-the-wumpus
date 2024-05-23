@@ -39,9 +39,13 @@ public class CaveTest {
         menu.add(menuItem);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
         //JPanel p = new JPanel();
-        frame.add(myCave.drawControls());
+        JPanel controls = myCave.drawControls();
+        controls.setLocation(30,30);
+        frame.add(controls);
         frame.setVisible(true);
-        frame.add(myCave.drawMiniMap());
+        JPanel mini = myCave.drawMiniMap();
+        mini.setLocation(400,400);
+        frame.add(mini);
         frame.setVisible(true);
     }
 }
