@@ -74,8 +74,7 @@ public class UI extends JFrame implements ActionListener{
 
         Cave cave = new Cave();
         miniMap = cave.drawMiniMap();
-        miniMap.setSize(new Dimension(200, 200));
-        miniMap.setMaximumSize(new Dimension(100, 100));
+
 
 
         //add menu and menuitems
@@ -198,7 +197,7 @@ public class UI extends JFrame implements ActionListener{
             c.gridheight = 2;
             c.gridwidth = 3;
             c.gridx = 9;
-            c.gridy = 2;
+            c.gridy = 3;
             c.weightx = 1;
             c.weighty = 0;
             add(miniMap, c);
