@@ -5,27 +5,22 @@
 
 package UI;
 import javax.swing.*;
+
+import Cave.Cave;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
 public class UI extends JFrame implements ActionListener{
-    int var = 0;
-    String permString = "Var equals: ";
+
+
     JMenuBar menuBar = new JMenuBar();
     JMenu menu = new JMenu("File");
-    JButton button = new JButton("Increase var");
-    JLabel label = new JLabel(permString + var);
     JMenuItem exit = new JMenuItem("Exit");
-
-    JTextField textField = new JTextField(10);
-    JButton submitText = new JButton("Submit Text");
-
     JMenuItem startNewGame = new JMenuItem("New Game");
 
-    JTextField roomInput = new JTextField("enter room number");
-    JButton move = new JButton("Move");
-
+    
     JButton shoot = new JButton("Shoot");
 
     JButton buyArrows = new JButton("Purchase Arrows");
@@ -39,9 +34,19 @@ public class UI extends JFrame implements ActionListener{
     JLabel scoreLabel = new JLabel("Score: " + score);
     JLabel highScoreLabel = new JLabel("High Score: " + highScore);
 
-    JLabel hazards = new JLabel("Hazards: ");
+    JLabel currentPlayerLabel = new JLabel("Player: ");
+    JLabel currentCaveLabel = new JLabel("Cave: ");
 
-    JLabel currentPlayerLabel = new JLabel();
+    JButton goN = new JButton();
+    JButton goNE = new JButton();
+    JButton goE = new JButton();
+    JButton goSE = new JButton();
+    JButton goS = new JButton();
+    JButton goSW = new JButton();
+    JButton goW = new JButton();
+    JButton goNW = new JButton();
+
+    JPanel miniMap;
 
    
     ////////////////////////
@@ -49,7 +54,6 @@ public class UI extends JFrame implements ActionListener{
     ////////////////////////
 
     public UI(){
-        var = 1;
         
         //set frame behavior
         setTitle("Hunt the Wumpus");
@@ -64,10 +68,15 @@ public class UI extends JFrame implements ActionListener{
 
         //set default constraints of gridbag
         GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.BOTH;
         c.ipadx = 10;
         c.ipady = 10;
-        c.insets = new Insets(10,10,10,10);
+        c.fill = GridBagConstraints.BOTH;
+
+        Cave cave = new Cave();
+        miniMap = cave.drawMiniMap();
+        miniMap.setSize(new Dimension(200, 200));
+        miniMap.setMaximumSize(new Dimension(100, 100));
+
 
         //add menu and menuitems
         {
@@ -93,120 +102,106 @@ public class UI extends JFrame implements ActionListener{
             setJMenuBar(menuBar);
         }
         
-        //add score and high score labels
+        //add score, high score, player, cave, arrows labels
         {
             c.gridx = 0;
-            c.gridwidth = 1;
+            c.gridwidth = 3;
             c.gridy = 0;
-            c.anchor = GridBagConstraints.FIRST_LINE_START;
             add(scoreLabel, c);
-
-            c.gridx = 5;
-            c.gridwidth = 1;
-            c.gridy = 0;
-            c.anchor = GridBagConstraints.FIRST_LINE_END;
-            highScoreLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-            add(highScoreLabel, c);
-        }
-
-        //int incrementer and label
-        {
-            //adding button incrementer
-            button.addActionListener(this);
-            c.gridx = 0;
-            c.gridwidth = 3;
-            c.gridy = 1;
-            add(button, c);
-
-            //adding var label
-            c.gridx = 3;
-            c.gridwidth = 3;
-            // c.gridy = 1;
-            label.setHorizontalAlignment(SwingConstants.CENTER);
-            add(label, c);
-
             
-        }
+            c.gridx = 3;
+            c.gridy = 0;
+            add(highScoreLabel, c);
 
-        //adding input for changing int
-        {
-            c.gridx = 0;
-            c.gridy = 2;
-            add(textField, c);
+            c.gridx = 6;
+            c.gridy = 0;
+            add(currentCaveLabel, c);
 
-            submitText.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    var = Integer.parseInt(textField.getText());
-                    label.setText(permString + var);
-                }
-            });
-            c.gridx = GridBagConstraints.RELATIVE;
-            add(submitText, c);
-        }
-
-        //adds room input, moving, shooting
-        {
-            c.gridx = 0;
-            c.gridwidth = 2;
-            c.gridy = 3;
-            add(roomInput, c);
-
-            move.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    move(Integer.parseInt(roomInput.getText()));
-                }
-            });
-            c.gridx = 2;
-            add(move, c);
-
-            shoot.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    shoot(Integer.parseInt(roomInput.getText()));
-                }
-            });
-            c.gridx = 4;
-            add(shoot, c);
-
-
-        }
-
-        //buying arrows and secrets
-        {
-            buyArrows.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    purchaseArrows();
-                }
-            });
-            c.gridx = 0;
-            c.gridwidth = 2;
-            c.gridy = 4;
-            // c.ipadx = 100;
-            add(buyArrows, c);
-
-            c.gridx = 2;
-            c.gridwidth = 1;
-            arrowLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            c.gridx = 9;
+            c.gridy = 0;
             add(arrowLabel, c);
 
-            buySecrets.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    purchaseSecrets();
-                }
-            });
-            c.gridx = 3;
-            c.gridwidth = 3;
-            add(buySecrets, c);
-
-            
+            c.gridy = 1;
+            c.gridx = 0;
+            c.gridwidth = 12;
+            add(currentPlayerLabel, c);
         }
 
-        //adding hazards
+        //add movement buttons
         {
+            c.gridwidth = 3;
             c.gridx = 0;
-            c.gridy = 5;
-            c.gridwidth = 6;
-            hazards.setHorizontalAlignment(SwingConstants.CENTER);
-            add(hazards, c);
+            c.gridy = 2;
+            c.weightx = 0;
+            c.weighty = 0;
+            goNW.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goNW();
+                }
+            });
+            goNW.setIcon(new ImageIcon("UI/left_top.png"));
+            add(goNW, c);
+
+            c.gridx = 3;
+            c.gridy = 2;
+            goN.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goN();
+                }
+            });
+            goN.setIcon(new ImageIcon("UI/top_mid.png"));
+            add(goN, c);
+
+            c.gridx = 6;
+            c.gridy = 2;
+            goNE.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goNE();
+                }
+            });
+            goNE.setIcon(new ImageIcon("UI/right_top.png"));
+            add(goNE, c);
+
+            c.gridx = 0;
+            c.gridy = 3;
+            goSW.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goSW();
+                }
+            });
+            goSW.setIcon(new ImageIcon("UI/left_bottom.png"));
+            add(goSW, c);
+
+            c.gridx = 3;
+            c.gridy = 3;
+            goS.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goS();
+                }
+            });
+            goS.setIcon(new ImageIcon("UI/bottom_mid.png"));
+            add(goS, c);
+
+            c.gridx = 6;
+            c.gridy = 3;
+            goSE.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    goSE();
+                }
+            });
+            goSE.setIcon(new ImageIcon("UI/right_bottom.png"));
+            add(goSE, c);
+        }
+        
+        //add map panel
+        {
+            c.gridheight = 2;
+            c.gridwidth = 3;
+            c.gridx = 9;
+            c.gridy = 2;
+            c.weightx = 1;
+            c.weighty = 1;
+            add(miniMap, c);
         }
 
         //add new font
@@ -220,7 +215,9 @@ public class UI extends JFrame implements ActionListener{
             changeFont(this, size10bold);
         }
 
-        //set frame to visible
+        //set frame to visible and fullscreen
+        // setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // setUndecorated(true);
         setVisible(true);
 
     }
@@ -229,14 +226,28 @@ public class UI extends JFrame implements ActionListener{
     ////   METHODS      ////
     ////////////////////////
 
-    public void actionPerformed(ActionEvent e){
-        DoStuff(1);
-        label.setText(permString + var);
+    private void goNW(){
+        System.out.println("going NW");
     }
 
-    public int DoStuff(int i){
-        var += i;
-        return var;
+    private void goN(){
+        System.out.println("going N");
+    }
+
+    private void goNE(){
+        System.out.println("going NE");
+    }
+
+    private void goSW(){
+        System.out.println("going SW");
+    }
+
+    private void goS(){
+        System.out.println("going S");
+    }
+
+    private void goSE(){
+        System.out.println("going SE");
     }
 
     public void startNewGame(){
@@ -273,14 +284,15 @@ public class UI extends JFrame implements ActionListener{
         System.out.println("buy secrets");
     }
 
-    public static void changeFont ( Component component, Font font ){
-        component.setFont ( font );
-        if ( component instanceof Container )
+    public static void changeFont (Component component, Font font ){
+        component.setFont(font);
+        if (component instanceof Container)
         {
-            for ( Component child : ( ( Container ) component ).getComponents () )
+            for (Component child : ((Container) component).getComponents())
             {
-                changeFont ( child, font );
+                changeFont (child, font);
             }
         }
     }
+
 }

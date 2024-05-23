@@ -1,100 +1,146 @@
 // Saanvi Subramanian
 // Period 5
 // 3/15/24
-// saanvi doing pavan's work
+
 package GameLocations;
+import Cave.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
 import java.util.HashSet;
 
+
+// two pits, two bats, arraylist of arrows, one shop
 public class GameLocations {
 
     // PROPERTIES
-    int wumpusPos;
-    int playerPos;
-    int[] pitPos;
-    int[] batPos;
-    ArrayList<Integer> fallenArrows;
-    int shopPos;
+    static Cave cave;
+    static int wumpusPos;
+    static int playerPos;
+    static int[] pitPos;
+    static int[] batPos;
+    static ArrayList<Integer> fallenArrows;
+    static int shopPos;
     static final Random RAND = new Random();
-    Set<Integer> taken = new HashSet<Integer>();
+    static Set<Integer> taken = new HashSet<Integer>();
 
     // CONSTRUCTOR
     public GameLocations() {
-        this.wumpusPos = RAND.nextInt(0,30);
-        taken.add(this.wumpusPos);
+        wumpusPos = RAND.nextInt(0,30);
+        taken.add(wumpusPos);
 
-        this.playerPos = RAND.nextInt(0,30);
-        while (taken.contains(this.playerPos)) this.playerPos = RAND.nextInt(0,30);
-        taken.add(this.playerPos);
+        playerPos = RAND.nextInt(0,30);
+        while (taken.contains(playerPos)) playerPos = RAND.nextInt(0,30);
+        taken.add(playerPos);
 
-        this.pitPos = new int[2];
-        this.pitPos[0] = RAND.nextInt(0,30);
-        while (taken.contains(this.pitPos[0])) this.pitPos[0] = RAND.nextInt(0,30);
-        taken.add(this.pitPos[0]);
+        pitPos = new int[2];
+        pitPos[0] = RAND.nextInt(0,30);
+        while (taken.contains(pitPos[0])) pitPos[0] = RAND.nextInt(0,30);
+        taken.add(pitPos[0]);
 
-        this.pitPos[1] = RAND.nextInt(0,30);
-        while (taken.contains(this.pitPos[1])) this.pitPos[1] = RAND.nextInt(0,30);
-        taken.add(this.pitPos[1]);
+        pitPos[1] = RAND.nextInt(0,30);
+        while (taken.contains(pitPos[1])) pitPos[1] = RAND.nextInt(0,30);
+        taken.add(pitPos[1]);
 
-        this.batPos = new int[2];
-        this.batPos[0] = RAND.nextInt(0,30);
-        while (taken.contains(this.batPos[0])) this.batPos[0] = RAND.nextInt(0,30);
-        taken.add(this.batPos[0]);
+        batPos = new int[2];
+        batPos[0] = RAND.nextInt(0,30);
+        while (taken.contains(batPos[0])) batPos[0] = RAND.nextInt(0,30);
+        taken.add(batPos[0]);
 
-        this.batPos[1] = RAND.nextInt(0,30);
-        while (taken.contains(this.batPos[1])) this.batPos[1] = RAND.nextInt(0,30);
-        taken.add(this.batPos[1]);
+        batPos[1] = RAND.nextInt(0,30);
+        while (taken.contains(batPos[1])) batPos[1] = RAND.nextInt(0,30);
+        taken.add(batPos[1]);
 
-        this.fallenArrows = new ArrayList<Integer>();
+        fallenArrows = new ArrayList<Integer>();
 
-        this.shopPos = RAND.nextInt(0,30);
-        while (taken.contains(this.shopPos)) this.shopPos = RAND.nextInt(0,30);
-        taken.add(this.shopPos);
+        shopPos = RAND.nextInt(0,30);
+        while (taken.contains(shopPos)) shopPos = RAND.nextInt(0,30);
+        taken.add(shopPos);
     }
 
     // METHOD (add getters and setters)
 
     public int getWumpusPos() {
-        return this.wumpusPos;
+        return wumpusPos;
     }
 
     public void setWumpusPos(int pos) {
-        this.wumpusPos = pos;
+        wumpusPos = pos;
     }
 
     public int getPlayerPos() {
-        return this.playerPos;
+        return playerPos;
+    }
+
+    public boolean canMoveTo(int id){
+        return cave.isNextTo(playerPos, id);
+    }
+    public boolean nextToWumpus(){
+        return canMoveTo(wumpusPos);
+    }
+    public boolean nextToPit(){
+        return (canMoveTo(pitPos[0]) || canMoveTo(pitPos[1]));
+    }
+    public boolean nextToBats(){
+        return (canMoveTo(batPos[0]) || canMoveTo(batPos[1]));
+    }
+
+    public boolean atWumpus(){
+        return (playerPos == wumpusPos);
+    }
+    public boolean atPit(){
+        return (playerPos == pitPos[0] || playerPos == pitPos[1]);
+    }
+    public boolean atBats(){
+        return (playerPos == batPos[0] || playerPos == batPos[1]);
+    }
+    public boolean atShop(){
+        return (playerPos == shopPos);
     }
 
     public void setPlayerPos(int pos) {
-        this.playerPos = pos;
+        playerPos = pos;
+        //cave.goTo(pos);
+        if (this.atBats()){
+            System.out.println("bats!");
+        } else if (this.atPit()){
+            System.out.println("pit!");
+        } else if (this.atWumpus()){
+            System.out.println("wumpus!");
+        } else if (this.atShop()){
+            System.out.println("a shop!");
+        }
+        if (fallenArrows.contains(pos)){
+            System.out.println("a dropped arrow!");
+        } 
     }
 
     public int[] getPitPos() {
-        return this.pitPos;
+        return pitPos;
     }
 
     public void setPitPos(int[] pos) {
-        this.pitPos = pos;
+        pitPos = pos;
     }
 
     public int[] getBatPos() {
-        return this.batPos;
+        return batPos;
     }
 
     public void setBatPos(int[] pos) {
-        this.batPos = pos;
+        batPos = pos;
     }
-
 
 
     public int getShopPos() {
-        return this.shopPos;
+        return shopPos;
     }
 
     public ArrayList<Integer> getFallenArrows() {
-        return this.fallenArrows;
+        return fallenArrows;
+    }
+    
+    public void addFallenArrow(int id){
+        fallenArrows.add(id);
     }
 }

@@ -8,12 +8,14 @@ import Player.*;
 import Trivia.*;
 import UI.*;
 import Cave.*;
+import GameLocations.GameLocations;
 
 public class GameControl {
 
     // PROPERTIES
     Player player = new Player();
     UI ui = new UI();
+    GameLocations gl = new GameLocations();
 
 // work with UI object to start the game and display the current room.
 
@@ -38,7 +40,7 @@ public class GameControl {
     }
 
     public boolean checkWumpusNearby(Player player) {
-
+        return false;
     }
 
     public void chooseCave() {
@@ -60,11 +62,24 @@ public class GameControl {
     // super bat
 
     public boolean checkBottomlessPit(Player player) {
-        return true;
+        if (gl.atPit() == true) {
+            // bottomless pit function
+            System.out.println("in a pit");
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public boolean checkSuperBat(Player player) {
-        return true;
+        if (gl.atBats() == true) {
+            System.out.println("in a bat");
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public void checkHazard(Player player) {

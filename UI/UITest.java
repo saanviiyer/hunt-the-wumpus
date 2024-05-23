@@ -5,7 +5,6 @@
 
 package UI;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -89,24 +88,6 @@ class Test {
         } catch(Exception ignored){}
         UI myUI = new UI();
 
-        // Font serif = null;
-        // try{
-        //     serif = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\Starjedi.ttf"));
-        // } catch(Exception e){}
-
-        // System.out.println(serif.getSize());
-        // Font newFont = serif.deriveFont(Font.PLAIN, 20);
-        // changeFont(myUI, newFont);
     }
 
-    public static void changeFont ( Component component, Font font ){
-        component.setFont ( font );
-        if ( component instanceof Container )
-        {
-            for ( Component child : ( ( Container ) component ).getComponents () )
-            {
-                changeFont ( child, font );
-            }
-        }
-    }
 }
