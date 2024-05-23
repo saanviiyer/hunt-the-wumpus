@@ -12,11 +12,13 @@ public class Main{
         HighScore highScore = new HighScore();
         Player player = new Player();
         Sound sound = new Sound();
-        Trivia trivia = new Trivia();
+        TriviaGameGUI trivia = new TriviaGameGUI();
         UI ui = new UI();
         Wumpus wumpus = new Wumpus();
         curGame.initBoard();
 
         //cave.draw(ui);
+
+        
     }
 }
