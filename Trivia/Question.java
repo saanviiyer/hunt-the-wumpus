@@ -13,15 +13,15 @@ public class Question {
         return questionText; 
     }
 
-    public String getOptions() {
+    public String[] getOptions() {
         return options;    
     }
 
-    public Int getCorrectAnswer() {
+    public int getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public Boolean isCorrect(int answer) {
+    public boolean isCorrect(int answer) {
         return answer = correctAnswer;
     }
 }
