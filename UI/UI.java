@@ -227,8 +227,7 @@ public class UI extends JFrame implements ActionListener{
         }
 
         //set frame to visible and fullscreen
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(true);
+        setResizable(false);
         setVisible(true);
 
     }
