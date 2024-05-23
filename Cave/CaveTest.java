@@ -40,8 +40,9 @@ public class CaveTest {
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
         //JPanel p = new JPanel();
         JPanel controls = myCave.drawControls();
-        controls.setLocation(30,30);
         frame.add(controls);
+        controls.setLocation(30,30);
+
         frame.setVisible(true);
         JPanel mini = myCave.drawMiniMap();
         mini.setLocation(400,400);
