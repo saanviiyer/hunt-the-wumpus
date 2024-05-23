@@ -193,6 +193,17 @@ public class UI extends JFrame implements ActionListener{
             add(goSE, c);
         }
         
+        //adding buttons to buy
+        {
+            c.gridx = 9;
+            c.gridy = 2;
+            c.gridwidth = 1;
+            add(buyArrows, c);
+
+            c.gridx = 10;
+            add(buySecrets, c);
+        }
+
         //add map panel
         {
             c.gridheight = 2;
