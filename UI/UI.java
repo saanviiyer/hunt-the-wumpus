@@ -200,7 +200,7 @@ public class UI extends JFrame implements ActionListener{
             c.gridx = 9;
             c.gridy = 2;
             c.weightx = 1;
-            c.weighty = 1;
+            c.weighty = 0;
             add(miniMap, c);
         }
 
@@ -216,8 +216,8 @@ public class UI extends JFrame implements ActionListener{
         }
 
         //set frame to visible and fullscreen
-        // setExtendedState(JFrame.MAXIMIZED_BOTH);
-        // setUndecorated(true);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
         setVisible(true);
 
     }
