@@ -73,7 +73,7 @@ public class UI extends JFrame implements ActionListener{
         c.fill = GridBagConstraints.BOTH;
 
         Cave cave = new Cave();
-        miniMap = cave.drawMiniMap();
+        miniMap = cave.drawMiniMap(40);
 
 
 
@@ -118,6 +118,7 @@ public class UI extends JFrame implements ActionListener{
 
             c.gridx = 9;
             c.gridy = 0;
+            c.weightx = 0;
             add(arrowLabel, c);
 
             c.gridy = 1;
