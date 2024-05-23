@@ -22,6 +22,6 @@ public class Question {
     }
 
     public Boolean isCorrect(int answer) {
-        return answer = correctAnswer;
+        return (answer = correctAnswer);
     }
 }
