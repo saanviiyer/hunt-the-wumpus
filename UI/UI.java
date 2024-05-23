@@ -73,9 +73,8 @@ public class UI extends JFrame implements ActionListener{
         c.fill = GridBagConstraints.BOTH;
 
         Cave cave = new Cave();
-        miniMap = cave.drawMiniMap();
-        miniMap.setSize(new Dimension(200, 200));
-        miniMap.setMaximumSize(new Dimension(100, 100));
+        miniMap = cave.drawMiniMap(40);
+
 
 
         //add menu and menuitems
@@ -119,6 +118,7 @@ public class UI extends JFrame implements ActionListener{
 
             c.gridx = 9;
             c.gridy = 0;
+            c.weightx = 0;
             add(arrowLabel, c);
 
             c.gridy = 1;
@@ -198,9 +198,9 @@ public class UI extends JFrame implements ActionListener{
             c.gridheight = 2;
             c.gridwidth = 3;
             c.gridx = 9;
-            c.gridy = 2;
-            c.weightx = 1;
-            c.weighty = 1;
+            c.gridy = 3;
+            c.weightx = .5;
+            c.weighty = 0;
             add(miniMap, c);
         }
 
@@ -216,8 +216,8 @@ public class UI extends JFrame implements ActionListener{
         }
 
         //set frame to visible and fullscreen
-        // setExtendedState(JFrame.MAXIMIZED_BOTH);
-        // setUndecorated(true);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
         setVisible(true);
 
     }

@@ -198,9 +198,10 @@ public class Cave {
         return this.getPaths(param);
     }
 
-    public JPanel drawControls(){
+    public JPanel drawControls(int l){
         //int l = 50;
-        Hex.setOffset(40,30);
+        Hex.setLength(l);
+        Hex.setOffset(0,0);
         this.current = new Hex(6);
         this.current.changeLabel("" + loc.getPlayerPos());
         this.current.setColor(Hex.RED);
@@ -222,9 +223,10 @@ public class Cave {
 
     // draws onto frame using frame.getContentPane().add(Hex)
     // See Hex.java for more information on how hexes are drawn.
-    public JPanel drawMiniMap(){
+    public JPanel drawMiniMap(int l){
         //int l = 50;
-        MiniHex.setOffset(400,400);
+        MiniHex.setLength(l);
+        MiniHex.setOffset(0,0);
         for(int row = 0; row < 5; row++){
             for (int col = 0; col < 6; col++){
                 int id = row*6+col;
