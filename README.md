@@ -9,6 +9,8 @@ Go to [this guide](https://www.markdownguide.org/cheat-sheet/) for a detailed de
  - **text** is bold
  - `text` is code
 
+ THE THEME FOR WUMPUS !!!! : Bothell hs, after the APOCALYPSE 
+
 ## WUMPUS ROLES
 | Role                                   | Name   |
 |----------------------------------------|--------|

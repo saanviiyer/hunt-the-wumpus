@@ -1,7 +1,10 @@
 // Lily Holdhus
-// Wumpus Object (Hunt the Wumpus)
+// Wumpus Object
 // 2/12/2024
 // Period 5
+
+// LAST UPDATED: 3/29/2024 during class
+// CURRENT STATUS OF CODE: runs
 
 class Wumpus{
 

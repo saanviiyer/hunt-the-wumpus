@@ -8,6 +8,8 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JOptionPane;
 
+// coin, falling into a pit, shooting an arrow, wumpus, win/loose, bats, cold draft, hint
+
 
 class Sound{
 
