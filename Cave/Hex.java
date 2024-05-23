@@ -39,8 +39,8 @@ public class Hex extends JButton{
       this.x = pts[5-this.id][1]*1.732 + offsetX;
       this.y = pts[5-this.id][0]*1.732 + offsetY;
     } else {    
-      this.x = 2*1.5*LENGTH+offsetX;
-      this.y = (2)*LENGTH*1.732+offsetY;
+      this.x = pts[2][1]*1.732 + offsetX;
+      this.y = (1)*LENGTH*1.732+offsetY;
     }
   
     //if (i == 0 || i==3) this.y += LENGTH*1.732/2;
@@ -51,7 +51,7 @@ public class Hex extends JButton{
 
   }
 
-  public void changeLabel(String s){this.label = s;}
+  public void changeLabel(String s){this.label = s; this.repaint();}
   public double[][] getPoints(){
 
     double[][]points = new double[6][2];

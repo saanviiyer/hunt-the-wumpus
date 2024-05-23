@@ -22,8 +22,9 @@ public class Cave {
     int[][] adj = new int[30][6];
     MiniHex[] hexes = new MiniHex[30]; // row = i/6, col = i%6
     Hex[] view = new Hex[6];
-    Hex current = new Hex(6);
-    JPanel panel = new JPanel();
+    Hex current;// = new Hex(6);
+    JPanel mini = new JPanel();
+    JPanel controls = new JPanel();
     /*
     boolean[][][] openings = { // [row][col][dir]
       //n, ne, se, s, sw, nw
@@ -155,10 +156,13 @@ public class Cave {
       for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
       this.hexes[loc.getPlayerPos()].reset();
       if (this.isNextTo(id)) loc.setPlayerPos(id);
-      if (this.view[0] != null) for (int i = 0; i < 6; i++){
-        if (this.paths[loc.getPlayerPos()][i]) this.view[i].setColor(Hex.GREEN);
-        else this.view[i].reset();
-        this.view[i].changeLabel(""+adj[loc.getPlayerPos()][i]);
+      if (this.view[0] != null) {
+        this.current.changeLabel("" + loc.getPlayerPos());
+        for (int i = 0; i < 6; i++){
+          this.view[i].changeLabel(""+adj[loc.getPlayerPos()][i]);
+          if (this.paths[loc.getPlayerPos()][i]) this.view[i].setColor(Hex.GREEN);
+          else this.view[i].reset();
+        }
       }
       
       for(int i = 0; i < 6; i++) if (this.paths[loc.getPlayerPos()][i]) 
@@ -194,9 +198,12 @@ public class Cave {
         return this.getPaths(param);
     }
 
-    public JPanel drawCave(){
+    public JPanel drawControls(){
         //int l = 50;
         Hex.setOffset(40,30);
+        this.current = new Hex(6);
+        this.current.changeLabel("" + loc.getPlayerPos());
+        this.current.setColor(Hex.RED);
         for(int i = 0; i < 6; i++){
             int id = 5-i;//(6-i)%6;
             this.view[id] = new Hex(id);
@@ -207,10 +214,10 @@ public class Cave {
                     move(id);
                 }
             });
-            this.panel.add(this.view[id]);
+            this.controls.add(this.view[id]);
         }
-        this.panel.add(this.current);
-        return panel;
+        this.controls.add(this.current);
+        return this.controls;
     }
 
     // draws onto frame using frame.getContentPane().add(Hex)
@@ -232,10 +239,10 @@ public class Cave {
                         //System.out.println(shoot(0, RAND.nextInt(5)));
                     }
                 });
-                this.panel.add(this.hexes[id]);
+                this.mini.add(this.hexes[id]);
             }
         }
-        return this.panel;
+        return this.mini;
     }
 }
 
