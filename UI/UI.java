@@ -198,7 +198,7 @@ public class UI extends JFrame implements ActionListener{
             c.gridwidth = 3;
             c.gridx = 9;
             c.gridy = 3;
-            c.weightx = 1;
+            c.weightx = .5;
             c.weighty = 0;
             add(miniMap, c);
         }
