@@ -12,7 +12,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
-public class UI extends JFrame implements ActionListener{
+public class UI extends JFrame{
 
 
     JMenuBar menuBar = new JMenuBar();
