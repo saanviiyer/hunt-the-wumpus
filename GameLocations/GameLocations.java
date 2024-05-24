@@ -4,7 +4,7 @@
 
 package GameLocations;
 import Cave.*;
-import GameControl.*;
+// import GameControl.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
@@ -16,7 +16,7 @@ public class GameLocations {
 
     // PROPERTIES
     static Cave cave;
-    static GameControl ctrl;
+    // static GameControl ctrl;
     static int wumpusPos;
     static int playerPos;
     static int[] pitPos;
