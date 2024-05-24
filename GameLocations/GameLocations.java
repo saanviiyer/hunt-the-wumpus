@@ -59,7 +59,12 @@ public class GameLocations {
     }
 
     // METHOD (add getters and setters)
+    public void setCave(Cave c){
+        cave = c;
+    }
 
+    public Cave getCave(){return cave;}
+    
     public int getWumpusPos() {
         return wumpusPos;
     }
