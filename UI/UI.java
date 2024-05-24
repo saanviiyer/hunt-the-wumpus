@@ -11,9 +11,11 @@ import Cave.Cave;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import Player.*;
 
 public class UI extends JFrame implements ActionListener{
 
+    Player p = new Player();
 
     JMenuBar menuBar = new JMenuBar();
     JMenu menu = new JMenu("File");
@@ -26,7 +28,7 @@ public class UI extends JFrame implements ActionListener{
     JButton buyArrows = new JButton("Purchase Arrows");
     JButton buySecrets = new JButton("Purchase Secrets");
 
-    int arrows = 0;
+    int arrows = p.getArrows();
     JLabel arrowLabel = new JLabel("Arrows: " + arrows);
 
     int score = 0;
