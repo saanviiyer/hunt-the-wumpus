@@ -20,7 +20,7 @@ public class Main{
         } catch(Exception ignored){}
         UI ui = new UI();
         Wumpus wumpus = new Wumpus();
-        curGame.initBoard();
+ZA        curGame.initBoard();
 
         //cave.draw(ui);
 
