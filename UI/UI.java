@@ -26,6 +26,9 @@ public class UI extends JFrame implements ActionListener{
     JButton shoot = new JButton("Shoot");
 
     JButton buyArrows = new JButton("Purchase Arrows");
+
+
+
     JButton buySecrets = new JButton("Purchase Secrets");
 
     int arrows = p.getArrows();
@@ -200,6 +203,11 @@ public class UI extends JFrame implements ActionListener{
             c.gridx = 9;
             c.gridy = 2;
             c.gridwidth = 1;
+                buyArrows.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e){
+            purchaseArrows();
+        }
+    }); 
             add(buyArrows, c);
 
             c.gridx = 10;
@@ -293,8 +301,8 @@ public class UI extends JFrame implements ActionListener{
 
     public void purchaseArrows(){
         System.out.println("buy arrows");
-        arrows++;
-        arrowLabel.setText("Arrows: " + arrows);
+        p.addArrow();
+        arrowLabel.setText("Arrows: " + p.getArrows());
     }
 
     public void purchaseSecrets(){

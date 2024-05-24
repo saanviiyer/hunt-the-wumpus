@@ -1,5 +1,5 @@
 import Player.*;
-import Trivia.*;
+// import Trivia.*;
 import UI.*;
 import Cave.*;
 import javax.swing.UIManager;
