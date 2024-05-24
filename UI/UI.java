@@ -48,6 +48,8 @@ public class UI extends JFrame{
 
     JPanel miniMap;
 
+    JLabel alerts = new JLabel("Alerts");
+
    
     ////////////////////////
     ////   CONSTRUCTOR  ////
@@ -73,7 +75,7 @@ public class UI extends JFrame{
         c.fill = GridBagConstraints.BOTH;
 
         Cave cave = new Cave();
-        miniMap = cave.drawMiniMap(34);
+        miniMap = cave.drawMiniMap(33);
 
 
 
@@ -130,7 +132,7 @@ public class UI extends JFrame{
         //add movement buttons
         {
             c.gridwidth = 3;
-            c.gridheight = 2;
+            c.gridheight = 4;
             c.gridx = 0;
             c.gridy = 2;
             c.weightx = 0;
@@ -164,7 +166,7 @@ public class UI extends JFrame{
             add(goNE, c);
 
             c.gridx = 0;
-            c.gridy = 4;
+            c.gridy = 6;
             goSW.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     goSW();
@@ -174,7 +176,7 @@ public class UI extends JFrame{
             add(goSW, c);
 
             c.gridx = 3;
-            c.gridy = 4;
+            c.gridy = 6;
             goS.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     goS();
@@ -184,7 +186,7 @@ public class UI extends JFrame{
             add(goS, c);
 
             c.gridx = 6;
-            c.gridy = 4;
+            c.gridy = 6;
             goSE.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     goSE();
@@ -194,8 +196,9 @@ public class UI extends JFrame{
             add(goSE, c);
         }
         
-        //adding buttons to buy
+        //adding buttons to buy and alerts
         {
+            c.weighty = 1;
             c.gridx = 9;
             c.gridy = 2;
             c.gridheight = 1;
@@ -206,17 +209,26 @@ public class UI extends JFrame{
             c.gridx = 9;
             c.gridy = 3;
             c.weightx = 1;
-            c.weighty = 0;
+            
             c.gridwidth = 1;
             add(buySecrets, c);
+
+            c.gridx = 9;
+            c.gridy = 4;
+            add(shoot, c);
+
+            c.gridx = 9;
+            c.gridy = 5;
+            alerts.setHorizontalAlignment(JLabel.CENTER);
+            add(alerts, c);
         }
 
         //add map panel
         {
-            c.gridheight = 2;
+            c.gridheight = 4;
             c.gridwidth = 3;
             c.gridx = 9;
-            c.gridy = 4;
+            c.gridy = 6;
             c.weightx = .5;
             c.weighty = 0;
             add(miniMap, c);
@@ -233,10 +245,8 @@ public class UI extends JFrame{
             changeFont(this, size10bold);
         }
         
-        TriviaPanel moveablePanel = new TriviaPanel();
-        moveablePanel.setBackground(Color.PINK);
-        add(moveablePanel);
-        //set frame to visible and fullscreen
+
+        //set frame to visible
         repaint();
         revalidate();
         setResizable(false);
