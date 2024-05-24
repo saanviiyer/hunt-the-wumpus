@@ -14,17 +14,6 @@ import java.awt.Font;
 class Test {
     private static UI myUI;
 
-    public static void TestConstructor() {
-        myUI = new UI();
-        System.out.println("Constructor called");
-    }
-
-    public static void TestUIDoStuff() {
-        int param = 5;
-        int result = myUI.DoStuff(param);
-        System.out.println("DoStuff called with " + param + " and returned " + result);
-    }
-
 
     // public static void main(String args[])
     // {
@@ -86,7 +75,7 @@ class Test {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); 
             System.out.println("laf changed to " + UIManager.getLookAndFeel());
         } catch(Exception ignored){}
-        UI myUI = new UI();
+        myUI = new UI();
 
     }
 
