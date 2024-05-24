@@ -22,6 +22,6 @@ public class Question {
     }
 
     public boolean isCorrect(int answer) {
-        return (answer == correctAnswer);
+        return (answer.equals(correctAnswer));
     }
 }
