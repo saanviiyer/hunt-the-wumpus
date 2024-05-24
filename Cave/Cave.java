@@ -8,6 +8,8 @@ package Cave;
 
 import GameLocations.*;
 import javax.swing.*;
+
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.util.Random;
 import java.util.ArrayList;
@@ -127,7 +129,13 @@ public class Cave {
         }
         finished.add(curHex);
       }
-      //System.out.println("closed: " + closed.size());
+
+      System.out.println("closed: " + closed.size());
+      for (int i: closed) System.out.print(i);
+      if (!closed.isEmpty()) {
+        this.paths = new boolean[30][6];
+        this.openPaths();
+      }
     }
 
     //returns the amount of openings the hex has
@@ -202,9 +210,9 @@ public class Cave {
         //int l = 50;
         //this.controls.setLayout(null);
         //this.controls.setSize(Hex.LENGTH, Hex.LENGTH);
-                this.controls.setSize(100,100);
+        this.controls.setPreferredSize(new Dimension(Hex.LENGTH*5,Hex.LENGTH*5));
 
-        this.controls.setLayout(null);
+        //this.controls.setLayout(null);
         Hex.setLength(l);
         Hex.setOffset(0,0);
         this.current = new Hex(6);
@@ -231,6 +239,7 @@ public class Cave {
     public JPanel drawMiniMap(int l){
         //int l = 50;
         //this.mini.setLayout(null);
+        this.mini.setPreferredSize(new Dimension(MiniHex.LENGTH*2, MiniHex.LENGTH*6));
         MiniHex.setLength(l);
         MiniHex.setOffset(0,0);
         for(int row = 0; row < 5; row++){
