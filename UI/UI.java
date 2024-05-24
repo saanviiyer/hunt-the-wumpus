@@ -130,6 +130,7 @@ public class UI extends JFrame implements ActionListener{
         //add movement buttons
         {
             c.gridwidth = 3;
+            c.gridheight = 2;
             c.gridx = 0;
             c.gridy = 2;
             c.weightx = 0;
@@ -163,7 +164,7 @@ public class UI extends JFrame implements ActionListener{
             add(goNE, c);
 
             c.gridx = 0;
-            c.gridy = 3;
+            c.gridy = 4;
             goSW.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     goSW();
@@ -173,7 +174,7 @@ public class UI extends JFrame implements ActionListener{
             add(goSW, c);
 
             c.gridx = 3;
-            c.gridy = 3;
+            c.gridy = 4;
             goS.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     goS();
@@ -183,7 +184,7 @@ public class UI extends JFrame implements ActionListener{
             add(goS, c);
 
             c.gridx = 6;
-            c.gridy = 3;
+            c.gridy = 4;
             goSE.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     goSE();
@@ -197,10 +198,16 @@ public class UI extends JFrame implements ActionListener{
         {
             c.gridx = 9;
             c.gridy = 2;
+            c.gridheight = 1;
             c.gridwidth = 1;
+            c.weightx = 1;
             add(buyArrows, c);
 
-            c.gridx = 10;
+            c.gridx = 9;
+            c.gridy = 3;
+            c.weightx = 1;
+            c.weighty = 0;
+            c.gridwidth = 1;
             add(buySecrets, c);
         }
 
@@ -209,7 +216,7 @@ public class UI extends JFrame implements ActionListener{
             c.gridheight = 2;
             c.gridwidth = 3;
             c.gridx = 9;
-            c.gridy = 3;
+            c.gridy = 4;
             c.weightx = .5;
             c.weighty = 0;
             add(miniMap, c);
