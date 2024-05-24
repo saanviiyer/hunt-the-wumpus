@@ -301,7 +301,7 @@ public class UI extends JFrame implements ActionListener{
 
     public void purchaseArrows(){
         System.out.println("buy arrows");
-        p.addArrow();
+        p.addArrows();
         arrowLabel.setText("Arrows: " + p.getArrows());
     }
 
