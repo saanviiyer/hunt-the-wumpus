@@ -2,7 +2,7 @@ package Cave;
 
 /*
  * Last Editor(s): Shunzo Hida
- * Last Edit @ 03-22-2024
+ * Last Edit @ 05-24-2024
  */
 
 
@@ -157,6 +157,25 @@ public class Cave {
     // Same thing, except only with player location
     public boolean isNextTo(int id){ // if there is a path there
       return this.isNextTo(loc.getPlayerPos(), id);
+    }
+
+
+    public void setPlayerPos(int id){
+      for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
+      this.hexes[loc.getPlayerPos()].reset();
+      loc.setPlayerPos(id);
+      if (this.view[0] != null) {
+        this.current.changeLabel("" + loc.getPlayerPos());
+        for (int i = 0; i < 6; i++){
+          this.view[i].changeLabel(""+adj[loc.getPlayerPos()][i]);
+          if (this.paths[loc.getPlayerPos()][i]) this.view[i].setColor(Hex.GREEN);
+          else this.view[i].reset();
+        }
+      }
+      
+      for(int i = 0; i < 6; i++) if (this.paths[loc.getPlayerPos()][i]) 
+        this.hexes[this.adj[loc.getPlayerPos()][i]].setColor(Hex.GREEN);
+      this.hexes[loc.getPlayerPos()].setColor(Hex.RED);
     }
 
     // moves the player and redraws hexes

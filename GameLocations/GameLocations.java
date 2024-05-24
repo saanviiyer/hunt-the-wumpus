@@ -4,6 +4,7 @@
 
 package GameLocations;
 import Cave.*;
+import GameControl.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
@@ -15,6 +16,7 @@ public class GameLocations {
 
     // PROPERTIES
     static Cave cave;
+    static GameControl ctrl;
     static int wumpusPos;
     static int playerPos;
     static int[] pitPos;
@@ -26,39 +28,46 @@ public class GameLocations {
 
     // CONSTRUCTOR
     public GameLocations() {
-        wumpusPos = RAND.nextInt(0,30);
-        taken.add(wumpusPos);
+        if (batPos == null){        
+            wumpusPos = RAND.nextInt(0,30);
+            taken.add(wumpusPos);
 
-        playerPos = RAND.nextInt(0,30);
-        while (taken.contains(playerPos)) playerPos = RAND.nextInt(0,30);
-        taken.add(playerPos);
+            playerPos = RAND.nextInt(0,30);
+            while (taken.contains(playerPos)) playerPos = RAND.nextInt(0,30);
+            taken.add(playerPos);
 
-        pitPos = new int[2];
-        pitPos[0] = RAND.nextInt(0,30);
-        while (taken.contains(pitPos[0])) pitPos[0] = RAND.nextInt(0,30);
-        taken.add(pitPos[0]);
+            pitPos = new int[2];
+            pitPos[0] = RAND.nextInt(0,30);
+            while (taken.contains(pitPos[0])) pitPos[0] = RAND.nextInt(0,30);
+            taken.add(pitPos[0]);
 
-        pitPos[1] = RAND.nextInt(0,30);
-        while (taken.contains(pitPos[1])) pitPos[1] = RAND.nextInt(0,30);
-        taken.add(pitPos[1]);
+            pitPos[1] = RAND.nextInt(0,30);
+            while (taken.contains(pitPos[1])) pitPos[1] = RAND.nextInt(0,30);
+            taken.add(pitPos[1]);
 
-        batPos = new int[2];
-        batPos[0] = RAND.nextInt(0,30);
-        while (taken.contains(batPos[0])) batPos[0] = RAND.nextInt(0,30);
-        taken.add(batPos[0]);
+            batPos = new int[2];
+            batPos[0] = RAND.nextInt(0,30);
+            while (taken.contains(batPos[0])) batPos[0] = RAND.nextInt(0,30);
+            taken.add(batPos[0]);
 
-        batPos[1] = RAND.nextInt(0,30);
-        while (taken.contains(batPos[1])) batPos[1] = RAND.nextInt(0,30);
-        taken.add(batPos[1]);
+            batPos[1] = RAND.nextInt(0,30);
+            while (taken.contains(batPos[1])) batPos[1] = RAND.nextInt(0,30);
+            taken.add(batPos[1]);
 
-        fallenArrows = new ArrayList<Integer>();
+            fallenArrows = new ArrayList<Integer>();
 
-        shopPos = RAND.nextInt(0,30);
-        while (taken.contains(shopPos)) shopPos = RAND.nextInt(0,30);
-        taken.add(shopPos);
+            shopPos = RAND.nextInt(0,30);
+            while (taken.contains(shopPos)) shopPos = RAND.nextInt(0,30);
+            taken.add(shopPos);
+        }
     }
 
     // METHOD (add getters and setters)
+    public void setCave(Cave c){
+        cave = c;
+    }
+
+    public Cave getCave(){return cave;}
 
     public int getWumpusPos() {
         return wumpusPos;
