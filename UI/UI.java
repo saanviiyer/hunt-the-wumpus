@@ -225,8 +225,13 @@ public class UI extends JFrame implements ActionListener{
             Font size10bold = montserratBold.deriveFont(Font.PLAIN, 10);
             changeFont(this, size10bold);
         }
-
+        
+        TriviaPanel moveablePanel = new TriviaPanel();
+        moveablePanel.setBackground(Color.PINK);
+        add(moveablePanel);
         //set frame to visible and fullscreen
+        repaint();
+        revalidate();
         setResizable(false);
         setVisible(true);
 

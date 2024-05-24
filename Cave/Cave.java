@@ -200,6 +200,11 @@ public class Cave {
 
     public JPanel drawControls(int l){
         //int l = 50;
+        //this.controls.setLayout(null);
+        //this.controls.setSize(Hex.LENGTH, Hex.LENGTH);
+                this.controls.setSize(100,100);
+
+        this.controls.setLayout(null);
         Hex.setLength(l);
         Hex.setOffset(0,0);
         this.current = new Hex(6);
@@ -225,6 +230,7 @@ public class Cave {
     // See Hex.java for more information on how hexes are drawn.
     public JPanel drawMiniMap(int l){
         //int l = 50;
+        //this.mini.setLayout(null);
         MiniHex.setLength(l);
         MiniHex.setOffset(0,0);
         for(int row = 0; row < 5; row++){
