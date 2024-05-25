@@ -75,8 +75,8 @@ public class UI extends JFrame{
 
         //set default constraints of gridbag
         GridBagConstraints c = new GridBagConstraints();
-        c.ipadx = 10;
-        c.ipady = 10;
+        c.ipadx = 0;
+        c.ipady = 0;
         c.fill = GridBagConstraints.BOTH;
 
         Cave cave = new Cave();
@@ -141,7 +141,7 @@ public class UI extends JFrame{
             c.gridx = 0;
             c.gridy = 2;
             c.weightx = 0;
-            c.weighty = 0;
+            c.weighty = 1;
             goNW.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     goNW();
