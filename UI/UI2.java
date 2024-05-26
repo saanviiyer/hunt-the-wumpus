@@ -64,7 +64,7 @@ public class UI2 extends JFrame{
         setLayout(new MigLayout());
         
         //change icon of frame
-        ImageIcon icon = new ImageIcon("wumpus4.png");
+        ImageIcon icon = new ImageIcon("UI/wumpus4.png");
         setIconImage(icon.getImage());
 
         //add menu and menuitems

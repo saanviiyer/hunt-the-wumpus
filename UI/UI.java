@@ -69,7 +69,7 @@ public class UI extends JFrame{
         setLayout(new GridBagLayout());
         
         //change icon of frame
-        ImageIcon icon = new ImageIcon("wumpus4.png");
+        ImageIcon icon = new ImageIcon("UI/wumpus4.png");
         setIconImage(icon.getImage());
 
 
