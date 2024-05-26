@@ -2,6 +2,7 @@ package UI;
 
 import javax.swing.*;
 
+import Cave.Cave;
 import Player.Player;
 import net.miginfocom.swing.*;
 import java.awt.*;
@@ -111,6 +112,24 @@ public class UI2 extends JFrame{
                 if(i == 2) add(cur, "wrap,grow");
                 else add(cur, "grow");
             }
+        }
+
+        //adding purchasing, alerts, and shooting
+        {
+            add(buyArrows, "cell 3 2,flowy, w 500px, growy");
+            add(buySecrets, "cell 3 2, w 500px, growy");
+            add(shoot, "cell 3 2, w 500px, growy");
+            alerts.setHorizontalAlignment(JLabel.CENTER);
+            add(alerts, "cell 3 2, w 500px, growy");
+
+        }
+
+        //add minimap
+        {
+            Cave cave = new Cave();
+            miniMap = cave.drawMiniMap(34);
+            miniMap.setSize(200, 1000);
+            add(miniMap, "cell 3 3, grow");
         }
 
         //add new font

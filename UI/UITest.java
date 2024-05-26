@@ -75,7 +75,7 @@ class Test {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); 
             System.out.println("laf changed to " + UIManager.getLookAndFeel());
         } catch(Exception ignored){}
-        // myUI = new UI();
+        myUI = new UI();
         UI2 myUi2 = new UI2();
     }
 
