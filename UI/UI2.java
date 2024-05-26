@@ -113,7 +113,7 @@ public class UI2 extends JFrame{
             ImageIcon[] movementIcons = {new ImageIcon("UI/left_top.png"),new ImageIcon("UI/top_mid.png"),new ImageIcon("UI/right_top.png"),new ImageIcon("UI/left_bottom.png"),new ImageIcon("UI/bottom_mid.png"),new ImageIcon("UI/right_bottom.png")};
 
             
-            int height = 455;
+            int height = 450;
 
             for(int i = 0; i < 6; i++){
                 JButton cur = movementButtons[i];
