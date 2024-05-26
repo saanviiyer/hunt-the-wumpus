@@ -117,8 +117,14 @@ public class UI2 extends JFrame{
 
             for(int i = 0; i < 6; i++){
                 JButton cur = movementButtons[i];
+                
+                //sets icon of buttons and make them not change when pressed
                 cur.setIcon(movementIcons[i]);
+                cur.setBorder(null);
+                cur.setContentAreaFilled(false);
+                cur.setFocusPainted(false);
                 cur.setBackground(Color.WHITE);
+
                 final int dir = i;
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
