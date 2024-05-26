@@ -96,9 +96,23 @@ public class UI2 extends JFrame{
             add(highScoreLabel);
             add(currentCaveLabel);
             add(arrowLabel, "wrap");
-            add(currentPlayerLabel);
+            add(currentPlayerLabel, "wrap");
         }
-        
+
+        //adding movement buttons
+        {
+            JButton[] movementButtons = {goNW, goN, goNE, goSW, goS, goSE};
+            ImageIcon[] movementIcons = {new ImageIcon("UI/left_top.png"),new ImageIcon("UI/top_mid.png"),new ImageIcon("UI/right_top.png"),
+                                       new ImageIcon("UI/left_bottom.png"),new ImageIcon("UI/bottom_mid.png"),new ImageIcon("UI/right_bottom.png")};
+
+            for(int i = 0; i < 6; i++){
+                JButton cur = movementButtons[i];
+                cur.setIcon(movementIcons[i]);
+                if(i == 2) add(cur, "wrap,grow");
+                else add(cur, "grow");
+            }
+        }
+
         //add new font
         {
             Font montserratBold = null;
