@@ -109,7 +109,15 @@ public class UI2 extends JFrame{
             for(int i = 0; i < 6; i++){
                 JButton cur = movementButtons[i];
                 cur.setIcon(movementIcons[i]);
-                if(i == 2) add(cur, "wrap,grow");
+
+                final int dir = i;
+                cur.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e){
+                        move(dir);
+                    }
+                });
+
+                if(i == 2) add(cur, "wrap,grow, h 540px");
                 else add(cur, "grow, h 540px");
             }
         }
@@ -119,6 +127,7 @@ public class UI2 extends JFrame{
             add(buyArrows, "cell 3 2,flowy, w 500px, growy");
             add(buySecrets, "cell 3 2, w 500px, growy");
             add(shoot, "cell 3 2, w 500px, growy");
+            
             alerts.setHorizontalAlignment(JLabel.CENTER);
             add(alerts, "cell 3 2, w 500px, growy");
 
@@ -149,36 +158,12 @@ public class UI2 extends JFrame{
         setVisible(true);
     }
 
-    private void goNW(){
-        System.out.println("going NW");
-    }
-
-    private void goN(){
-        System.out.println("going N");
-    }
-
-    private void goNE(){
-        System.out.println("going NE");
-    }
-
-    private void goSW(){
-        System.out.println("going SW");
-    }
-
-    private void goS(){
-        System.out.println("going S");
-    }
-
-    private void goSE(){
-        System.out.println("going SE");
-    }
-
     public void startNewGame(){
         System.out.println("starting new game");
     }
 
-    public void move(int room){
-        System.out.println("player moving to " + room);
+    public void move(int direction){
+        System.out.println("player moving to " + direction);
     }
 
     public void displayNearbyRooms(){
