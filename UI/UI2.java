@@ -128,7 +128,18 @@ public class UI2 extends JFrame{
         //adding purchasing, alerts, and shooting
         {
             add(buyArrows, "cell 3 2,flowy, w 500px, growy");
+            buyArrows.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    purchaseArrows();
+                }
+            });
+
             add(buySecrets, "cell 3 2, w 500px, growy");
+            buySecrets.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    purchaseSecrets();
+                }
+            });
 
             shoot.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
