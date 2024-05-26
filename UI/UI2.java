@@ -103,8 +103,10 @@ public class UI2 extends JFrame{
         //adding movement buttons
         {
             JButton[] movementButtons = {goNW, goN, goNE, goSW, goS, goSE};
-            ImageIcon[] movementIcons = {new ImageIcon("UI/left_top.png"),new ImageIcon("UI/top_mid.png"),new ImageIcon("UI/right_top.png"),
-                                       new ImageIcon("UI/left_bottom.png"),new ImageIcon("UI/bottom_mid.png"),new ImageIcon("UI/right_bottom.png")};
+            ImageIcon[] movementIcons = {new ImageIcon("UI/left_top.png"),new ImageIcon("UI/top_mid.png"),new ImageIcon("UI/right_top.png"),new ImageIcon("UI/left_bottom.png"),new ImageIcon("UI/bottom_mid.png"),new ImageIcon("UI/right_bottom.png")};
+
+            
+            int height = 400;
 
             for(int i = 0; i < 6; i++){
                 JButton cur = movementButtons[i];
@@ -117,8 +119,9 @@ public class UI2 extends JFrame{
                     }
                 });
 
-                if(i == 2) add(cur, "wrap,grow, h 540px");
-                else add(cur, "grow, h 540px");
+                
+                if(i == 2) add(cur, "wrap,grow, h " + height + "px");
+                else add(cur, "grow, h " + height + "px");
             }
         }
 
