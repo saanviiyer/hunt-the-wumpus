@@ -6,6 +6,7 @@ import Player.Player;
 import net.miginfocom.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 
 public class UI2 extends JFrame{
     //////////////////////
@@ -89,6 +90,25 @@ public class UI2 extends JFrame{
             setJMenuBar(menuBar);
         }
 
+        //adding labels
+        {
+            add(scoreLabel);
+            add(highScoreLabel);
+            add(currentCaveLabel);
+            add(arrowLabel, "wrap");
+            add(currentPlayerLabel);
+        }
+        
+        //add new font
+        {
+            Font montserratBold = null;
+            try{
+                montserratBold = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\Montserrat\\Montserrat-Bold.ttf"));
+            } catch(Exception e){}
+
+            Font size10bold = montserratBold.deriveFont(Font.PLAIN, 10);
+            changeFont(this, size10bold);
+        }
 
         repaint();
         revalidate();
