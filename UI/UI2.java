@@ -1,6 +1,9 @@
+// Nathan Chiu
+
 package UI;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 import Cave.Cave;
 import Player.Player;
@@ -64,7 +67,7 @@ public class UI2 extends JFrame{
         setLayout(new MigLayout(
             "",
             "[]0[]0[]",
-            "[][][]0[]"
+            "[][][]0[]0"
         ));
         
         //change icon of frame
@@ -110,12 +113,12 @@ public class UI2 extends JFrame{
             ImageIcon[] movementIcons = {new ImageIcon("UI/left_top.png"),new ImageIcon("UI/top_mid.png"),new ImageIcon("UI/right_top.png"),new ImageIcon("UI/left_bottom.png"),new ImageIcon("UI/bottom_mid.png"),new ImageIcon("UI/right_bottom.png")};
 
             
-            int height = 450;
+            int height = 455;
 
             for(int i = 0; i < 6; i++){
                 JButton cur = movementButtons[i];
                 cur.setIcon(movementIcons[i]);
-
+                cur.setBackground(Color.WHITE);
                 final int dir = i;
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
@@ -131,20 +134,24 @@ public class UI2 extends JFrame{
 
         //adding purchasing, alerts, and shooting
         {
-            add(buyArrows, "cell 3 2,flowy, w 500px, growy");
+            
+            buyArrows.setBackground(Color.WHITE);
             buyArrows.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     purchaseArrows();
                 }
             });
-
-            add(buySecrets, "cell 3 2, w 500px, growy");
+            add(buyArrows, "cell 3 2,flowy, w 500px, growy");
+            
+            buySecrets.setBackground(Color.WHITE);
             buySecrets.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     purchaseSecrets();
                 }
             });
+            add(buySecrets, "cell 3 2, w 500px, growy");
 
+            shoot.setBackground(Color.WHITE);
             shoot.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     if(shoot.getText().equals("Shoot")) shoot.setText("Move");
@@ -153,6 +160,7 @@ public class UI2 extends JFrame{
             });
             add(shoot, "cell 3 2, w 500px, growy");
             
+            alerts.setBorder(BorderFactory.createLineBorder(Color.black));
             alerts.setHorizontalAlignment(JLabel.CENTER);
             add(alerts, "cell 3 2, w 500px, growy");
 
