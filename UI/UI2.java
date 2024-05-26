@@ -61,7 +61,11 @@ public class UI2 extends JFrame{
         setTitle("UI2");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920,1080);
-        setLayout(new MigLayout());
+        setLayout(new MigLayout(
+            "",
+            "[]0[]0[]",
+            "[][][]0[]"
+        ));
         
         //change icon of frame
         ImageIcon icon = new ImageIcon("UI/wumpus4.png");
@@ -106,7 +110,7 @@ public class UI2 extends JFrame{
             ImageIcon[] movementIcons = {new ImageIcon("UI/left_top.png"),new ImageIcon("UI/top_mid.png"),new ImageIcon("UI/right_top.png"),new ImageIcon("UI/left_bottom.png"),new ImageIcon("UI/bottom_mid.png"),new ImageIcon("UI/right_bottom.png")};
 
             
-            int height = 400;
+            int height = 450;
 
             for(int i = 0; i < 6; i++){
                 JButton cur = movementButtons[i];
@@ -120,8 +124,8 @@ public class UI2 extends JFrame{
                 });
 
                 
-                if(i == 2) add(cur, "wrap,grow, h " + height + "px");
-                else add(cur, "grow, h " + height + "px");
+                if(i == 2) add(cur, "wrap,grow, h " + height + "px," + "w " + height + "px");
+                else add(cur, "grow, h " + height + "px," + "w " + height + "px");
             }
         }
 
@@ -176,7 +180,7 @@ public class UI2 extends JFrame{
         repaint();
         revalidate();
         // setUndecorated(true);
-        setResizable(false);
+        setResizable(true);
         setVisible(true);
     }
 
