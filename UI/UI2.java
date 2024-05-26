@@ -110,7 +110,7 @@ public class UI2 extends JFrame{
                 JButton cur = movementButtons[i];
                 cur.setIcon(movementIcons[i]);
                 if(i == 2) add(cur, "wrap,grow");
-                else add(cur, "grow");
+                else add(cur, "grow, h 540px");
             }
         }
 
@@ -127,8 +127,8 @@ public class UI2 extends JFrame{
         //add minimap
         {
             Cave cave = new Cave();
-            miniMap = cave.drawMiniMap(34);
-            miniMap.setSize(200, 1000);
+            miniMap = cave.drawMiniMap(40);
+            miniMap.setMinimumSize(new Dimension(540,300));
             add(miniMap, "cell 3 3, grow");
         }
 
@@ -139,7 +139,7 @@ public class UI2 extends JFrame{
                 montserratBold = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\Montserrat\\Montserrat-Bold.ttf"));
             } catch(Exception e){}
 
-            Font size10bold = montserratBold.deriveFont(Font.PLAIN, 10);
+            Font size10bold = montserratBold.deriveFont(Font.PLAIN, 15);
             changeFont(this, size10bold);
         }
 
