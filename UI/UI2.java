@@ -129,6 +129,13 @@ public class UI2 extends JFrame{
         {
             add(buyArrows, "cell 3 2,flowy, w 500px, growy");
             add(buySecrets, "cell 3 2, w 500px, growy");
+
+            shoot.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    if(shoot.getText().equals("Shoot")) shoot.setText("Move");
+                    else shoot.setText("Shoot");
+                }
+            });
             add(shoot, "cell 3 2, w 500px, growy");
             
             alerts.setHorizontalAlignment(JLabel.CENTER);
@@ -157,6 +164,7 @@ public class UI2 extends JFrame{
 
         repaint();
         revalidate();
+        // setUndecorated(true);
         setResizable(false);
         setVisible(true);
     }
@@ -179,10 +187,6 @@ public class UI2 extends JFrame{
 
     public void displayHazards(){
         System.out.println("Displaying hazards");
-    }
-
-    public void shoot(int room){
-        System.out.println("shooting to " + room);
     }
 
     public void purchaseArrows(){
