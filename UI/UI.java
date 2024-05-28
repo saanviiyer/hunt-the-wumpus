@@ -1,6 +1,7 @@
 // Nathan Chiu
 
 package UI;
+import java.util.Random;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -223,6 +224,9 @@ public class UI extends JFrame{
 
     public void purchaseSecrets(){
         System.out.println("buy secrets");
+        Random rand = new Random();
+        int r = rand.nextInt(5);
+        alerts.setText(p.getSecret(r));
     }
 
     public static void changeFont (Component component, Font font ){
