@@ -5,8 +5,8 @@
 
 // LAST UPDATED: 3/29/2024
 // CURRENT STATUS: runs
-
-class Wumpus{
+package Wumpus;
+public class Wumpus{
 
   // PROPERTIES ////
   
