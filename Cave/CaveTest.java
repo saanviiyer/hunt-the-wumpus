@@ -12,11 +12,6 @@ public class CaveTest {
         System.out.println("Constructor called");
     }
 
-    public static void TestCaveDoStuff() {
-        int param = 8;
-        String result = myCave.DoStuff(param);
-        System.out.println("DoStuff called with " + param + " and returned " + result);
-    }
 
 
     public static void main(String args[])
