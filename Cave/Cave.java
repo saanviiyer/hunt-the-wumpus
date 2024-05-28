@@ -2,8 +2,16 @@ package Cave;
 
 /*
  * Last Editor(s): Shunzo Hida
- * Last Edit @ 05-24-2024
+ * Last Edit @ 05-28-2024
  */
+
+/*
+ * Guide:
+ * move(int dir), moves player in a direction
+ * setPlayerPos(int id), teleports player to a hex
+ */
+
+
 
 
 import GameLocations.*;
@@ -16,28 +24,23 @@ import java.util.ArrayList;
 
 
 public class Cave {
+
     static final String[] dirs = {"North", "Northeast", "Southeast", "South", "Southwest", "Northwest"};
     static Random RAND = new Random();
     static GameLocations loc = new GameLocations();
     // rooms are represented by ints [0,29]
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
-    MiniHex[] hexes = new MiniHex[30]; // row = i/6, col = i%6
-    Hex[] view = new Hex[6];
-    Hex current;// = new Hex(6);
-    JPanel mini = new JPanel();
-    JPanel controls = new JPanel();
-    /*
-    boolean[][][] openings = { // [row][col][dir]
-      //n, ne, se, s, sw, nw
-      {{a,b,c,d,e,f}, {g,e,l,i,j,c}},
-      {{d,j,k,a,h,l}, {i,h,f,g,b,k}}
-    };*/
-    
+    MiniHex[] hexes = new MiniHex[30]; // minimap, row = i/6, col = i%6
+    Hex[] view = new Hex[6]; // controls view
+    Hex current;// middle control hex
+    JPanel mini = new JPanel(); // minimap
+    JPanel controls = new JPanel(); // controls
 
 
 
     boolean[][] paths = new boolean[30][6]; // for each hex, if that path is open
+
     // Cave is made up of hexagonal rooms with staggered columns
     //   6 cols, 5 rows
     public Cave() {
@@ -63,7 +66,7 @@ public class Cave {
                 this.adj[i][5] = ( ((row-1+5)%5)*6 + (col-1+6)%6 )%30; // previous row, previous column
             }
         }
-        this.openPaths();
+        this.openPaths(); // randomizes paths
     }
 
     // returns an array of adjacencies
@@ -91,11 +94,10 @@ public class Cave {
     public void open(int id, int dir){
       this.paths[id][dir] = true;
       this.paths[this.adj[id][dir]][(dir+3)%6] = true;
-      //System.out.println("opened path between " + id + " and " + this.adj[id][dir]);
-      //System.out.println(id + ", dir" + dir);
     }
 
     // generates random openings. Mostly 3 per hex.
+    // If it fails to open all hexes, tries again.
     public void openPaths(){
       int start = 0;
       ArrayList<Integer> open = new ArrayList<Integer>();
@@ -154,12 +156,13 @@ public class Cave {
         if (this.paths[cur][i] && this.adj[cur][i] == tar) return true;
       return false;
     }
+
     // Same thing, except only with player location
     public boolean isNextTo(int id){ // if there is a path there
       return this.isNextTo(loc.getPlayerPos(), id);
     }
 
-
+    // sets the player position. (Teleports)
     public void setPlayerPos(int id){
       for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
       this.hexes[loc.getPlayerPos()].reset();
@@ -178,7 +181,7 @@ public class Cave {
       this.hexes[loc.getPlayerPos()].setColor(Hex.RED);
     }
 
-    // moves the player and redraws hexes
+    // moves the player to an adjacent open hex and redraws hexes
     public void goTo(int id){
       for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
       this.hexes[loc.getPlayerPos()].reset();
@@ -197,6 +200,7 @@ public class Cave {
       this.hexes[loc.getPlayerPos()].setColor(Hex.RED);
     }
 
+    // moves the player in a direction, if possible.
     public void move(int dir){
       this.goTo(this.adj[loc.getPlayerPos()][dir]);
     }
@@ -220,16 +224,13 @@ public class Cave {
     }
 
 
-    // idk
-    public String DoStuff(int param) {
-        return this.getPaths(param);
-    }
-
+    // adds controls to this.view, do not use more than once
+    // sets control side length to l
     public JPanel drawControls(int l){
         //int l = 50;
         //this.controls.setLayout(null);
         //this.controls.setSize(Hex.LENGTH, Hex.LENGTH);
-        this.controls.setPreferredSize(new Dimension(Hex.LENGTH*5,Hex.LENGTH*5));
+        this.controls.setPreferredSize(new Dimension(l*5,l*5));
 
         //this.controls.setLayout(null);
         Hex.setLength(l);
@@ -253,12 +254,14 @@ public class Cave {
         return this.controls;
     }
 
-    // draws onto frame using frame.getContentPane().add(Hex)
+    // draws onto panel mini
+    // sets side lengths to l
+    // DO NOT USE MORE THAN ONCE
     // See Hex.java for more information on how hexes are drawn.
     public JPanel drawMiniMap(int l){
         //int l = 50;
         //this.mini.setLayout(null);
-        this.mini.setPreferredSize(new Dimension(MiniHex.LENGTH*2, MiniHex.LENGTH*6));
+        this.mini.setPreferredSize(new Dimension(l*2, l*6));
         MiniHex.setLength(l);
         MiniHex.setOffset(0,0);
         for(int row = 0; row < 5; row++){
