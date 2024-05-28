@@ -6,6 +6,7 @@ import javax.swing.UIManager;
 import GameControl.*;
 import HighScore.*;
 import Sound.*;
+import Wumpus.*;
 
 public class Main{
     public static void main(String[] args){

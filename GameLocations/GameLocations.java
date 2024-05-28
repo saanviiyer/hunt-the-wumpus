@@ -16,7 +16,7 @@ public class GameLocations {
 
     // PROPERTIES
     static Cave cave;
-    // static GameControl ctrl;
+    static GameControl ctrl;
     static int wumpusPos;
     static int playerPos;
     static int[] pitPos;
@@ -63,6 +63,9 @@ public class GameLocations {
     }
 
     // METHOD (add getters and setters)
+    public void setControl(GameControl g){
+        ctrl = g;
+    }
     public void setCave(Cave c){
         cave = c;
     }
@@ -112,6 +115,7 @@ public class GameLocations {
         //cave.goTo(pos);
         if (this.atBats()){
             System.out.println("bats!");
+            //ctrl.
         } else if (this.atPit()){
             System.out.println("pit!");
         } else if (this.atWumpus()){
@@ -122,6 +126,13 @@ public class GameLocations {
         if (fallenArrows.contains(pos)){
             System.out.println("a dropped arrow!");
         } 
+        if (this.nextToBats()){
+            System.out.println("bats nearby");
+        } else if (this.nextToPit()){
+            System.out.println("a pit is near");
+        } else if (this.nextToWumpus()){
+            System.out.println("the wumpus is near");
+        }
     }
 
     public int[] getPitPos() {
