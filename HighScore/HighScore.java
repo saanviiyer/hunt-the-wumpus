@@ -29,7 +29,7 @@ public class HighScore {
         }
     }
 
-    // After Trivia pushes code, have public void streakScore() where
+    // For Trivia, have public void streakScore() where
     // correctStreak is initialized and then incremented by Trivia 
     // depending on how many Q's have been answered correct in a row, 
     // then make that the exponent for Math.pow(score, correctStreak)
