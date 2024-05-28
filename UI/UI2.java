@@ -12,7 +12,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
-public class UI extends JFrame{
+public class UI2 extends JFrame{
     //////////////////////
     //// PROPERTIES  /////
     //////////////////////
@@ -23,9 +23,12 @@ public class UI extends JFrame{
     JMenuItem exit = new JMenuItem("Exit");
     JMenuItem startNewGame = new JMenuItem("New Game");
 
+    
     JButton shoot = new JButton("Shoot");
 
     JButton buyArrows = new JButton("Purchase Arrows");
+
+
 
     JButton buySecrets = new JButton("Purchase Secrets");
 
@@ -56,9 +59,9 @@ public class UI extends JFrame{
     //////////////////////
     //// CONSTRUCTOR /////
     //////////////////////
-    public UI(){
+    public UI2(){
         //set frame behavior
-        setTitle("Bumpell");
+        setTitle("UI2");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920,1080);
         setLayout(new MigLayout(
@@ -100,8 +103,8 @@ public class UI extends JFrame{
             add(scoreLabel);
             add(highScoreLabel);
             add(currentCaveLabel);
-            add(arrowLabel, "split 2, span 1, growx");
-            add(currentPlayerLabel, "span 1,wrap, growx");
+            add(arrowLabel, "wrap");
+            add(currentPlayerLabel, "wrap");
         }
 
         //adding movement buttons
@@ -126,6 +129,9 @@ public class UI extends JFrame{
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         move(dir);
+                        if (dir == 1) {
+                            cave.move(1);
+                        }
                     }
                 });
 
@@ -144,7 +150,7 @@ public class UI extends JFrame{
                     purchaseArrows();
                 }
             });
-            add(buyArrows, "cell 3 1,flowy, w 500px, growy");
+            add(buyArrows, "cell 3 2,flowy, w 500px, growy");
             
             buySecrets.setBackground(Color.WHITE);
             buySecrets.addActionListener(new ActionListener() {
@@ -152,7 +158,7 @@ public class UI extends JFrame{
                     purchaseSecrets();
                 }
             });
-            add(buySecrets, "cell 3 1, w 500px, growy");
+            add(buySecrets, "cell 3 2, w 500px, growy");
 
             shoot.setBackground(Color.WHITE);
             shoot.addActionListener(new ActionListener() {
@@ -161,11 +167,11 @@ public class UI extends JFrame{
                     else shoot.setText("Shoot");
                 }
             });
-            add(shoot, "cell 3 1, w 500px, growy");
+            add(shoot, "cell 3 2, w 500px, growy");
             
             alerts.setBorder(BorderFactory.createLineBorder(Color.black));
             alerts.setHorizontalAlignment(JLabel.CENTER);
-            add(alerts, "cell 3 1, w 500px, growy");
+            add(alerts, "cell 3 2, w 500px, growy");
 
         }
 
@@ -174,7 +180,7 @@ public class UI extends JFrame{
             Cave cave = new Cave();
             miniMap = cave.drawMiniMap(40);
             miniMap.setMinimumSize(new Dimension(540,300));
-            add(miniMap, "cell 3 2, grow");
+            add(miniMap, "cell 3 3, grow");
         }
 
         //add new font
@@ -223,6 +229,9 @@ public class UI extends JFrame{
 
     public void purchaseSecrets(){
         System.out.println("buy secrets");
+        String a = p.getSecret(2);
+        System.out.println(a);
+        alerts.setText("Secret: " + a);
     }
 
     public static void changeFont (Component component, Font font ){

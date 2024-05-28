@@ -83,9 +83,9 @@ public class Player {
 
     public String getSecret(int int_rand) {
         String[] secret = new String[5];
-        secret[0] = "Their is a bat in room " + batPos;
-        secret[1] = "Their is a pit in room " + pitPos;
-        secret[2] = "Their is a wumpus in room " + wumpusPos;
+        secret[0] = "There is a bat in room " + batPos;
+        secret[1] = "There is a pit in room " + pitPos;
+        secret[2] = "There is a wumpus in room " + wumpusPos;
         secret[3] = "You are in room " + playerPos;
         secret[4] = "Trivia answer: ";
         return secret[int_rand];
