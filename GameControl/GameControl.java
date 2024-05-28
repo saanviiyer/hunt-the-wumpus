@@ -3,7 +3,7 @@
 
 // new change
 // Handles user input (except for High Score and Trivia), coordinates all the other parts of the game.
-
+package GameControl;
 import Player.*;
 // import Trivia.*;
 import UI.*;

@@ -7,5 +7,7 @@
         "exclude": [
             "lib/miglayout-swing-11.3/miglayout-swing-11.3-javadoc.jar"
         ]
-    }
+    },
+    "java.project.sourcePaths": [""]
+    
 }
