@@ -53,6 +53,10 @@ public class Player {
         arrows--;
     }
 
+    public void addArrows() {
+        arrows++;
+    }
+
     public String haveArrows(){
         if (arrows == 0){ 
             this.turns = 0;
