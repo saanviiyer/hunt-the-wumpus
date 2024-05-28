@@ -23,12 +23,9 @@ public class UI extends JFrame{
     JMenuItem exit = new JMenuItem("Exit");
     JMenuItem startNewGame = new JMenuItem("New Game");
 
-    
     JButton shoot = new JButton("Shoot");
 
     JButton buyArrows = new JButton("Purchase Arrows");
-
-
 
     JButton buySecrets = new JButton("Purchase Secrets");
 
@@ -103,8 +100,8 @@ public class UI extends JFrame{
             add(scoreLabel);
             add(highScoreLabel);
             add(currentCaveLabel);
-            add(arrowLabel, "wrap");
-            add(currentPlayerLabel, "wrap");
+            add(arrowLabel, "split 2, span 1, growx");
+            add(currentPlayerLabel, "span 1,wrap, growx");
         }
 
         //adding movement buttons
@@ -147,7 +144,7 @@ public class UI extends JFrame{
                     purchaseArrows();
                 }
             });
-            add(buyArrows, "cell 3 2,flowy, w 500px, growy");
+            add(buyArrows, "cell 3 1,flowy, w 500px, growy");
             
             buySecrets.setBackground(Color.WHITE);
             buySecrets.addActionListener(new ActionListener() {
@@ -155,7 +152,7 @@ public class UI extends JFrame{
                     purchaseSecrets();
                 }
             });
-            add(buySecrets, "cell 3 2, w 500px, growy");
+            add(buySecrets, "cell 3 1, w 500px, growy");
 
             shoot.setBackground(Color.WHITE);
             shoot.addActionListener(new ActionListener() {
@@ -164,11 +161,11 @@ public class UI extends JFrame{
                     else shoot.setText("Shoot");
                 }
             });
-            add(shoot, "cell 3 2, w 500px, growy");
+            add(shoot, "cell 3 1, w 500px, growy");
             
             alerts.setBorder(BorderFactory.createLineBorder(Color.black));
             alerts.setHorizontalAlignment(JLabel.CENTER);
-            add(alerts, "cell 3 2, w 500px, growy");
+            add(alerts, "cell 3 1, w 500px, growy");
 
         }
 
@@ -177,7 +174,7 @@ public class UI extends JFrame{
             Cave cave = new Cave();
             miniMap = cave.drawMiniMap(40);
             miniMap.setMinimumSize(new Dimension(540,300));
-            add(miniMap, "cell 3 3, grow");
+            add(miniMap, "cell 3 2, grow");
         }
 
         //add new font
