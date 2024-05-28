@@ -1,20 +1,21 @@
-//Nathan Chiu
-//UI object
-//Per. 5 
-//Reiber
+// Nathan Chiu
 
 package UI;
+
 import javax.swing.*;
+import javax.swing.border.Border;
 
 import Cave.Cave;
-
+import Player.Player;
+import net.miginfocom.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import Player.*;
 
 public class UI extends JFrame{
-
+    //////////////////////
+    //// PROPERTIES  /////
+    //////////////////////
     Player p = new Player();
 
     JMenuBar menuBar = new JMenuBar();
@@ -54,35 +55,24 @@ public class UI extends JFrame{
     JPanel miniMap;
 
     JLabel alerts = new JLabel("Alerts");
-
-   
-    ////////////////////////
-    ////   CONSTRUCTOR  ////
-    ////////////////////////
-
+    
+    //////////////////////
+    //// CONSTRUCTOR /////
+    //////////////////////
     public UI(){
-        
         //set frame behavior
-        setTitle("Hunt the Wumpus");
+        setTitle("UI2");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920,1080);
-        setLayout(new GridBagLayout());
+        setLayout(new MigLayout(
+            "",
+            "[]0[]0[]",
+            "[][][]0[]0"
+        ));
         
         //change icon of frame
         ImageIcon icon = new ImageIcon("UI/wumpus4.png");
         setIconImage(icon.getImage());
-
-
-        //set default constraints of gridbag
-        GridBagConstraints c = new GridBagConstraints();
-        c.ipadx = 0;
-        c.ipady = 0;
-        c.fill = GridBagConstraints.BOTH;
-
-        Cave cave = new Cave();
-        miniMap = cave.drawMiniMap(33);
-
-
 
         //add menu and menuitems
         {
@@ -107,135 +97,87 @@ public class UI extends JFrame{
             //adding menubar to frame
             setJMenuBar(menuBar);
         }
-        
-        //add score, high score, player, cave, arrows labels
+
+        //adding labels
         {
-            c.gridx = 0;
-            c.gridwidth = 3;
-            c.gridy = 0;
-            add(scoreLabel, c);
-            
-            c.gridx = 3;
-            c.gridy = 0;
-            add(highScoreLabel, c);
-
-            c.gridx = 6;
-            c.gridy = 0;
-            add(currentCaveLabel, c);
-
-            c.gridx = 9;
-            c.gridy = 0;
-            c.weightx = 0;
-            add(arrowLabel, c);
-
-            c.gridy = 1;
-            c.gridx = 0;
-            c.gridwidth = 12;
-            add(currentPlayerLabel, c);
+            add(scoreLabel);
+            add(highScoreLabel);
+            add(currentCaveLabel);
+            add(arrowLabel, "wrap");
+            add(currentPlayerLabel, "wrap");
         }
 
-        //add movement buttons
+        //adding movement buttons
         {
-            c.gridwidth = 3;
-            c.gridheight = 4;
-            c.gridx = 0;
-            c.gridy = 2;
-            c.weightx = 0;
-            c.weighty = 1;
-            goNW.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    goNW();
-                }
-            });
-            goNW.setIcon(new ImageIcon("UI/left_top.png"));
-            add(goNW, c);
+            JButton[] movementButtons = {goNW, goN, goNE, goSW, goS, goSE};
+            ImageIcon[] movementIcons = {new ImageIcon("UI/left_top.png"),new ImageIcon("UI/top_mid.png"),new ImageIcon("UI/right_top.png"),new ImageIcon("UI/left_bottom.png"),new ImageIcon("UI/bottom_mid.png"),new ImageIcon("UI/right_bottom.png")};
 
-            c.gridx = 3;
-            c.gridy = 2;
-            goN.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    goN();
-                }
-            });
-            goN.setIcon(new ImageIcon("UI/top_mid.png"));
-            add(goN, c);
-
-            c.gridx = 6;
-            c.gridy = 2;
-            goNE.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    goNE();
-                }
-            });
-            goNE.setIcon(new ImageIcon("UI/right_top.png"));
-            add(goNE, c);
-
-            c.gridx = 0;
-            c.gridy = 6;
-            goSW.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    goSW();
-                }
-            });
-            goSW.setIcon(new ImageIcon("UI/left_bottom.png"));
-            add(goSW, c);
-
-            c.gridx = 3;
-            c.gridy = 6;
-            goS.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    goS();
-                }
-            });
-            goS.setIcon(new ImageIcon("UI/bottom_mid.png"));
-            add(goS, c);
-
-            c.gridx = 6;
-            c.gridy = 6;
-            goSE.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    goSE();
-                }
-            });
-            goSE.setIcon(new ImageIcon("UI/right_bottom.png"));
-            add(goSE, c);
-        }
-        
-        //adding buttons to buy and alerts
-        {
-            c.weighty = 1;
-            c.gridx = 9;
-            c.gridy = 2;
-            c.gridheight = 1;
-            c.gridwidth = 1;
-            add(buyArrows, c);
-
-            c.gridx = 9;
-            c.gridy = 3;
-            c.weightx = 1;
             
-            c.gridwidth = 1;
-            add(buySecrets, c);
+            int height = 450;
 
-            c.gridx = 9;
-            c.gridy = 4;
-            add(shoot, c);
+            for(int i = 0; i < 6; i++){
+                JButton cur = movementButtons[i];
+                
+                //sets icon of buttons and make them not change when pressed
+                cur.setIcon(movementIcons[i]);
+                cur.setBorder(null);
+                cur.setContentAreaFilled(false);
+                cur.setFocusPainted(false);
+                cur.setBackground(Color.WHITE);
 
-            c.gridx = 9;
-            c.gridy = 5;
+                final int dir = i;
+                cur.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e){
+                        move(dir);
+                    }
+                });
+
+                
+                if(i == 2) add(cur, "wrap,grow, h " + height + "px," + "w " + height + "px");
+                else add(cur, "grow, h " + height + "px," + "w " + height + "px");
+            }
+        }
+
+        //adding purchasing, alerts, and shooting
+        {
+            
+            buyArrows.setBackground(Color.WHITE);
+            buyArrows.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    purchaseArrows();
+                }
+            });
+            add(buyArrows, "cell 3 2,flowy, w 500px, growy");
+            
+            buySecrets.setBackground(Color.WHITE);
+            buySecrets.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    purchaseSecrets();
+                }
+            });
+            add(buySecrets, "cell 3 2, w 500px, growy");
+
+            shoot.setBackground(Color.WHITE);
+            shoot.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    if(shoot.getText().equals("Shoot")) shoot.setText("Move");
+                    else shoot.setText("Shoot");
+                }
+            });
+            add(shoot, "cell 3 2, w 500px, growy");
+            
+            alerts.setBorder(BorderFactory.createLineBorder(Color.black));
             alerts.setHorizontalAlignment(JLabel.CENTER);
-            add(alerts, c);
+            add(alerts, "cell 3 2, w 500px, growy");
+
         }
 
-        //add map panel
+        //add minimap
         {
-            c.gridheight = 4;
-            c.gridwidth = 3;
-            c.gridx = 9;
-            c.gridy = 6;
-            c.weightx = .5;
-            c.weighty = 0;
-            add(miniMap, c);
+            Cave cave = new Cave();
+            miniMap = cave.drawMiniMap(40);
+            miniMap.setMinimumSize(new Dimension(540,300));
+            add(miniMap, "cell 3 3, grow");
         }
 
         //add new font
@@ -245,53 +187,23 @@ public class UI extends JFrame{
                 montserratBold = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\Montserrat\\Montserrat-Bold.ttf"));
             } catch(Exception e){}
 
-            Font size10bold = montserratBold.deriveFont(Font.PLAIN, 10);
+            Font size10bold = montserratBold.deriveFont(Font.PLAIN, 15);
             changeFont(this, size10bold);
         }
-        
 
-        //set frame to visible
         repaint();
         revalidate();
-        setResizable(false);
+        // setUndecorated(true);
+        setResizable(true);
         setVisible(true);
-
-    }
-
-    ////////////////////////
-    ////   METHODS      ////
-    ////////////////////////
-
-    private void goNW(){
-        System.out.println("going NW");
-    }
-
-    private void goN(){
-        System.out.println("going N");
-    }
-
-    private void goNE(){
-        System.out.println("going NE");
-    }
-
-    private void goSW(){
-        System.out.println("going SW");
-    }
-
-    private void goS(){
-        System.out.println("going S");
-    }
-
-    private void goSE(){
-        System.out.println("going SE");
     }
 
     public void startNewGame(){
         System.out.println("starting new game");
     }
 
-    public void move(int room){
-        System.out.println("player moving to " + room);
+    public void move(int direction){
+        System.out.println("player moving to " + direction);
     }
 
     public void displayNearbyRooms(){
@@ -304,10 +216,6 @@ public class UI extends JFrame{
 
     public void displayHazards(){
         System.out.println("Displaying hazards");
-    }
-
-    public void shoot(int room){
-        System.out.println("shooting to " + room);
     }
 
     public void purchaseArrows(){
@@ -330,5 +238,4 @@ public class UI extends JFrame{
             }
         }
     }
-
 }

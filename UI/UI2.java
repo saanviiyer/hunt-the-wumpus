@@ -226,8 +226,9 @@ public class UI2 extends JFrame{
 
     public void purchaseSecrets(){
         System.out.println("buy secrets");
-        p.getSecret(2);
-        
+        String a = p.getSecret(2);
+        System.out.println(a);
+        alerts.setText("Secret: " + a);
     }
 
     public static void changeFont (Component component, Font font ){
