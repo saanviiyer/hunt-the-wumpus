@@ -15,7 +15,7 @@ class Test {
         //     System.out.println("laf changed to " + UIManager.getLookAndFeel());
         // } catch(Exception ignored){}
         // UI myUI = new UI();
-        UI2 myUi2 = new UI2();
+        UI myUi2 = new UI();
     }
 
 }
