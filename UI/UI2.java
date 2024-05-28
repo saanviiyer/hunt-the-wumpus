@@ -129,6 +129,9 @@ public class UI2 extends JFrame{
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         move(dir);
+                        if (dir == 1) {
+                            cave.move(1);
+                        }
                     }
                 });
 
