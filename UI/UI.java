@@ -11,9 +11,11 @@ import Cave.Cave;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import Player.*;
 
-public class UI extends JFrame implements ActionListener{
+public class UI extends JFrame{
 
+    Player p = new Player();
 
     JMenuBar menuBar = new JMenuBar();
     JMenu menu = new JMenu("File");
@@ -24,9 +26,12 @@ public class UI extends JFrame implements ActionListener{
     JButton shoot = new JButton("Shoot");
 
     JButton buyArrows = new JButton("Purchase Arrows");
+
+
+
     JButton buySecrets = new JButton("Purchase Secrets");
 
-    int arrows = 0;
+    int arrows = p.getArrows();
     JLabel arrowLabel = new JLabel("Arrows: " + arrows);
 
     int score = 0;
@@ -48,6 +53,8 @@ public class UI extends JFrame implements ActionListener{
 
     JPanel miniMap;
 
+    JLabel alerts = new JLabel("Alerts");
+
    
     ////////////////////////
     ////   CONSTRUCTOR  ////
@@ -62,20 +69,19 @@ public class UI extends JFrame implements ActionListener{
         setLayout(new GridBagLayout());
         
         //change icon of frame
-        ImageIcon icon = new ImageIcon("wumpus4.png");
+        ImageIcon icon = new ImageIcon("UI/wumpus4.png");
         setIconImage(icon.getImage());
 
 
         //set default constraints of gridbag
         GridBagConstraints c = new GridBagConstraints();
-        c.ipadx = 10;
-        c.ipady = 10;
+        c.ipadx = 0;
+        c.ipady = 0;
         c.fill = GridBagConstraints.BOTH;
 
         Cave cave = new Cave();
-        miniMap = cave.drawMiniMap();
-        miniMap.setSize(new Dimension(200, 200));
-        miniMap.setMaximumSize(new Dimension(100, 100));
+        miniMap = cave.drawMiniMap(33);
+
 
 
         //add menu and menuitems
@@ -119,6 +125,7 @@ public class UI extends JFrame implements ActionListener{
 
             c.gridx = 9;
             c.gridy = 0;
+            c.weightx = 0;
             add(arrowLabel, c);
 
             c.gridy = 1;
@@ -130,10 +137,11 @@ public class UI extends JFrame implements ActionListener{
         //add movement buttons
         {
             c.gridwidth = 3;
+            c.gridheight = 4;
             c.gridx = 0;
             c.gridy = 2;
             c.weightx = 0;
-            c.weighty = 0;
+            c.weighty = 1;
             goNW.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     goNW();
@@ -163,7 +171,7 @@ public class UI extends JFrame implements ActionListener{
             add(goNE, c);
 
             c.gridx = 0;
-            c.gridy = 3;
+            c.gridy = 6;
             goSW.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     goSW();
@@ -173,7 +181,7 @@ public class UI extends JFrame implements ActionListener{
             add(goSW, c);
 
             c.gridx = 3;
-            c.gridy = 3;
+            c.gridy = 6;
             goS.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     goS();
@@ -183,7 +191,7 @@ public class UI extends JFrame implements ActionListener{
             add(goS, c);
 
             c.gridx = 6;
-            c.gridy = 3;
+            c.gridy = 6;
             goSE.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     goSE();
@@ -193,14 +201,40 @@ public class UI extends JFrame implements ActionListener{
             add(goSE, c);
         }
         
-        //add map panel
+        //adding buttons to buy and alerts
         {
-            c.gridheight = 2;
-            c.gridwidth = 3;
+            c.weighty = 1;
             c.gridx = 9;
             c.gridy = 2;
+            c.gridheight = 1;
+            c.gridwidth = 1;
+            add(buyArrows, c);
+
+            c.gridx = 9;
+            c.gridy = 3;
             c.weightx = 1;
-            c.weighty = 1;
+            
+            c.gridwidth = 1;
+            add(buySecrets, c);
+
+            c.gridx = 9;
+            c.gridy = 4;
+            add(shoot, c);
+
+            c.gridx = 9;
+            c.gridy = 5;
+            alerts.setHorizontalAlignment(JLabel.CENTER);
+            add(alerts, c);
+        }
+
+        //add map panel
+        {
+            c.gridheight = 4;
+            c.gridwidth = 3;
+            c.gridx = 9;
+            c.gridy = 6;
+            c.weightx = .5;
+            c.weighty = 0;
             add(miniMap, c);
         }
 
@@ -214,10 +248,12 @@ public class UI extends JFrame implements ActionListener{
             Font size10bold = montserratBold.deriveFont(Font.PLAIN, 10);
             changeFont(this, size10bold);
         }
+        
 
-        //set frame to visible and fullscreen
-        // setExtendedState(JFrame.MAXIMIZED_BOTH);
-        // setUndecorated(true);
+        //set frame to visible
+        repaint();
+        revalidate();
+        setResizable(false);
         setVisible(true);
 
     }
@@ -276,8 +312,8 @@ public class UI extends JFrame implements ActionListener{
 
     public void purchaseArrows(){
         System.out.println("buy arrows");
-        arrows++;
-        arrowLabel.setText("Arrows: " + arrows);
+        p.addArrows();
+        arrowLabel.setText("Arrows: " + p.getArrows());
     }
 
     public void purchaseSecrets(){

@@ -1,29 +1,27 @@
-package Trivia;
-
 public class Question {
-    private String question;
-    private String answer;
-    int points;
-    boolean correct;
+    private String questionText;
+    private String[] options;
+    private int correctAnswer;
 
-    public Question(String q, String a) {
-        this.correct = false;
-        this.points = 100;
-        this.question = q;
-        this.answer = a;
+    public Question(String questionText, String[] options, int correctAnswer) {
+        this.questionText = questionText;
+        this.options = options; 
+        this.correctAnswer = correctAnswer; 
     }
 
-    // public void setQuestion(String q) {
-    //     this.question = q;
-    // }
+    public String getQuestionText() {
+        return questionText; 
+    }
 
-    // public void setAnswer(String a) {
-    //     this.answer = a;
-    // }
+    public String[] getOptions() {
+        return options;    
+    }
 
-    public void answerQ(String a) {
-        if (a == answer) {
-            this.correct = true;
-        }
+    public int getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public boolean isCorrect(int answer) {
+        return (answer == correctAnswer);
     }
 }

@@ -2,12 +2,14 @@ package Cave;
 
 /*
  * Last Editor(s): Shunzo Hida
- * Last Edit @ 03-22-2024
+ * Last Edit @ 05-24-2024
  */
 
 
 import GameLocations.*;
 import javax.swing.*;
+
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.util.Random;
 import java.util.ArrayList;
@@ -127,7 +129,13 @@ public class Cave {
         }
         finished.add(curHex);
       }
-      //System.out.println("closed: " + closed.size());
+
+      System.out.println("closed: " + closed.size());
+      for (int i: closed) System.out.print(i);
+      if (!closed.isEmpty()) {
+        this.paths = new boolean[30][6];
+        this.openPaths();
+      }
     }
 
     //returns the amount of openings the hex has
@@ -149,6 +157,25 @@ public class Cave {
     // Same thing, except only with player location
     public boolean isNextTo(int id){ // if there is a path there
       return this.isNextTo(loc.getPlayerPos(), id);
+    }
+
+
+    public void setPlayerPos(int id){
+      for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
+      this.hexes[loc.getPlayerPos()].reset();
+      loc.setPlayerPos(id);
+      if (this.view[0] != null) {
+        this.current.changeLabel("" + loc.getPlayerPos());
+        for (int i = 0; i < 6; i++){
+          this.view[i].changeLabel(""+adj[loc.getPlayerPos()][i]);
+          if (this.paths[loc.getPlayerPos()][i]) this.view[i].setColor(Hex.GREEN);
+          else this.view[i].reset();
+        }
+      }
+      
+      for(int i = 0; i < 6; i++) if (this.paths[loc.getPlayerPos()][i]) 
+        this.hexes[this.adj[loc.getPlayerPos()][i]].setColor(Hex.GREEN);
+      this.hexes[loc.getPlayerPos()].setColor(Hex.RED);
     }
 
     // moves the player and redraws hexes
@@ -198,9 +225,15 @@ public class Cave {
         return this.getPaths(param);
     }
 
-    public JPanel drawControls(){
+    public JPanel drawControls(int l){
         //int l = 50;
-        Hex.setOffset(40,30);
+        //this.controls.setLayout(null);
+        //this.controls.setSize(Hex.LENGTH, Hex.LENGTH);
+        this.controls.setPreferredSize(new Dimension(Hex.LENGTH*5,Hex.LENGTH*5));
+
+        //this.controls.setLayout(null);
+        Hex.setLength(l);
+        Hex.setOffset(0,0);
         this.current = new Hex(6);
         this.current.changeLabel("" + loc.getPlayerPos());
         this.current.setColor(Hex.RED);
@@ -222,9 +255,12 @@ public class Cave {
 
     // draws onto frame using frame.getContentPane().add(Hex)
     // See Hex.java for more information on how hexes are drawn.
-    public JPanel drawMiniMap(){
+    public JPanel drawMiniMap(int l){
         //int l = 50;
-        MiniHex.setOffset(400,400);
+        //this.mini.setLayout(null);
+        this.mini.setPreferredSize(new Dimension(MiniHex.LENGTH*2, MiniHex.LENGTH*6));
+        MiniHex.setLength(l);
+        MiniHex.setOffset(0,0);
         for(int row = 0; row < 5; row++){
             for (int col = 0; col < 6; col++){
                 int id = row*6+col;
