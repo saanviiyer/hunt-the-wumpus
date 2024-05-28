@@ -5,7 +5,7 @@
 
 // LAST UPDATED: 5/23/2024
 // CURRENT STATUS: runs
-
+package Sound;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
