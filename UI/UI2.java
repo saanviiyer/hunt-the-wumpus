@@ -98,6 +98,12 @@ public class UI2 extends JFrame{
             setJMenuBar(menuBar);
         }
 
+        
+            Cave cave = new Cave();
+            miniMap = cave.drawMiniMap(40);
+            miniMap.setMinimumSize(new Dimension(540,300));
+            add(miniMap, "cell 3 3, grow");
+        
         //adding labels
         {
             add(scoreLabel);
@@ -129,9 +135,7 @@ public class UI2 extends JFrame{
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         move(dir);
-                        if (dir == 1) {
-                            cave.move(1);
-                        }
+                        cave.move(dir);
                     }
                 });
 
@@ -176,12 +180,7 @@ public class UI2 extends JFrame{
         }
 
         //add minimap
-        {
-            Cave cave = new Cave();
-            miniMap = cave.drawMiniMap(40);
-            miniMap.setMinimumSize(new Dimension(540,300));
-            add(miniMap, "cell 3 3, grow");
-        }
+
 
         //add new font
         {

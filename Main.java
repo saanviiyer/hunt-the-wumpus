@@ -1,8 +1,11 @@
 import Player.*;
-// import Trivia.*;
+import Trivia.*;
 import UI.*;
 import Cave.*;
 import javax.swing.UIManager;
+import GameControl.*;
+import HighScore.*;
+import Sound.*;
 
 public class Main{
     public static void main(String[] args){
