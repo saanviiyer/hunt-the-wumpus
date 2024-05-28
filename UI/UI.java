@@ -61,7 +61,7 @@ public class UI extends JFrame{
     //////////////////////
     public UI(){
         //set frame behavior
-        setTitle("UI2");
+        setTitle("Bumpell");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920,1080);
         setLayout(new MigLayout(
