@@ -27,17 +27,15 @@ public class TriviaUI extends JFrame{
 
     JLabel question = new JLabel("Q1: blah blah blah");
 
-    JRadioButton ans1 = new JRadioButton("A)");
-    JRadioButton ans2 = new JRadioButton("B)");
-    JRadioButton ans3 = new JRadioButton("C)");
-    JRadioButton ans4 = new JRadioButton("D)");
-    JRadioButton[] answerButtons = {ans1, ans2, ans3, ans4};
+    JRadioButton[] answerButtons = {new JRadioButton(), new JRadioButton(), new JRadioButton(), new JRadioButton()};
 
     JButton submit = new JButton("Submit");
 
     int currentQuestion = 0;
 
     Question[] questions;
+
+    int numCorrectAnswers;
 
     //////////////////////
     //// CONSTRUCTOR /////
@@ -114,12 +112,13 @@ public class TriviaUI extends JFrame{
                 public void actionPerformed(ActionEvent e){
                     System.out.println(getSelectedButton().getText().substring(0,1));
                     checkAnswer();
+                    answers.clearSelection();
                 }
             });
             add(submit, "growx");
         }
 
-
+        loadQuestion();
         repaint();
         revalidate();
         // setUndecorated(true);
@@ -140,10 +139,37 @@ public class TriviaUI extends JFrame{
     }
 
     public void checkAnswer(){
-        if(getSelectedButton() == answerButtons[questions[currentQuestion].getCorrectAnswer()]){
+        AbstractButton selectedButton = getSelectedButton();
+
+        if(selectedButton == null) return;
+        else if(selectedButton == answerButtons[questions[currentQuestion].getCorrectAnswer()]){
             indicators[currentQuestion].setCircleColor(Color.GREEN);
+            numCorrectAnswers++;
         } else {
             indicators[currentQuestion].setCircleColor(Color.RED);
         }
+            
+        currentQuestion++;
+        if(currentQuestion == 5) endTrivia();
+        
+        loadQuestion();
+    }
+
+    public void loadQuestion(){
+        Question q = questions[currentQuestion];
+        question.setText("Q" + (currentQuestion+1) + ": " + q.getQuestionText());
+        
+        String[] possibleAnswers = q.getOptions();
+        char[] letters = {'A', 'B', 'C', 'D'};
+        for(int i = 0; i < 4; i++){
+            answerButtons[i].setText(letters[i] + ")" + possibleAnswers[i]);
+        }
+    }
+
+    private int endTrivia(){
+        // removeAll();  //TODO add ending screen to tell how many questions were right
+        // repaint();
+        // revalidate();
+        return numCorrectAnswers;
     }
 }
