@@ -4,7 +4,6 @@ package UI;
 import java.util.Random;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 
 import Cave.Cave;
 import Player.Player;
