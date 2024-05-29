@@ -1,3 +1,5 @@
+package HighScore;
+
 public class HighScoreTest {
 
     public static void testResetScores() {
