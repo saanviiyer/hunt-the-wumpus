@@ -12,6 +12,7 @@ import java.util.Enumeration;
 
 import javax.swing.*;
 
+import Trivia.Question;
 import net.miginfocom.swing.MigLayout;
 
 public class TriviaUI extends JFrame{
@@ -37,7 +38,7 @@ public class TriviaUI extends JFrame{
     //////////////////////
     //// CONSTRUCTOR /////
     //////////////////////
-    public TriviaUI(){
+    public TriviaUI(Question[] questions){
         setTitle("Trivia");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(800,800);
