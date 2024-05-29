@@ -98,6 +98,12 @@ public class UI2 extends JFrame{
             setJMenuBar(menuBar);
         }
 
+        
+            Cave cave = new Cave();
+            miniMap = cave.drawMiniMap(40);
+            miniMap.setMinimumSize(new Dimension(540,300));
+            add(miniMap, "cell 3 3, grow");
+        
         //adding labels
         {
             add(scoreLabel);
@@ -129,6 +135,7 @@ public class UI2 extends JFrame{
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         move(dir);
+                        cave.move(dir);
                     }
                 });
 
@@ -173,12 +180,7 @@ public class UI2 extends JFrame{
         }
 
         //add minimap
-        {
-            Cave cave = new Cave();
-            miniMap = cave.drawMiniMap(40);
-            miniMap.setMinimumSize(new Dimension(540,300));
-            add(miniMap, "cell 3 3, grow");
-        }
+
 
         //add new font
         {
@@ -226,6 +228,9 @@ public class UI2 extends JFrame{
 
     public void purchaseSecrets(){
         System.out.println("buy secrets");
+        String a = p.getSecret(2);
+        System.out.println(a);
+        alerts.setText("Secret: " + a);
     }
 
     public static void changeFont (Component component, Font font ){
