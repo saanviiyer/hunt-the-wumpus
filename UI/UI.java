@@ -192,9 +192,13 @@ public class UI extends JFrame{
         repaint();
         revalidate();
         // setUndecorated(true);
-        setResizable(true);
+        setResizable(false);
         setVisible(true);
     }
+    
+    //////////////////////
+    //////// METHODS /////
+    //////////////////////
 
     public void startNewGame(){
         System.out.println("starting new game");
