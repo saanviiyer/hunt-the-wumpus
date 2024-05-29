@@ -2,13 +2,33 @@ package UI;
 
 import javax.swing.*;
 
-public class circlepanel extends JPanel{
-@Override
-    protected void paintComponent(Graphics g) {
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class CirclePanel extends JPanel{
+    Color color = Color.GRAY;
+    int diameter;
+
+    public CirclePanel(int diam){
+        setBackground(Color.WHITE);
+        setSize(75,75);
+        diameter = diam;
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        int x = 50;  // Adjust x and y for positioning
-        int y = 50;
-        int diameter = 100;  // Adjust diameter for circle size
-        g.drawOval(x, y, diameter, diameter);
+        
+        //centers circle
+        int x = getWidth()/2 - diameter/2;  
+        int y = getHeight()/2 - diameter/2;
+         
+        g.setColor(color);
+        g.fillOval(x, y, diameter, diameter);
+    }
+
+    public void setCircleColor(Color c){
+        color = c;
+        repaint();
     }
 }
