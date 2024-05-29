@@ -31,9 +31,13 @@ public class TriviaUI extends JFrame{
     JRadioButton ans2 = new JRadioButton("B)");
     JRadioButton ans3 = new JRadioButton("C)");
     JRadioButton ans4 = new JRadioButton("D)");
-
+    JRadioButton[] answerButtons = {ans1, ans2, ans3, ans4};
 
     JButton submit = new JButton("Submit");
+
+    int currentQuestion = 0;
+
+    Question[] questions;
 
     //////////////////////
     //// CONSTRUCTOR /////
@@ -48,6 +52,8 @@ public class TriviaUI extends JFrame{
             ""
         ));
         getContentPane().setBackground(new Color(255, 222, 89));
+
+        this.questions = questions;
 
         //create font
         Font montserratBold = null;
@@ -87,7 +93,7 @@ public class TriviaUI extends JFrame{
             // question.setHorizontalAlignment(JLabel.CENTER);
             add(question, "wrap, growx");
 
-            JRadioButton[] answerButtons = {ans1, ans2, ans3, ans4};
+            
 
 
             for(int i = 0; i < 4; i++){
@@ -107,6 +113,7 @@ public class TriviaUI extends JFrame{
             submit.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     System.out.println(getSelectedButton().getText().substring(0,1));
+                    checkAnswer();
                 }
             });
             add(submit, "growx");
@@ -130,5 +137,13 @@ public class TriviaUI extends JFrame{
             if(button.isSelected()) return button;
         }
         return null;
+    }
+
+    public void checkAnswer(){
+        if(getSelectedButton() == answerButtons[questions[currentQuestion].getCorrectAnswer()]){
+            indicators[currentQuestion].setCircleColor(Color.GREEN);
+        } else {
+            indicators[currentQuestion].setCircleColor(Color.RED);
+        }
     }
 }
