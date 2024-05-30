@@ -41,7 +41,7 @@ public class Player {
 // CONSTRUCTOR -------------------------------------------------------------------------------
     public Player() {
         this.arrows = 3; // Initial number of arrows
-        this.goldCoins = 0;
+        this.goldCoins = 100;
         this.turns = 0;
         this.name++;
     }
