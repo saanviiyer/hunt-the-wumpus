@@ -75,8 +75,12 @@ public class Player {
         return goldCoins;
     }
 
-    public void setGoldCoins(int goldCoins) {
-        this.goldCoins = goldCoins;
+    public void addGoldCoins(int goldCoins) {
+        this.goldCoins++;
+    }
+
+    public void decrementGoldCoins(int goldCoins) {
+        this.goldCoins--;
     }
 
     public int getTurns() {
