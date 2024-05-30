@@ -27,6 +27,7 @@ import java.util.Random;
 public class Player {
 
 // PROPERTIES ------------------------------------------------------------------------
+    public static int name = 0;
     private int arrows;
     private int goldCoins;
     private int turns;
@@ -42,11 +43,16 @@ public class Player {
         this.arrows = 3; // Initial number of arrows
         this.goldCoins = 0;
         this.turns = 0;
+        this.name++;
     }
 
 // METHODS ------------------------------------------------------------------------------------
     public int getArrows() {
         return arrows;
+    }
+
+    public int getName() {
+        return name;
     }
 
     public void decrementArrows() {

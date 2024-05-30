@@ -38,7 +38,7 @@ public class UI extends JFrame{
     JLabel scoreLabel = new JLabel("Score: " + score);
     JLabel highScoreLabel = new JLabel("High Score: " + highScore);
 
-    JLabel currentPlayerLabel = new JLabel("Player: ");
+    JLabel currentPlayerLabel = new JLabel("Player: " + p.getName());
     JLabel currentCaveLabel = new JLabel("Cave: ");
 
     JButton goN = new JButton();
