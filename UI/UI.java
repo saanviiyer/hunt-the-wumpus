@@ -224,13 +224,13 @@ public class UI extends JFrame{
 
         //change font of game panel
         {
-            Font montserratBold = null;
+            Font legendOfZeldaFont = null;
             try{
-                montserratBold = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\LoZ_Font\\the-legend-of-zelda-nes.ttf"));
+                legendOfZeldaFont = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\LoZ_Font\\the-legend-of-zelda-nes.ttf"));
             } catch(Exception e){}
 
-            Font size10bold = montserratBold.deriveFont(Font.PLAIN, 15);
-            changeFont(game, size10bold);
+            Font size15 = legendOfZeldaFont.deriveFont(Font.PLAIN, 15);
+            changeFont(game, size15);
         }
 
 
