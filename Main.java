@@ -18,11 +18,6 @@ public class Main{
         Sound sound = new Sound();
 
         
-        
-        try { 
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); 
-            System.out.println("laf changed to " + UIManager.getLookAndFeel());
-        } catch(Exception ignored){}
         UI ui = new UI();
         
         Wumpus wumpus = new Wumpus();
