@@ -230,7 +230,7 @@ public class UI extends JFrame{
 
     public void move(int direction){
         System.out.println("player moving to " + direction);
-        ctrl.movePlayer(direction);
+        ctrl.movePlayer((direction+5)%6);
     }
 
     public void displayNearbyRooms(){
