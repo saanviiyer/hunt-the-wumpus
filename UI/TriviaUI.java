@@ -69,7 +69,7 @@ public class TriviaUI extends JFrame{
         //setting trivia panel behavior
         {
             trivia.setSize(800, 800);
-            trivia.setLayout(new MigLayout());
+            trivia.setLayout(new MigLayout("","",""));
             trivia.setBackground(new Color(255, 222, 89));
         }
 
@@ -80,7 +80,7 @@ public class TriviaUI extends JFrame{
             heading.setHorizontalAlignment(JLabel.CENTER);
             heading.setFont(font);
             heading.setBackground(new Color(0,191,99));
-            trivia.add(heading, "north, align center, w 800px, wrap");
+            trivia.add(heading, "north, align center, push, wrap");
         }
         
         //add question indicators
@@ -94,7 +94,7 @@ public class TriviaUI extends JFrame{
             }
 
             circles.setBackground(Color.WHITE);
-            trivia.add(circles, "wrap, growx, h 125px");
+            trivia.add(circles, "wrap, push, grow");
         }
 
         //adding question, buttons
@@ -102,7 +102,7 @@ public class TriviaUI extends JFrame{
             Font font = montserratBold.deriveFont(Font.PLAIN, 30);
             question.setFont(font);
             // question.setHorizontalAlignment(JLabel.CENTER);
-            trivia.add(question, "wrap, growx");
+            trivia.add(question, "wrap, push");
 
             
 
@@ -112,7 +112,7 @@ public class TriviaUI extends JFrame{
                 answers.add(button);
                 button.setBackground(new Color(255, 222, 89));
                 button.setFont(font);
-                trivia.add(button, "wrap");
+                trivia.add(button, "wrap, push");
             }
         }
 
@@ -142,27 +142,28 @@ public class TriviaUI extends JFrame{
 
         //add components to endscreen
         {
-            endScreenText.setFont(montserratBold.deriveFont(Font.PLAIN, 15));
+            endScreenText.setFont(montserratBold.deriveFont(Font.PLAIN, 30));
             endScreenText.setHorizontalAlignment(JLabel.CENTER);
-            endScreen.add(endScreenText, "north, w 800px, wrap");
+            endScreen.add(endScreenText, "center, push, flowy");
 
             continueButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     endTrivia();
                 }
             });
-            continueButton.setFont(montserratBold.deriveFont(Font.PLAIN, 15));
+            continueButton.setFont(montserratBold.deriveFont(Font.PLAIN, 30));
             continueButton.setHorizontalAlignment(JButton.CENTER);
             continueButton.setBackground(Color.WHITE);
-            endScreen.add(continueButton, "growx");
+            endScreen.add(continueButton, "center, push, cell 0 0");
         }
 
         add(endScreen); //endscreen becomes second card
 
-        loadQuestion();
+        loadQuestion(); //initialize first question
 
         // setUndecorated(true);
-        setResizable(false);
+        // setResizable(false);
+        setLocationRelativeTo(null); //centers jframe
         setVisible(true);
     }
 
@@ -206,7 +207,7 @@ public class TriviaUI extends JFrame{
         String[] possibleAnswers = q.getOptions();
         char[] letters = {'A', 'B', 'C', 'D'};
         for(int i = 0; i < 4; i++){
-            answerButtons[i].setText(letters[i] + ")" + possibleAnswers[i]);
+            answerButtons[i].setText(letters[i] + ") " + possibleAnswers[i]);
         }
     }
 
