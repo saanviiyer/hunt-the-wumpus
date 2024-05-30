@@ -18,10 +18,7 @@ public class Main{
         Player player = new Player();
         Sound sound = new Sound();
 
-        Question[] questions = new Question[1];
-        String[] answers = {"2034","4859","2024","2023"};
-        questions[0] = new Question("what is the year", answers, 2);
-        TriviaGameGUI trivia = new TriviaGameGUI(questions);
+        
         
         try { 
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); 
