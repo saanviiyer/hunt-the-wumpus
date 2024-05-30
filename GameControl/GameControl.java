@@ -14,7 +14,6 @@ public class GameControl {
 
     // PROPERTIES
     Player player = new Player();
-    UI ui = new UI();
     GameLocations gl = new GameLocations();
 
 // work with UI object to start the game and display the current room.

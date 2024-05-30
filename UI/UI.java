@@ -233,6 +233,7 @@ public class UI extends JFrame{
                                 new Question("What is the year5???",answers , 0)};
         TriviaUI triviaUI = new TriviaUI(questions, this);
         p.decrementGoldCoins();
+        goldCoinsLabel.setText(p.getGoldCoins());
     }
 
     public void purchaseSecrets(){
@@ -241,6 +242,7 @@ public class UI extends JFrame{
         int r = rand.nextInt(5);
         alerts.setText(p.getSecret(r));
         p.decrementGoldCoins();
+        goldCoinsLabel.setText(p.getGoldCoins());
     }
 
     public static void changeFont (Component component, Font font ){
