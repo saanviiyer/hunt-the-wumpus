@@ -12,11 +12,8 @@ package Cave;
  */
 
 
-
-
 import GameLocations.*;
 import javax.swing.*;
-
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -135,7 +132,6 @@ public class Cave {
       }
 
       System.out.println("closed: " + closed.size());
-      //for (int i: closed) System.out.print(i);
       if (!closed.isEmpty()) {
         this.paths = new boolean[30][6];
         System.out.println("Trying again");
@@ -146,16 +142,14 @@ public class Cave {
     //returns the amount of openings the hex has
     public int count(int id){
       int c = 0;
-      for (boolean b: this.paths[id]) {
-        if (b) c++;
-      }
+      for (boolean b: this.paths[id]) if (b) c++;
+      
       return c;
     }
 
     // if Hex tar is open to cur
     public boolean isNextTo(int cur, int tar){
       for (int i = 0; i < 6; i++)
-        //if (this.openings[r%2][c%2][i] && this.adj[cur][i] == tar) return true;
         if (this.paths[cur][i] && this.adj[cur][i] == tar) return true;
       return false;
     }

@@ -234,6 +234,7 @@ public class UI extends JFrame{
         TriviaUI triviaUI = new TriviaUI(questions, this);
         System.out.println("You got " + triviaUI.getNumCorrectAnswers() + " questions right");
         p.decrementGoldCoins();
+        goldCoinsLabel.setText(p.getGoldCoins());
     }
 
     public void purchaseSecrets(){
@@ -242,6 +243,7 @@ public class UI extends JFrame{
         int r = rand.nextInt(5);
         alerts.setText(p.getSecret(r));
         p.decrementGoldCoins();
+        goldCoinsLabel.setText(p.getGoldCoins());
     }
 
     public static void changeFont (Component component, Font font ){
