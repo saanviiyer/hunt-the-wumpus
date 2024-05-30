@@ -100,6 +100,7 @@ public class Cave {
     // generates random openings. Mostly 3 per hex.
     // If it fails to open all hexes, tries again.
     public void openPaths(){
+      System.out.println("opening paths...");
       int start = 0;
       ArrayList<Integer> open = new ArrayList<Integer>();
       open.add(start);
@@ -134,9 +135,10 @@ public class Cave {
       }
 
       System.out.println("closed: " + closed.size());
-      for (int i: closed) System.out.print(i);
+      //for (int i: closed) System.out.print(i);
       if (!closed.isEmpty()) {
         this.paths = new boolean[30][6];
+        System.out.println("Trying again");
         this.openPaths();
       }
     }
