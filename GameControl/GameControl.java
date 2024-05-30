@@ -29,7 +29,7 @@ public class GameControl {
     public void setCave(Cave c){
         this.cave = c;
     }
-    
+
     public void initBoard() {
         System.out.println("Initializing board");
         displayBoard();
@@ -39,9 +39,10 @@ public class GameControl {
         System.out.println("displaying board rn");
     }
 
-    public void movePlayer(String direction) {
+    public void movePlayer(int direction) {
         System.out.println("moving player in direction " + direction);
-        //cave.move(Integer.parseInt(direction));
+        this.cave.move(direction);
+        this.player.incrementTurns();
         // will be updating value of player's current location
     }
 

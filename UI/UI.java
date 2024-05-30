@@ -6,6 +6,7 @@ import java.util.Random;
 import javax.swing.*;
 
 import Cave.Cave;
+import GameControl.GameControl;
 import Player.Player;
 import Trivia.Question;
 import net.miginfocom.swing.*;
@@ -18,7 +19,7 @@ public class UI extends JFrame{
     //// PROPERTIES  /////
     //////////////////////
     Player p = new Player();
-
+    GameControl ctrl = new GameControl();
     JMenuBar menuBar = new JMenuBar();
     JMenu menu = new JMenu("File");
     JMenuItem exit = new JMenuItem("Exit");
@@ -53,7 +54,12 @@ public class UI extends JFrame{
     JPanel miniMap;
 
     JLabel alerts = new JLabel("Alerts");
-    
+
+    JPanel game = new JPanel();
+    JPanel startscreen = new JPanel();
+    JPanel endscreen = new JPanel();
+    CardLayout crd = new CardLayout();
+
     //////////////////////
     //// CONSTRUCTOR /////
     //////////////////////
@@ -62,16 +68,25 @@ public class UI extends JFrame{
         setTitle("Bumpell");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920,1080);
-        setLayout(new MigLayout(
-            "",
-            "[]0[]0[]",
-            "[][]0[]0"
-        ));
+        setLayout(crd);
         
         //change icon of frame
         ImageIcon icon = new ImageIcon("UI/wumpus4.png");
         setIconImage(icon.getImage());
 
+        // Setting game panel behavior
+        {
+            game.setSize(1920,1080);
+            game.setLayout(new MigLayout(
+            "",
+            "[]0[]0[]",
+            "[]0[]0[]0"
+        ));
+
+
+        }
+        
+        
         //add menu and menuitems
         {
             //adding items to menu
@@ -98,12 +113,16 @@ public class UI extends JFrame{
 
         //adding labels
         {
-            add(scoreLabel);
-            add(highScoreLabel);
-            add(goldCoinsLabel);
-            add(currentCaveLabel);
-            add(arrowLabel, "split 2, span 1, growx");
-            add(currentPlayerLabel, "span 1,wrap, growx");
+            JPanel Panel = new JPanel();
+            Panel.setLayout(new GridLayout(1,0));
+            Panel.add(scoreLabel);
+            Panel.add(highScoreLabel);
+            Panel.add(goldCoinsLabel);
+            Panel.add(currentCaveLabel);
+            Panel.add(arrowLabel);
+            Panel.add(currentPlayerLabel);
+            game.add(Panel, "north");
+            Panel.setVisible(true);
         }
 
         //adding movement buttons
@@ -128,13 +147,12 @@ public class UI extends JFrame{
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         move(dir);
-                        
                     }
                 });
 
                 
-                if(i == 2) add(cur, "wrap,grow, h " + height + "px," + "w " + height + "px");
-                else add(cur, "grow, h " + height + "px," + "w " + height + "px");
+                if(i == 2) game.add(cur, "wrap,grow, h " + height + "px," + "w " + height + "px");
+                else game.add(cur, "grow, h " + height + "px," + "w " + height + "px");
             }
         }
 
@@ -147,7 +165,7 @@ public class UI extends JFrame{
                     purchaseArrows();
                 }
             });
-            add(buyArrows, "cell 3 1,flowy, w 500px, growy");
+            game.add(buyArrows, "cell 3 0,flowy, w 500px, growy");
             
             buySecrets.setBackground(Color.WHITE);
             buySecrets.addActionListener(new ActionListener() {
@@ -155,7 +173,7 @@ public class UI extends JFrame{
                     purchaseSecrets();
                 }
             });
-            add(buySecrets, "cell 3 1, w 500px, growy");
+            game.add(buySecrets, "cell 3 0, w 500px, growy");
 
             shoot.setBackground(Color.WHITE);
             shoot.addActionListener(new ActionListener() {
@@ -164,11 +182,11 @@ public class UI extends JFrame{
                     else shoot.setText("Shoot");
                 }
             });
-            add(shoot, "cell 3 1, w 500px, growy");
+            game.add(shoot, "cell 3 0, w 500px, growy");
             
             alerts.setBorder(BorderFactory.createLineBorder(Color.black));
             alerts.setHorizontalAlignment(JLabel.CENTER);
-            add(alerts, "cell 3 1, w 500px, growy");
+            game.add(alerts, "cell 3 0, w 500px, growy");
 
         }
 
@@ -177,8 +195,11 @@ public class UI extends JFrame{
             Cave cave = new Cave();
             miniMap = cave.drawMiniMap(40);
             miniMap.setMinimumSize(new Dimension(540,300));
-            add(miniMap, "cell 3 2, grow");
+            game.add(miniMap, "cell 3 1, grow");
+            ctrl.setCave(cave);
         }
+
+        add(game);
 
         //add new font
         {
@@ -208,6 +229,7 @@ public class UI extends JFrame{
 
     public void move(int direction){
         System.out.println("player moving to " + direction);
+        ctrl.movePlayer((direction+5)%6);
     }
 
     public void displayNearbyRooms(){
@@ -235,7 +257,7 @@ public class UI extends JFrame{
         TriviaUI triviaUI = new TriviaUI(questions, this);
         System.out.println("You got " + triviaUI.getNumCorrectAnswers() + " questions right");
         p.decrementGoldCoins();
-        goldCoinsLabel.setText(""+p.getGoldCoins());
+        goldCoinsLabel.setText("Gold Coins: "+p.getGoldCoins());
     }
 
     public void purchaseSecrets(){
@@ -244,7 +266,7 @@ public class UI extends JFrame{
         int r = rand.nextInt(5);
         alerts.setText(p.getSecret(r));
         p.decrementGoldCoins();
-        goldCoinsLabel.setText("" + p.getGoldCoins());
+        goldCoinsLabel.setText("Gold Coins: " + p.getGoldCoins());
     }
 
     public static void changeFont (Component component, Font font ){
