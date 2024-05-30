@@ -98,12 +98,12 @@ public class UI extends JFrame{
 
         //adding labels
         {
-            add(scoreLabel);
-            add(highScoreLabel);
-            add(goldCoinsLabel);
-            add(currentCaveLabel);
-            add(arrowLabel, "split 2, span 1, growx");
-            add(currentPlayerLabel, "span 1,wrap, growx");
+            add(scoreLabel,"growx, pushx, north, flowx");
+            add(highScoreLabel, "north, growx, pushx");
+            add(goldCoinsLabel, "north, growx, pushx");
+            add(currentCaveLabel, "north, growx, pushx");
+            add(arrowLabel, "north, growx, pushx");
+            add(currentPlayerLabel, "north, growx, wrap, pushx");
         }
 
         //adding movement buttons
