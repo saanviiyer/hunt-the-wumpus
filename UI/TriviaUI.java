@@ -217,7 +217,12 @@ public class TriviaUI extends JDialog{
     }
 
     private int endTrivia(){
+        setVisible(false);
         dispose();
+        return numCorrectAnswers;
+    }
+
+    public int getNumCorrectAnswers(){
         return numCorrectAnswers;
     }
 }

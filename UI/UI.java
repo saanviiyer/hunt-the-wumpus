@@ -232,6 +232,7 @@ public class UI extends JFrame{
                                 new Question("What is the year3???",answers , 3),
                                 new Question("What is the year5???",answers , 0)};
         TriviaUI triviaUI = new TriviaUI(questions, this);
+        System.out.println("You got " + triviaUI.getNumCorrectAnswers() + " questions right");
     }
 
     public void purchaseSecrets(){
