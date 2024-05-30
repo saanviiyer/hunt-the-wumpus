@@ -1,5 +1,6 @@
 package UI;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -21,6 +22,10 @@ public class TriviaUI extends JFrame{
     //////////////////////
     JLabel heading = new JLabel("TRIVIA TIME:");
 
+    CardLayout crd = new CardLayout();
+
+    JPanel trivia = new JPanel();
+
     ButtonGroup answers = new ButtonGroup();
     int diameter = 75;
     CirclePanel[] indicators = {new CirclePanel(diameter),new CirclePanel(diameter),new CirclePanel(diameter),new CirclePanel(diameter),new CirclePanel(diameter)};
@@ -35,29 +40,38 @@ public class TriviaUI extends JFrame{
 
     Question[] questions;
 
-    int numCorrectAnswers;
+    int numCorrectAnswers = 0;
+
+    JPanel endScreen = new JPanel();
+    JLabel endScreenText = new JLabel();
+    JButton continueButton = new JButton("Continue");
 
     //////////////////////
     //// CONSTRUCTOR /////
     //////////////////////
     public TriviaUI(Question[] questions){
+        //set jframe behavior
         setTitle("Trivia");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(800,800);
-        setLayout(new MigLayout(
-            "",
-            "",
-            ""
-        ));
-        getContentPane().setBackground(new Color(255, 222, 89));
+        setLayout(crd);
 
         this.questions = questions;
+
+
 
         //create font
         Font montserratBold = null;
         try{
             montserratBold = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\Montserrat\\Montserrat-Bold.ttf"));
         } catch(Exception e){}
+
+        //setting trivia panel behavior
+        {
+            trivia.setSize(800, 800);
+            trivia.setLayout(new MigLayout());
+            trivia.setBackground(new Color(255, 222, 89));
+        }
 
         //add heading
         {
@@ -66,7 +80,7 @@ public class TriviaUI extends JFrame{
             heading.setHorizontalAlignment(JLabel.CENTER);
             heading.setFont(font);
             heading.setBackground(new Color(0,191,99));
-            add(heading, "north, align center, w 800px, wrap");
+            trivia.add(heading, "north, align center, w 800px, wrap");
         }
         
         //add question indicators
@@ -80,16 +94,15 @@ public class TriviaUI extends JFrame{
             }
 
             circles.setBackground(Color.WHITE);
-            add(circles, "wrap, growx, h 125px");
+            trivia.add(circles, "wrap, growx, h 125px");
         }
-
 
         //adding question, buttons
         {
             Font font = montserratBold.deriveFont(Font.PLAIN, 30);
             question.setFont(font);
             // question.setHorizontalAlignment(JLabel.CENTER);
-            add(question, "wrap, growx");
+            trivia.add(question, "wrap, growx");
 
             
 
@@ -99,7 +112,7 @@ public class TriviaUI extends JFrame{
                 answers.add(button);
                 button.setBackground(new Color(255, 222, 89));
                 button.setFont(font);
-                add(button, "wrap");
+                trivia.add(button, "wrap");
             }
         }
 
@@ -115,14 +128,41 @@ public class TriviaUI extends JFrame{
                     answers.clearSelection();
                 }
             });
-            add(submit, "growx");
+            trivia.add(submit, "growx");
+        }
+        
+        add(trivia); //trivia becomes first card
+
+        //setting endscreen panel behavior
+        {
+            endScreen.setSize(800,800);
+            endScreen.setLayout(new MigLayout());
+            endScreen.setBackground(new Color(255, 222, 89));
         }
 
+        //add components to endscreen
+        {
+            endScreenText.setFont(montserratBold.deriveFont(Font.PLAIN, 15));
+            endScreenText.setHorizontalAlignment(JLabel.CENTER);
+            endScreen.add(endScreenText, "north, w 800px, wrap");
+
+            continueButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    endTrivia();
+                }
+            });
+            continueButton.setFont(montserratBold.deriveFont(Font.PLAIN, 15));
+            continueButton.setHorizontalAlignment(JButton.CENTER);
+            continueButton.setBackground(Color.WHITE);
+            endScreen.add(continueButton, "growx");
+        }
+
+        add(endScreen); //endscreen becomes second card
+
         loadQuestion();
-        repaint();
-        revalidate();
+
         // setUndecorated(true);
-        // setResizable(true);
+        setResizable(false);
         setVisible(true);
     }
 
@@ -150,8 +190,12 @@ public class TriviaUI extends JFrame{
         }
             
         currentQuestion++;
-        if(currentQuestion == 5) endTrivia();
-        
+        if(currentQuestion >= 5) {
+            endScreenText.setText("You got " + numCorrectAnswers + "/5 answers correct.");
+            crd.next(getContentPane());
+            return;
+        } 
+
         loadQuestion();
     }
 
@@ -167,9 +211,7 @@ public class TriviaUI extends JFrame{
     }
 
     private int endTrivia(){
-        // removeAll();  //TODO add ending screen to tell how many questions were right
-        // repaint();
-        // revalidate();
+        dispose();
         return numCorrectAnswers;
     }
 }
