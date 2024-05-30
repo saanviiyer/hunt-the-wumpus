@@ -1,3 +1,4 @@
+package Trivia;
 public class Question {
     private String questionText;
     private String[] options;

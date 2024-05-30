@@ -5,7 +5,7 @@ import java.util.Random;
 
 import javax.swing.*;
 
-import UI.*;
+//import UI.*;
 import Cave.Cave;
 import GameControl.GameControl;
 import Player.Player;
