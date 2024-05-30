@@ -57,7 +57,8 @@ public class UI extends JFrame{
     JPanel game = new JPanel();
     JPanel startscreen = new JPanel();
     JPanel endscreen = new JPanel();
-    
+    CardLayout crd = new CardLayout();
+
     //////////////////////
     //// CONSTRUCTOR /////
     //////////////////////
@@ -66,16 +67,25 @@ public class UI extends JFrame{
         setTitle("Bumpell");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920,1080);
-        setLayout(new MigLayout(
-            "",
-            "[]0[]0[]",
-            "[]0[]0[]0"
-        ));
+        setLayout(crd);
         
         //change icon of frame
         ImageIcon icon = new ImageIcon("UI/wumpus4.png");
         setIconImage(icon.getImage());
 
+        // Setting game panel behavior
+        {
+            game.setSize(1920,1080);
+            game.setLayout(new MigLayout(
+            "",
+            "[]0[]0[]",
+            "[]0[]0[]0"
+        ));
+
+
+        }
+        
+        
         //add menu and menuitems
         {
             //adding items to menu
@@ -110,7 +120,7 @@ public class UI extends JFrame{
             Panel.add(currentCaveLabel);
             Panel.add(arrowLabel);
             Panel.add(currentPlayerLabel);
-            add(Panel, "north");
+            game.add(Panel, "north");
             Panel.setVisible(true);
         }
 
@@ -141,8 +151,8 @@ public class UI extends JFrame{
                 });
 
                 
-                if(i == 2) add(cur, "wrap,grow, h " + height + "px," + "w " + height + "px");
-                else add(cur, "grow, h " + height + "px," + "w " + height + "px");
+                if(i == 2) game.add(cur, "wrap,grow, h " + height + "px," + "w " + height + "px");
+                else game.add(cur, "grow, h " + height + "px," + "w " + height + "px");
             }
         }
 
@@ -155,7 +165,7 @@ public class UI extends JFrame{
                     purchaseArrows();
                 }
             });
-            add(buyArrows, "cell 3 0,flowy, w 500px, growy");
+            game.add(buyArrows, "cell 3 0,flowy, w 500px, growy");
             
             buySecrets.setBackground(Color.WHITE);
             buySecrets.addActionListener(new ActionListener() {
@@ -163,7 +173,7 @@ public class UI extends JFrame{
                     purchaseSecrets();
                 }
             });
-            add(buySecrets, "cell 3 0, w 500px, growy");
+            game.add(buySecrets, "cell 3 0, w 500px, growy");
 
             shoot.setBackground(Color.WHITE);
             shoot.addActionListener(new ActionListener() {
@@ -172,11 +182,11 @@ public class UI extends JFrame{
                     else shoot.setText("Shoot");
                 }
             });
-            add(shoot, "cell 3 0, w 500px, growy");
+            game.add(shoot, "cell 3 0, w 500px, growy");
             
             alerts.setBorder(BorderFactory.createLineBorder(Color.black));
             alerts.setHorizontalAlignment(JLabel.CENTER);
-            add(alerts, "cell 3 0, w 500px, growy");
+            game.add(alerts, "cell 3 0, w 500px, growy");
 
         }
 
@@ -185,8 +195,10 @@ public class UI extends JFrame{
             Cave cave = new Cave();
             miniMap = cave.drawMiniMap(40);
             miniMap.setMinimumSize(new Dimension(540,300));
-            add(miniMap, "cell 3 1, grow");
+            game.add(miniMap, "cell 3 1, grow");
         }
+
+        add(game);
 
         //add new font
         {
