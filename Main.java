@@ -1,7 +1,6 @@
 import Player.*;
 import Trivia.*;
 import UI.*;
-import Cave.*;
 import javax.swing.UIManager;
 import GameControl.*;
 import HighScore.*;
