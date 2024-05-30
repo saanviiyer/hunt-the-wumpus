@@ -15,15 +15,21 @@ public class GameControl {
     // PROPERTIES
     Player player = new Player();
     GameLocations gl = new GameLocations();
+    Cave cave;
 
 // work with UI object to start the game and display the current room.
 
     public GameControl() {
 
     }
+
 //method
 
 // initialize board when game starts
+    public void setCave(Cave c){
+        this.cave = c;
+    }
+    
     public void initBoard() {
         System.out.println("Initializing board");
         displayBoard();
@@ -35,6 +41,7 @@ public class GameControl {
 
     public void movePlayer(String direction) {
         System.out.println("moving player in direction " + direction);
+        //cave.move(Integer.parseInt(direction));
         // will be updating value of player's current location
     }
 

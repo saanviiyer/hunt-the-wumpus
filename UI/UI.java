@@ -128,6 +128,7 @@ public class UI extends JFrame{
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         move(dir);
+                        
                     }
                 });
 
@@ -234,7 +235,7 @@ public class UI extends JFrame{
         TriviaUI triviaUI = new TriviaUI(questions, this);
         System.out.println("You got " + triviaUI.getNumCorrectAnswers() + " questions right");
         p.decrementGoldCoins();
-        goldCoinsLabel.setText(p.getGoldCoins());
+        goldCoinsLabel.setText("Gold Coins: "+p.getGoldCoins());
     }
 
     public void purchaseSecrets(){
@@ -243,7 +244,7 @@ public class UI extends JFrame{
         int r = rand.nextInt(5);
         alerts.setText(p.getSecret(r));
         p.decrementGoldCoins();
-        goldCoinsLabel.setText(p.getGoldCoins());
+        goldCoinsLabel.setText("Gold Coins: " + p.getGoldCoins());
     }
 
     public static void changeFont (Component component, Font font ){
