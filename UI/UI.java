@@ -5,7 +5,6 @@ import java.util.Random;
 
 import javax.swing.*;
 
-//import UI.*;
 import Cave.Cave;
 import GameControl.GameControl;
 import Player.Player;
@@ -57,7 +56,7 @@ public class UI extends JFrame{
     JLabel alerts = new JLabel("Alerts");
 
     JPanel game = new JPanel();
-    JPanel startscreen = new JPanel();
+    JPanel startScreen = new JPanel();
     JPanel endscreen = new JPanel();
     CardLayout crd = new CardLayout();
 
@@ -75,6 +74,28 @@ public class UI extends JFrame{
         ImageIcon icon = new ImageIcon("UI/wumpus4.png");
         setIconImage(icon.getImage());
 
+        //create start menu
+        {
+            startScreen.setSize(1920, 1080);
+            startScreen.setLayout(new MigLayout());
+            startScreen.setBackground(Color.GRAY);
+
+            JLabel title = new JLabel("Hunt the Wumpus");
+            title.setHorizontalAlignment(JLabel.CENTER);
+            startScreen.add(title, "center, push, wrap");
+
+            JButton startGame = new JButton("Start New Game");
+            startGame.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    crd.next(getContentPane());
+                }
+            });
+            startGame.setBackground(Color.WHITE);
+            startGame.setHorizontalAlignment(JButton.CENTER);
+            startScreen.add(startGame, "center, push");
+        }
+        add(startScreen);
+
         // Setting game panel behavior
         {
             game.setSize(1920,1080);
@@ -85,8 +106,7 @@ public class UI extends JFrame{
         ));
 
 
-        }
-        
+        }  
         
         //add menu and menuitems
         {
@@ -202,20 +222,18 @@ public class UI extends JFrame{
 
         add(game);
 
-        //add new font
+        //change font of game panel
         {
             Font montserratBold = null;
             try{
-                montserratBold = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\Montserrat\\Montserrat-Bold.ttf"));
+                montserratBold = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\LoZ_Font\\the-legend-of-zelda-nes.ttf"));
             } catch(Exception e){}
 
             Font size10bold = montserratBold.deriveFont(Font.PLAIN, 15);
-            changeFont(this, size10bold);
+            changeFont(game, size10bold);
         }
 
-        repaint();
-        revalidate();
-        // setUndecorated(true);
+
         setResizable(false);
         setVisible(true);
     }
