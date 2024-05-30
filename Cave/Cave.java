@@ -45,6 +45,7 @@ public class Cave {
     //   6 cols, 5 rows
     public Cave() {
         //sets adjacencies
+        loc.setCave(this);
         for (int i = 0; i < 30; i++){
             int row = i/6; // [0,4]
             int col = i%6; // [0,5]
