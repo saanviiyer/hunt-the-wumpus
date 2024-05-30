@@ -28,7 +28,7 @@ public class TriviaUI extends JDialog{
 
     ButtonGroup answers = new ButtonGroup();
     int diameter = 75;
-    CirclePanel[] indicators = {new CirclePanel(diameter),new CirclePanel(diameter),new CirclePanel(diameter),new CirclePanel(diameter),new CirclePanel(diameter)};
+    circlepanel[] indicators = {new circlepanel(diameter),new circlepanel(diameter),new circlepanel(diameter),new circlepanel(diameter),new circlepanel(diameter)};
 
     JLabel question = new JLabel("Q1: blah blah blah");
 
@@ -94,7 +94,7 @@ public class TriviaUI extends JDialog{
             JPanel circles = new JPanel(new FlowLayout());
             circles.setLayout(new GridLayout(1,0));
 
-            for(CirclePanel indicator : indicators){
+            for(circlepanel indicator : indicators){
                 indicator.setPreferredSize(new Dimension(75, 75));
                 circles.add(indicator);
             }
