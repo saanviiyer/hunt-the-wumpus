@@ -195,7 +195,8 @@ public class UI extends JFrame{
             Cave cave = new Cave();
             miniMap = cave.drawMiniMap(40);
             miniMap.setMinimumSize(new Dimension(540,300));
-            add(miniMap, "cell 3 1, grow");
+            game.add(miniMap, "cell 3 1, grow");
+            ctrl.setCave(cave);
         }
 
         add(game);
