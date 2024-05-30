@@ -5,11 +5,11 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class CirclePanel extends JPanel{
+public class circlepanel extends JPanel{
     Color color = Color.GRAY;
     int diameter;
 
-    public CirclePanel(int diam){
+    public circlepanel(int diam){
         setBackground(Color.WHITE);
         setSize(75,75);
         diameter = diam;
