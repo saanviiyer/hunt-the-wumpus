@@ -12,11 +12,8 @@ package Cave;
  */
 
 
-
-
 import GameLocations.*;
 import javax.swing.*;
-
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -135,7 +132,6 @@ public class Cave {
       }
 
       System.out.println("closed: " + closed.size());
-      //for (int i: closed) System.out.print(i);
       if (!closed.isEmpty()) {
         this.paths = new boolean[30][6];
         System.out.println("Trying again");
@@ -146,16 +142,14 @@ public class Cave {
     //returns the amount of openings the hex has
     public int count(int id){
       int c = 0;
-      for (boolean b: this.paths[id]) {
-        if (b) c++;
-      }
+      for (boolean b: this.paths[id]) if (b) c++;
+      
       return c;
     }
 
     // if Hex tar is open to cur
     public boolean isNextTo(int cur, int tar){
       for (int i = 0; i < 6; i++)
-        //if (this.openings[r%2][c%2][i] && this.adj[cur][i] == tar) return true;
         if (this.paths[cur][i] && this.adj[cur][i] == tar) return true;
       return false;
     }
@@ -165,11 +159,13 @@ public class Cave {
       return this.isNextTo(loc.getPlayerPos(), id);
     }
 
-    // sets the player position. (Teleports)
-    public void setPlayerPos(int id){
+    // wiping and drawing
+    public void wipe(){
       for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
       this.hexes[loc.getPlayerPos()].reset();
-      loc.setPlayerPos(id);
+    }
+
+    public void color(){
       if (this.view[0] != null) {
         this.current.changeLabel("" + loc.getPlayerPos());
         for (int i = 0; i < 6; i++){
@@ -183,37 +179,24 @@ public class Cave {
         this.hexes[this.adj[loc.getPlayerPos()][i]].setColor(Hex.GREEN);
       this.hexes[loc.getPlayerPos()].setColor(Hex.RED);
     }
+    // sets the player position. (Teleports)
+    public void setPlayerPos(int id){
+      this.wipe();
+      loc.setPlayerPos(id);
+      this.color();
+    }
 
     // moves the player to an adjacent open hex and redraws hexes
     public void goTo(int id){
-      for(int i: this.adj[loc.getPlayerPos()]) this.hexes[i].reset();
-      this.hexes[loc.getPlayerPos()].reset();
+      this.wipe();
       if (this.isNextTo(id)) loc.setPlayerPos(id);
-      if (this.view[0] != null) {
-        this.current.changeLabel("" + loc.getPlayerPos());
-        for (int i = 0; i < 6; i++){
-          this.view[i].changeLabel(""+adj[loc.getPlayerPos()][i]);
-          if (this.paths[loc.getPlayerPos()][i]) this.view[i].setColor(Hex.GREEN);
-          else this.view[i].reset();
-        }
-      }
-      
-      for(int i = 0; i < 6; i++) if (this.paths[loc.getPlayerPos()][i]) 
-        this.hexes[this.adj[loc.getPlayerPos()][i]].setColor(Hex.GREEN);
-      this.hexes[loc.getPlayerPos()].setColor(Hex.RED);
+      this.color();
     }
 
     // moves the player in a direction, if possible.
     public void move(int dir){
       this.goTo(this.adj[loc.getPlayerPos()][dir]);
     }
-
-
-
-
-
-
-
 
     // shoots an arrow in a direction dir, continues for len hexes or until it hits a wall
     public int shoot(int dir, int len){ // dir = [0,5]
