@@ -1,5 +1,3 @@
-package Trivia;
-
 public class Question {
     private String questionText;
     private String[] options;
@@ -7,16 +5,16 @@ public class Question {
 
     public Question(String questionText, String[] options, int correctAnswer) {
         this.questionText = questionText;
-        this.options = options; 
-        this.correctAnswer = correctAnswer; 
+        this.options = options;
+        this.correctAnswer = correctAnswer;
     }
 
     public String getQuestionText() {
-        return questionText; 
+        return questionText;
     }
 
     public String[] getOptions() {
-        return options;    
+        return options;
     }
 
     public int getCorrectAnswer() {
@@ -24,6 +22,6 @@ public class Question {
     }
 
     public boolean isCorrect(int answer) {
-        return (answer == correctAnswer);
+        return answer == correctAnswer;
     }
 }

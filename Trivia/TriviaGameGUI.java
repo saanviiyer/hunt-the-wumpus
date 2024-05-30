@@ -1,5 +1,3 @@
-// Jack Gillis 
-package Trivia;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,7 +24,6 @@ public class TriviaGameGUI extends JFrame {
         setSize(400, 300);
         setLocationRelativeTo(null);
         setResizable(false);
-        setVisible(true);
     }
 
     private void createView() {
@@ -52,7 +49,7 @@ public class TriviaGameGUI extends JFrame {
         nextButton = new JButton("Next");
         nextButton.addActionListener(new NextButtonListener());
         panel.add(nextButton, BorderLayout.SOUTH);
-        add(panel);
+
         loadQuestion();
     }
 
