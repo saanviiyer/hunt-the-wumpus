@@ -53,6 +53,10 @@ public class UI extends JFrame{
     JPanel miniMap;
 
     JLabel alerts = new JLabel("Alerts");
+
+    JPanel game = new JPanel();
+    JPanel startscreen = new JPanel();
+    JPanel endscreen = new JPanel();
     
     //////////////////////
     //// CONSTRUCTOR /////
@@ -65,7 +69,7 @@ public class UI extends JFrame{
         setLayout(new MigLayout(
             "",
             "[]0[]0[]",
-            "[][]0[]0"
+            "[]0[]0[]0"
         ));
         
         //change icon of frame
@@ -98,12 +102,16 @@ public class UI extends JFrame{
 
         //adding labels
         {
-            add(scoreLabel,"growx, pushx, north, flowx");
-            add(highScoreLabel, "north, growx, pushx");
-            add(goldCoinsLabel, "north, growx, pushx");
-            add(currentCaveLabel, "north, growx, pushx");
-            add(arrowLabel, "north, growx, pushx");
-            add(currentPlayerLabel, "north, growx, wrap, pushx");
+            JPanel Panel = new JPanel();
+            Panel.setLayout(new GridLayout(1,0));
+            Panel.add(scoreLabel);
+            Panel.add(highScoreLabel);
+            Panel.add(goldCoinsLabel);
+            Panel.add(currentCaveLabel);
+            Panel.add(arrowLabel);
+            Panel.add(currentPlayerLabel);
+            add(Panel, "north");
+            Panel.setVisible(true);
         }
 
         //adding movement buttons
@@ -147,7 +155,7 @@ public class UI extends JFrame{
                     purchaseArrows();
                 }
             });
-            add(buyArrows, "cell 3 1,flowy, w 500px, growy");
+            add(buyArrows, "cell 3 0,flowy, w 500px, growy");
             
             buySecrets.setBackground(Color.WHITE);
             buySecrets.addActionListener(new ActionListener() {
@@ -155,7 +163,7 @@ public class UI extends JFrame{
                     purchaseSecrets();
                 }
             });
-            add(buySecrets, "cell 3 1, w 500px, growy");
+            add(buySecrets, "cell 3 0, w 500px, growy");
 
             shoot.setBackground(Color.WHITE);
             shoot.addActionListener(new ActionListener() {
@@ -164,11 +172,11 @@ public class UI extends JFrame{
                     else shoot.setText("Shoot");
                 }
             });
-            add(shoot, "cell 3 1, w 500px, growy");
+            add(shoot, "cell 3 0, w 500px, growy");
             
             alerts.setBorder(BorderFactory.createLineBorder(Color.black));
             alerts.setHorizontalAlignment(JLabel.CENTER);
-            add(alerts, "cell 3 1, w 500px, growy");
+            add(alerts, "cell 3 0, w 500px, growy");
 
         }
 
@@ -177,7 +185,7 @@ public class UI extends JFrame{
             Cave cave = new Cave();
             miniMap = cave.drawMiniMap(40);
             miniMap.setMinimumSize(new Dimension(540,300));
-            add(miniMap, "cell 3 2, grow");
+            add(miniMap, "cell 3 1, grow");
         }
 
         //add new font
