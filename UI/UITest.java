@@ -16,9 +16,8 @@ class Test {
                                 new Question("What is the year2???",answers , 2),
                                 new Question("What is the year3???",answers , 3),
                                 new Question("What is the year5???",answers , 0)};
-        // UI myUI = new UI();
-        // UI myUi2 = new UI();
-        TriviaUI trivia = new TriviaUI(questions);
+        UI myUI = new UI();
+        // TriviaUI trivia = new TriviaUI(questions);
     }
 
 }

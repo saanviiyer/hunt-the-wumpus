@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import Cave.Cave;
 import Player.Player;
+import Trivia.Question;
 import net.miginfocom.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -64,7 +65,7 @@ public class UI extends JFrame{
         setLayout(new MigLayout(
             "",
             "[]0[]0[]",
-            "[][][]0[]0"
+            "[][]0[]0"
         ));
         
         //change icon of frame
@@ -223,6 +224,13 @@ public class UI extends JFrame{
         System.out.println("buy arrows");
         p.addArrows();
         arrowLabel.setText("Arrows: " + p.getArrows());
+        String[] answers = {"1","2","3","4"};
+        Question[] questions = {new Question("What is the year0???",answers , 0),
+                                new Question("What is the year1???",answers , 1),
+                                new Question("What is the year2???",answers , 2),
+                                new Question("What is the year3???",answers , 3),
+                                new Question("What is the year5???",answers , 0)};
+        TriviaUI triviaUI = new TriviaUI(questions);
     }
 
     public void purchaseSecrets(){
