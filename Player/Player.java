@@ -75,11 +75,11 @@ public class Player {
         return goldCoins;
     }
 
-    public void addGoldCoins(int goldCoins) {
+    public void addGoldCoins() {
         this.goldCoins++;
     }
 
-    public void decrementGoldCoins(int goldCoins) {
+    public void decrementGoldCoins() {
         this.goldCoins--;
     }
 
