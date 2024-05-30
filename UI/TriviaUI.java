@@ -16,7 +16,7 @@ import javax.swing.*;
 import Trivia.Question;
 import net.miginfocom.swing.MigLayout;
 
-public class TriviaUI extends JFrame{
+public class TriviaUI extends JDialog{
     //////////////////////
     //// PROPERTIES  /////
     //////////////////////
@@ -49,12 +49,18 @@ public class TriviaUI extends JFrame{
     //////////////////////
     //// CONSTRUCTOR /////
     //////////////////////
-    public TriviaUI(Question[] questions){
-        //set jframe behavior
+
+    //TODO make triviaui the focus (can't do anything with main ui) when it is called
+    //TODO return the number of correct questions when the dialog is finished
+    public TriviaUI(Question[] questions, JFrame frame){
+        super(frame);
+        
+        //set jdialog behavior
         setTitle("Trivia");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(800,800);
         setLayout(crd);
+
 
         this.questions = questions;
 

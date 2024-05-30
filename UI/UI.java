@@ -230,7 +230,7 @@ public class UI extends JFrame{
                                 new Question("What is the year2???",answers , 2),
                                 new Question("What is the year3???",answers , 3),
                                 new Question("What is the year5???",answers , 0)};
-        TriviaUI triviaUI = new TriviaUI(questions);
+        TriviaUI triviaUI = new TriviaUI(questions, this);
     }
 
     public void purchaseSecrets(){
