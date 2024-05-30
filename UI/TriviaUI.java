@@ -102,10 +102,9 @@ public class TriviaUI extends JFrame{
             Font font = montserratBold.deriveFont(Font.PLAIN, 30);
             question.setFont(font);
             // question.setHorizontalAlignment(JLabel.CENTER);
-            trivia.add(question, "wrap, push");
+            trivia.add(question, "wrap");
 
-            
-
+        
 
             for(int i = 0; i < 4; i++){
                 JRadioButton button = answerButtons[i];
@@ -128,7 +127,7 @@ public class TriviaUI extends JFrame{
                     answers.clearSelection();
                 }
             });
-            trivia.add(submit, "growx");
+            trivia.add(submit, "grow,push");
         }
         
         add(trivia); //trivia becomes first card
