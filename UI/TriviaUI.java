@@ -50,10 +50,10 @@ public class TriviaUI extends JDialog{
     //// CONSTRUCTOR /////
     //////////////////////
 
-    //TODO make triviaui the focus (can't do anything with main ui) when it is called
+
     //TODO return the number of correct questions when the dialog is finished
     public TriviaUI(Question[] questions, JFrame frame){
-        super(frame);
+        super(frame, true);
         
         //set jdialog behavior
         setTitle("Trivia");
