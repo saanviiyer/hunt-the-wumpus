@@ -6,6 +6,7 @@ import java.util.Random;
 import javax.swing.*;
 
 import Cave.Cave;
+import GameControl.GameControl;
 import Player.Player;
 import Trivia.Question;
 import net.miginfocom.swing.*;
@@ -18,7 +19,7 @@ public class UI extends JFrame{
     //// PROPERTIES  /////
     //////////////////////
     Player p = new Player();
-
+    GameControl ctrl = new GameControl();
     JMenuBar menuBar = new JMenuBar();
     JMenu menu = new JMenu("File");
     JMenuItem exit = new JMenuItem("Exit");
@@ -136,7 +137,6 @@ public class UI extends JFrame{
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         move(dir);
-                        
                     }
                 });
 
@@ -186,6 +186,7 @@ public class UI extends JFrame{
             miniMap = cave.drawMiniMap(40);
             miniMap.setMinimumSize(new Dimension(540,300));
             add(miniMap, "cell 3 1, grow");
+            ctrl.setCave(cave);
         }
 
         //add new font
@@ -216,6 +217,7 @@ public class UI extends JFrame{
 
     public void move(int direction){
         System.out.println("player moving to " + direction);
+        ctrl.movePlayer(direction);
     }
 
     public void displayNearbyRooms(){
