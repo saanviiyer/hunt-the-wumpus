@@ -37,7 +37,7 @@ public class UI extends JFrame{
     int highScore = 0;
     JLabel scoreLabel = new JLabel("Score: " + score);
     JLabel highScoreLabel = new JLabel("High Score: " + highScore);
-    JLabel goldCoinsLabel = new JLabel("Gold Coins: " + p.getGoldCoins);
+    JLabel goldCoinsLabel = new JLabel("Gold Coins: " + p.getGoldCoins());
     JLabel currentPlayerLabel = new JLabel("Player: " + p.getName());
     JLabel currentCaveLabel = new JLabel("Cave: ");
 
