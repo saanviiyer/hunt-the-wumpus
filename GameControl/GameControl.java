@@ -109,11 +109,11 @@ public class GameControl {
     // if player.wantsTrivia {
     //     UI.showTrivia;
     // }
-    public String getHazards(){
-        String s = "";
-        if (this.gl.nextToBats()) s+= "I hear flapping\n";
-        if (this.gl.nextToPit()) s+= "I feel a breeze\n";
-        if (this.gl.nextToWumpus()) s+= "You hear a wumpus";
+    public String[] getHazards(){
+        String[] s = new String[3];
+        if (this.gl.nextToBats()) s[0] = "I hear flapping";
+        if (this.gl.nextToPit()) s[1] = "I feel a breeze";
+        if (this.gl.nextToWumpus()) s[2] = "You hear a wumpus";
         return s;
     }
 }
