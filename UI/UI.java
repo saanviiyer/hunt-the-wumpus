@@ -264,12 +264,47 @@ public class UI extends JFrame{
         System.out.println("buy arrows");
         p.addArrows();
         arrowLabel.setText("Arrows: " + p.getArrows());
-        String[] answers = {"1","2","3","4"};
-        Question[] questions = {new Question("What is the year0???",answers , 0),
-                                new Question("What is the year1???",answers , 1),
-                                new Question("What is the year2???",answers , 2),
-                                new Question("What is the year3???",answers , 3),
-                                new Question("What is the year5???",answers , 0)};
+
+        String[] answers = {"A","B","C","D"};
+
+        // CHANGE TO BE ACTUAL LENGTH OF QUESTIONS FILE
+        int q = 5;
+
+        Random r = new Random();
+        int a = r.nextInt(q);
+        int b = r.nextInt(q);
+        int c = r.nextInt(q);
+        int d = r.nextInt(q);
+        int e = r.nextInt(q);
+
+        // ADD CODE TO READ QUESTIONS AND ANSWERS FROM A, B, C, D, E FOR THE FIVE QUESTIONS
+        
+        // aQ should be the question from the line number of a
+        String aQ = "";
+        String bQ = "";
+        String cQ = "";
+        String dQ = "";
+        String eQ = "";
+
+        // aA should be the ANSWER CHOICES from the line number of a
+        String[] aA = {"","","",""};
+        String[] bA = {"","","",""};
+        String[] cA = {"","","",""};
+        String[] dA = {"","","",""};
+        String[] eA = {"","","",""};
+
+        //aI should be the NUMBER at the end of answers from line a to indicate the correct answer
+        int aI = 0;
+        int bI = 0;
+        int cI = 0;
+        int dI = 0;
+        int eI = 0;
+
+        Question[] questions = {new Question("What is the year0?",answers , 0),
+                                new Question(bQ,bA, bI),
+                                new Question(cQ,cA ,cI),
+                                new Question(dQ,dA , dI),
+                                new Question(eQ,eA , eI)};
         TriviaUI triviaUI = new TriviaUI(questions, this);
         System.out.println("You got " + triviaUI.getNumCorrectAnswers() + " questions right");
         p.decrementGoldCoins();
