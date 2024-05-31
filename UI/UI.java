@@ -57,13 +57,13 @@ public class UI extends JFrame{
     //////////////////////
     public UI(){
         //set frame behavior
-        setTitle("Bumpell");
+        setTitle("Hunt the Wumpus");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920,1080);
         setLayout(crd);
         
         //change icon of frame
-        ImageIcon icon = new ImageIcon("UI/wumpus4.png");
+        ImageIcon icon = new ImageIcon("UI\\bumpell_icon.jpg");
         setIconImage(icon.getImage());
 
         Font legendOfZeldaFont = null;
