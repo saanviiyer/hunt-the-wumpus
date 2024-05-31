@@ -85,7 +85,7 @@ public class TriviaUI extends JDialog{
             heading.setHorizontalAlignment(JLabel.CENTER);
             heading.setFont(font);
             heading.setBackground(new Color(0,191,99));
-            trivia.add(heading, "north, align center, push, wrap");
+            trivia.add(heading, "north, align center, push, wrap, grow, h 100px");
         }
         
         //add question indicators
@@ -146,7 +146,7 @@ public class TriviaUI extends JDialog{
 
         //add components to endscreen
         {
-            endScreenText.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 30));
+            endScreenText.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 20));
             endScreenText.setHorizontalAlignment(JLabel.CENTER);
             endScreen.add(endScreenText, "center, push, flowy");
 
