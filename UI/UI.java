@@ -284,7 +284,7 @@ public class UI extends JFrame{
 
     public void displayHazards(){
         System.out.println("Displaying hazards");
-        alerts.setText(ctrl.getHazards());
+        alerts.setText(ctrl.getHazards()[0]);
     }
 
     public void purchaseArrows(){
