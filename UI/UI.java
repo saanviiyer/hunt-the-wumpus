@@ -42,14 +42,6 @@ public class UI extends JFrame{
     JLabel currentPlayerLabel = new JLabel("Player: " + p.getName());
     JLabel currentCaveLabel = new JLabel("Cave: ");
 
-    JButton goN = new JButton();
-    JButton goNE = new JButton();
-    JButton goE = new JButton();
-    JButton goSE = new JButton();
-    JButton goS = new JButton();
-    JButton goSW = new JButton();
-    JButton goW = new JButton();
-    JButton goNW = new JButton();
 
     JPanel miniMap;
 
@@ -157,14 +149,13 @@ public class UI extends JFrame{
 
         //adding movement buttons
         {
-            JButton[] movementButtons = {goNW, goN, goNE, goSW, goS, goSE};
             ImageIcon[] movementIcons = {new ImageIcon("UI/left_top.png"),new ImageIcon("UI/top_mid.png"),new ImageIcon("UI/right_top.png"),new ImageIcon("UI/left_bottom.png"),new ImageIcon("UI/bottom_mid.png"),new ImageIcon("UI/right_bottom.png")};
 
             
             int height = 450;
 
             for(int i = 0; i < 6; i++){
-                JButton cur = movementButtons[i];
+                JButton cur = new JButton();
                 
                 //sets icon of buttons and make them not change when pressed
                 cur.setIcon(movementIcons[i]);
