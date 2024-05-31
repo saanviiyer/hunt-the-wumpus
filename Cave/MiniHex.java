@@ -7,7 +7,7 @@ package Cave;
 
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.BasicStroke;
 
 public class MiniHex extends JButton{
   public static int LENGTH = 40; // side length, in pixels
@@ -39,16 +39,17 @@ public class MiniHex extends JButton{
     setContentAreaFilled(false);
     setFocusPainted(true);
     setBorderPainted(false);
-
+    double[][] d = this.getPoints();
     this.hex = new Polygon();
-    for (double[] i: this.getPoints()){
+    for (double[] i: d){
       this.hex.addPoint((int)(i[0]), (int)(i[1]));
     }
+    this.hex.addPoint((int)d[0][0], (int)d[0][1]);
     
     this.x = this.col*1.5*LENGTH+offsetX;
     this.y = this.row*LENGTH*1.732+offsetY;
     if (this.col%2 == 1) this.y += LENGTH*1.732/2;
-    setBounds((int)this.x, (int)this.y, (int)LENGTH*2, (int)(LENGTH*1.732+2));
+    setBounds((int)this.x, (int)this.y, (int)LENGTH*2, (int)(LENGTH*1.732));
 
 
   }
@@ -97,11 +98,19 @@ public class MiniHex extends JButton{
   @Override
   public void paintComponent(Graphics g){
     super.paintComponent(g);
-    setBounds((int)x, (int)y, (int)LENGTH*2, (int)(LENGTH*1.732+2));
-    g.drawPolygon(this.hex);
-    
     g.setColor(this.color);
     g.fillPolygon(this.hex);
+
+    g.setColor(BLACK);
+    Graphics2D g2 = (Graphics2D) g;
+    int thickness = 1;
+    Stroke oldStroke = g2.getStroke();
+    g2.setStroke(new BasicStroke(thickness));
+    setBounds((int)x, (int)y, (int)LENGTH*2, (int)(LENGTH*1.732+2));
+    g.drawPolygon(this.hex);
+    g2.setStroke(oldStroke);
+
+    
     
     g.setColor(new Color(0,0,0));
     g.drawString(""+(this.row*6+this.col), (int) (LENGTH), (int)(LENGTH*1.732/2));
