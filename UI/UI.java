@@ -20,8 +20,7 @@ public class UI extends JFrame{
     //////////////////////
     Player p = new Player();
     GameControl ctrl = new GameControl();
-    JMenuBar menuBar = new JMenuBar();
-    JMenu menu = new JMenu("File");
+    JPopupMenu menu = new JPopupMenu("File");
     JMenuItem exit = new JMenuItem("Exit");
     JMenuItem startNewGame = new JMenuItem("New Game");
 
@@ -139,7 +138,6 @@ public class UI extends JFrame{
         //add menu and menuitems
         {
             //adding items to menu
-            menuBar.add(menu);
             
 
             exit.addActionListener(new ActionListener() {
@@ -155,15 +153,17 @@ public class UI extends JFrame{
                 }
             }); 
             menu.add(startNewGame);
-
-            //adding menubar to frame
-            game.add(menuBar,"north, pushx, growx");
         }
 
         //adding labels
         {
             JPanel Panel = new JPanel();
             Panel.setLayout(new GridLayout(1,0));
+
+            menu.setLabel("menu");
+            menu.setVisible(true);
+            Panel.add(menu);
+
             Panel.add(scoreLabel);
             Panel.add(highScoreLabel);
             Panel.add(goldCoinsLabel);
@@ -195,6 +195,7 @@ public class UI extends JFrame{
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         move(dir);
+                        displayHazards();
                     }
                 });
 
@@ -283,21 +284,58 @@ public class UI extends JFrame{
 
     public void displayHazards(){
         System.out.println("Displaying hazards");
+        alerts.setText(ctrl.getHazards());
     }
 
     public void purchaseArrows(){
         System.out.println("buy arrows");
         p.addArrows();
         arrowLabel.setText("Arrows: " + p.getArrows());
-        String[] answers = {"1","2","3","4"};
-        Question[] questions = {new Question("What is the year0???",answers , 0),
-                                new Question("What is the year1???",answers , 1),
-                                new Question("What is the year2???",answers , 2),
-                                new Question("What is the year3???",answers , 3),
-                                new Question("What is the year5???",answers , 0)};
+        p.decrementGoldCoins();
+
+        String[] answers = {"A","B","C","D"};
+
+        // CHANGE TO BE ACTUAL LENGTH OF QUESTIONS FILE
+        int q = 5;
+
+        Random r = new Random();
+        int a = r.nextInt(q);
+        int b = r.nextInt(q);
+        int c = r.nextInt(q);
+        int d = r.nextInt(q);
+        int e = r.nextInt(q);
+
+        // ADD CODE TO READ QUESTIONS AND ANSWERS FROM A, B, C, D, E FOR THE FIVE QUESTIONS
+        
+        // aQ should be the question from the line number of a
+        String aQ = "";
+        String bQ = "";
+        String cQ = "";
+        String dQ = "";
+        String eQ = "";
+
+        // aA should be the ANSWER CHOICES from the line number of a
+        String[] aA = {"","","",""};
+        String[] bA = {"","","",""};
+        String[] cA = {"","","",""};
+        String[] dA = {"","","",""};
+        String[] eA = {"","","",""};
+
+        //aI should be the NUMBER at the end of answers from line a to indicate the correct answer
+        int aI = 0;
+        int bI = 0;
+        int cI = 0;
+        int dI = 0;
+        int eI = 0;
+
+        Question[] questions = {new Question("What is the year0?",answers , 0),
+                                new Question(bQ,bA, bI),
+                                new Question(cQ,cA ,cI),
+                                new Question(dQ,dA , dI),
+                                new Question(eQ,eA , eI)};
         TriviaUI triviaUI = new TriviaUI(questions, this);
         System.out.println("You got " + triviaUI.getNumCorrectAnswers() + " questions right");
-        p.decrementGoldCoins();
+
         goldCoinsLabel.setText("Gold Coins: "+p.getGoldCoins());
     }
 
