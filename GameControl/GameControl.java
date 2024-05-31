@@ -41,9 +41,7 @@ public class GameControl {
 
     public void movePlayer(int direction) {
         System.out.println("moving player in direction " + direction);
-        this.cave.move(direction);
-        this.player.incrementTurns();
-        // will be updating value of player's current location
+        if (this.cave.move(direction)) this.player.incrementTurns();
     }
 
     public boolean checkWumpusNearby(Player player) {
