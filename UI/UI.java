@@ -49,6 +49,7 @@ public class UI extends JFrame{
 
     JPanel game = new JPanel();
     JPanel startScreen = new JPanel();
+    JPanel howToScreen = new JPanel();
     JPanel endscreen = new JPanel();
     CardLayout crd = new CardLayout();
 
@@ -80,12 +81,19 @@ public class UI extends JFrame{
             JLabel title = new JLabel("Hunt the Wumpus");
             title.setHorizontalAlignment(JLabel.CENTER);
             title.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,30));
-            startScreen.add(title, "center, push, wrap");
+            startScreen.add(title, "center, pushx, wrap, h 700px");
 
             JButton startGame = new JButton("Start New Game");
+            JButton howToPlay = new JButton("How to Play!");
             startGame.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     crd.next(getContentPane());
+                }
+            });
+
+            howToPlay.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    add(howToScreen);
                 }
             });
             startGame.setBorder(null);
@@ -93,9 +101,28 @@ public class UI extends JFrame{
             startGame.setFocusPainted(false);
             startGame.setHorizontalAlignment(JButton.CENTER);
             startGame.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
-            startScreen.add(startGame, "center, push");
+            startScreen.add(startGame, "center, wrap, cell 0 1, h 30px");
+
+            // how to play
+            howToPlay.setBorder(null);
+            howToPlay.setContentAreaFilled(false);
+            howToPlay.setFocusPainted(false);
+            howToPlay.setHorizontalAlignment(JButton.CENTER);
+            howToPlay.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
+            startScreen.add(howToPlay, "center, cell 0 2, h 30px");
         }
         add(startScreen);
+
+        // How to play screen
+        {
+            
+            howToScreen.setSize(1920,1080);
+            howToScreen.setVisible(true);
+        }
+
+
+
+
 
         // Setting game panel behavior
         {
