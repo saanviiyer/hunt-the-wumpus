@@ -66,9 +66,9 @@ public class TriviaUI extends JDialog{
 
 
         //create font
-        Font montserratBold = null;
+        Font legendOfZeldaFont = null;
         try{
-            montserratBold = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\Montserrat\\Montserrat-Bold.ttf"));
+            legendOfZeldaFont = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\LoZ_Font\\the-legend-of-zelda-nes.ttf"));
         } catch(Exception e){}
 
         //setting trivia panel behavior
@@ -80,7 +80,7 @@ public class TriviaUI extends JDialog{
 
         //add heading
         {
-            Font font = montserratBold.deriveFont(Font.PLAIN, 60);
+            Font font = legendOfZeldaFont.deriveFont(Font.PLAIN, 60);
             heading.setOpaque(true);
             heading.setHorizontalAlignment(JLabel.CENTER);
             heading.setFont(font);
@@ -104,7 +104,7 @@ public class TriviaUI extends JDialog{
 
         //adding question, buttons
         {
-            Font font = montserratBold.deriveFont(Font.PLAIN, 30);
+            Font font = legendOfZeldaFont.deriveFont(Font.PLAIN, 30);
             question.setFont(font);
             // question.setHorizontalAlignment(JLabel.CENTER);
             trivia.add(question, "wrap");
@@ -122,8 +122,7 @@ public class TriviaUI extends JDialog{
 
         //add submit button
         {
-            Font font = montserratBold.deriveFont(Font.PLAIN, 30);
-            submit.setFont(font);
+            submit.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 30));
             submit.setBackground(Color.WHITE);
             submit.setBorder(null);
             submit.addActionListener(new ActionListener() {
@@ -147,7 +146,7 @@ public class TriviaUI extends JDialog{
 
         //add components to endscreen
         {
-            endScreenText.setFont(montserratBold.deriveFont(Font.PLAIN, 30));
+            endScreenText.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 30));
             endScreenText.setHorizontalAlignment(JLabel.CENTER);
             endScreen.add(endScreenText, "center, push, flowy");
 
@@ -156,7 +155,7 @@ public class TriviaUI extends JDialog{
                     endTrivia();
                 }
             });
-            continueButton.setFont(montserratBold.deriveFont(Font.PLAIN, 30));
+            continueButton.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 30));
             continueButton.setHorizontalAlignment(JButton.CENTER);
             continueButton.setBackground(Color.WHITE);
             endScreen.add(continueButton, "center, push, cell 0 0");
