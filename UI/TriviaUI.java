@@ -51,7 +51,6 @@ public class TriviaUI extends JDialog{
     //////////////////////
 
 
-    //TODO return the number of correct questions when the dialog is finished
     public TriviaUI(Question[] questions, JFrame frame){
         super(frame, true);
         
@@ -126,6 +125,7 @@ public class TriviaUI extends JDialog{
             Font font = montserratBold.deriveFont(Font.PLAIN, 30);
             submit.setFont(font);
             submit.setBackground(Color.WHITE);
+            submit.setBorder(null);
             submit.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     System.out.println(getSelectedButton().getText().substring(0,1));
