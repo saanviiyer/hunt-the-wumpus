@@ -1,5 +1,11 @@
 // Nathan Chiu
 
+// IMPORTANT TO ADD:
+// PURCHASE ARROWS: YOU CAN PURCHASE 2 MORE ARROWS BY GETTING AT LEAST 2 OUT OF 3 TRIVIA QUESTIONS RIGHT
+// PURCHASE SECRET: PURCHASE SECRET BY GETTING AT LEAST 2 OUT OF 3 TRIVIA QUESTIONS RIGHT
+
+
+
 package UI;
 import java.util.Random;
 
@@ -20,8 +26,7 @@ public class UI extends JFrame{
     //////////////////////
     Player p = new Player();
     GameControl ctrl = new GameControl();
-    JMenuBar menuBar = new JMenuBar();
-    JMenu menu = new JMenu("File");
+    JPopupMenu menu = new JPopupMenu("File");
     JMenuItem exit = new JMenuItem("Exit");
     JMenuItem startNewGame = new JMenuItem("New Game");
 
@@ -49,6 +54,7 @@ public class UI extends JFrame{
 
     JPanel game = new JPanel();
     JPanel startScreen = new JPanel();
+    JPanel howToScreen = new JPanel();
     JPanel endscreen = new JPanel();
     CardLayout crd = new CardLayout();
 
@@ -80,12 +86,19 @@ public class UI extends JFrame{
             JLabel title = new JLabel("Hunt the Wumpus");
             title.setHorizontalAlignment(JLabel.CENTER);
             title.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,30));
-            startScreen.add(title, "center, push, wrap");
+            startScreen.add(title, "center, pushx, wrap, h 700px");
 
             JButton startGame = new JButton("Start New Game");
+            JButton howToPlay = new JButton("How to Play!");
             startGame.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     crd.next(getContentPane());
+                }
+            });
+
+            howToPlay.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    add(howToScreen);
                 }
             });
             startGame.setBorder(null);
@@ -93,9 +106,28 @@ public class UI extends JFrame{
             startGame.setFocusPainted(false);
             startGame.setHorizontalAlignment(JButton.CENTER);
             startGame.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
-            startScreen.add(startGame, "center, push");
+            startScreen.add(startGame, "center, wrap, cell 0 1, h 30px");
+
+            // how to play
+            howToPlay.setBorder(null);
+            howToPlay.setContentAreaFilled(false);
+            howToPlay.setFocusPainted(false);
+            howToPlay.setHorizontalAlignment(JButton.CENTER);
+            howToPlay.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
+            startScreen.add(howToPlay, "center, cell 0 2, h 30px");
         }
         add(startScreen);
+
+        // How to play screen
+        {
+            
+            howToScreen.setSize(1920,1080);
+            howToScreen.setVisible(true);
+        }
+
+
+
+
 
         // Setting game panel behavior
         {
@@ -112,7 +144,6 @@ public class UI extends JFrame{
         //add menu and menuitems
         {
             //adding items to menu
-            menuBar.add(menu);
             
 
             exit.addActionListener(new ActionListener() {
@@ -128,15 +159,17 @@ public class UI extends JFrame{
                 }
             }); 
             menu.add(startNewGame);
-
-            //adding menubar to frame
-            game.add(menuBar,"north, pushx, growx");
         }
 
         //adding labels
         {
             JPanel Panel = new JPanel();
             Panel.setLayout(new GridLayout(1,0));
+
+            menu.setLabel("menu");
+            menu.setVisible(true);
+            Panel.add(menu);
+
             Panel.add(scoreLabel);
             Panel.add(highScoreLabel);
             Panel.add(goldCoinsLabel);
@@ -257,7 +290,7 @@ public class UI extends JFrame{
 
     public void displayHazards(){
         System.out.println("Displaying hazards");
-        alerts.setText(ctrl.getHazards());
+        alerts.setText(ctrl.getHazards()[0]);
     }
 
     public void purchaseArrows(){

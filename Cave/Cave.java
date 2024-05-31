@@ -188,15 +188,18 @@ public class Cave {
     }
 
     // moves the player to an adjacent open hex and redraws hexes
-    public void goTo(int id){
+    public boolean goTo(int id){
+      boolean b = false;
       this.wipe();
-      if (this.isNextTo(id)) loc.setPlayerPos(id);
+      if (this.isNextTo(id)) {loc.setPlayerPos(id); b = true;}
+      
       this.color();
+      return b;
     }
 
     // moves the player in a direction, if possible.
-    public void move(int dir){
-      this.goTo(this.adj[loc.getPlayerPos()][dir]);
+    public boolean move(int dir){
+      return this.goTo(this.adj[loc.getPlayerPos()][dir]);
     }
 
     // shoots an arrow in a direction dir, continues for len hexes or until it hits a wall
