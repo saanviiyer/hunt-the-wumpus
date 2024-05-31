@@ -20,8 +20,7 @@ public class UI extends JFrame{
     //////////////////////
     Player p = new Player();
     GameControl ctrl = new GameControl();
-    JMenuBar menuBar = new JMenuBar();
-    JMenu menu = new JMenu("File");
+    JPopupMenu menu = new JPopupMenu("File");
     JMenuItem exit = new JMenuItem("Exit");
     JMenuItem startNewGame = new JMenuItem("New Game");
 
@@ -112,7 +111,6 @@ public class UI extends JFrame{
         //add menu and menuitems
         {
             //adding items to menu
-            menuBar.add(menu);
             
 
             exit.addActionListener(new ActionListener() {
@@ -128,15 +126,17 @@ public class UI extends JFrame{
                 }
             }); 
             menu.add(startNewGame);
-
-            //adding menubar to frame
-            game.add(menuBar,"north, pushx, growx");
         }
 
         //adding labels
         {
             JPanel Panel = new JPanel();
             Panel.setLayout(new GridLayout(1,0));
+
+            menu.setLabel("menu");
+            menu.setVisible(true);
+            Panel.add(menu);
+
             Panel.add(scoreLabel);
             Panel.add(highScoreLabel);
             Panel.add(goldCoinsLabel);
