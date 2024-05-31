@@ -168,6 +168,7 @@ public class UI extends JFrame{
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         move(dir);
+                        displayHazards();
                     }
                 });
 
