@@ -33,6 +33,7 @@ public class Cave {
     Hex current;// middle control hex
     JPanel mini = new JPanel(); // minimap
     JPanel controls = new JPanel(); // controls
+    boolean[] visited = new boolean[30];
 
 
 
@@ -250,6 +251,7 @@ public class Cave {
         this.mini.setPreferredSize(new Dimension(l*2, l*6));
         MiniHex.setLength(l);
         MiniHex.setOffset(0,0);
+        this.visited[loc.getPlayerPos()] = true;
         for(int row = 0; row < 5; row++){
             for (int col = 0; col < 6; col++){
                 int id = row*6+col;
