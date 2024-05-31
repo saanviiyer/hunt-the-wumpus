@@ -264,6 +264,7 @@ public class UI extends JFrame{
         System.out.println("buy arrows");
         p.addArrows();
         arrowLabel.setText("Arrows: " + p.getArrows());
+        p.decrementGoldCoins();
 
         String[] answers = {"A","B","C","D"};
 
@@ -307,7 +308,7 @@ public class UI extends JFrame{
                                 new Question(eQ,eA , eI)};
         TriviaUI triviaUI = new TriviaUI(questions, this);
         System.out.println("You got " + triviaUI.getNumCorrectAnswers() + " questions right");
-        p.decrementGoldCoins();
+
         goldCoinsLabel.setText("Gold Coins: "+p.getGoldCoins());
     }
 
