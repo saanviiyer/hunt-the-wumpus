@@ -74,6 +74,11 @@ public class UI extends JFrame{
         ImageIcon icon = new ImageIcon("UI/wumpus4.png");
         setIconImage(icon.getImage());
 
+        Font legendOfZeldaFont = null;
+            try{
+                legendOfZeldaFont = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\LoZ_Font\\the-legend-of-zelda-nes.ttf"));
+            } catch(Exception e){}
+
         //create start menu
         {
             startScreen.setSize(1920, 1080);
@@ -82,6 +87,7 @@ public class UI extends JFrame{
 
             JLabel title = new JLabel("Hunt the Wumpus");
             title.setHorizontalAlignment(JLabel.CENTER);
+            title.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,30));
             startScreen.add(title, "center, push, wrap");
 
             JButton startGame = new JButton("Start New Game");
@@ -90,8 +96,11 @@ public class UI extends JFrame{
                     crd.next(getContentPane());
                 }
             });
-            startGame.setBackground(Color.WHITE);
+            startGame.setBorder(null);
+            startGame.setContentAreaFilled(false);
+            startGame.setFocusPainted(false);
             startGame.setHorizontalAlignment(JButton.CENTER);
+            startGame.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
             startScreen.add(startGame, "center, push");
         }
         add(startScreen);
@@ -129,7 +138,7 @@ public class UI extends JFrame{
             menu.add(startNewGame);
 
             //adding menubar to frame
-            setJMenuBar(menuBar);
+            game.add(menuBar,"north, pushx, growx");
         }
 
         //adding labels
@@ -224,13 +233,7 @@ public class UI extends JFrame{
 
         //change font of game panel
         {
-            Font legendOfZeldaFont = null;
-            try{
-                legendOfZeldaFont = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\LoZ_Font\\the-legend-of-zelda-nes.ttf"));
-            } catch(Exception e){}
-
-            Font size15 = legendOfZeldaFont.deriveFont(Font.PLAIN, 15);
-            changeFont(game, size15);
+            changeFont(game, legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
         }
 
 
