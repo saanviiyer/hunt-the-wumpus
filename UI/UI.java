@@ -26,7 +26,8 @@ public class UI extends JFrame{
     //////////////////////
     Player p = new Player();
     GameControl ctrl = new GameControl();
-    JPopupMenu menu = new JPopupMenu("File");
+    JMenuBar menuBar = new JMenuBar();
+    JMenu menu = new JMenu("Menu");
     JMenuItem exit = new JMenuItem("Exit");
     JMenuItem startNewGame = new JMenuItem("New Game");
 
@@ -72,6 +73,7 @@ public class UI extends JFrame{
         ImageIcon icon = new ImageIcon("UI\\bumpell_icon.jpg");
         setIconImage(icon.getImage());
 
+        //creates new font to be derived
         Font legendOfZeldaFont = null;
             try{
                 legendOfZeldaFont = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\LoZ_Font\\the-legend-of-zelda-nes.ttf"));
@@ -92,7 +94,7 @@ public class UI extends JFrame{
             JButton howToPlay = new JButton("How to Play!");
             startGame.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
-                    crd.next(getContentPane());
+                    crd.show(getContentPane(), "game");
                 }
             });
 
@@ -101,6 +103,7 @@ public class UI extends JFrame{
                     add(howToScreen);
                 }
             });
+
             startGame.setBorder(null);
             startGame.setContentAreaFilled(false);
             startGame.setFocusPainted(false);
@@ -116,7 +119,8 @@ public class UI extends JFrame{
             howToPlay.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
             startScreen.add(howToPlay, "center, cell 0 2, h 30px");
         }
-        add(startScreen);
+        startScreen.setVisible(true);
+        add(startScreen,"startScreen");
 
         // How to play screen
         {
@@ -124,8 +128,6 @@ public class UI extends JFrame{
             howToScreen.setSize(1920,1080);
             howToScreen.setVisible(true);
         }
-
-
 
 
 
@@ -141,14 +143,11 @@ public class UI extends JFrame{
 
         }  
         
-        //add menu and menuitems
+        //add menu and menuitems to menubar
         {
-            //adding items to menu
-            
-
             exit.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
-                    System.exit(0);
+                    crd.show(getContentPane(), "startScreen");
                 }
             }); 
             menu.add(exit);
@@ -159,25 +158,27 @@ public class UI extends JFrame{
                 }
             }); 
             menu.add(startNewGame);
+
+            menuBar.setBackground(new Color(0, 0, 0, 0)); 
+            menuBar.setOpaque(true);
+            menuBar.setBorder(null);
+            menuBar.add(menu);
         }
 
         //adding labels
         {
             JPanel Panel = new JPanel();
             Panel.setLayout(new GridLayout(1,0));
-
-            menu.setLabel("menu");
-            menu.setVisible(true);
-            Panel.add(menu);
-
+            Panel.add(menuBar);
             Panel.add(scoreLabel);
             Panel.add(highScoreLabel);
             Panel.add(goldCoinsLabel);
             Panel.add(currentCaveLabel);
             Panel.add(arrowLabel);
             Panel.add(currentPlayerLabel);
-            game.add(Panel, "north");
             Panel.setVisible(true);
+            game.add(Panel, "north");
+            
         }
 
         //adding movement buttons
@@ -253,14 +254,14 @@ public class UI extends JFrame{
             game.add(miniMap, "cell 3 1, grow");
             ctrl.setCave(cave);
         }
-
-        add(game);
-
+       
         //change font of game panel
         {
             changeFont(game, legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
         }
 
+        game.setVisible(true);
+        add(game, "game");
 
         setResizable(false);
         setVisible(true);
