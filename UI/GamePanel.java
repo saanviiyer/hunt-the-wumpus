@@ -28,7 +28,7 @@ public class GamePanel extends JPanel{
     JButton shoot = new JButton("Shoot");
     JButton buyArrows = new JButton("Purchase Arrows");
     JButton buySecrets = new JButton("Purchase Secrets");
-    JLabel alerts = new JLabel("Alerts");
+    JTextArea alerts = new JTextArea("alerts", 5, 0);
 
     JPanel miniMap;
 
@@ -144,7 +144,7 @@ public class GamePanel extends JPanel{
                     UI.purchaseArrows();
                 }
             });
-            add(buyArrows, "cell 3 0,flowy, w 500px, growy");
+            add(buyArrows, "cell 3 0,flowy, w 500px, h 112px, gapy 0");
             
             buySecrets.setBackground(Color.WHITE);
             buySecrets.addActionListener(new ActionListener() {
@@ -152,7 +152,7 @@ public class GamePanel extends JPanel{
                     UI.purchaseSecrets();
                 }
             });
-            add(buySecrets, "cell 3 0, w 500px, growy");
+            add(buySecrets, "cell 3 0, w 500px, h 112px, gapy 0");
 
             shoot.setBackground(Color.WHITE);
             shoot.addActionListener(new ActionListener() {
@@ -161,11 +161,12 @@ public class GamePanel extends JPanel{
                     else shoot.setText("Shoot");
                 }
             });
-            add(shoot, "cell 3 0, w 500px, growy");
+            add(shoot, "cell 3 0, w 500px, h 112px, gapy 0");
             
             alerts.setBorder(BorderFactory.createLineBorder(Color.black));
-            alerts.setHorizontalAlignment(JLabel.CENTER);
-            add(alerts, "cell 3 0, w 500px, growy");
+            alerts.setFocusable(false);
+            
+            add(alerts, "cell 3 0, w 500px, h 112px, gapy 0");
 
         }
 
@@ -191,7 +192,13 @@ public class GamePanel extends JPanel{
     }
 
     public void setAlerts(String[] strings){
-        alerts.setText(strings[0]);
+        String print = "";
+        for(String s : strings){
+            if(s != null) {
+                print += s + "\n";
+            }
+        }
+        alerts.setText(print);
     }
 
     public void setAlerts(String s){
