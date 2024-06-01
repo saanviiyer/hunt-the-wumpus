@@ -30,6 +30,7 @@ public class UI extends JFrame{
     JMenu menu = new JMenu("Menu");
     JMenuItem exit = new JMenuItem("Exit to Title Screen");
     JMenuItem startNewGame = new JMenuItem("New Game");
+    JMenuItem exitToDesktop = new JMenuItem("Exit to Desktop");
 
     JButton shoot = new JButton("Shoot");
 
@@ -145,6 +146,15 @@ public class UI extends JFrame{
         
         //add menu and menuitems to menubar
         {
+            startNewGame.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 10));
+            startNewGame.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    startNewGame();
+                }
+            }); 
+            menu.add(startNewGame);
+
+            exit.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 10));
             exit.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     crd.show(getContentPane(), "startScreen");
@@ -152,12 +162,13 @@ public class UI extends JFrame{
             }); 
             menu.add(exit);
 
-            startNewGame.addActionListener(new ActionListener() {
+            exitToDesktop.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 10));
+            exitToDesktop.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
-                    startNewGame();
+                    System.exit(0);
                 }
-            }); 
-            menu.add(startNewGame);
+            });
+            menu.add(exitToDesktop);
 
             menuBar.setBackground(new Color(0, 0, 0, 0)); 
             menuBar.setOpaque(true);
