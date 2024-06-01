@@ -32,7 +32,7 @@ public class GamePanel extends JPanel{
 
     JPanel miniMap;
 
-
+    //-----------------------CONSTRUCTOR----------------------
     public GamePanel(UI UI, CardLayout crd){
         //creates new font to be derived
         Font legendOfZeldaFont = null;
@@ -178,5 +178,23 @@ public class GamePanel extends JPanel{
             UI.getGameControl().setCave(cave);
         }
        
+    }
+
+    //-----------------------METHODS----------------------
+
+    public void setArrows(String s){
+        arrowLabel.setText(s);
+    }
+
+    public void setGold(String s){
+        goldCoinsLabel.setText(s);
+    }
+
+    public void setAlerts(String[] strings){
+        alerts.setText(strings[0]);
+    }
+
+    public void setAlerts(String s){
+        alerts.setText(s);
     }
 }
