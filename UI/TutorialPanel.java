@@ -15,6 +15,10 @@ import javax.swing.text.Document;
 import net.miginfocom.swing.MigLayout;
 
 public class TutorialPanel extends JPanel{
+    //-----------------------PROPERTIES----------------------
+    private String previouslyDisplayedCard;
+
+    //-----------------------CONSTRUCTOR----------------------
     public TutorialPanel(UI UI, CardLayout crd){
         //creates new font to be derived
         Font legendOfZeldaFont = null;
@@ -39,14 +43,19 @@ public class TutorialPanel extends JPanel{
         tutorial.setBackground(new Color(0,0,0,0));
         add(tutorial, "center, push, flowy");
 
-        JButton backToHome = new JButton("Back to title screen");
-        backToHome.addActionListener(new ActionListener() {
+        JButton back = new JButton("Back");
+        back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                crd.show(UI.getContentPane(), "start");
+                crd.show(UI.getContentPane(), previouslyDisplayedCard);
             }
         });
-        backToHome.setBackground(Color.WHITE);
-        backToHome.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
-        add(backToHome, "center, pushx, cell 0 0");
+        back.setBackground(Color.WHITE);
+        back.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
+        add(back, "center, pushx, cell 0 0");
+    }
+
+    //-----------------------METHODS----------------------
+    public void setPreviouslyDisplayedCard(String s){
+        previouslyDisplayedCard = s;
     }
 }
