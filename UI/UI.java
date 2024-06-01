@@ -28,7 +28,7 @@ public class UI extends JFrame{
     GameControl ctrl = new GameControl();
     JMenuBar menuBar = new JMenuBar();
     JMenu menu = new JMenu("Menu");
-    JMenuItem exit = new JMenuItem("Exit");
+    JMenuItem exit = new JMenuItem("Exit to Title Screen");
     JMenuItem startNewGame = new JMenuItem("New Game");
 
     JButton shoot = new JButton("Shoot");
