@@ -106,7 +106,7 @@ public class GamePanel extends JPanel{
 
         //adding movement buttons
         {
-            ImageIcon[] movementIcons = {new ImageIcon("UI/left_top.png"),new ImageIcon("UI/top_mid.png"),new ImageIcon("UI/right_top.png"),new ImageIcon("UI/left_bottom.png"),new ImageIcon("UI/bottom_mid.png"),new ImageIcon("UI/right_bottom.png")};
+            ImageIcon[] movementIcons = {new ImageIcon("UI\\movementImages\\left_top.png"),new ImageIcon("UI\\movementImages\\top_mid.png"),new ImageIcon("UI\\movementImages\\right_top.png"),new ImageIcon("UI\\movementImages\\left_bottom.png"),new ImageIcon("UI\\movementImages\\bottom_mid.png"),new ImageIcon("UI\\movementImages\\right_bottom.png")};
 
             
             int height = 450;
