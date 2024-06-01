@@ -13,6 +13,9 @@ import Cave.Cave;
 import net.miginfocom.swing.MigLayout;
 
 public class GamePanel extends JPanel{
+    //-----------------------PROPERTIES----------------------
+    private static final String identifier = "game";
+
     JMenuBar menuBar = new JMenuBar();
     JMenu menu = new JMenu("Menu");
     
@@ -63,6 +66,16 @@ public class GamePanel extends JPanel{
                 }
             }); 
             menu.add(startNewGame);
+
+            JMenuItem tutorial = new JMenuItem("Tutorial");
+            tutorial.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 10));
+            tutorial.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    crd.show(UI.getContentPane(), "tutorial");
+                    UI.setTutorialLastCard(identifier);
+                }
+            });
+            menu.add(tutorial);
 
             JMenuItem exitToTitle = new JMenuItem("Exit to Title Screen");
             exitToTitle.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 10));
