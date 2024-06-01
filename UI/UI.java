@@ -159,6 +159,10 @@ public class UI extends JFrame{
         return ctrl;
     }
 
+    public void setTutorialLastCard(String s){
+        tutorialPanel.setPreviouslyDisplayedCard(s);
+    }
+
     public static void changeFont(Component component, Font font ){
         component.setFont(font);
         if (component instanceof Container)
