@@ -24,6 +24,7 @@ public class UI extends JFrame{
     //////////////////////
     //// PROPERTIES  /////
     //////////////////////
+    //TODO shouldn't gamecontrol handle interactions with player? UI just needs the different values of the player (coins, score, name), not everything else
     Player p = new Player();
     GameControl ctrl = new GameControl();
 
@@ -144,7 +145,7 @@ public class UI extends JFrame{
         TriviaUI triviaUI = new TriviaUI(questions, this);
         System.out.println("You got " + triviaUI.getNumCorrectAnswers() + " questions right");
 
-        gamePanel.setGold("Gold Coins: "+p.getGoldCoins());
+        gamePanel.setGold("Gold Coins: "+ p.getGoldCoins());
     }
 
     public void purchaseSecrets(){
