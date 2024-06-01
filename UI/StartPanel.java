@@ -26,30 +26,33 @@ public class StartPanel extends JPanel{
         JLabel title = new JLabel("Hunt the Wumpus");
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,30));
+        title.setForeground(Color.BLACK);
         add(title, "center, pushx, wrap, h 700px");
 
         JButton startGame = new JButton("Start New Game");
         JButton howToPlay = new JButton("How to Play!");
+       
         startGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 crd.show(UI.getContentPane(), "game");
             }
         });
-
-        howToPlay.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                crd.show(UI.getContentPane(), "tutorial");
-            }
-        });
-
+        startGame.setForeground(Color.BLACK);
         startGame.setBorder(null);
         startGame.setContentAreaFilled(false);
         startGame.setFocusPainted(false);
         startGame.setHorizontalAlignment(JButton.CENTER);
         startGame.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
         add(startGame, "center, wrap, cell 0 1, h 30px");
-
-        // how to play
+        
+        
+        
+        howToPlay.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                    crd.show(UI.getContentPane(), "tutorial");
+            }
+        });
+        howToPlay.setForeground(Color.BLACK);
         howToPlay.setBorder(null);
         howToPlay.setContentAreaFilled(false);
         howToPlay.setFocusPainted(false);
