@@ -6,11 +6,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 
 import javax.swing.*;
-import javax.swing.text.Document;
 
 import net.miginfocom.swing.MigLayout;
 
