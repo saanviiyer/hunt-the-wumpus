@@ -83,10 +83,6 @@ public class UI extends JFrame{
         ctrl.movePlayer(dirs[direction]);
     }
 
-    public void displayNearbyRooms(){
-        System.out.println("showing nearby rooms");
-    }
-
     public void updateHighScore(){
         System.out.println("updating high score");
     }
