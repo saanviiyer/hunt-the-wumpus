@@ -68,7 +68,7 @@ public class GamePanel extends JPanel{
             exitToTitle.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 10));
             exitToTitle.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
-                    crd.show(UI.getContentPane(), "startScreen");
+                    crd.show(UI.getContentPane(), "start");
                 }
             }); 
             menu.add(exitToTitle);
