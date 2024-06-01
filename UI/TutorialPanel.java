@@ -44,7 +44,7 @@ public class TutorialPanel extends JPanel{
         tutorial.setBackground(new Color(0,0,0,0));
         JScrollPane tutorialScrollPane = new JScrollPane(tutorial);
         tutorialScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        add(tutorialScrollPane, "center, push, flowy");
+        add(tutorialScrollPane, "center, h 500px, w 1000px, push, flowy");
 
         JButton back = new JButton("Back");
         back.addActionListener(new ActionListener() {
