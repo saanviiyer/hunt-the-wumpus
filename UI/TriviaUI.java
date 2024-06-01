@@ -75,7 +75,7 @@ public class TriviaUI extends JDialog{
         {
             trivia.setSize(800, 800);
             trivia.setLayout(new MigLayout("","",""));
-            trivia.setBackground(new Color(255, 222, 89));
+            trivia.setBackground(new Color(37, 42, 138));
         }
 
         //add heading
@@ -84,7 +84,8 @@ public class TriviaUI extends JDialog{
             heading.setOpaque(true);
             heading.setHorizontalAlignment(JLabel.CENTER);
             heading.setFont(font);
-            heading.setBackground(new Color(0,191,99));
+            heading.setBackground(new Color(20, 64, 23));
+            heading.setForeground(Color.BLACK);
             trivia.add(heading, "north, align center, push, wrap, grow, h 100px");
         }
         
@@ -106,7 +107,7 @@ public class TriviaUI extends JDialog{
         {
             Font font = legendOfZeldaFont.deriveFont(Font.PLAIN, 30);
             question.setFont(font);
-            // question.setHorizontalAlignment(JLabel.CENTER);
+            question.setForeground(Color.BLACK);
             trivia.add(question, "wrap");
 
         
@@ -114,7 +115,8 @@ public class TriviaUI extends JDialog{
             for(int i = 0; i < 4; i++){
                 JRadioButton button = answerButtons[i];
                 answers.add(button);
-                button.setBackground(new Color(255, 222, 89));
+                button.setBackground(new Color(37, 42, 138));
+                button.setForeground(Color.BLACK);
                 button.setFont(font);
                 trivia.add(button, "wrap, push");
             }
@@ -141,13 +143,14 @@ public class TriviaUI extends JDialog{
         {
             endScreen.setSize(800,800);
             endScreen.setLayout(new MigLayout());
-            endScreen.setBackground(new Color(255, 222, 89));
+            endScreen.setBackground(new Color(37, 42, 138));
         }
 
         //add components to endscreen
         {
             endScreenText.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 20));
             endScreenText.setHorizontalAlignment(JLabel.CENTER);
+            endScreenText.setForeground(Color.BLACK);
             endScreen.add(endScreenText, "center, push, flowy");
 
             continueButton.addActionListener(new ActionListener() {
