@@ -80,46 +80,9 @@ public class UI extends JFrame{
                 legendOfZeldaFont = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\LoZ_Font\\the-legend-of-zelda-nes.ttf"));
             } catch(Exception e){}
 
-        //create start menu
-        {
-            startScreen.setSize(1920, 1080);
-            startScreen.setLayout(new MigLayout());
-            startScreen.setBackground(Color.GRAY);
-
-            JLabel title = new JLabel("Hunt the Wumpus");
-            title.setHorizontalAlignment(JLabel.CENTER);
-            title.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,30));
-            startScreen.add(title, "center, pushx, wrap, h 700px");
-
-            JButton startGame = new JButton("Start New Game");
-            JButton howToPlay = new JButton("How to Play!");
-            startGame.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    crd.show(getContentPane(), "game");
-                }
-            });
-
-            howToPlay.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    add(howToScreen);
-                }
-            });
-
-            startGame.setBorder(null);
-            startGame.setContentAreaFilled(false);
-            startGame.setFocusPainted(false);
-            startGame.setHorizontalAlignment(JButton.CENTER);
-            startGame.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
-            startScreen.add(startGame, "center, wrap, cell 0 1, h 30px");
-
-            // how to play
-            howToPlay.setBorder(null);
-            howToPlay.setContentAreaFilled(false);
-            howToPlay.setFocusPainted(false);
-            howToPlay.setHorizontalAlignment(JButton.CENTER);
-            howToPlay.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
-            startScreen.add(howToPlay, "center, cell 0 2, h 30px");
-        }
+        
+        
+        startScreen = new StartPanel(this, crd);
         startScreen.setVisible(true);
         add(startScreen,"startScreen");
 
@@ -128,148 +91,14 @@ public class UI extends JFrame{
             
             howToScreen.setSize(1920,1080);
             howToScreen.setVisible(true);
+            add(howToScreen, "tutorial");
         }
 
-
-
-        // Setting game panel behavior
-        {
-            game.setSize(1920,1080);
-            game.setLayout(new MigLayout(
-            "",
-            "[]0[]0[]",
-            "[]0[]0[]0"
-        ));
-
-
-        }  
+        game = new GamePanel(this, crd);
         
-        //add menu and menuitems to menubar
-        {
-            startNewGame.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 10));
-            startNewGame.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    startNewGame();
-                }
-            }); 
-            menu.add(startNewGame);
-
-            exit.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 10));
-            exit.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    crd.show(getContentPane(), "startScreen");
-                }
-            }); 
-            menu.add(exit);
-
-            exitToDesktop.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 10));
-            exitToDesktop.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    System.exit(0);
-                }
-            });
-            menu.add(exitToDesktop);
-
-            menuBar.setBackground(new Color(0, 0, 0, 0)); 
-            menuBar.setOpaque(true);
-            menuBar.setBorder(null);
-            menuBar.add(menu);
-        }
-
-        //adding labels
-        {
-            JPanel Panel = new JPanel();
-            Panel.setLayout(new GridLayout(1,0));
-            Panel.add(menuBar);
-            Panel.add(scoreLabel);
-            Panel.add(highScoreLabel);
-            Panel.add(goldCoinsLabel);
-            Panel.add(currentCaveLabel);
-            Panel.add(arrowLabel);
-            Panel.add(currentPlayerLabel);
-            Panel.setVisible(true);
-            game.add(Panel, "north");
-            
-        }
-
-        //adding movement buttons
-        {
-            ImageIcon[] movementIcons = {new ImageIcon("UI/left_top.png"),new ImageIcon("UI/top_mid.png"),new ImageIcon("UI/right_top.png"),new ImageIcon("UI/left_bottom.png"),new ImageIcon("UI/bottom_mid.png"),new ImageIcon("UI/right_bottom.png")};
-
-            
-            int height = 450;
-
-            for(int i = 0; i < 6; i++){
-                JButton cur = new JButton();
-                
-                //sets icon of buttons and make them not change when pressed
-                cur.setIcon(movementIcons[i]);
-                cur.setBorder(null);
-                cur.setContentAreaFilled(false);
-                cur.setFocusPainted(false);
-                cur.setBackground(Color.WHITE);
-
-                final int dir = i;
-                cur.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e){
-                        move(dir);
-                        displayHazards();
-                    }
-                });
-
-                
-                if(i == 2) game.add(cur, "wrap,grow, h " + height + "px," + "w " + height + "px");
-                else game.add(cur, "grow, h " + height + "px," + "w " + height + "px");
-            }
-        }
-
-        //adding purchasing, alerts, and shooting
-        {
-            
-            buyArrows.setBackground(Color.WHITE);
-            buyArrows.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    purchaseArrows();
-                }
-            });
-            game.add(buyArrows, "cell 3 0,flowy, w 500px, growy");
-            
-            buySecrets.setBackground(Color.WHITE);
-            buySecrets.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    purchaseSecrets();
-                }
-            });
-            game.add(buySecrets, "cell 3 0, w 500px, growy");
-
-            shoot.setBackground(Color.WHITE);
-            shoot.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    if(shoot.getText().equals("Shoot")) shoot.setText("Move");
-                    else shoot.setText("Shoot");
-                }
-            });
-            game.add(shoot, "cell 3 0, w 500px, growy");
-            
-            alerts.setBorder(BorderFactory.createLineBorder(Color.black));
-            alerts.setHorizontalAlignment(JLabel.CENTER);
-            game.add(alerts, "cell 3 0, w 500px, growy");
-
-        }
-
-        //add minimap
-        {
-            Cave cave = new Cave();
-            miniMap = cave.drawMiniMap(40);
-            miniMap.setMinimumSize(new Dimension(540,300));
-            game.add(miniMap, "cell 3 1, grow");
-            ctrl.setCave(cave);
-        }
-       
         //change font of game panel
-        {
-            changeFont(game, legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
-        }
+        changeFont(game, legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
+        
 
         game.setVisible(true);
         add(game, "game");
@@ -281,10 +110,6 @@ public class UI extends JFrame{
     //////////////////////
     //////// METHODS /////
     //////////////////////
-
-    public void startNewGame(){
-        System.out.println("starting new game");
-    }
 
     public void move(int direction){
         System.out.println("player moving to " + direction);
@@ -364,6 +189,10 @@ public class UI extends JFrame{
         alerts.setText(p.getSecret(r));
         p.decrementGoldCoins();
         goldCoinsLabel.setText("Gold Coins: " + p.getGoldCoins());
+    }
+
+    public GameControl getGameControl(){
+        return ctrl;
     }
 
     public static void changeFont (Component component, Font font ){
