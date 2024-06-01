@@ -26,38 +26,11 @@ public class UI extends JFrame{
     //////////////////////
     Player p = new Player();
     GameControl ctrl = new GameControl();
-    JMenuBar menuBar = new JMenuBar();
-    JMenu menu = new JMenu("Menu");
-    JMenuItem exit = new JMenuItem("Exit to Title Screen");
-    JMenuItem startNewGame = new JMenuItem("New Game");
-    JMenuItem exitToDesktop = new JMenuItem("Exit to Desktop");
 
-    JButton shoot = new JButton("Shoot");
-
-    JButton buyArrows = new JButton("Purchase Arrows");
-
-    JButton buySecrets = new JButton("Purchase Secrets");
-
-    int arrows = p.getArrows();
-    JLabel arrowLabel = new JLabel("Arrows: " + arrows);
-
-    int score = 0;
-    int highScore = 0;
-    JLabel scoreLabel = new JLabel("Score: " + score);
-    JLabel highScoreLabel = new JLabel("High Score: " + highScore);
-    JLabel goldCoinsLabel = new JLabel("Gold Coins: " + p.getGoldCoins());
-    JLabel currentPlayerLabel = new JLabel("Player: " + p.getName());
-    JLabel currentCaveLabel = new JLabel("Cave: ");
-
-
-    JPanel miniMap;
-
-    JLabel alerts = new JLabel("Alerts");
-
-    JPanel game = new JPanel();
-    JPanel startScreen = new JPanel();
-    JPanel howToScreen = new JPanel();
-    JPanel endscreen = new JPanel();
+    GamePanel gamePanel;
+    StartPanel startPanel;
+    JPanel howToScreen;
+    JPanel endscreen;
     CardLayout crd = new CardLayout();
 
     //////////////////////
@@ -81,27 +54,20 @@ public class UI extends JFrame{
             } catch(Exception e){}
 
         
-        
-        startScreen = new StartPanel(this, crd);
-        startScreen.setVisible(true);
-        add(startScreen,"startScreen");
+        startPanel = new StartPanel(this, crd);
+        startPanel.setVisible(true);
+        add(startPanel,"start");
 
-        // How to play screen
-        {
-            
-            howToScreen.setSize(1920,1080);
-            howToScreen.setVisible(true);
-            add(howToScreen, "tutorial");
-        }
+        //TODO add tutorial panel
 
-        game = new GamePanel(this, crd);
+        gamePanel = new GamePanel(this, crd);
         
-        //change font of game panel
-        changeFont(game, legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
+        //change font of gamePanel
+        changeFont(gamePanel, legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
         
 
-        game.setVisible(true);
-        add(game, "game");
+        gamePanel.setVisible(true);
+        add(gamePanel, "game");
 
         setResizable(false);
         setVisible(true);
@@ -127,13 +93,13 @@ public class UI extends JFrame{
 
     public void displayHazards(){
         System.out.println("Displaying hazards");
-        alerts.setText(ctrl.getHazards()[0]);
+        gamePanel.setAlerts(ctrl.getHazards());
     }
 
     public void purchaseArrows(){
         System.out.println("buy arrows");
         p.addArrows();
-        arrowLabel.setText("Arrows: " + p.getArrows());
+        gamePanel.setArrows("Arrows: " + p.getArrows());
         p.decrementGoldCoins();
 
         String[] answers = {"A","B","C","D"};
@@ -179,23 +145,23 @@ public class UI extends JFrame{
         TriviaUI triviaUI = new TriviaUI(questions, this);
         System.out.println("You got " + triviaUI.getNumCorrectAnswers() + " questions right");
 
-        goldCoinsLabel.setText("Gold Coins: "+p.getGoldCoins());
+        gamePanel.setGold("Gold Coins: "+p.getGoldCoins());
     }
 
     public void purchaseSecrets(){
         System.out.println("buy secrets");
         Random rand = new Random();
         int r = rand.nextInt(5);
-        alerts.setText(p.getSecret(r));
+        gamePanel.setAlerts(p.getSecret(r));
         p.decrementGoldCoins();
-        goldCoinsLabel.setText("Gold Coins: " + p.getGoldCoins());
+        gamePanel.setGold("Gold Coins: " + p.getGoldCoins());
     }
 
     public GameControl getGameControl(){
         return ctrl;
     }
 
-    public static void changeFont (Component component, Font font ){
+    public static void changeFont(Component component, Font font ){
         component.setFont(font);
         if (component instanceof Container)
         {
