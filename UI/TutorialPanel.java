@@ -28,6 +28,7 @@ public class TutorialPanel extends JPanel{
 
         setSize(1920,1080);
         setLayout(new MigLayout());
+        setBackground(Color.GRAY);
 
         //creates a textbox containing text from an html file
         JEditorPane tutorial = new JEditorPane();
@@ -41,7 +42,9 @@ public class TutorialPanel extends JPanel{
         tutorial.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
         tutorial.setEditable(false);
         tutorial.setBackground(new Color(0,0,0,0));
-        add(tutorial, "center, push, flowy");
+        JScrollPane tutorialScrollPane = new JScrollPane(tutorial);
+        tutorialScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        add(tutorialScrollPane, "center, push, flowy");
 
         JButton back = new JButton("Back");
         back.addActionListener(new ActionListener() {
