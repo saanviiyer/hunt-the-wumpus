@@ -29,7 +29,7 @@ public class UI extends JFrame{
 
     GamePanel gamePanel;
     StartPanel startPanel;
-    JPanel howToScreen;
+    TutorialPanel tutorialPanel;
     JPanel endscreen;
     CardLayout crd = new CardLayout();
 
@@ -65,9 +65,11 @@ public class UI extends JFrame{
         //change font of gamePanel
         changeFont(gamePanel, legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
         
-
         gamePanel.setVisible(true);
         add(gamePanel, "game");
+
+        tutorialPanel = new TutorialPanel(this, crd);
+        add(tutorialPanel, "tutorial");
 
         setResizable(false);
         setVisible(true);
