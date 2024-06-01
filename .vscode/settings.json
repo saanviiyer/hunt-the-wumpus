@@ -3,9 +3,6 @@
     "java.project.referencedLibraries": {
         "include": [
             "lib/**/*.jar"
-        ],
-        "exclude": [
-            "lib/miglayout-swing-11.3/miglayout-swing-11.3-javadoc.jar"
         ]
     },
     "java.project.sourcePaths": [""]
