@@ -12,6 +12,10 @@ import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
 
 public class StartPanel extends JPanel{
+    //-----------------------PROPERTIES----------------------
+    private static final String identifier = "start";
+
+    //-----------------------CONSTRUCTOR----------------------
     public StartPanel(UI UI, CardLayout crd){
         //creates new font to be derived
         Font legendOfZeldaFont = null;
@@ -50,6 +54,7 @@ public class StartPanel extends JPanel{
         howToPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                     crd.show(UI.getContentPane(), "tutorial");
+                    UI.setTutorialLastCard(identifier);
             }
         });
         howToPlay.setForeground(Color.BLACK);
@@ -61,4 +66,6 @@ public class StartPanel extends JPanel{
         add(howToPlay, "center, cell 0 2, h 30px");
         
     }
+
+    //-----------------------METHODS----------------------
 }
