@@ -102,6 +102,7 @@ public class UI extends JFrame{
 
         String[] answers = {"A","B","C","D"};
 
+        //TODO logic for getting the questions should be in the questions class - new method that returns an array of random questions
         // CHANGE TO BE ACTUAL LENGTH OF QUESTIONS FILE
         int q = 5;
 
