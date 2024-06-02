@@ -11,13 +11,10 @@ import java.util.Random;
 
 import javax.swing.*;
 
-import Cave.Cave;
 import GameControl.GameControl;
 import Player.Player;
 import Trivia.Question;
-import net.miginfocom.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.File;
 
 public class UI extends JFrame{
