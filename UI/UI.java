@@ -57,20 +57,17 @@ public class UI extends JFrame{
         
         startPanel = new StartPanel(this, crd);
         startPanel.setVisible(true);
-        add(startPanel,"start");
+        add(startPanel, StartPanel.IDENTIFIER);
 
-        //TODO add tutorial panel
 
         gamePanel = new GamePanel(this, crd);
-        
-        //change font of gamePanel
-        changeFont(gamePanel, legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
-        
+        changeFont(gamePanel, legendOfZeldaFont.deriveFont(Font.PLAIN, 15)); 
         gamePanel.setVisible(true);
-        add(gamePanel, "game");
+        add(gamePanel, GamePanel.IDENTIFIER);
 
         tutorialPanel = new TutorialPanel(this, crd);
-        add(tutorialPanel, "tutorial");
+        tutorialPanel.setVisible(true);
+        add(tutorialPanel, TutorialPanel.IDENTIFIER);
 
         setResizable(false);
         setVisible(true);
