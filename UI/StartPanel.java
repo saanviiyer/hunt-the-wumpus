@@ -34,8 +34,6 @@ public class StartPanel extends JPanel{
         add(title, "center, pushx, wrap, h 700px");
 
         JButton startGame = new JButton("Start New Game");
-        JButton howToPlay = new JButton("How to Play!");
-       
         startGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 crd.show(UI.getContentPane(), "game");
@@ -47,10 +45,10 @@ public class StartPanel extends JPanel{
         startGame.setFocusPainted(false);
         startGame.setHorizontalAlignment(JButton.CENTER);
         startGame.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
-        add(startGame, "center, wrap, cell 0 1, h 30px");
+        add(startGame, "center, wrap, h 30px");
         
         
-        
+        JButton howToPlay = new JButton("How to Play!");
         howToPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                     crd.show(UI.getContentPane(), "tutorial");
@@ -63,7 +61,21 @@ public class StartPanel extends JPanel{
         howToPlay.setFocusPainted(false);
         howToPlay.setHorizontalAlignment(JButton.CENTER);
         howToPlay.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
-        add(howToPlay, "center, cell 0 2, h 30px");
+        add(howToPlay, "center, h 30px, wrap");
+
+        JButton exit = new JButton("Exit");
+        exit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                    System.exit(0);
+            }
+        });
+        exit.setForeground(Color.BLACK);
+        exit.setBorder(null);
+        exit.setContentAreaFilled(false);
+        exit.setFocusPainted(false);
+        exit.setHorizontalAlignment(JButton.CENTER);
+        exit.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
+        add(exit, "center, h 30px");
         
     }
 
