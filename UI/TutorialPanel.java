@@ -40,7 +40,8 @@ public class TutorialPanel extends JPanel{
         tutorial.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
         tutorial.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
         tutorial.setEditable(false);
-        tutorial.setBackground(new Color(0,0,0,0));
+        tutorial.setFocusable(false);
+        tutorial.setOpaque(false);
         JScrollPane tutorialScrollPane = new JScrollPane(tutorial);
         tutorialScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         add(tutorialScrollPane, "center, h 500px, w 1000px, push, flowy");
