@@ -13,7 +13,7 @@ import net.miginfocom.swing.MigLayout;
 
 public class StartPanel extends JPanel{
     //-----------------------PROPERTIES----------------------
-    private static final String identifier = "start";
+    public static final String IDENTIFIER = "start";
 
     //-----------------------CONSTRUCTOR----------------------
     public StartPanel(UI UI, CardLayout crd){
@@ -52,7 +52,7 @@ public class StartPanel extends JPanel{
         howToPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                     crd.show(UI.getContentPane(), "tutorial");
-                    UI.setTutorialLastCard(identifier);
+                    UI.setTutorialLastCard(IDENTIFIER);
             }
         });
         howToPlay.setForeground(Color.BLACK);

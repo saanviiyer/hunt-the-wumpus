@@ -14,7 +14,7 @@ import net.miginfocom.swing.MigLayout;
 
 public class GamePanel extends JPanel{
     //-----------------------PROPERTIES----------------------
-    private static final String identifier = "game";
+    public static final String IDENTIFIER = "game";
 
     JMenuBar menuBar = new JMenuBar();
     JMenu menu = new JMenu("Menu");
@@ -72,7 +72,7 @@ public class GamePanel extends JPanel{
             tutorial.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     crd.show(UI.getContentPane(), "tutorial");
-                    UI.setTutorialLastCard(identifier);
+                    UI.setTutorialLastCard(IDENTIFIER);
                 }
             });
             menu.add(tutorial);

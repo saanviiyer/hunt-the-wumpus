@@ -14,6 +14,7 @@ import net.miginfocom.swing.MigLayout;
 
 public class TutorialPanel extends JPanel{
     //-----------------------PROPERTIES----------------------
+    public static final String IDENTIFIER = "tutorial";
     private String previouslyDisplayedCard;
 
     //-----------------------CONSTRUCTOR----------------------
