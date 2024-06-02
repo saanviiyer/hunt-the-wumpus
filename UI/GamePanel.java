@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.net.URL;
 
 import javax.swing.*;
 
@@ -31,7 +32,7 @@ public class GamePanel extends JPanel{
     JButton shoot = new JButton("Shoot");
     JButton buyArrows = new JButton("Purchase Arrows");
     JButton buySecrets = new JButton("Purchase Secrets");
-    JTextArea alerts = new JTextArea("alerts", 5, 0);
+    JEditorPane hazards = new JEditorPane();
 
     JPanel miniMap;
 
@@ -56,7 +57,7 @@ public class GamePanel extends JPanel{
 
         }  
         
-        //add menu and menuitems to menubar
+        //add menuitems to menu and menu to menubar
         {
             JMenuItem startNewGame = new JMenuItem("New Game");
             startNewGame.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 10));
@@ -176,11 +177,14 @@ public class GamePanel extends JPanel{
             });
             add(shoot, "cell 3 0, w 500px, h 112px, gapy 0");
             
-            alerts.setBorder(BorderFactory.createLineBorder(Color.black));
-            alerts.setFocusable(false);
+            hazards.setText("Hazards:");
+            hazards.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
+            hazards.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
+            hazards.setEditable(false);
+            hazards.setFocusable(false);
+            hazards.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            add(hazards, "cell 3 0, w 500px, h 112px, gapy 0");
             
-            add(alerts, "cell 3 0, w 500px, h 112px, gapy 0");
-
         }
 
         //add minimap
@@ -205,16 +209,16 @@ public class GamePanel extends JPanel{
     }
 
     public void setAlerts(String[] strings){
-        String print = "";
+        String print = "Hazards:\n";
         for(String s : strings){
             if(s != null) {
                 print += s + "\n";
             }
         }
-        alerts.setText(print);
+        hazards.setText(print);
     }
 
     public void setAlerts(String s){
-        alerts.setText(s);
+        hazards.setText(s);
     }
 }
