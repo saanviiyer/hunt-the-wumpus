@@ -104,7 +104,7 @@ public class GameControl {
 
         //TODO logic for getting the questions should be in the questions class - new method that returns an array of random questions
         // CHANGE TO BE ACTUAL LENGTH OF QUESTIONS FILE
-        int q = 5;
+        int q = 16;
 
         Random r = new Random();
         int a = r.nextInt(q);
