@@ -220,4 +220,8 @@ public class GamePanel extends JPanel{
     public void setAlerts(String s){
         hazards.setText(s);
     }
+
+    public String getShootOrMove(){
+        return shoot.getText();
+    }
 }
