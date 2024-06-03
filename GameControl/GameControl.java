@@ -61,14 +61,21 @@ public class GameControl {
                 this.cave.setPlayerPos((int)(Math.random() * 30));
             } else if (this.gl.atPit()){
                 // game over?
+                if (false) this.endGame();
             } else if (this.gl.atWumpus()){
                 // game over
+                this.endGame();
             }
         }
     }
+
+    public void endGame(){
+
+    }
+
     public void shoot(int dir){
         if (this.cave.shoot(dir, 1) == gl.getWumpusPos()){
-
+            this.endGame();
         }
     }
     public boolean checkWumpusNearby(Player player) {
