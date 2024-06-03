@@ -180,6 +180,7 @@ public class Cave {
         this.hexes[this.adj[loc.getPlayerPos()][i]].setColor(Hex.GREEN);
       this.hexes[loc.getPlayerPos()].setColor(Hex.RED);
     }
+
     // sets the player position. (Teleports)
     public void setPlayerPos(int id){
       this.wipe();
@@ -192,7 +193,6 @@ public class Cave {
       boolean b = false;
       this.wipe();
       if (this.isNextTo(id)) {loc.setPlayerPos(id); b = true;}
-      
       this.color();
       return b;
     }
@@ -263,10 +263,7 @@ public class Cave {
                 else if (id == loc.getPlayerPos()) this.hexes[id].setColor(MiniHex.RED);
                     this.hexes[id].addActionListener(new ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
-                        //System.out.println(getPaths(id));
                         goTo(id);
-                        //if (isNextTo(id)) loc.setPlayerPos(id);
-                        //System.out.println(shoot(0, RAND.nextInt(5)));
                     }
                 });
                 this.mini.add(this.hexes[id]);

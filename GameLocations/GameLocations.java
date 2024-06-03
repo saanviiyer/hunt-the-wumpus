@@ -114,24 +114,24 @@ public class GameLocations {
         playerPos = pos;
         //cave.goTo(pos);
         if (this.atBats()){
-            System.out.println("bats!");
+            System.out.println("GameLocations says: bats!");
             //ctrl.
         } else if (this.atPit()){
-            System.out.println("pit!");
+            System.out.println("GameLocations says: pit!");
         } else if (this.atWumpus()){
-            System.out.println("wumpus!");
+            System.out.println("GameLocations says: wumpus!");
         } else if (this.atShop()){
-            System.out.println("a shop!");
+            System.out.println("GameLocations says: a shop!");
         }
         if (fallenArrows.contains(pos)){
-            System.out.println("a dropped arrow!");
+            System.out.println("GameLocations says: a dropped arrow!");
         } 
         if (this.nextToBats()){
-            System.out.println("bats nearby");
+            System.out.println("GameLocations says: bats nearby");
         } else if (this.nextToPit()){
-            System.out.println("a pit is near");
+            System.out.println("GameLocations says: a pit is near");
         } else if (this.nextToWumpus()){
-            System.out.println("the wumpus is near");
+            System.out.println("GameLocations says: the wumpus is near");
         }
     }
 
