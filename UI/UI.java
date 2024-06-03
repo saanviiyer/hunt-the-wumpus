@@ -92,28 +92,43 @@ public class UI extends JFrame{
 
     public void purchaseArrows(){
         System.out.println("buy arrows");
-        p.addArrows();
-        gamePanel.setArrows("Arrows: " + p.getArrows());
+
         p.decrementGoldCoins();
+        gamePanel.setGold("Gold Coins: "+ p.getGoldCoins());
 
         Question[] questions = ctrl.runTrivia();
         TriviaUI triviaUI = new TriviaUI(questions, this);
-        System.out.println("You got " + triviaUI.getNumCorrectAnswers() + " questions right");
+        int numQCorrect = triviaUI.getNumCorrectAnswers();
+        System.out.println("You got " + numQCorrect + " questions right");
 
-        gamePanel.setGold("Gold Coins: "+ p.getGoldCoins());
+        if (numQCorrect >= 2) {
+            p.addArrows();
+            gamePanel.setArrows("Arrows: " + p.getArrows());
+        }
+
+
     }
 
     public void purchaseSecrets(){
         System.out.println("buy secrets");
 
+        p.decrementGoldCoins();
+        gamePanel.setGold("Gold Coins: " + p.getGoldCoins());
+
         Question[] questions = ctrl.runTrivia();
         TriviaUI triviaUI = new TriviaUI(questions, this);
 
-        Random rand = new Random();
-        int r = rand.nextInt(5);
-        gamePanel.setAlerts(p.getSecret(r));
-        p.decrementGoldCoins();
-        gamePanel.setGold("Gold Coins: " + p.getGoldCoins());
+        int numQCorrect = triviaUI.getNumCorrectAnswers();
+        System.out.println("You got " + numQCorrect + " questions right");
+
+        if (numQCorrect >= 2) {
+            Random rand = new Random();
+            int r = rand.nextInt(5);
+            gamePanel.setAlerts(p.getSecret(r));
+        }
+
+
+
     }
 
     public GameControl getGameControl(){
