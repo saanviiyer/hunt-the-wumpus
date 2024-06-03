@@ -13,7 +13,7 @@ import GameLocations.GameLocations;
 public class GameControl {
 
     // PROPERTIES
-    Player player = new Player();
+    Player player;
     GameLocations gl = new GameLocations();
     Cave cave;
     UI ui;
@@ -27,6 +27,9 @@ public class GameControl {
 //method
 
 // initialize board when game starts
+    public void setPlayer(Player p){
+        this.player = p;
+    }
     public void setCave(Cave c){
         this.cave = c;
     }
