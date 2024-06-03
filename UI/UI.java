@@ -28,7 +28,6 @@ public class UI extends JFrame{
     GamePanel gamePanel;
     StartPanel startPanel;
     TutorialPanel tutorialPanel;
-    JPanel endscreen;
     CardLayout crd = new CardLayout();
 
     //////////////////////
