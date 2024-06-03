@@ -16,6 +16,7 @@ public class GameControl {
     Player player = new Player();
     GameLocations gl = new GameLocations();
     Cave cave;
+    UI ui;
 
 // work with UI object to start the game and display the current room.
 
@@ -29,6 +30,9 @@ public class GameControl {
     public void setCave(Cave c){
         this.cave = c;
     }
+    public void setUI(UI u){
+        this.ui = u;
+    }
 
     public void initBoard() {
         System.out.println("Initializing board");
@@ -41,9 +45,20 @@ public class GameControl {
 
     public void movePlayer(int direction) {
         System.out.println("moving player in direction " + direction);
-        if (this.cave.move(direction)) this.player.incrementTurns();
+        if (this.cave.move(direction)) {
+            this.player.incrementTurns();
+            if (this.gl.atBats()){
+                this.cave.setPlayerPos((int)(Math.random() * 30));
+            } else if (this.gl.atPit()){
+                // game over?
+            } else if (this.gl.atWumpus()){
+                // game over
+            }
+        }
     }
+    public void shoot(int dir){
 
+    }
     public boolean checkWumpusNearby(Player player) {
         return false;
     }

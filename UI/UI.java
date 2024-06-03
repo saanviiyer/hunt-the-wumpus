@@ -35,6 +35,7 @@ public class UI extends JFrame{
     //// CONSTRUCTOR /////
     //////////////////////
     public UI(){
+        ctrl.setUI(this);
         //set frame behavior
         setTitle("Hunt the Wumpus");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
