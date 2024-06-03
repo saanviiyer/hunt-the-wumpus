@@ -13,7 +13,7 @@ import GameLocations.GameLocations;
 public class GameControl {
 
     // PROPERTIES
-    Player player = new Player();
+    Player player;
     GameLocations gl = new GameLocations();
     Cave cave;
     UI ui;
@@ -27,6 +27,9 @@ public class GameControl {
 //method
 
 // initialize board when game starts
+    public void setPlayer(Player p){
+        this.player = p;
+    }
     public void setCave(Cave c){
         this.cave = c;
     }
@@ -47,17 +50,33 @@ public class GameControl {
         System.out.println("moving player in direction " + direction);
         if (this.cave.move(direction)) {
             this.player.incrementTurns();
+            int n = this.gl.getFallenArrows();
+            for (int i = 0; i < n; i++) this.player.addArrows();
+            if (!this.gl.visited(this.gl.getPlayerPos())) {
+                this.player.addGoldCoins(); 
+                this.gl.setVisited(this.gl.getPlayerPos());
+            }
+            
             if (this.gl.atBats()){
                 this.cave.setPlayerPos((int)(Math.random() * 30));
             } else if (this.gl.atPit()){
                 // game over?
+                if (false) this.endGame();
             } else if (this.gl.atWumpus()){
                 // game over
+                this.endGame();
             }
         }
     }
-    public void shoot(int dir){
 
+    public void endGame(){
+
+    }
+
+    public void shoot(int dir){
+        if (this.cave.shoot(dir, 1) == gl.getWumpusPos()){
+            this.endGame();
+        }
     }
     public boolean checkWumpusNearby(Player player) {
         return false;

@@ -21,11 +21,11 @@ public class GameLocations {
     static int playerPos;
     static int[] pitPos;
     static int[] batPos;
-    static ArrayList<Integer> fallenArrows;
+    static int[] fallenArrows = new int[30];
     static int shopPos;
     static final Random RAND = new Random();
     static Set<Integer> taken = new HashSet<Integer>();
-
+    static boolean[] visited = new boolean[30];
     // CONSTRUCTOR
     public GameLocations() {
         if (batPos == null){        
@@ -53,8 +53,6 @@ public class GameLocations {
             batPos[1] = RAND.nextInt(0,30);
             while (taken.contains(batPos[1])) batPos[1] = RAND.nextInt(0,30);
             taken.add(batPos[1]);
-
-            fallenArrows = new ArrayList<Integer>();
 
             shopPos = RAND.nextInt(0,30);
             while (taken.contains(shopPos)) shopPos = RAND.nextInt(0,30);
@@ -110,12 +108,20 @@ public class GameLocations {
         return (playerPos == shopPos);
     }
 
+    public boolean visited(int id){
+        return visited[id];
+    }
+
+    public void setVisited(int id){
+        visited[id] = true;
+    }
+
     public void setPlayerPos(int pos) {
         playerPos = pos;
+        
         //cave.goTo(pos);
         if (this.atBats()){
             System.out.println("GameLocations says: bats!");
-            //ctrl.
         } else if (this.atPit()){
             System.out.println("GameLocations says: pit!");
         } else if (this.atWumpus()){
@@ -123,7 +129,7 @@ public class GameLocations {
         } else if (this.atShop()){
             System.out.println("GameLocations says: a shop!");
         }
-        if (fallenArrows.contains(pos)){
+        if (fallenArrows[pos] > 0){
             System.out.println("GameLocations says: a dropped arrow!");
         } 
         if (this.nextToBats()){
@@ -156,11 +162,12 @@ public class GameLocations {
         return shopPos;
     }
 
-    public ArrayList<Integer> getFallenArrows() {
-        return fallenArrows;
+    public int getFallenArrows() {
+        int a = fallenArrows[playerPos];
+        fallenArrows[playerPos] = 0;
+        return a;
     }
-    
     public void addFallenArrow(int id){
-        fallenArrows.add(id);
+        fallenArrows[id]++;
     }
 }
