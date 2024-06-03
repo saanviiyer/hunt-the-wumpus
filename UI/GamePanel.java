@@ -10,6 +10,7 @@ import java.io.File;
 import javax.swing.*;
 
 import Cave.Cave;
+import Trivia.Question;
 import net.miginfocom.swing.MigLayout;
 
 public class GamePanel extends JPanel{
@@ -162,7 +163,7 @@ public class GamePanel extends JPanel{
             buySecrets.setBackground(Color.WHITE);
             buySecrets.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
-                    UI.purchaseSecrets();
+                        UI.purchaseSecrets();
                 }
             });
             add(buySecrets, "cell 3 0, w 500px, h 112px, gapy 0");
