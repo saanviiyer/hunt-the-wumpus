@@ -28,9 +28,9 @@ public class TriviaUI extends JDialog{
 
     ButtonGroup answers = new ButtonGroup();
     int diameter = 75;
-    circlepanel[] indicators = {new circlepanel(diameter),new circlepanel(diameter),new circlepanel(diameter),new circlepanel(diameter),new circlepanel(diameter)};
+    circlepanel[] indicators;
 
-    JLabel question = new JLabel("Q1: blah blah blah");
+    JEditorPane question = new JEditorPane();
 
     JRadioButton[] answerButtons = {new JRadioButton(), new JRadioButton(), new JRadioButton(), new JRadioButton()};
 
@@ -91,12 +91,16 @@ public class TriviaUI extends JDialog{
         
         //add question indicators
         {
-            JPanel circles = new JPanel(new FlowLayout());
+            JPanel circles = new JPanel();
             circles.setLayout(new GridLayout(1,0));
 
-            for(circlepanel indicator : indicators){
-                indicator.setPreferredSize(new Dimension(75, 75));
-                circles.add(indicator);
+            indicators = new circlepanel[questions.length];
+
+            for(int i = 0; i < questions.length; i++){
+                indicators[i] = new circlepanel(75);
+                indicators[i].setPreferredSize(new Dimension(75, 75));
+                circles.add(indicators[i]);
+                            
             }
 
             circles.setBackground(Color.WHITE);
@@ -108,7 +112,10 @@ public class TriviaUI extends JDialog{
             Font font = legendOfZeldaFont.deriveFont(Font.PLAIN, 30);
             question.setFont(font);
             question.setForeground(Color.BLACK);
-            trivia.add(question, "wrap");
+            question.setEditable(false);
+            question.setFocusable(false);
+            question.setBackground(Color.BLUE);
+            trivia.add(question, "wrap, pushx, growx");
 
         
 
@@ -198,8 +205,8 @@ public class TriviaUI extends JDialog{
         }
             
         currentQuestion++;
-        if(currentQuestion >= 5) {
-            endScreenText.setText("You got " + numCorrectAnswers + "/5 answers correct.");
+        if(currentQuestion >= questions.length) {
+            endScreenText.setText("You got " + numCorrectAnswers + "/" + questions.length + " answers correct.");
             crd.next(getContentPane());
             return;
         } 
