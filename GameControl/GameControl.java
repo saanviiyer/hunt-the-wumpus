@@ -1,14 +1,21 @@
 // Saanvi Subramanian
 // Game Control
+package GameControl;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 // new change
 // Handles user input (except for High Score and Trivia), coordinates all the other parts of the game.
-package GameControl;
 import Player.*;
 import Trivia.*;
 import UI.*;
 
 import java.util.Random;
+import java.util.ArrayList;
 
 import Cave.*;
 import GameLocations.GameLocations;
@@ -114,7 +121,21 @@ public class GameControl {
         int e = r.nextInt(q);
 
         // ADD CODE TO READ QUESTIONS AND ANSWERS FROM A, B, C, D, E FOR THE FIVE QUESTIONS
-        
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("GameControl\\Trivia-Q.csv"));
+                    ArrayList<String> lines = new ArrayList<String>();
+        String line = null;
+        while ((line=reader.readLine()) != null) {
+            lines.add(line);
+        }
+        System.out.println(lines.get(0));
+        } catch (FileNotFoundException ex) {
+
+        } catch (IOException ex2) {
+            
+        }
+
+
         // aQ should be the question from the line number of a
         String aQ = "";
         String bQ = "";
