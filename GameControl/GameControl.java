@@ -24,7 +24,7 @@ public class GameControl {
 
     // PROPERTIES
     Player player;
-    GameLocations gl = new GameLocations();
+    GameLocations gl;
     Cave cave;
     UI ui;
 
@@ -42,6 +42,7 @@ public class GameControl {
     }
     public void setCave(Cave c){
         this.cave = c;
+        this.gl = c.getLoc();
     }
     public void setUI(UI u){
         this.ui = u;
@@ -68,8 +69,10 @@ public class GameControl {
             }
             
             if (this.gl.atBats()){
+                System.out.println("GameControl says: Bats");
                 this.cave.setPlayerPos((int)(Math.random() * 30));
             } else if (this.gl.atPit()){
+                System.out.println("GameControl says: Pit");
                 // game over?
                 if (false) this.endGame();
             } else if (this.gl.atWumpus()){
