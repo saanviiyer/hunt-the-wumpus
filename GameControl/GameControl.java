@@ -24,7 +24,7 @@ public class GameControl {
 
     // PROPERTIES
     Player player;
-    GameLocations gl = new GameLocations();
+    GameLocations gl;
     Cave cave;
     UI ui;
 
@@ -42,6 +42,7 @@ public class GameControl {
     }
     public void setCave(Cave c){
         this.cave = c;
+        this.gl = c.getLoc();
     }
     public void setUI(UI u){
         this.ui = u;
@@ -63,13 +64,15 @@ public class GameControl {
             int n = this.gl.getFallenArrows();
             for (int i = 0; i < n; i++) this.player.addArrows();
             if (!this.gl.visited(this.gl.getPlayerPos())) {
-                this.player.addGoldCoins(); 
+                // this.player.addGoldCoins(); 
                 this.gl.setVisited(this.gl.getPlayerPos());
             }
             
             if (this.gl.atBats()){
+                System.out.println("GameControl says: Bats");
                 this.cave.setPlayerPos((int)(Math.random() * 30));
             } else if (this.gl.atPit()){
+                System.out.println("GameControl says: Pit");
                 // game over?
                 if (false) this.endGame();
             } else if (this.gl.atWumpus()){
@@ -159,7 +162,7 @@ public class GameControl {
 
         // aA should be the ANSWER CHOICES from the line number of a
         String[] aA = {"","","",""};
-        String[] bA = {"","","",""};
+        String[] bA = {"B","C","",""};
         String[] cA = {"","","",""};
         String[] dA = {"","","",""};
         String[] eA = {"","","",""};

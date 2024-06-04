@@ -79,6 +79,8 @@ public class UI extends JFrame{
         System.out.println("player moving to " + direction);
         int[] dirs = {5,0,1,4,3,2};
         ctrl.movePlayer(dirs[direction]);
+        gamePanel.setGold("Gold Coins: "+ p.getGoldCoins());
+
     }
 
     public void updateHighScore(){
