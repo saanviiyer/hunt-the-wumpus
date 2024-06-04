@@ -36,7 +36,7 @@ public class StartPanel extends JPanel{
         JButton startGame = new JButton("Start New Game");
         startGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                crd.show(UI.getContentPane(), "game");
+                crd.show(UI.getContentPane(), PlayerNamePanel.IDENTIFIER);
             }
         });
         startGame.setForeground(Color.BLACK);
