@@ -121,9 +121,9 @@ public class GameControl {
         int e = r.nextInt(q);
 
         // ADD CODE TO READ QUESTIONS AND ANSWERS FROM A, B, C, D, E FOR THE FIVE QUESTIONS
+        ArrayList<String> lines = new ArrayList<String>();
         try {
             BufferedReader reader = new BufferedReader(new FileReader("GameControl\\Trivia-Q.csv"));
-            ArrayList<String> lines = new ArrayList<String>();
             String line = null;
         while ((line=reader.readLine()) != null) {
             lines.add(line);
@@ -137,11 +137,11 @@ public class GameControl {
 
 
         // aQ should be the question from the line number of a
-        String aQ = "";
-        String bQ = "";
-        String cQ = "";
-        String dQ = "";
-        String eQ = "";
+        String aQ = lines.get(a);
+        String bQ = lines.get(b);
+        String cQ = lines.get(c);
+        String dQ = lines.get(d);
+        String eQ = lines.get(e);
 
         // aA should be the ANSWER CHOICES from the line number of a
         String[] aA = {"","","",""};
@@ -157,7 +157,7 @@ public class GameControl {
         int dI = 0;
         int eI = 0;
 
-        Question[] questions = {new Question("What is the year0?",answers , 0),
+        Question[] questions = {new Question(aQ,answers , 0),
                                 new Question(bQ,bA, bI),
                                 new Question(cQ,cA ,cI),
                                 new Question(dQ,dA , dI),
