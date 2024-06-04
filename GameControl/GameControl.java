@@ -24,7 +24,7 @@ public class GameControl {
 
     // PROPERTIES
     Player player;
-    GameLocations gl = new GameLocations();
+    GameLocations gl;
     Cave cave;
     UI ui;
 
@@ -42,6 +42,7 @@ public class GameControl {
     }
     public void setCave(Cave c){
         this.cave = c;
+        this.gl = c.getLoc();
     }
     public void setUI(UI u){
         this.ui = u;
@@ -63,13 +64,15 @@ public class GameControl {
             int n = this.gl.getFallenArrows();
             for (int i = 0; i < n; i++) this.player.addArrows();
             if (!this.gl.visited(this.gl.getPlayerPos())) {
-                this.player.addGoldCoins(); 
+                // this.player.addGoldCoins(); 
                 this.gl.setVisited(this.gl.getPlayerPos());
             }
             
             if (this.gl.atBats()){
+                System.out.println("GameControl says: Bats");
                 this.cave.setPlayerPos((int)(Math.random() * 30));
             } else if (this.gl.atPit()){
+                System.out.println("GameControl says: Pit");
                 // game over?
                 if (false) this.endGame();
             } else if (this.gl.atWumpus()){
@@ -111,7 +114,7 @@ public class GameControl {
 
         //TODO logic for getting the questions should be in the questions class - new method that returns an array of random questions
         // CHANGE TO BE ACTUAL LENGTH OF QUESTIONS FILE
-        int q = 16;
+        int q = 15;
 
         Random r = new Random();
         int a = r.nextInt(q);
@@ -151,6 +154,11 @@ public class GameControl {
         String eQ = linesQ.get(e);
 
         String[] answersA = linesA.get(a).split(",");
+
+        for (String i : answersA) {
+            System.out.println(i);
+        }
+
         String[] answersB = linesA.get(b).split(",");
         String[] answersC = linesA.get(c).split(",");
         String[] answersD = linesA.get(d).split(",");
@@ -158,20 +166,27 @@ public class GameControl {
 
 
         // aA should be the ANSWER CHOICES from the line number of a
+
         String[] aA = {"","","",""};
         String[] bA = {"","","",""};
         String[] cA = {"","","",""};
         String[] dA = {"","","",""};
         String[] eA = {"","","",""};
+        populateAnswers(aA, answersA);
+        populateAnswers(bA, answersB);
+        populateAnswers(cA, answersC);
+        populateAnswers(dA, answersD);
+        populateAnswers(eA, answersE);
+        
 
         //aI should be the NUMBER at the end of answers from line a to indicate the correct answer
-        int aI = 0;
-        int bI = 0;
-        int cI = 0;
-        int dI = 0;
-        int eI = 0;
+        int aI = Integer.parseInt(answersA[4]);
+        int bI = Integer.parseInt(answersB[4]);
+        int cI = Integer.parseInt(answersC[4]);
+        int dI = Integer.parseInt(answersD[4]);
+        int eI = Integer.parseInt(answersE[4]);
 
-        Question[] questions = {new Question(aQ,answers , 0),
+        Question[] questions = {new Question(aQ,aA ,aI),
                                 new Question(bQ,bA, bI),
                                 new Question(cQ,cA ,cI),
                                 new Question(dQ,dA , dI),
@@ -182,6 +197,12 @@ public class GameControl {
     // hazards:
     // bottomless pit
     // super bat
+
+    public void populateAnswers(String[] original, String[] copyFrom) {
+        for (int i = 0; i < 4; i++) {
+            original[i] = copyFrom[i];
+        }
+    }
 
     public boolean checkBottomlessPit(Player player) {
         if (gl.atPit() == true) {

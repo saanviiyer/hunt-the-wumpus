@@ -83,6 +83,8 @@ public class UI extends JFrame{
         System.out.println("player moving to " + direction);
         int[] dirs = {5,0,1,4,3,2};
         ctrl.movePlayer(dirs[direction]);
+        gamePanel.setGold("Gold Coins: "+ p.getGoldCoins());
+
     }
 
     public void updateHighScore(){
@@ -106,7 +108,7 @@ public class UI extends JFrame{
         System.out.println("You got " + numQCorrect + " questions right");
 
         if (numQCorrect >= 2) {
-            p.addArrows();
+            // p.addArrows();
             gamePanel.setArrows("Arrows: " + p.getArrows());
         }
 

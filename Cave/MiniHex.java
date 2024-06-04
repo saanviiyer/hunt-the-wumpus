@@ -20,8 +20,9 @@ public class MiniHex extends JButton{
   static final Color RED = new Color(255,0,0);
   static final Color GREEN = new Color(0,255,0);
   static final Color BLUE = new Color(0,0,255);
+  static final Color GRAY = new Color(120,120,120);
   //static 
-
+  Color def = WHITE;
   static final int nRows = 5;
   static final int nCols = 6;
   int row;
@@ -58,7 +59,7 @@ public class MiniHex extends JButton{
     this(i/nCols, i%nCols);
   }
 
-
+  public void visit(){this.def = GRAY;}
   public double[][] getPoints(){
 
     double[][]points = new double[6][2];
@@ -86,7 +87,7 @@ public class MiniHex extends JButton{
 
   public void setColor(Color c){this.color = c; this.repaint();}
 
-  public void reset(){this.setColor(WHITE);}
+  public void reset(){this.setColor(this.def);}
 
   public static void setOffset(int x, int y){
     offsetX = x;
@@ -98,7 +99,8 @@ public class MiniHex extends JButton{
   @Override
   public void paintComponent(Graphics g){
     super.paintComponent(g);
-    g.setColor(this.color);
+    if (this.color == GREEN && this.def == GRAY) g.setColor(new Color(255,255,0));
+    else g.setColor(this.color);
     g.fillPolygon(this.hex);
 
     g.setColor(BLACK);
@@ -113,7 +115,9 @@ public class MiniHex extends JButton{
     
     
     g.setColor(new Color(0,0,0));
-    g.drawString(""+(this.row*6+this.col), (int) (LENGTH), (int)(LENGTH*1.732/2));
+    String s = ""+(this.row*6+this.col);
+    if (s.length() == 2) g.drawString(s, (int) (LENGTH-10), (int)(LENGTH*1.732/2+7));
+    else  g.drawString(s, (int) (LENGTH-6), (int)(LENGTH*1.732/2+7));
   }
 
   @Override

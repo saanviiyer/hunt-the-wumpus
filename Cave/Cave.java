@@ -24,7 +24,7 @@ public class Cave {
 
     static final String[] dirs = {"North", "Northeast", "Southeast", "South", "Southwest", "Northwest"};
     static Random RAND = new Random();
-    static GameLocations loc = new GameLocations();
+    GameLocations loc = new GameLocations();
     // rooms are represented by ints [0,29]
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
@@ -66,6 +66,14 @@ public class Cave {
         }
         this.openPaths(); // randomizes paths
     }
+
+    public void setLoc(GameLocations gl){
+      this.loc = gl;
+    }
+    public GameLocations getLoc(){return this.loc;}
+
+    public boolean[] getOpenings(){return this.paths[this.loc.getPlayerPos()];}
+
 
     // returns an array of adjacencies
     public int[] getAdj(int id){
@@ -193,6 +201,7 @@ public class Cave {
       this.wipe();
       if (this.isNextTo(id)) {
         loc.setPlayerPos(id);
+        this.hexes[id].visit();
         b = true;
       }
       this.color();
@@ -264,12 +273,13 @@ public class Cave {
                 else if (id == loc.getPlayerPos()) this.hexes[id].setColor(MiniHex.RED);
                     this.hexes[id].addActionListener(new ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
-                        goTo(id);
+                        //goTo(id);
                     }
                 });
                 this.mini.add(this.hexes[id]);
             }
         }
+        this.hexes[this.loc.getPlayerPos()].visit();
         return this.mini;
     }
 }
