@@ -195,6 +195,7 @@ public class Cave {
     public void setPlayerPos(int id){
       this.wipe();
       loc.setPlayerPos(id);
+      this.hexes[id].visit();
       this.color();
     }
 
