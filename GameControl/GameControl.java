@@ -123,8 +123,8 @@ public class GameControl {
         // ADD CODE TO READ QUESTIONS AND ANSWERS FROM A, B, C, D, E FOR THE FIVE QUESTIONS
         try {
             BufferedReader reader = new BufferedReader(new FileReader("GameControl\\Trivia-Q.csv"));
-                    ArrayList<String> lines = new ArrayList<String>();
-        String line = null;
+            ArrayList<String> lines = new ArrayList<String>();
+            String line = null;
         while ((line=reader.readLine()) != null) {
             lines.add(line);
         }
@@ -132,7 +132,7 @@ public class GameControl {
         } catch (FileNotFoundException ex) {
 
         } catch (IOException ex2) {
-            
+
         }
 
 
