@@ -114,7 +114,7 @@ public class GameControl {
 
         //TODO logic for getting the questions should be in the questions class - new method that returns an array of random questions
         // CHANGE TO BE ACTUAL LENGTH OF QUESTIONS FILE
-        int q = 10;
+        int q = 15;
 
         Random r = new Random();
         int a = r.nextInt(q);
@@ -199,7 +199,7 @@ public class GameControl {
     // super bat
 
     public void populateAnswers(String[] original, String[] copyFrom) {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             original[i] = copyFrom[i];
         }
     }
