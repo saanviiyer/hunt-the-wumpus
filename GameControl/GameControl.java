@@ -121,14 +121,21 @@ public class GameControl {
         int e = r.nextInt(q);
 
         // ADD CODE TO READ QUESTIONS AND ANSWERS FROM A, B, C, D, E FOR THE FIVE QUESTIONS
-        ArrayList<String> lines = new ArrayList<String>();
+        ArrayList<String> linesQ = new ArrayList<String>();
+        ArrayList<String> linesA = new ArrayList<String>();
         try {
             BufferedReader reader = new BufferedReader(new FileReader("GameControl\\Trivia-Q.csv"));
+            BufferedReader readerA = new BufferedReader(new FileReader("GameControl\\Trivia-A.csv"));
             String line = null;
         while ((line=reader.readLine()) != null) {
-            lines.add(line);
+            linesQ.add(line);
         }
-        System.out.println(lines.get(0));
+        while ((line=readerA.readLine()) != null) {
+            linesA.add(line);
+        }
+        System.out.println(linesQ.get(0));
+        System.out.println(linesA.get(0));
+
         } catch (FileNotFoundException ex) {
 
         } catch (IOException ex2) {
@@ -137,11 +144,18 @@ public class GameControl {
 
 
         // aQ should be the question from the line number of a
-        String aQ = lines.get(a);
-        String bQ = lines.get(b);
-        String cQ = lines.get(c);
-        String dQ = lines.get(d);
-        String eQ = lines.get(e);
+        String aQ = linesQ.get(a);
+        String bQ = linesQ.get(b);
+        String cQ = linesQ.get(c);
+        String dQ = linesQ.get(d);
+        String eQ = linesQ.get(e);
+
+        String[] answersA = linesA.get(a).split(",");
+        String[] answersB = linesA.get(b).split(",");
+        String[] answersC = linesA.get(c).split(",");
+        String[] answersD = linesA.get(d).split(",");
+        String[] answersE = linesA.get(e).split(",");
+
 
         // aA should be the ANSWER CHOICES from the line number of a
         String[] aA = {"","","",""};
