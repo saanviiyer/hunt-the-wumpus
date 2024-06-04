@@ -201,6 +201,7 @@ public class Cave {
       this.wipe();
       if (this.isNextTo(id)) {
         loc.setPlayerPos(id);
+        this.hexes[id].visit();
         b = true;
       }
       this.color();
@@ -278,6 +279,7 @@ public class Cave {
                 this.mini.add(this.hexes[id]);
             }
         }
+        this.hexes[this.loc.getPlayerPos()].visit();
         return this.mini;
     }
 }
