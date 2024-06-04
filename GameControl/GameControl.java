@@ -63,7 +63,7 @@ public class GameControl {
             int n = this.gl.getFallenArrows();
             for (int i = 0; i < n; i++) this.player.addArrows();
             if (!this.gl.visited(this.gl.getPlayerPos())) {
-                this.player.addGoldCoins(); 
+                // this.player.addGoldCoins(); 
                 this.gl.setVisited(this.gl.getPlayerPos());
             }
             
@@ -159,7 +159,7 @@ public class GameControl {
 
         // aA should be the ANSWER CHOICES from the line number of a
         String[] aA = {"","","",""};
-        String[] bA = {"","","",""};
+        String[] bA = {"B","C","",""};
         String[] cA = {"","","",""};
         String[] dA = {"","","",""};
         String[] eA = {"","","",""};

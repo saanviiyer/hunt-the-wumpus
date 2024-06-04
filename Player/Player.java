@@ -89,6 +89,7 @@ public class Player {
 
     public void incrementTurns() {
         turns++;
+        addGoldCoins();
     }
 
     public String getSecret(int int_rand) {
