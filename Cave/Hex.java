@@ -22,7 +22,8 @@ public class Hex extends JButton{
   static final Color RED = new Color(255,0,0);
   static final Color GREEN = new Color(0,255,0);
   static final Color BLUE = new Color(0,0,255);
-  //static 
+  static final Color GRAY = new Color(120,120,120);
+  static final Color YELLOW = new Color(255,255,0);
 
   static final int nRows = 3;
   static final int nCols = 3;
@@ -31,6 +32,7 @@ public class Hex extends JButton{
   double x, y;
   Color color = new Color(255,255,255);
   Polygon hex;
+  boolean visited;
 
   public Hex(int i){
     this.id = i;
@@ -98,11 +100,16 @@ public class Hex extends JButton{
   @Override
   public void paintComponent(Graphics g){
     super.paintComponent(g);
+    g.setColor(this.color);
+    g.fillPolygon(this.hex);
+
+
+
+
     setBounds((int)x, (int)y, (int)LENGTH*2, (int)(LENGTH*1.732+2));
     g.drawPolygon(this.hex);
     
-    g.setColor(this.color);
-    g.fillPolygon(this.hex);
+
     
     g.setColor(new Color(0,0,0));
     g.drawString(this.label, (int) (LENGTH), (int)(LENGTH*1.732/2));

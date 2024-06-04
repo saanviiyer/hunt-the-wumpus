@@ -21,7 +21,7 @@ public class MiniHex extends JButton{
   static final Color GREEN = new Color(0,255,0);
   static final Color BLUE = new Color(0,0,255);
   static final Color GRAY = new Color(120,120,120);
-  //static 
+  static final Color YELLOW = new Color(255,255,0);
   Color def = WHITE;
   static final int nRows = 5;
   static final int nCols = 6;
