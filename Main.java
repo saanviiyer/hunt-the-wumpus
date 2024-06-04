@@ -12,7 +12,6 @@ public class Main{
         System.out.println("Hello Bumpell");
 
         //Cave cave = new Cave();
-        GameControl curGame = new GameControl();
         HighScore highScore = new HighScore();
         Player player = new Player();
         Sound sound = new Sound();
@@ -21,7 +20,6 @@ public class Main{
         UI ui = new UI();
         
         Wumpus wumpus = new Wumpus();
-        curGame.initBoard();
 
         //cave.draw(ui);
 
