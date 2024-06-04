@@ -72,6 +72,9 @@ public class Cave {
     }
     public GameLocations getLoc(){return this.loc;}
 
+    public boolean[] getOpenings(){return this.paths[this.loc.getPlayerPos()];}
+
+
     // returns an array of adjacencies
     public int[] getAdj(int id){
         return this.adj[id];
