@@ -1,6 +1,5 @@
 // Saanvi Subramanian
 // Game Control
-package GameControl;
 
 import java.io.BufferedReader;
 import java.io.File;
