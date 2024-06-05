@@ -75,7 +75,7 @@ public class TriviaUI extends JDialog{
         {
             trivia.setSize(800, 800);
             trivia.setLayout(new MigLayout("","",""));
-            trivia.setBackground(new Color(37, 42, 138));
+            trivia.setBackground(Color.GRAY);
         }
 
         //add heading
@@ -84,12 +84,12 @@ public class TriviaUI extends JDialog{
             heading.setOpaque(true);
             heading.setHorizontalAlignment(JLabel.CENTER);
             heading.setFont(font);
-            heading.setBackground(new Color(20, 64, 23));
+            heading.setBackground(Color.GRAY);
             heading.setForeground(Color.BLACK);
             trivia.add(heading, "north, align center, push, wrap, grow, h 100px");
         }
         
-        //add question indicators
+        //add circle indicators
         {
             JPanel circles = new JPanel();
             circles.setLayout(new GridLayout(1,0));
@@ -114,7 +114,7 @@ public class TriviaUI extends JDialog{
             question.setForeground(Color.BLACK);
             question.setEditable(false);
             question.setFocusable(false);
-            question.setBackground(Color.BLUE);
+            question.setBackground(Color.GRAY);
             trivia.add(question, "wrap, pushx, growx");
 
         
@@ -122,7 +122,7 @@ public class TriviaUI extends JDialog{
             for(int i = 0; i < 4; i++){
                 JRadioButton button = answerButtons[i];
                 answers.add(button);
-                button.setBackground(new Color(37, 42, 138));
+                button.setBackground(Color.GRAY);
                 button.setForeground(Color.BLACK);
                 button.setFont(font);
                 trivia.add(button, "wrap, push");
@@ -150,7 +150,7 @@ public class TriviaUI extends JDialog{
         {
             endScreen.setSize(800,800);
             endScreen.setLayout(new MigLayout());
-            endScreen.setBackground(new Color(37, 42, 138));
+            endScreen.setBackground(Color.GRAY);
         }
 
         //add components to endscreen
