@@ -27,7 +27,7 @@ public class GamePanel extends JPanel{
     JLabel goldCoinsLabel = new JLabel("Gold Coins: 0");
     JLabel currentPlayerLabel = new JLabel("Player: ");
     JLabel currentCaveLabel = new JLabel("Cave: ");
-    JLabel arrowLabel = new JLabel("Arrows: 0");
+    JLabel arrowLabel = new JLabel("Arrows: 3");
 
     JButton shoot = new JButton("Shoot");
     JButton buyArrows = new JButton("Purchase Arrows");
