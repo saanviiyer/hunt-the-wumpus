@@ -1,6 +1,4 @@
 package HighScore;
-import Player.Player;
-import java.util.Comparator;
 
 public class Score {
     int coins;

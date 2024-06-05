@@ -104,9 +104,7 @@ public class GameControl{
             this.endGame(true);
         }
     }
-    public boolean checkWumpusNearby(Player player) {
-        return false;
-    }
+
 
     public void chooseCave() {
         System.out.println("choose cave");
@@ -310,36 +308,10 @@ public class GameControl{
         }
     }
 
-    public boolean checkBottomlessPit(Player player) {
-        if (gl.atPit() == true) {
-            // bottomless pit function
-            System.out.println("in a pit");
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 
-    public boolean checkSuperBat(Player player) {
-        if (gl.atBats() == true) {
-            System.out.println("in a bat");
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 
-    public void checkHazard(Player player) {
-        if (checkBottomlessPit(player)) {
-            startTrivia();
-        } 
-        
-        if (checkSuperBat(player)) {
-            // change player position to a random position
-        }
-    }
+
+
 
     // public void moveWumpus() {
     //     if player.shoot() {
