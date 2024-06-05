@@ -102,7 +102,7 @@ public class UI extends JFrame{
         p.decrementGoldCoins();
         gamePanel.setGold("Gold Coins: "+ p.getGoldCoins());
 
-        Question[] questions = ctrl.runTrivia();
+        Question[] questions = ctrl.runTrivia5();
         TriviaUI triviaUI = new TriviaUI(questions, this);
         int numQCorrect = triviaUI.getNumCorrectAnswers();
         System.out.println("You got " + numQCorrect + " questions right");
@@ -121,7 +121,7 @@ public class UI extends JFrame{
         p.decrementGoldCoins();
         gamePanel.setGold("Gold Coins: " + p.getGoldCoins());
 
-        Question[] questions = ctrl.runTrivia();
+        Question[] questions = ctrl.runTrivia5();
         TriviaUI triviaUI = new TriviaUI(questions, this);
 
         int numQCorrect = triviaUI.getNumCorrectAnswers();
