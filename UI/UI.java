@@ -115,7 +115,8 @@ public class UI extends JFrame{
         System.out.println("You got " + numQCorrect + " questions right");
 
         if (numQCorrect >= 2) {
-            // p.addArrows();
+            p.addArrows();
+            p.addArrows();
             gamePanel.setArrows("Arrows: " + p.getArrows());
         }
 
@@ -156,6 +157,14 @@ public class UI extends JFrame{
         if(won) endPanel.won(p);
         else endPanel.lost();
         crd.show(getContentPane(), EndPanel.IDENTIFIER);
+    }
+
+    public void setPlayerName(){
+        PlayerNameP.getPlayerName();
+    }
+
+    public void showGameEnd(){
+        crd.show(getContentPane(), "game over");
     }
 
     public static void changeFont(Component component, Font font ){

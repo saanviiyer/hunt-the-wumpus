@@ -16,25 +16,28 @@ import java.io.IOException;
 import Player.*;
 import Trivia.*;
 import UI.*;
-
+import HighScore.HighScore;
 import java.util.Random;
 import java.util.ArrayList;
-
 import Cave.*;
 import GameLocations.GameLocations;
 
-public class GameControl {
+public class GameControl{
 
     // PROPERTIES
     Player player;
     GameLocations gl;
     Cave cave;
     UI ui;
+    HighScore score;
 
 // work with UI object to start the game and display the current room.
 
     public GameControl() {
-
+        try{this.score = new HighScore();}
+        catch (Exception e){
+            System.out.println("Highscores are broken.");
+        }
     }
 
 //method
@@ -77,21 +80,22 @@ public class GameControl {
             } else if (this.gl.atPit()){
                 System.out.println("GameControl says: Pit");
                 // game over?
-                if (false) this.endGame();
+                if (false) this.endGame(false);
             } else if (this.gl.atWumpus()){
                 // game over
-                this.endGame();
+                this.endGame(false);
             }
         }
     }
 
-    public void endGame(){
+    public void endGame(boolean won){
 
     }
 
     public void shoot(int dir){
         if (this.cave.shoot(dir, 1) == gl.getWumpusPos()){
-            this.endGame();
+            player.addWumpusScore(50);
+            this.endGame(true);
         }
     }
     public boolean checkWumpusNearby(Player player) {
@@ -122,7 +126,14 @@ public class GameControl {
         Random r = new Random();
         int a = r.nextInt(q);
         int b = r.nextInt(q);
+        while (b == a) {
+          b = r.nextInt(q);  
+        }
         int c = r.nextInt(q);
+        while ((c == a) || (c == b)) {
+          c = r.nextInt(q);
+        }
+
 
         // ADD CODE TO READ QUESTIONS AND ANSWERS FROM A, B, C, D, E FOR THE FIVE QUESTIONS
         ArrayList<String> linesQ = new ArrayList<String>();
@@ -194,9 +205,23 @@ public class GameControl {
         Random r = new Random();
         int a = r.nextInt(q);
         int b = r.nextInt(q);
+        while (b == a) {
+          b = r.nextInt(q);  
+        }
         int c = r.nextInt(q);
+        while ((c == a) || (c == b)) {
+          c = r.nextInt(q);
+        }
         int d = r.nextInt(q);
+        while ((d == c) || (d == b) || (d == a )) {
+            d = r.nextInt(q);
+        }
         int e = r.nextInt(q);
+        while ((e == d) || (e == c) || (e == b) || (e == a))  {
+            e = r.nextInt(q);
+        }
+
+
 
         // ADD CODE TO READ QUESTIONS AND ANSWERS FROM A, B, C, D, E FOR THE FIVE QUESTIONS
         ArrayList<String> linesQ = new ArrayList<String>();
@@ -320,6 +345,14 @@ public class GameControl {
     // if player.wantsTrivia {
     //     UI.showTrivia;
     // }
+
+    public boolean gameEnded() {
+        if (player.getGoldCoins() <= -2) {
+            return true;
+        }
+        return false;
+    }
+
     public String[] getHazards(){
         String[] s = new String[3];
         if (this.gl.nextToBats()) s[0] = "I hear flapping";
