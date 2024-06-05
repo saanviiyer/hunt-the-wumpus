@@ -15,17 +15,17 @@ import java.util.HashSet;
 public class GameLocations {
 
     // PROPERTIES
-    static Cave cave;
-    static GameControl ctrl;
-    static int wumpusPos;
-    static int playerPos;
-    static int[] pitPos;
-    static int[] batPos;
-    static int[] fallenArrows = new int[30];
-    static int shopPos;
+    Cave cave;
+    GameControl ctrl;
+    int wumpusPos;
+    int playerPos;
+    int[] pitPos;
+    int[] batPos;
+    int[] fallenArrows = new int[30];
+    int shopPos;
     static final Random RAND = new Random();
-    static Set<Integer> taken = new HashSet<Integer>();
-    static boolean[] visited = new boolean[30];
+    Set<Integer> taken = new HashSet<Integer>();
+    boolean[] visited = new boolean[30];
     // CONSTRUCTOR
     public GameLocations() {
         if (batPos == null){        

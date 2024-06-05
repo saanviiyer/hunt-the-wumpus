@@ -24,7 +24,7 @@ public class Cave {
 
     static final String[] dirs = {"North", "Northeast", "Southeast", "South", "Southwest", "Northwest"};
     static Random RAND = new Random();
-    static GameLocations loc = new GameLocations();
+    GameLocations loc = new GameLocations();
     // rooms are represented by ints [0,29]
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
@@ -66,6 +66,14 @@ public class Cave {
         }
         this.openPaths(); // randomizes paths
     }
+
+    public void setLoc(GameLocations gl){
+      this.loc = gl;
+    }
+    public GameLocations getLoc(){return this.loc;}
+
+    public boolean[] getOpenings(){return this.paths[this.loc.getPlayerPos()];}
+
 
     // returns an array of adjacencies
     public int[] getAdj(int id){
@@ -170,20 +178,24 @@ public class Cave {
         this.current.changeLabel("" + loc.getPlayerPos());
         for (int i = 0; i < 6; i++){
           this.view[i].changeLabel(""+adj[loc.getPlayerPos()][i]);
-          if (this.paths[loc.getPlayerPos()][i]) this.view[i].setColor(Hex.GREEN);
+          if (this.paths[loc.getPlayerPos()][i]) {
+            if (loc.visited(this.adj[loc.getPlayerPos()][i])) this.view[i].setColor(Hex.YELLOW);
+            else this.view[i].setColor(Hex.GREEN);
+          }
           else this.view[i].reset();
         }
       }
       
       for(int i = 0; i < 6; i++) if (this.paths[loc.getPlayerPos()][i]) 
-        this.hexes[this.adj[loc.getPlayerPos()][i]].setColor(Hex.GREEN);
-      this.hexes[loc.getPlayerPos()].setColor(Hex.RED);
+        this.hexes[this.adj[loc.getPlayerPos()][i]].setColor(MiniHex.GREEN);
+      this.hexes[loc.getPlayerPos()].setColor(MiniHex.RED);
     }
 
     // sets the player position. (Teleports)
     public void setPlayerPos(int id){
       this.wipe();
       loc.setPlayerPos(id);
+      this.hexes[id].visit();
       this.color();
     }
 
@@ -193,6 +205,7 @@ public class Cave {
       this.wipe();
       if (this.isNextTo(id)) {
         loc.setPlayerPos(id);
+        this.hexes[id].visit();
         b = true;
       }
       this.color();
@@ -264,12 +277,13 @@ public class Cave {
                 else if (id == loc.getPlayerPos()) this.hexes[id].setColor(MiniHex.RED);
                     this.hexes[id].addActionListener(new ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
-                        goTo(id);
+                        //goTo(id);
                     }
                 });
                 this.mini.add(this.hexes[id]);
             }
         }
+        this.hexes[this.loc.getPlayerPos()].visit();
         return this.mini;
     }
 }
