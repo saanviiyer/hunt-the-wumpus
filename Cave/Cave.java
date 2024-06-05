@@ -178,20 +178,24 @@ public class Cave {
         this.current.changeLabel("" + loc.getPlayerPos());
         for (int i = 0; i < 6; i++){
           this.view[i].changeLabel(""+adj[loc.getPlayerPos()][i]);
-          if (this.paths[loc.getPlayerPos()][i]) this.view[i].setColor(Hex.GREEN);
+          if (this.paths[loc.getPlayerPos()][i]) {
+            if (loc.visited(this.adj[loc.getPlayerPos()][i])) this.view[i].setColor(Hex.YELLOW);
+            else this.view[i].setColor(Hex.GREEN);
+          }
           else this.view[i].reset();
         }
       }
       
       for(int i = 0; i < 6; i++) if (this.paths[loc.getPlayerPos()][i]) 
-        this.hexes[this.adj[loc.getPlayerPos()][i]].setColor(Hex.GREEN);
-      this.hexes[loc.getPlayerPos()].setColor(Hex.RED);
+        this.hexes[this.adj[loc.getPlayerPos()][i]].setColor(MiniHex.GREEN);
+      this.hexes[loc.getPlayerPos()].setColor(MiniHex.RED);
     }
 
     // sets the player position. (Teleports)
     public void setPlayerPos(int id){
       this.wipe();
       loc.setPlayerPos(id);
+      this.hexes[id].visit();
       this.color();
     }
 

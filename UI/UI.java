@@ -67,6 +67,10 @@ public class UI extends JFrame{
         tutorialPanel.setVisible(true);
         add(tutorialPanel, TutorialPanel.IDENTIFIER);
 
+        PlayerNamePanel PlayerNameP = new PlayerNamePanel(this, crd);
+        PlayerNameP.setVisible(true);
+        add(PlayerNameP, PlayerNamePanel.IDENTIFIER);
+
         setResizable(false);
         setVisible(true);
     }
