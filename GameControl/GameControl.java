@@ -1,5 +1,6 @@
 // Saanvi Subramanian
 // Game Control
+
 package GameControl;
 
 import java.io.BufferedReader;
@@ -10,6 +11,8 @@ import java.io.IOException;
 
 // new change
 // Handles user input (except for High Score and Trivia), coordinates all the other parts of the game.
+// UPDATE: trivia should now work correctly
+
 import Player.*;
 import Trivia.*;
 import UI.*;
