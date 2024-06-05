@@ -18,9 +18,8 @@ public class HighScore {
     private ArrayList<Score> scores = new ArrayList<Score>();
     private ScoreComparator comp = new ScoreComparator();
     public HighScore() throws FileNotFoundException{
-          System.out.println(new File("./HighScore/HighScores.csv").getAbsolutePath());
 
-        Scanner fin = new Scanner(new File("/HighScore/HighScores.csv"));
+        Scanner fin = new Scanner(new File("./HighScore/HighScores.csv"));
         //fin.useDelimiter(",|\n");
         while (fin.hasNextLine()){
             scores.add(new Score(fin.nextLine().split(",")));

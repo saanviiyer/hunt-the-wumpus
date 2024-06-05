@@ -28,30 +28,31 @@ public class GameLocations {
     boolean[] visited = new boolean[30];
     // CONSTRUCTOR
     public GameLocations() {
-        if (batPos == null){        
-            wumpusPos = RAND.nextInt(0,30);
-            taken.add(wumpusPos);
+        if (batPos == null){
 
             playerPos = RAND.nextInt(0,30);
-            while (taken.contains(playerPos)) playerPos = RAND.nextInt(0,30);
             taken.add(playerPos);
+
+            wumpusPos = RAND.nextInt(0,30);
+            while (taken.contains(wumpusPos) && !nextToWumpus()) wumpusPos = RAND.nextInt(0,30);
+            taken.add(wumpusPos);
 
             pitPos = new int[2];
             pitPos[0] = RAND.nextInt(0,30);
-            while (taken.contains(pitPos[0])) pitPos[0] = RAND.nextInt(0,30);
+            while (taken.contains(pitPos[0]) && !nextToPit()) pitPos[0] = RAND.nextInt(0,30);
             taken.add(pitPos[0]);
 
             pitPos[1] = RAND.nextInt(0,30);
-            while (taken.contains(pitPos[1])) pitPos[1] = RAND.nextInt(0,30);
+            while (taken.contains(pitPos[1]) && !nextToPit()) pitPos[1] = RAND.nextInt(0,30);
             taken.add(pitPos[1]);
 
             batPos = new int[2];
             batPos[0] = RAND.nextInt(0,30);
-            while (taken.contains(batPos[0])) batPos[0] = RAND.nextInt(0,30);
+            while (taken.contains(batPos[0]) && !nextToBats()) batPos[0] = RAND.nextInt(0,30);
             taken.add(batPos[0]);
 
             batPos[1] = RAND.nextInt(0,30);
-            while (taken.contains(batPos[1])) batPos[1] = RAND.nextInt(0,30);
+            while (taken.contains(batPos[1]) && !nextToBats()) batPos[1] = RAND.nextInt(0,30);
             taken.add(batPos[1]);
 
             shopPos = RAND.nextInt(0,30);
