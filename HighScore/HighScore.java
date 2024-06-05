@@ -1,35 +1,48 @@
 package HighScore;
-
+import java.util.ArrayList;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.util.Scanner;
+import java.io.File;  // Import the File class
+import java.io.FileNotFoundException;  // Import this class to handle errors
 // Yana Ivanov
 // Period 5
 // Feb 2024
 // High Score Management Object
 
-public class HighScore {
-    private int score;
-    private int correctStreak;
 
-    public HighScore() {
-        this.score = 0;    
+
+// order: coins wumpus turns arrows name
+
+public class HighScore {
+    private ArrayList<Score> scores = new ArrayList<Score>();
+
+    public HighScore() throws FileNotFoundException{
+        Scanner fin = new Scanner(new File("HighScores.csv"));
+        //fin.useDelimiter(",|\n");
+        while (fin.hasNextLine()){
+            scores.add(new Score(fin.nextLine().split(",")));
+        }
+        scores.sort(new ScoreComparator());
+        fin.close();
+    }
+
+    
+
+    public void save() throws IOException{
+        PrintWriter fout = new PrintWriter(new File("HighScores.csv"));
+        for (Score s: this.scores){
+            fout.write(s.toString());
+        }
+        fout.close();
     }
 
     public void resetScores() {
         System.out.println("Resetting scores.");
-        this.score = 0;
+        this.scores = new ArrayList<Score>();
     }
 
-    public void incrementScore(int incrementScoreBy) {
-        System.out.println("Incrementing score by " + incrementScoreBy); 
-        this.score += incrementScoreBy;
-    }
-    
-    public void decrementScore(int decrementScoreBy) {
-        System.out.println("Decrementing score by " + decrementScoreBy); 
-        this.score -= decrementScoreBy;
-        if (this.score  < 0) {
-            resetScores();
-        }
-    }
+
 
     // For Trivia, have public void streakScore() where
     // correctStreak is initialized and then incremented by Trivia 
@@ -38,8 +51,8 @@ public class HighScore {
     // If streak is broken in Trivia, it is set to 0 so score won't benefit
     // from method when user get question right again after
 
-    public int getScore() {
-        return this.score;
+    public ArrayList<Score> getScores() {
+        return this.scores;
     }
 
 }

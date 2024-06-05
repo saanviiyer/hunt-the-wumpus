@@ -16,25 +16,28 @@ import java.io.IOException;
 import Player.*;
 import Trivia.*;
 import UI.*;
-
+import HighScore.HighScore;
 import java.util.Random;
 import java.util.ArrayList;
-
 import Cave.*;
 import GameLocations.GameLocations;
 
-public class GameControl {
+public class GameControl{
 
     // PROPERTIES
     Player player;
     GameLocations gl;
     Cave cave;
     UI ui;
+    HighScore score;
 
 // work with UI object to start the game and display the current room.
 
     public GameControl() {
-
+        try{this.score = new HighScore();}
+        catch (Exception e){
+            System.out.println("Highscores are broken.");
+        }
     }
 
 //method
@@ -77,21 +80,21 @@ public class GameControl {
             } else if (this.gl.atPit()){
                 System.out.println("GameControl says: Pit");
                 // game over?
-                if (false) this.endGame();
+                if (false) this.endGame(false);
             } else if (this.gl.atWumpus()){
                 // game over
-                this.endGame();
+                this.endGame(false);
             }
         }
     }
 
-    public void endGame(){
+    public void endGame(boolean won){
 
     }
 
     public void shoot(int dir){
         if (this.cave.shoot(dir, 1) == gl.getWumpusPos()){
-            this.endGame();
+            this.endGame(true);
         }
     }
     public boolean checkWumpusNearby(Player player) {
