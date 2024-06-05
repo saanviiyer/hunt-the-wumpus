@@ -1,6 +1,8 @@
 // Saanvi Subramanian
 // Game Control
 
+package GameControl;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,7 +13,6 @@ import java.io.IOException;
 // Handles user input (except for High Score and Trivia), coordinates all the other parts of the game.
 // UPDATE: trivia should now work correctly
 
-package GameControl;
 import Player.*;
 import Trivia.*;
 import UI.*;
