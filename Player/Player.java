@@ -31,6 +31,7 @@ public class Player {
     private int arrows;
     private int goldCoins;
     private int turns;
+    private int wumpusScore;
     int wumpusPos;
     int playerPos;
     int[] pitPos;
@@ -43,7 +44,6 @@ public class Player {
         this.arrows = 3; // Initial number of arrows
         this.goldCoins = 0;
         this.turns = 0;
-        this.name++;
     }
 
 // METHODS ------------------------------------------------------------------------------------
@@ -102,4 +102,15 @@ public class Player {
         return secret[int_rand];
     }
 
+    public int getWumpusScore() {
+        return wumpusScore;
+    }
+
+    public void addWumpusScore(int w) {
+        wumpusScore += w;
+    }
+
+    public int calculateScore() {
+        return (100 - getTurns() + getGoldCoins() * (5*getArrows()) + getWumpusScore());
+    }
 }
