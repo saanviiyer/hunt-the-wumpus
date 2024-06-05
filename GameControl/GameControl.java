@@ -64,7 +64,7 @@ public class GameControl {
             int n = this.gl.getFallenArrows();
             for (int i = 0; i < n; i++) this.player.addArrows();
             if (!this.gl.visited(this.gl.getPlayerPos())) {
-                // this.player.addGoldCoins(); 
+                this.player.addGoldCoins(); 
                 this.gl.setVisited(this.gl.getPlayerPos());
             }
             
