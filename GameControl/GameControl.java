@@ -341,6 +341,14 @@ public class GameControl {
     // if player.wantsTrivia {
     //     UI.showTrivia;
     // }
+
+    public boolean gameEnded() {
+        if (player.getGoldCoins() <= -2) {
+            return true;
+        }
+        return false;
+    }
+
     public String[] getHazards(){
         String[] s = new String[3];
         if (this.gl.nextToBats()) s[0] = "I hear flapping";
