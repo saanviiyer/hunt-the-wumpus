@@ -145,6 +145,10 @@ public class UI extends JFrame{
         tutorialPanel.setPreviouslyDisplayedCard(s);
     }
 
+    public void setPlayerName(){
+        PlayerNamePanel.getPlayerName();
+    }
+
     public void showGameEnd(){
         crd.show(getContentPane(), "game over");
     }
