@@ -98,6 +98,7 @@ public class GameControl{
 
     public void shoot(int dir){
         if (this.cave.shoot(dir, 1) == gl.getWumpusPos()){
+            player.addWumpusScore(50);
             this.endGame(true);
         }
     }
