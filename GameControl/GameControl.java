@@ -122,7 +122,14 @@ public class GameControl {
         Random r = new Random();
         int a = r.nextInt(q);
         int b = r.nextInt(q);
+        while (b == a) {
+          b = r.nextInt(q);  
+        }
         int c = r.nextInt(q);
+        while ((c == a) || (c == b)) {
+          c = r.nextInt(q);
+        }
+
 
         // ADD CODE TO READ QUESTIONS AND ANSWERS FROM A, B, C, D, E FOR THE FIVE QUESTIONS
         ArrayList<String> linesQ = new ArrayList<String>();
@@ -194,9 +201,23 @@ public class GameControl {
         Random r = new Random();
         int a = r.nextInt(q);
         int b = r.nextInt(q);
+        while (b == a) {
+          b = r.nextInt(q);  
+        }
         int c = r.nextInt(q);
+        while ((c == a) || (c == b)) {
+          c = r.nextInt(q);
+        }
         int d = r.nextInt(q);
+        while ((d == c) || (d == b) || (d == a )) {
+            d = r.nextInt(q);
+        }
         int e = r.nextInt(q);
+        while ((e == d) || (e == c) || (e == b) || (e == a))  {
+            e = r.nextInt(q);
+        }
+
+
 
         // ADD CODE TO READ QUESTIONS AND ANSWERS FROM A, B, C, D, E FOR THE FIVE QUESTIONS
         ArrayList<String> linesQ = new ArrayList<String>();
