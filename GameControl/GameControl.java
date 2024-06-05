@@ -1,5 +1,6 @@
 // Saanvi Subramanian
 // Game Control
+
 package GameControl;
 
 import java.io.BufferedReader;
@@ -10,6 +11,8 @@ import java.io.IOException;
 
 // new change
 // Handles user input (except for High Score and Trivia), coordinates all the other parts of the game.
+// UPDATE: trivia should now work correctly
+
 import Player.*;
 import Trivia.*;
 import UI.*;
@@ -77,21 +80,21 @@ public class GameControl{
             } else if (this.gl.atPit()){
                 System.out.println("GameControl says: Pit");
                 // game over?
-                if (false) this.endGame();
+                if (false) this.endGame(false);
             } else if (this.gl.atWumpus()){
                 // game over
-                this.endGame();
+                this.endGame(false);
             }
         }
     }
 
-    public void endGame(){
+    public void endGame(boolean won){
 
     }
 
     public void shoot(int dir){
         if (this.cave.shoot(dir, 1) == gl.getWumpusPos()){
-            this.endGame();
+            this.endGame(true);
         }
     }
     public boolean checkWumpusNearby(Player player) {
@@ -112,7 +115,7 @@ public class GameControl{
         System.out.println("playing sound");
     }
 
-    public Question[] runTrivia() {
+    public Question[] runTrivia3() {
         String[] answers = {"A","B","C","D"};
 
         //TODO logic for getting the questions should be in the questions class - new method that returns an array of random questions
@@ -122,9 +125,102 @@ public class GameControl{
         Random r = new Random();
         int a = r.nextInt(q);
         int b = r.nextInt(q);
+        while (b == a) {
+          b = r.nextInt(q);  
+        }
         int c = r.nextInt(q);
+        while ((c == a) || (c == b)) {
+          c = r.nextInt(q);
+        }
+
+
+        // ADD CODE TO READ QUESTIONS AND ANSWERS FROM A, B, C, D, E FOR THE FIVE QUESTIONS
+        ArrayList<String> linesQ = new ArrayList<String>();
+        ArrayList<String> linesA = new ArrayList<String>();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("GameControl\\Trivia-Q.csv"));
+            BufferedReader readerA = new BufferedReader(new FileReader("GameControl\\Trivia-A.csv"));
+            String line = null;
+        while ((line=reader.readLine()) != null) {
+            linesQ.add(line);
+        }
+        while ((line=readerA.readLine()) != null) {
+            linesA.add(line);
+        }
+        System.out.println(linesQ.get(0));
+        System.out.println(linesA.get(0));
+
+        } catch (FileNotFoundException ex) {
+
+        } catch (IOException ex2) {
+
+        }
+
+
+        // aQ should be the question from the line number of a
+        String aQ = linesQ.get(a);
+        String bQ = linesQ.get(b);
+        String cQ = linesQ.get(c);
+
+        String[] answersA = linesA.get(a).split(",");
+
+        for (String i : answersA) {
+            System.out.println(i);
+        }
+
+        String[] answersB = linesA.get(b).split(",");
+        String[] answersC = linesA.get(c).split(",");
+
+
+        // aA should be the ANSWER CHOICES from the line number of a
+
+        String[] aA = {"","","",""};
+        String[] bA = {"","","",""};
+        String[] cA = {"","","",""};
+        populateAnswers(aA, answersA);
+        populateAnswers(bA, answersB);
+        populateAnswers(cA, answersC);
+        
+
+        //aI should be the NUMBER at the end of answers from line a to indicate the correct answer
+        int aI = Integer.parseInt(answersA[4]);
+        int bI = Integer.parseInt(answersB[4]);
+        int cI = Integer.parseInt(answersC[4]);
+
+        Question[] questions = {new Question(aQ,aA ,aI),
+                                new Question(bQ,bA, bI),
+                                new Question(cQ,cA ,cI)};
+        return questions;
+    }
+
+
+    public Question[] runTrivia5() {
+        String[] answers = {"A","B","C","D"};
+
+        //TODO logic for getting the questions should be in the questions class - new method that returns an array of random questions
+        // CHANGE TO BE ACTUAL LENGTH OF QUESTIONS FILE
+        int q = 15;
+
+        Random r = new Random();
+        int a = r.nextInt(q);
+        int b = r.nextInt(q);
+        while (b == a) {
+          b = r.nextInt(q);  
+        }
+        int c = r.nextInt(q);
+        while ((c == a) || (c == b)) {
+          c = r.nextInt(q);
+        }
         int d = r.nextInt(q);
+        while ((d == c) || (d == b) || (d == a )) {
+            d = r.nextInt(q);
+        }
         int e = r.nextInt(q);
+        while ((e == d) || (e == c) || (e == b) || (e == a))  {
+            e = r.nextInt(q);
+        }
+
+
 
         // ADD CODE TO READ QUESTIONS AND ANSWERS FROM A, B, C, D, E FOR THE FIVE QUESTIONS
         ArrayList<String> linesQ = new ArrayList<String>();
@@ -248,6 +344,14 @@ public class GameControl{
     // if player.wantsTrivia {
     //     UI.showTrivia;
     // }
+
+    public boolean gameEnded() {
+        if (player.getGoldCoins() <= -2) {
+            return true;
+        }
+        return false;
+    }
+
     public String[] getHazards(){
         String[] s = new String[3];
         if (this.gl.nextToBats()) s[0] = "I hear flapping";

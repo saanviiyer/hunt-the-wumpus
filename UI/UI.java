@@ -102,13 +102,13 @@ public class UI extends JFrame{
         p.decrementGoldCoins();
         gamePanel.setGold("Gold Coins: "+ p.getGoldCoins());
 
-        Question[] questions = ctrl.runTrivia();
+        Question[] questions = ctrl.runTrivia5();
         TriviaUI triviaUI = new TriviaUI(questions, this);
         int numQCorrect = triviaUI.getNumCorrectAnswers();
         System.out.println("You got " + numQCorrect + " questions right");
 
         if (numQCorrect >= 2) {
-            // p.addArrows();
+            p.addArrows();
             gamePanel.setArrows("Arrows: " + p.getArrows());
         }
 
@@ -121,7 +121,7 @@ public class UI extends JFrame{
         p.decrementGoldCoins();
         gamePanel.setGold("Gold Coins: " + p.getGoldCoins());
 
-        Question[] questions = ctrl.runTrivia();
+        Question[] questions = ctrl.runTrivia5();
         TriviaUI triviaUI = new TriviaUI(questions, this);
 
         int numQCorrect = triviaUI.getNumCorrectAnswers();
@@ -143,6 +143,14 @@ public class UI extends JFrame{
 
     public void setTutorialLastCard(String s){
         tutorialPanel.setPreviouslyDisplayedCard(s);
+    }
+
+    public void setPlayerName(){
+        PlayerNamePanel.getPlayerName();
+    }
+
+    public void showGameEnd(){
+        crd.show(getContentPane(), "game over");
     }
 
     public static void changeFont(Component component, Font font ){
