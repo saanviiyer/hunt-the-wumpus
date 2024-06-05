@@ -77,21 +77,21 @@ public class GameControl {
             } else if (this.gl.atPit()){
                 System.out.println("GameControl says: Pit");
                 // game over?
-                if (false) this.endGame();
+                if (false) this.endGame(false);
             } else if (this.gl.atWumpus()){
                 // game over
-                this.endGame();
+                this.endGame(false);
             }
         }
     }
 
-    public void endGame(){
+    public void endGame(boolean won){
 
     }
 
     public void shoot(int dir){
         if (this.cave.shoot(dir, 1) == gl.getWumpusPos()){
-            this.endGame();
+            this.endGame(true);
         }
     }
     public boolean checkWumpusNearby(Player player) {
