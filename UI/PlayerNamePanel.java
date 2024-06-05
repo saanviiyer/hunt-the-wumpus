@@ -50,7 +50,6 @@ public class PlayerNamePanel extends JPanel{
 
         submit.setForeground(Color.BLACK);
         submit.setBackground(Color.WHITE);
-//        submit.setContentAreaFilled(false);
         submit.setFocusPainted(false);
         submit.setHorizontalAlignment(JButton.CENTER);
         submit.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
