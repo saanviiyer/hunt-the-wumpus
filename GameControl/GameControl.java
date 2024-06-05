@@ -167,8 +167,6 @@ public class GameControl {
         String[] aA = {"","","",""};
         String[] bA = {"","","",""};
         String[] cA = {"","","",""};
-        String[] dA = {"","","",""};
-        String[] eA = {"","","",""};
         populateAnswers(aA, answersA);
         populateAnswers(bA, answersB);
         populateAnswers(cA, answersC);
