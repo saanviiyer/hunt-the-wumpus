@@ -21,13 +21,14 @@ public class UI extends JFrame{
     //////////////////////
     //// PROPERTIES  /////
     //////////////////////
-    //TODO shouldn't gamecontrol handle interactions with player? UI just needs the different values of the player (coins, score, name), not everything else
     Player p = new Player();
     GameControl ctrl = new GameControl();
 
     GamePanel gamePanel;
     StartPanel startPanel;
     TutorialPanel tutorialPanel;
+    EndPanel endPanel;
+    PlayerNamePanel PlayerNameP;
     CardLayout crd = new CardLayout();
 
     //////////////////////
@@ -67,9 +68,15 @@ public class UI extends JFrame{
         tutorialPanel.setVisible(true);
         add(tutorialPanel, TutorialPanel.IDENTIFIER);
 
-        PlayerNamePanel PlayerNameP = new PlayerNamePanel(this, crd);
+        PlayerNameP = new PlayerNamePanel(this, crd);
         PlayerNameP.setVisible(true);
         add(PlayerNameP, PlayerNamePanel.IDENTIFIER);
+
+        endPanel = new EndPanel(this, crd);
+        endPanel.setVisible(true);
+        add(endPanel, EndPanel.IDENTIFIER);
+        
+        showGameEnd(true);
 
         setResizable(false);
         setVisible(true);
@@ -145,8 +152,10 @@ public class UI extends JFrame{
         tutorialPanel.setPreviouslyDisplayedCard(s);
     }
 
-    public void showGameEnd(){
-        crd.show(getContentPane(), "game over");
+    public void showGameEnd(boolean won){
+        if(won) endPanel.won(p);
+        else endPanel.lost();
+        crd.show(getContentPane(), EndPanel.IDENTIFIER);
     }
 
     public static void changeFont(Component component, Font font ){
