@@ -145,6 +145,10 @@ public class UI extends JFrame{
         tutorialPanel.setPreviouslyDisplayedCard(s);
     }
 
+    public void showGameEnd(){
+        crd.show(getContentPane(), "game over");
+    }
+
     public static void changeFont(Component component, Font font ){
         component.setFont(font);
         if (component instanceof Container)
