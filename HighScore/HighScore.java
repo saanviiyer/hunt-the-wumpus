@@ -16,14 +16,14 @@ import java.io.FileNotFoundException;  // Import this class to handle errors
 
 public class HighScore {
     private ArrayList<Score> scores = new ArrayList<Score>();
-
+    private ScoreComparator comp = new ScoreComparator();
     public HighScore() throws FileNotFoundException{
         Scanner fin = new Scanner(new File("HighScores.csv"));
         //fin.useDelimiter(",|\n");
         while (fin.hasNextLine()){
             scores.add(new Score(fin.nextLine().split(",")));
         }
-        scores.sort(new ScoreComparator());
+        scores.sort(comp);
         fin.close();
     }
 
@@ -31,10 +31,24 @@ public class HighScore {
 
     public void save() throws IOException{
         PrintWriter fout = new PrintWriter(new File("HighScores.csv"));
-        for (Score s: this.scores){
-            fout.write(s.toString());
+        for (int i = 0; i < Math.min(10,this.scores.size()); i++){
+            fout.write(this.scores.get(i).toString());
         }
         fout.close();
+    }
+
+    public void add(Score s){
+        int i = this.find(s.getPlayer());
+        if (i != -1 && this.comp.compare(s, this.scores.get(i)) > 0) this.scores.set(i, s);
+        else if (i == -1) this.scores.add(s);
+        this.scores.sort(this.comp);
+    }
+
+    public int find(String name){
+        for (int i = 0; i < this.scores.size(); i++){
+            if (this.scores.get(i).getPlayer().equals(name)) return i;
+        }
+        return -1;
     }
 
     public void resetScores() {

@@ -14,6 +14,7 @@ import java.io.IOException;
 // UPDATE: trivia should now work correctly
 
 import Player.*;
+import HighScore.*;
 import Trivia.*;
 import UI.*;
 import HighScore.HighScore;
@@ -90,6 +91,9 @@ public class GameControl{
 
     public void endGame(boolean won){
 
+        Score s = new Score(this.player.getGoldCoins(), Boolean.compare(won, false), this.player.getTurns(), this.player.getArrows(), this.player.getName());
+        System.out.println(s);
+        this.score.add(s);
     }
 
     public void shoot(int dir){

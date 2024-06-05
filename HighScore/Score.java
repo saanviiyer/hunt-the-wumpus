@@ -1,5 +1,5 @@
 package HighScore;
-
+import Player.Player;
 import java.util.Comparator;
 
 public class Score {
@@ -56,12 +56,17 @@ public class Score {
         this(s[0], s[1], s[2], s[3], s[4]);
     }
 
-    public Score(String c, String w, String t, String a, String p){
-        this.coins = Integer.parseInt(c);
-        this.wumpus = Integer.parseInt(w);
-        this.turns = Integer.parseInt(t);
-        this.arrows = Integer.parseInt(a);
+    public Score(int c, int w, int t, int a, String p ){
+        this.coins = c;
+        this.wumpus = w;
+        this.turns = t;
+        this.arrows=a;
         this.player = p;
+    }
+
+    public Score(String c, String w, String t, String a, String p){
+        this(Integer.parseInt(c),Integer.parseInt(w),Integer.parseInt(t),Integer.parseInt(a),p);
+
     }
 
     public int value(){
