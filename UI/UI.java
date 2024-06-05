@@ -108,7 +108,7 @@ public class UI extends JFrame{
         System.out.println("You got " + numQCorrect + " questions right");
 
         if (numQCorrect >= 2) {
-            // p.addArrows();
+            p.addArrows();
             gamePanel.setArrows("Arrows: " + p.getArrows());
         }
 
