@@ -112,7 +112,81 @@ public class GameControl {
         System.out.println("playing sound");
     }
 
-    public Question[] runTrivia() {
+    public Question[] runTrivia3() {
+        String[] answers = {"A","B","C","D"};
+
+        //TODO logic for getting the questions should be in the questions class - new method that returns an array of random questions
+        // CHANGE TO BE ACTUAL LENGTH OF QUESTIONS FILE
+        int q = 15;
+
+        Random r = new Random();
+        int a = r.nextInt(q);
+        int b = r.nextInt(q);
+        int c = r.nextInt(q);
+
+        // ADD CODE TO READ QUESTIONS AND ANSWERS FROM A, B, C, D, E FOR THE FIVE QUESTIONS
+        ArrayList<String> linesQ = new ArrayList<String>();
+        ArrayList<String> linesA = new ArrayList<String>();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("GameControl\\Trivia-Q.csv"));
+            BufferedReader readerA = new BufferedReader(new FileReader("GameControl\\Trivia-A.csv"));
+            String line = null;
+        while ((line=reader.readLine()) != null) {
+            linesQ.add(line);
+        }
+        while ((line=readerA.readLine()) != null) {
+            linesA.add(line);
+        }
+        System.out.println(linesQ.get(0));
+        System.out.println(linesA.get(0));
+
+        } catch (FileNotFoundException ex) {
+
+        } catch (IOException ex2) {
+
+        }
+
+
+        // aQ should be the question from the line number of a
+        String aQ = linesQ.get(a);
+        String bQ = linesQ.get(b);
+        String cQ = linesQ.get(c);
+
+        String[] answersA = linesA.get(a).split(",");
+
+        for (String i : answersA) {
+            System.out.println(i);
+        }
+
+        String[] answersB = linesA.get(b).split(",");
+        String[] answersC = linesA.get(c).split(",");
+
+
+        // aA should be the ANSWER CHOICES from the line number of a
+
+        String[] aA = {"","","",""};
+        String[] bA = {"","","",""};
+        String[] cA = {"","","",""};
+        String[] dA = {"","","",""};
+        String[] eA = {"","","",""};
+        populateAnswers(aA, answersA);
+        populateAnswers(bA, answersB);
+        populateAnswers(cA, answersC);
+        
+
+        //aI should be the NUMBER at the end of answers from line a to indicate the correct answer
+        int aI = Integer.parseInt(answersA[4]);
+        int bI = Integer.parseInt(answersB[4]);
+        int cI = Integer.parseInt(answersC[4]);
+
+        Question[] questions = {new Question(aQ,aA ,aI),
+                                new Question(bQ,bA, bI),
+                                new Question(cQ,cA ,cI)};
+        return questions;
+    }
+
+
+    public Question[] runTrivia5() {
         String[] answers = {"A","B","C","D"};
 
         //TODO logic for getting the questions should be in the questions class - new method that returns an array of random questions
