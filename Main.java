@@ -1,14 +1,16 @@
 import Player.*;
 import Trivia.*;
 import UI.*;
+
+import java.io.FileNotFoundException;
+
 import javax.swing.UIManager;
-import GameControl.*;
 import HighScore.*;
 import Sound.*;
 import Wumpus.*;
 
 public class Main{
-    public static void main(String[] args){
+    public static void main(String[] args) throws FileNotFoundException{
         System.out.println("Hello Bumpell");
 
         //Cave cave = new Cave();

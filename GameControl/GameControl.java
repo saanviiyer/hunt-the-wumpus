@@ -13,25 +13,28 @@ import java.io.IOException;
 import Player.*;
 import Trivia.*;
 import UI.*;
-
+import HighScore.HighScore;
 import java.util.Random;
 import java.util.ArrayList;
-
 import Cave.*;
 import GameLocations.GameLocations;
 
-public class GameControl {
+public class GameControl{
 
     // PROPERTIES
     Player player;
     GameLocations gl;
     Cave cave;
     UI ui;
+    HighScore score;
 
 // work with UI object to start the game and display the current room.
 
     public GameControl() {
-
+        try{this.score = new HighScore();}
+        catch (Exception e){
+            System.out.println("Highscores are broken.");
+        }
     }
 
 //method

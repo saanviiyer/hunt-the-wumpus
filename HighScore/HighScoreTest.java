@@ -1,8 +1,10 @@
 package HighScore;
 
+import java.io.FileNotFoundException;
+
 public class HighScoreTest {
 
-    public static void testResetScores() {
+    public static void testResetScores() throws FileNotFoundException{
         HighScore highScore = new HighScore();
         highScore.resetScores();
         if (highScore.getScore() == 0) {
@@ -12,7 +14,7 @@ public class HighScoreTest {
         }
     }
 
-    public static void testIncrementScore() {
+    public static void testIncrementScore() throws FileNotFoundException{
         HighScore highScore = new HighScore();
         highScore.incrementScore(10);
         if (highScore.getScore() == 10) {
@@ -22,7 +24,7 @@ public class HighScoreTest {
         }
     }
 
-    public static void testDecrementScore() {
+    public static void testDecrementScore() throws FileNotFoundException{
         HighScore highScore = new HighScore();
         highScore.incrementScore(10); // Increment first to avoid direct reset
         highScore.decrementScore(5);
@@ -33,7 +35,7 @@ public class HighScoreTest {
         }
     }
 
-    public static void testDecrementScoreBelowZero() {
+    public static void testDecrementScoreBelowZero() throws FileNotFoundException {
         HighScore highScore = new HighScore();
         highScore.decrementScore(1); // This should reset the score to 0 due to negative value
         if (highScore.getScore() == 0) {
@@ -43,7 +45,7 @@ public class HighScoreTest {
         }
     }
 
-    public static void testGetScore() {
+    public static void testGetScore() throws FileNotFoundException{
         HighScore highScore = new HighScore();
         if (highScore.getScore() == 0) {
             System.out.println("testGetScore: Success");
@@ -52,7 +54,7 @@ public class HighScoreTest {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException{
         testResetScores();
         testIncrementScore();
         testDecrementScore();
