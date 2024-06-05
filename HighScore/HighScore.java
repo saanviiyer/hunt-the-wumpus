@@ -18,7 +18,9 @@ public class HighScore {
     private ArrayList<Score> scores = new ArrayList<Score>();
     private ScoreComparator comp = new ScoreComparator();
     public HighScore() throws FileNotFoundException{
-        Scanner fin = new Scanner(new File("HighScores.csv"));
+          System.out.println(new File("./HighScore/HighScores.csv").getAbsolutePath());
+
+        Scanner fin = new Scanner(new File("/HighScore/HighScores.csv"));
         //fin.useDelimiter(",|\n");
         while (fin.hasNextLine()){
             scores.add(new Score(fin.nextLine().split(",")));
@@ -30,9 +32,9 @@ public class HighScore {
     
 
     public void save() throws IOException{
-        PrintWriter fout = new PrintWriter(new File("HighScores.csv"));
+        PrintWriter fout = new PrintWriter(new File("./HighScore/HighScores.csv"));
         for (int i = 0; i < Math.min(10,this.scores.size()); i++){
-            fout.write(this.scores.get(i).toString());
+            fout.write(this.scores.get(i).toString()+'\n');
         }
         fout.close();
     }

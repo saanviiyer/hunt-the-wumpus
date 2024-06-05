@@ -35,7 +35,10 @@ public class GameControl{
 // work with UI object to start the game and display the current room.
 
     public GameControl() {
-        try{this.score = new HighScore();}
+        try{
+            this.score = new HighScore();
+            this.score.save();
+        }
         catch (Exception e){
             System.out.println("Highscores are broken.");
         }
@@ -90,7 +93,6 @@ public class GameControl{
     }
 
     public void endGame(boolean won){
-
         Score s = new Score(this.player.getGoldCoins(), Boolean.compare(won, false), this.player.getTurns(), this.player.getArrows(), this.player.getName());
         System.out.println(s);
         this.score.add(s);

@@ -27,7 +27,7 @@ import java.util.Random;
 public class Player {
 
 // PROPERTIES ------------------------------------------------------------------------
-    public static int name = 0;
+    String name = new String("Player");
     private int arrows;
     private int goldCoins;
     private int turns;
@@ -51,7 +51,7 @@ public class Player {
         return arrows;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
