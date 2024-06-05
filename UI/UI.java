@@ -155,7 +155,7 @@ public class UI extends JFrame{
 
     public void showGameEnd(boolean won){
         if(won) endPanel.won(p);
-        else endPanel.lost();
+        else endPanel.lost("");
         crd.show(getContentPane(), EndPanel.IDENTIFIER);
     }
 
