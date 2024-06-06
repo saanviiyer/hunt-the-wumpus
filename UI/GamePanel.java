@@ -61,7 +61,7 @@ public class GamePanel extends JPanel{
             startNewGame.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 10));
             startNewGame.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
-
+                    crd.show(UI.getContentPane(), PlayerNamePanel.IDENTIFIER);
                 }
             }); 
             menu.add(startNewGame);
