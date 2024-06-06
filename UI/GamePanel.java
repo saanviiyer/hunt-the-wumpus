@@ -144,7 +144,7 @@ public class GamePanel extends JPanel{
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         if (shootOrMove.getText().equals("Move")) UI.move(dir);
-                        else UI.getGameControl().shoot(dir); 
+                        else UI.shoot(dir); 
                         UI.checkEnd();
                         UI.updateGameLabels();
                     }
