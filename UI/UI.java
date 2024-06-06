@@ -33,6 +33,8 @@ public class UI extends JFrame{
     PlayerNamePanel PlayerNameP;
     CardLayout crd = new CardLayout();
 
+    Font legendOfZeldaFont;
+
     //////////////////////
     //// CONSTRUCTOR /////
     //////////////////////
@@ -49,7 +51,6 @@ public class UI extends JFrame{
         setIconImage(icon.getImage());
 
         //creates new font to be derived
-        Font legendOfZeldaFont = null;
         try{
             legendOfZeldaFont = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\LoZ_Font\\the-legend-of-zelda-nes.ttf"));
         } catch(Exception e){}
@@ -153,6 +154,7 @@ public class UI extends JFrame{
         p = new Player(PlayerNameP.getPlayerName());
         ctrl.setPlayer(p);
         gamePanel.newCave();
+        changeFont(gamePanel.getMiniMap(), legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
         updateGameLabels();
         crd.show(getContentPane(), GamePanel.IDENTIFIER);
     }
