@@ -121,6 +121,17 @@ public class GameControl{
         System.out.println("playing sound");
     }
 
+    public String getSecret(int r){
+        String[] secrets = new String[5];
+        secrets[0] = "There is a wumpus at " + gl.getWumpusPos();
+        secrets[1] = "There are bats at " + gl.getBatPos()[0];
+        secrets[2] = "There are bats at " + gl.getBatPos()[1];
+        secrets[3] = "There is a pit at " + gl.getPitPos()[0];
+        secrets[4] = "There is a pit at " + gl.getPitPos()[1];
+        return secrets[r];
+        //return secrets[(int)(Math.random()*5)];
+    }
+
     public Question[] runTrivia3() {
         String[] answers = {"A","B","C","D"};
 
