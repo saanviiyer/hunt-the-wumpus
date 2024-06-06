@@ -71,6 +71,10 @@ public class Score {
         return this.wumpus*50+this.coins+this.arrows*5+100-this.turns;
     }
 
+    public String format(){
+        return String.format("| %11s | %15b | %11d | %6d | %5d | %11d |", this.player, this.wumpus == 1, this.turns, this.arrows, this.coins, this.value());
+    }
+
     @Override
     public String toString(){
         return ""+this.coins+","+this.wumpus+","+this.turns+","+this.arrows+","+this.player;

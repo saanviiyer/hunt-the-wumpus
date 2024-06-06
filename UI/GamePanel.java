@@ -10,29 +10,26 @@ import java.io.File;
 import javax.swing.*;
 
 import Cave.Cave;
-import Trivia.Question;
 import net.miginfocom.swing.MigLayout;
 
 public class GamePanel extends JPanel{
     //-----------------------PROPERTIES----------------------
     public static final String IDENTIFIER = "game";
 
-    JMenuBar menuBar = new JMenuBar();
-    JMenu menu = new JMenu("Menu");
+    private JMenuBar menuBar = new JMenuBar();
+    private JMenu menu = new JMenu("Menu");
     
-    int score = 0;
-    int highScore = 0;
-    JLabel scoreLabel = new JLabel("Score: 0");
-    JLabel highScoreLabel = new JLabel("High Score: ");
-    JLabel goldCoinsLabel = new JLabel("Gold Coins: 0");
-    JLabel currentPlayerLabel = new JLabel("Player: ");
-    JLabel currentCaveLabel = new JLabel("Cave: ");
-    JLabel arrowLabel = new JLabel("Arrows: 3");
+    private JLabel scoreLabel = new JLabel("Score: 0");
+    private JLabel highScoreLabel = new JLabel("High Score: ");
+    private JLabel goldCoinsLabel = new JLabel("Gold Coins: 0");
+    private JLabel currentPlayerLabel = new JLabel("Player: ");
+    private JLabel arrowLabel = new JLabel("Arrows: 3");
 
-    JButton shoot = new JButton("Shoot");
-    JButton buyArrows = new JButton("Purchase Arrows");
-    JButton buySecrets = new JButton("Purchase Secrets");
-    JEditorPane hazards = new JEditorPane();
+    private JButton shootOrMove = new JButton("Move");
+    private JButton buyArrows = new JButton("Purchase Arrows");
+    private JButton buySecrets = new JButton("Purchase Secrets");
+    private JEditorPane hazards = new JEditorPane();
+    private JEditorPane secrets = new JEditorPane();
 
     JPanel miniMap;
 
@@ -63,7 +60,7 @@ public class GamePanel extends JPanel{
             startNewGame.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 10));
             startNewGame.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
-
+                    crd.show(UI.getContentPane(), PlayerNamePanel.IDENTIFIER);
                 }
             }); 
             menu.add(startNewGame);
@@ -110,7 +107,6 @@ public class GamePanel extends JPanel{
             Panel.add(scoreLabel);
             Panel.add(highScoreLabel);
             Panel.add(goldCoinsLabel);
-            Panel.add(currentCaveLabel);
             Panel.add(arrowLabel);
             Panel.add(currentPlayerLabel);
             Panel.setVisible(true);
@@ -139,7 +135,7 @@ public class GamePanel extends JPanel{
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         UI.move(dir);
-                        UI.displayHazards();
+                        UI.updateGameLabels();
                     }
                 });
 
@@ -168,14 +164,14 @@ public class GamePanel extends JPanel{
             });
             add(buySecrets, "cell 3 0, w 500px, h 112px, gapy 0");
 
-            shoot.setBackground(Color.WHITE);
-            shoot.addActionListener(new ActionListener() {
+            shootOrMove.setBackground(Color.WHITE);
+            shootOrMove.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
-                    if(shoot.getText().equals("Shoot")) shoot.setText("Move");
-                    else shoot.setText("Shoot");
+                    if(shootOrMove.getText().equals("Shoot")) shootOrMove.setText("Move");
+                    else shootOrMove.setText("Shoot");
                 }
             });
-            add(shoot, "cell 3 0, w 500px, h 112px, gapy 0");
+            add(shootOrMove, "cell 3 0, w 500px, h 112px, gapy 0");
             
             hazards.setText("Hazards:");
             hazards.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
@@ -183,8 +179,15 @@ public class GamePanel extends JPanel{
             hazards.setEditable(false);
             hazards.setFocusable(false);
             hazards.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            add(hazards, "cell 3 0, w 500px, h 112px, gapy 0");
+            add(hazards, "cell 3 0, w 500px, h 70px, gapy 0");
             
+            secrets.setText("Secret:");
+            secrets.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
+            secrets.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
+            secrets.setEditable(false);
+            secrets.setFocusable(false);
+            secrets.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            add(secrets, "cell 3 0, w 500px, h 42px, gapy 0");
         }
 
         //add minimap
@@ -200,15 +203,15 @@ public class GamePanel extends JPanel{
 
     //-----------------------METHODS----------------------
 
-    public void setArrows(String s){
-        arrowLabel.setText(s);
+    public void setArrows(int i){
+        arrowLabel.setText("Arrows: " + i);
     }
 
-    public void setGold(String s){
-        goldCoinsLabel.setText(s);
+    public void setGold(int i){
+        goldCoinsLabel.setText("Gold Coins: " + i);
     }
 
-    public void setAlerts(String[] strings){
+    public void setHazards(String[] strings){
         String print = "Hazards:\n";
         for(String s : strings){
             if(s != null) {
@@ -218,11 +221,24 @@ public class GamePanel extends JPanel{
         hazards.setText(print);
     }
 
-    public void setAlerts(String s){
-        hazards.setText(s);
+    public void setSecret(String s){
+        secrets.setText("Secret:\n" + s);
     }
 
     public String getShootOrMove(){
-        return shoot.getText();
+        return shootOrMove.getText();
     }
+
+    public void setPlayer(String player){
+        currentPlayerLabel.setText("Player: " + player);
+    }
+
+    public void setHighScore(int i){
+        highScoreLabel.setText("High Score: " + i);
+    }
+
+    public void setScore(int i){
+        scoreLabel.setText("Score: " + i);
+    }
+
 }

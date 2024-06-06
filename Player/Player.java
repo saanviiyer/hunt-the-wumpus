@@ -40,10 +40,11 @@ public class Player {
     int int_random = rand.nextInt(5);
 
 // CONSTRUCTOR -------------------------------------------------------------------------------
-    public Player() {
+    public Player(String name) {
         this.arrows = 3; // Initial number of arrows
         this.goldCoins = 0;
         this.turns = 0;
+        this.name = name;
     }
 
 // METHODS ------------------------------------------------------------------------------------

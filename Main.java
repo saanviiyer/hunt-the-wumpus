@@ -15,7 +15,7 @@ public class Main{
 
         //Cave cave = new Cave();
         HighScore highScore = new HighScore();
-        Player player = new Player();
+        Player player = new Player("");
         Sound sound = new Sound();
 
         

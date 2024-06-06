@@ -21,7 +21,7 @@ public class UI extends JFrame{
     //////////////////////
     //// PROPERTIES  /////
     //////////////////////
-    Player p = new Player();
+    Player p;
     GameControl ctrl = new GameControl();
 
     GamePanel gamePanel;
@@ -36,7 +36,6 @@ public class UI extends JFrame{
     //////////////////////
     public UI(){
         ctrl.setUI(this);
-        ctrl.setPlayer(this.p);
         //set frame behavior
         setTitle("Hunt the Wumpus");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,9 +48,9 @@ public class UI extends JFrame{
 
         //creates new font to be derived
         Font legendOfZeldaFont = null;
-            try{
-                legendOfZeldaFont = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\LoZ_Font\\the-legend-of-zelda-nes.ttf"));
-            } catch(Exception e){}
+        try{
+            legendOfZeldaFont = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\LoZ_Font\\the-legend-of-zelda-nes.ttf"));
+        } catch(Exception e){}
 
         
         startPanel = new StartPanel(this, crd);
@@ -75,8 +74,6 @@ public class UI extends JFrame{
         endPanel = new EndPanel(this, crd);
         endPanel.setVisible(true);
         add(endPanel, EndPanel.IDENTIFIER);
-        
-        showGameEnd(true);
 
         setResizable(false);
         setVisible(true);
@@ -90,24 +87,15 @@ public class UI extends JFrame{
         System.out.println("player moving to " + direction);
         int[] dirs = {5,0,1,4,3,2};
         ctrl.movePlayer(dirs[direction]);
-        gamePanel.setGold("Gold Coins: "+ p.getGoldCoins());
+        updateGameLabels();
 
     }
 
-    public void updateHighScore(){
-        System.out.println("updating high score");
-    }
-
-    public void displayHazards(){
-        System.out.println("Displaying hazards");
-        gamePanel.setAlerts(ctrl.getHazards());
-    }
 
     public void purchaseArrows(){
         System.out.println("buy arrows");
 
         p.decrementGoldCoins();
-        gamePanel.setGold("Gold Coins: "+ p.getGoldCoins());
 
         Question[] questions = ctrl.runTrivia5();
         TriviaUI triviaUI = new TriviaUI(questions, this);
@@ -117,17 +105,17 @@ public class UI extends JFrame{
         if (numQCorrect >= 2) {
             p.addArrows();
             p.addArrows();
-            gamePanel.setArrows("Arrows: " + p.getArrows());
+
         }
 
-
+        updateGameLabels();
     }
 
     public void purchaseSecrets(){
         System.out.println("buy secrets");
 
         p.decrementGoldCoins();
-        gamePanel.setGold("Gold Coins: " + p.getGoldCoins());
+        gamePanel.setGold(p.getGoldCoins());
 
         Question[] questions = ctrl.runTrivia5();
         TriviaUI triviaUI = new TriviaUI(questions, this);
@@ -138,7 +126,7 @@ public class UI extends JFrame{
         if (numQCorrect >= 2) {
             Random rand = new Random();
             int r = rand.nextInt(5);
-            gamePanel.setAlerts(p.getSecret(r));
+            gamePanel.setSecret(p.getSecret(r));
         }
 
 
@@ -159,13 +147,23 @@ public class UI extends JFrame{
         crd.show(getContentPane(), EndPanel.IDENTIFIER);
     }
 
-    public void setPlayerName(){
-        PlayerNameP.getPlayerName();
+    public void setPlayer(){
+        p = new Player(PlayerNameP.getPlayerName());
+        ctrl.setPlayer(p);
+        updateGameLabels();
+        crd.show(getContentPane(), GamePanel.IDENTIFIER);
     }
 
-    public void showGameEnd(){
-        crd.show(getContentPane(), "game over");
+
+    public void updateGameLabels(){
+        gamePanel.setPlayer(p.getName());
+        gamePanel.setArrows(p.getArrows());
+        gamePanel.setGold(p.getGoldCoins());
+        gamePanel.setHighScore(0);
+        gamePanel.setScore(p.calculateScore());
+        gamePanel.setHazards(ctrl.getHazards());
     }
+
 
     public static void changeFont(Component component, Font font ){
         component.setFont(font);
