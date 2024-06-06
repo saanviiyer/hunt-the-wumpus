@@ -94,6 +94,12 @@ public class UI extends JFrame{
 
     }
 
+    public void shoot(int direction){
+        System.out.println("player shooting " + direction);
+        int[] dirs = {5,0,1,4,3,2};
+        ctrl.shoot(dirs[direction]);
+        updateGameLabels();
+    }
 
     public void purchaseArrows(){
         System.out.println("buy arrows");
