@@ -75,8 +75,6 @@ public class UI extends JFrame{
         endPanel = new EndPanel(this, crd);
         endPanel.setVisible(true);
         add(endPanel, EndPanel.IDENTIFIER);
-        
-        showGameEnd(true);
 
         setResizable(false);
         setVisible(true);
