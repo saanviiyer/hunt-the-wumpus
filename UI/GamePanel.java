@@ -25,7 +25,7 @@ public class GamePanel extends JPanel{
     private JLabel currentPlayerLabel = new JLabel("Player: ");
     private JLabel arrowLabel = new JLabel("Arrows: 3");
 
-    private JButton shoot = new JButton("Shoot");
+    private JButton shootOrMove = new JButton("Move");
     private JButton buyArrows = new JButton("Purchase Arrows");
     private JButton buySecrets = new JButton("Purchase Secrets");
     private JEditorPane hazards = new JEditorPane();
@@ -164,14 +164,14 @@ public class GamePanel extends JPanel{
             });
             add(buySecrets, "cell 3 0, w 500px, h 112px, gapy 0");
 
-            shoot.setBackground(Color.WHITE);
-            shoot.addActionListener(new ActionListener() {
+            shootOrMove.setBackground(Color.WHITE);
+            shootOrMove.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
-                    if(shoot.getText().equals("Shoot")) shoot.setText("Move");
-                    else shoot.setText("Shoot");
+                    if(shootOrMove.getText().equals("Shoot")) shootOrMove.setText("Move");
+                    else shootOrMove.setText("Shoot");
                 }
             });
-            add(shoot, "cell 3 0, w 500px, h 112px, gapy 0");
+            add(shootOrMove, "cell 3 0, w 500px, h 112px, gapy 0");
             
             hazards.setText("Hazards:");
             hazards.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
@@ -226,7 +226,7 @@ public class GamePanel extends JPanel{
     }
 
     public String getShootOrMove(){
-        return shoot.getText();
+        return shootOrMove.getText();
     }
 
     public void setPlayer(String player){
