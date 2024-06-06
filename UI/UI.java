@@ -92,8 +92,6 @@ public class UI extends JFrame{
     }
 
 
-
-
     public void purchaseArrows(){
         System.out.println("buy arrows");
 
