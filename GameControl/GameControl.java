@@ -96,6 +96,7 @@ public class GameControl{
         Score s = new Score(this.player.getGoldCoins(), Boolean.compare(won, false), this.player.getTurns(), this.player.getArrows(), this.player.getName());
         System.out.println(s);
         this.score.add(s);
+        this.score.print();
     }
 
     public void shoot(int dir){
