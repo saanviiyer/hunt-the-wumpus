@@ -188,4 +188,8 @@ public class UI extends JFrame{
                 crd.show(getContentPane(), EndPanel.IDENTIFIER);   
             }
     }
+
+    public void setNewImages(){
+        gamePanel.setNewImages();
+    }
 }
