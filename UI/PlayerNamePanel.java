@@ -33,7 +33,7 @@ public class PlayerNamePanel extends JPanel{
         title.setForeground(Color.BLACK);
         add(title, "center, pushx, wrap, h 700px");
 
-        JTextField enterName = new JTextField("Enter player name here!");
+        JTextField enterName = new JTextField("Player Name");
         enterName.setHorizontalAlignment(JLabel.CENTER);
         enterName.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,18));
         enterName.setForeground(Color.BLACK);
