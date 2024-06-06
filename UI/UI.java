@@ -159,11 +159,12 @@ public class UI extends JFrame{
         gamePanel.setPlayer(p.getName());
         gamePanel.setArrows(p.getArrows());
         gamePanel.setGold(p.getGoldCoins());
-        gamePanel.setCave("");
+        gamePanel.setCave(""); //TODO set cave name and high score
         gamePanel.setHighScore(0);
         gamePanel.setScore(p.calculateScore());
         gamePanel.setHazards(ctrl.getHazards());
     }
+
 
     public static void changeFont(Component component, Font font ){
         component.setFont(font);
