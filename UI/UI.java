@@ -204,13 +204,13 @@ public class UI extends JFrame{
         gamePanel.setNewImages();
     }
 
-    public int fellInPit(){
+    public void fellInPit(){
         Question[] questions = ctrl.runTrivia5();
         TriviaUI triviaUI = new TriviaUI(questions, this);
 
         int numQCorrect = triviaUI.getNumCorrectAnswers();
         System.out.println("You got " + numQCorrect + " questions right");
+        if(numQCorrect <= 1) showGameEnd("Fell in pit");
 
-        return numQCorrect;
     }
 }
