@@ -84,7 +84,7 @@ public class GameControl{
             } else if (this.gl.atPit()){
                 System.out.println("GameControl says: Pit");
                 // game over?
-                // if (false) this.endGame(false);
+                if (gl.atWumpus()) this.endGame(false);
             } else if (this.gl.atWumpus()){
                 // game over
                 this.endGame(false);
@@ -106,6 +106,9 @@ public class GameControl{
         }
     }
 
+    public GameLocations getGameLocations(){
+        return this.gl;
+    }
 
     public void chooseCave() {
         System.out.println("choose cave");
