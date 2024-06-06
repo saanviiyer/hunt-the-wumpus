@@ -198,4 +198,14 @@ public class UI extends JFrame{
     public void setNewImages(){
         gamePanel.setNewImages();
     }
+
+    public int fellInPit(){
+        Question[] questions = ctrl.runTrivia5();
+        TriviaUI triviaUI = new TriviaUI(questions, this);
+
+        int numQCorrect = triviaUI.getNumCorrectAnswers();
+        System.out.println("You got " + numQCorrect + " questions right");
+
+        return numQCorrect;
+    }
 }
