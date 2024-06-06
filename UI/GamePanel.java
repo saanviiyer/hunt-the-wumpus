@@ -181,7 +181,7 @@ public class GamePanel extends JPanel{
             hazards.setEditable(false);
             hazards.setFocusable(false);
             hazards.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            add(hazards, "cell 3 0, w 500px, h 60px, gapy 0");
+            add(hazards, "cell 3 0, w 500px, h 70px, gapy 0");
             
             secrets.setText("Secret:");
             secrets.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
@@ -189,7 +189,7 @@ public class GamePanel extends JPanel{
             secrets.setEditable(false);
             secrets.setFocusable(false);
             secrets.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            add(secrets, "cell 3 0, w 500px, h 52px, gapy 0");
+            add(secrets, "cell 3 0, w 500px, h 42px, gapy 0");
         }
 
         //add minimap
