@@ -84,7 +84,7 @@ public class GameControl{
             } else if (this.gl.atPit()){
                 System.out.println("GameControl says: Pit");
                 // game over?
-                // if (false) this.endGame(false);
+                if (gl.atWumpus()) this.endGame(false);
             } else if (this.gl.atWumpus()){
                 // game over
                 this.endGame(false);
@@ -96,6 +96,7 @@ public class GameControl{
         Score s = new Score(this.player.getGoldCoins(), Boolean.compare(won, false), this.player.getTurns(), this.player.getArrows(), this.player.getName());
         System.out.println(s);
         this.score.add(s);
+        this.score.print();
     }
 
     public void shoot(int dir){
@@ -105,6 +106,9 @@ public class GameControl{
         }
     }
 
+    public GameLocations getGameLocations(){
+        return this.gl;
+    }
 
     public void chooseCave() {
         System.out.println("choose cave");
@@ -118,6 +122,17 @@ public class GameControl{
 
     public void playSound() {
         System.out.println("playing sound");
+    }
+
+    public String getSecret(int r){
+        String[] secrets = new String[5];
+        secrets[0] = "There is a wumpus at " + gl.getWumpusPos();
+        secrets[1] = "There are bats at " + gl.getBatPos()[0];
+        secrets[2] = "There are bats at " + gl.getBatPos()[1];
+        secrets[3] = "There is a pit at " + gl.getPitPos()[0];
+        secrets[4] = "There is a pit at " + gl.getPitPos()[1];
+        return secrets[r];
+        //return secrets[(int)(Math.random()*5)];
     }
 
     public Question[] runTrivia3() {

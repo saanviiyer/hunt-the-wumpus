@@ -11,7 +11,9 @@ import java.util.Random;
 
 import javax.swing.*;
 
+import Cave.Cave;
 import GameControl.GameControl;
+import GameLocations.GameLocations;
 import Player.Player;
 import Trivia.Question;
 import java.awt.*;
@@ -126,7 +128,7 @@ public class UI extends JFrame{
         if (numQCorrect >= 2) {
             Random rand = new Random();
             int r = rand.nextInt(5);
-            gamePanel.setSecret(p.getSecret(r));
+            gamePanel.setSecret(ctrl.getSecret(r));
         }
 
 
@@ -175,5 +177,12 @@ public class UI extends JFrame{
                 changeFont (child, font);
             }
         }
+    }
+
+// Checks if game is over
+    public void checkEnd(){
+            if(this.ctrl.getGameLocations().atWumpus()){
+                crd.show(getContentPane(), EndPanel.IDENTIFIER);   
+            }
     }
 }

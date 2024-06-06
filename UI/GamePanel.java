@@ -10,6 +10,7 @@ import java.io.File;
 import javax.swing.*;
 
 import Cave.Cave;
+import GameLocations.GameLocations;
 import net.miginfocom.swing.MigLayout;
 
 public class GamePanel extends JPanel{
@@ -140,6 +141,7 @@ public class GamePanel extends JPanel{
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         UI.move(dir);
+                        UI.checkEnd();
                         UI.updateGameLabels();
                     }
                 });
