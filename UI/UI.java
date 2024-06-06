@@ -150,9 +150,9 @@ public class UI extends JFrame{
         tutorialPanel.setPreviouslyDisplayedCard(s);
     }
 
-    public void showGameEnd(boolean won){
+    public void showGameEnd(boolean won, String cause){
         if(won) endPanel.won(p);
-        else endPanel.lost("");
+        else endPanel.lost(cause);
         crd.show(getContentPane(), EndPanel.IDENTIFIER);
     }
 
@@ -210,7 +210,7 @@ public class UI extends JFrame{
 
         int numQCorrect = triviaUI.getNumCorrectAnswers();
         System.out.println("You got " + numQCorrect + " questions right");
-        if(numQCorrect <= 1) showGameEnd("Fell in pit");
+        if(numQCorrect <= 1) showGameEnd(false, "Fell in pit");
 
     }
 }
