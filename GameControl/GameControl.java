@@ -84,7 +84,11 @@ public class GameControl{
             } else if (this.gl.atPit()){
                 System.out.println("GameControl says: Pit");
                 // game over?
+<<<<<<< HEAD
+                if (gl.atWumpus()) this.endGame(false);
+=======
                 // if (false) this.endGame(false);
+>>>>>>> 102f165cb8d5949c1ffe4dfa2128f7d6d36e6486
             } else if (this.gl.atWumpus()){
                 // game over
                 this.endGame(false);
