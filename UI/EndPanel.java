@@ -49,7 +49,7 @@ public class EndPanel extends JPanel{
         exit.setFocusPainted(false);
         exit.setHorizontalAlignment(JButton.CENTER);
         exit.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
-        add(exit, "center, h 30px");
+        add(exit, "center, cell 0 2");
         
     }
 
@@ -63,13 +63,15 @@ public class EndPanel extends JPanel{
     public void won(Player p){
         title.setText("YOU WONNNN!!!!!!!");
 
-        JLabel name = new JLabel("Player: " + p.getName());
-        name.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
-        add(name, "cell 0 1");
+        JLabel[] labels = {new JLabel("Player: " + p.getName()), new JLabel("Score: " + p.calculateScore())};
 
-        JLabel score = new JLabel("Score:" + p.calculateScore());
-        name.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
-        add(name, "cell 0 1");
+        for(JLabel label : labels){
+            label.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
+            label.setForeground(Color.BLACK);
+            label.setHorizontalAlignment(JLabel.CENTER);
+            add(label, "cell 0 1, grow, center");
+
+        }
 
 
     }
