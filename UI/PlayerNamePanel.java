@@ -44,6 +44,7 @@ public class PlayerNamePanel extends JPanel{
             public void actionPerformed(ActionEvent e){
                 playername = enterName.getText();
                 UI.setPlayer();
+                enterName.setText("Enter player name here!");
             }
         });
 
