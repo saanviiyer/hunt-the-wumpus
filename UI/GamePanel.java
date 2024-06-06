@@ -30,6 +30,7 @@ public class GamePanel extends JPanel{
     private JButton buyArrows = new JButton("Purchase Arrows");
     private JButton buySecrets = new JButton("Purchase Secrets");
     private JEditorPane hazards = new JEditorPane();
+    private JEditorPane secrets = new JEditorPane();
 
     JPanel miniMap;
 
@@ -180,8 +181,15 @@ public class GamePanel extends JPanel{
             hazards.setEditable(false);
             hazards.setFocusable(false);
             hazards.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            add(hazards, "cell 3 0, w 500px, h 112px, gapy 0");
+            add(hazards, "cell 3 0, w 500px, h 60px, gapy 0");
             
+            secrets.setText("Secret:");
+            secrets.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
+            secrets.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
+            secrets.setEditable(false);
+            secrets.setFocusable(false);
+            secrets.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            add(secrets, "cell 3 0, w 500px, h 52px, gapy 0");
         }
 
         //add minimap
@@ -205,7 +213,7 @@ public class GamePanel extends JPanel{
         goldCoinsLabel.setText("Gold Coins: " + i);
     }
 
-    public void setAlerts(String[] strings){
+    public void setHazards(String[] strings){
         String print = "Hazards:\n";
         for(String s : strings){
             if(s != null) {
@@ -215,8 +223,8 @@ public class GamePanel extends JPanel{
         hazards.setText(print);
     }
 
-    public void setAlerts(String s){
-        hazards.setText(s);
+    public void setSecret(String s){
+        secrets.setText("Secret:\n" + s);
     }
 
     public String getShootOrMove(){
