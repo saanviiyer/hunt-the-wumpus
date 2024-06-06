@@ -98,7 +98,7 @@ public class GameControl{
         System.out.println(s);
         this.score.add(s);
         this.score.print();
-        if (won) UI.winGame();
+        if (won) ui.winGame();
     }
 
     public void shoot(int dir){
