@@ -87,18 +87,12 @@ public class UI extends JFrame{
         System.out.println("player moving to " + direction);
         int[] dirs = {5,0,1,4,3,2};
         ctrl.movePlayer(dirs[direction]);
-        gamePanel.setGold(p.getGoldCoins());
+        updateGameLabels();
 
     }
 
-    public void updateHighScore(){
-        System.out.println("updating high score");
-    }
 
-    public void displayHazards(){
-        System.out.println("Displaying hazards");
-        
-    }
+
 
     public void purchaseArrows(){
         System.out.println("buy arrows");
@@ -162,11 +156,8 @@ public class UI extends JFrame{
         crd.show(getContentPane(), GamePanel.IDENTIFIER);
     }
 
-    public void showGameEnd(){
-        crd.show(getContentPane(), "game over");
-    }
 
-    private void updateGameLabels(){
+    public void updateGameLabels(){
         gamePanel.setPlayer(p.getName());
         gamePanel.setArrows(p.getArrows());
         gamePanel.setGold(p.getGoldCoins());
