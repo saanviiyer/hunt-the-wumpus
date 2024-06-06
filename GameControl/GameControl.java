@@ -100,6 +100,7 @@ public class GameControl{
     }
 
     public void shoot(int dir){
+        System.out.println("Attempting to shoot");
         if (player.getArrows() > 0){
             player.decrementArrows();
             if (this.cave.shoot(dir, 1) == gl.getWumpusPos()){
