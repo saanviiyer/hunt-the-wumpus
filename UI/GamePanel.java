@@ -31,10 +31,14 @@ public class GamePanel extends JPanel{
     private JEditorPane hazards = new JEditorPane();
     private JEditorPane secrets = new JEditorPane();
 
-    JPanel miniMap;
+    private Cave cave;
+    private JPanel miniMap;
+
+    private UI UI;
 
     //-----------------------CONSTRUCTOR----------------------
     public GamePanel(UI UI, CardLayout crd){
+        this.UI = UI;
         //creates new font to be derived
         Font legendOfZeldaFont = null;
         try{
@@ -61,6 +65,7 @@ public class GamePanel extends JPanel{
             startNewGame.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     crd.show(UI.getContentPane(), PlayerNamePanel.IDENTIFIER);
+
                 }
             }); 
             menu.add(startNewGame);
@@ -190,13 +195,11 @@ public class GamePanel extends JPanel{
             add(secrets, "cell 3 0, w 500px, h 42px, gapy 0");
         }
 
-        //add minimap
+        //initialize minimap
         {
-            Cave cave = new Cave();
-            miniMap = cave.drawMiniMap(40);
-            miniMap.setMinimumSize(new Dimension(540,300));
-            add(miniMap, "cell 3 1, grow");
-            UI.getGameControl().setCave(cave);
+            miniMap = new JPanel();
+            add(miniMap);
+
         }
        
     }
@@ -240,5 +243,18 @@ public class GamePanel extends JPanel{
     public void setScore(int i){
         scoreLabel.setText("Score: " + i);
     }
+
+    public void newCave(){
+        remove(miniMap);
+        revalidate();
+        repaint();
+        
+        cave = new Cave();
+        miniMap = cave.drawMiniMap(40);
+        miniMap.setMinimumSize(new Dimension(540,300));
+        add(miniMap, "cell 3 1, grow");
+        this.UI.getGameControl().setCave(cave);
+    }
+
 
 }

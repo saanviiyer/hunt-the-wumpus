@@ -150,6 +150,7 @@ public class UI extends JFrame{
     public void setPlayer(){
         p = new Player(PlayerNameP.getPlayerName());
         ctrl.setPlayer(p);
+        gamePanel.newCave();
         updateGameLabels();
         crd.show(getContentPane(), GamePanel.IDENTIFIER);
     }
