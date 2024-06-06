@@ -137,7 +137,7 @@ public class GamePanel extends JPanel{
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         UI.move(dir);
-                        UI.displayHazards();
+                        UI.updateGameLabels();
                     }
                 });
 
