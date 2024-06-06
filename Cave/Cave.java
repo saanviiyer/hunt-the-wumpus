@@ -42,7 +42,6 @@ public class Cave {
     //   6 cols, 5 rows
     public Cave() {
         //sets adjacencies
-        loc = new GameLocations(this);
         for (int i = 0; i < 30; i++){
             int row = i/6; // [0,4]
             int col = i%6; // [0,5]
@@ -64,7 +63,9 @@ public class Cave {
                 this.adj[i][5] = ( ((row-1+5)%5)*6 + (col-1+6)%6 )%30; // previous row, previous column
             }
         }
-        this.openPaths(); // randomizes paths
+        this.openPaths();
+        loc = new GameLocations(this);
+
     }
 
     public void setLoc(GameLocations gl){
