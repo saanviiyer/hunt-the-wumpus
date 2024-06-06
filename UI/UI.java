@@ -181,6 +181,7 @@ public class UI extends JFrame{
 // Checks if game is over
     public void checkEnd(){
             if(this.ctrl.getGameLocations().atWumpus()){
+                endPanel.lost("THE WUMPUS");
                 crd.show(getContentPane(), EndPanel.IDENTIFIER);   
             }
     }
