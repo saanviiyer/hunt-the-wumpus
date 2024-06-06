@@ -250,7 +250,7 @@ public class GamePanel extends JPanel{
         remove(miniMap);
         revalidate();
         repaint();
-        
+
         cave = new Cave();
         miniMap = cave.drawMiniMap(40);
         miniMap.setMinimumSize(new Dimension(540,300));
@@ -258,5 +258,8 @@ public class GamePanel extends JPanel{
         this.UI.getGameControl().setCave(cave);
     }
 
+    public JPanel getMiniMap(){
+        return miniMap;
+    }
 
 }
