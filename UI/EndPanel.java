@@ -58,6 +58,12 @@ public class EndPanel extends JPanel{
 
     public void lost(String cause){
         title.setText("You lost - womp womp");
+
+        JLabel causeOfLoss = new JLabel("You lost because of: " + cause);
+        causeOfLoss.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
+        causeOfLoss.setHorizontalAlignment(JLabel.CENTER);
+        causeOfLoss.setForeground(Color.BLACK);
+        add(causeOfLoss, "cell 0 1, center, grow");
     }
 
     public void won(Player p){
