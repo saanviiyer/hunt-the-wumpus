@@ -24,7 +24,7 @@ public class Cave {
 
     static final String[] dirs = {"North", "Northeast", "Southeast", "South", "Southwest", "Northwest"};
     static Random RAND = new Random();
-    GameLocations loc = new GameLocations();
+    GameLocations loc;
     // rooms are represented by ints [0,29]
     // adjacency list is represented by ints, going from north and proceeding clockwise
     int[][] adj = new int[30][6];
@@ -42,7 +42,7 @@ public class Cave {
     //   6 cols, 5 rows
     public Cave() {
         //sets adjacencies
-        loc.setCave(this);
+        loc = new GameLocations(this);
         for (int i = 0; i < 30; i++){
             int row = i/6; // [0,4]
             int col = i%6; // [0,5]

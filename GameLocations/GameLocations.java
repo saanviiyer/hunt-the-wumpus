@@ -27,7 +27,8 @@ public class GameLocations {
     Set<Integer> taken = new HashSet<Integer>();
     boolean[] visited = new boolean[30];
     // CONSTRUCTOR
-    public GameLocations() {
+    public GameLocations(Cave c) {
+        cave = c;
         if (batPos == null){
 
             playerPos = RAND.nextInt(0,30);
