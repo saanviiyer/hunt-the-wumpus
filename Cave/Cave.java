@@ -226,6 +226,7 @@ public class Cave {
         if (cur == loc.getWumpusPos()) System.out.println("Hit the wumpus!");
       }
       loc.addFallenArrow(cur);
+      System.out.println("Arrow landed on " + cur);
       return cur;
     }
 
