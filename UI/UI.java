@@ -128,7 +128,7 @@ public class UI extends JFrame{
         if (numQCorrect >= 2) {
             Random rand = new Random();
             int r = rand.nextInt(5);
-            gamePanel.setSecret(p.getSecret(r));
+            gamePanel.setSecret(ctrl.getSecret(r));
         }
 
 
