@@ -23,7 +23,6 @@ public class GamePanel extends JPanel{
     private JLabel highScoreLabel = new JLabel("High Score: ");
     private JLabel goldCoinsLabel = new JLabel("Gold Coins: 0");
     private JLabel currentPlayerLabel = new JLabel("Player: ");
-    private JLabel currentCaveLabel = new JLabel("Cave: ");
     private JLabel arrowLabel = new JLabel("Arrows: 3");
 
     private JButton shoot = new JButton("Shoot");
@@ -108,7 +107,6 @@ public class GamePanel extends JPanel{
             Panel.add(scoreLabel);
             Panel.add(highScoreLabel);
             Panel.add(goldCoinsLabel);
-            Panel.add(currentCaveLabel);
             Panel.add(arrowLabel);
             Panel.add(currentPlayerLabel);
             Panel.setVisible(true);
@@ -233,10 +231,6 @@ public class GamePanel extends JPanel{
 
     public void setPlayer(String player){
         currentPlayerLabel.setText("Player: " + player);
-    }
-
-    public void setCave(String s){
-        currentCaveLabel.setText("Cave: " + s);
     }
 
     public void setHighScore(int i){
