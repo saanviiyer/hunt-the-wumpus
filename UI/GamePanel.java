@@ -10,7 +10,6 @@ import java.io.File;
 import javax.swing.*;
 
 import Cave.Cave;
-import Trivia.Question;
 import net.miginfocom.swing.MigLayout;
 
 public class GamePanel extends JPanel{
@@ -234,6 +233,10 @@ public class GamePanel extends JPanel{
 
     public void setHighScore(int i){
         highScoreLabel.setText("High Score: " + i);
+    }
+
+    public void setScore(int i){
+        scoreLabel.setText("Score: " + i);
     }
 
 }
