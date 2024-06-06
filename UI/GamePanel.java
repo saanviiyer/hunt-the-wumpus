@@ -17,22 +17,20 @@ public class GamePanel extends JPanel{
     //-----------------------PROPERTIES----------------------
     public static final String IDENTIFIER = "game";
 
-    JMenuBar menuBar = new JMenuBar();
-    JMenu menu = new JMenu("Menu");
+    private JMenuBar menuBar = new JMenuBar();
+    private JMenu menu = new JMenu("Menu");
     
-    int score = 0;
-    int highScore = 0;
-    JLabel scoreLabel = new JLabel("Score: 0");
-    JLabel highScoreLabel = new JLabel("High Score: ");
-    JLabel goldCoinsLabel = new JLabel("Gold Coins: 0");
-    JLabel currentPlayerLabel = new JLabel("Player: ");
-    JLabel currentCaveLabel = new JLabel("Cave: ");
-    JLabel arrowLabel = new JLabel("Arrows: 3");
+    private JLabel scoreLabel = new JLabel("Score: 0");
+    private JLabel highScoreLabel = new JLabel("High Score: ");
+    private JLabel goldCoinsLabel = new JLabel("Gold Coins: 0");
+    private JLabel currentPlayerLabel = new JLabel("Player: ");
+    private JLabel currentCaveLabel = new JLabel("Cave: ");
+    private JLabel arrowLabel = new JLabel("Arrows: 3");
 
-    JButton shoot = new JButton("Shoot");
-    JButton buyArrows = new JButton("Purchase Arrows");
-    JButton buySecrets = new JButton("Purchase Secrets");
-    JEditorPane hazards = new JEditorPane();
+    private JButton shoot = new JButton("Shoot");
+    private JButton buyArrows = new JButton("Purchase Arrows");
+    private JButton buySecrets = new JButton("Purchase Secrets");
+    private JEditorPane hazards = new JEditorPane();
 
     JPanel miniMap;
 
@@ -225,4 +223,9 @@ public class GamePanel extends JPanel{
     public String getShootOrMove(){
         return shoot.getText();
     }
+
+    public void setPlayer(String player){
+        currentPlayerLabel.setText("Player: " + player);
+    }
+
 }
