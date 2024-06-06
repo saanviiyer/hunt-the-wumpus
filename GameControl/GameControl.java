@@ -70,6 +70,7 @@ public class GameControl{
     public void movePlayer(int direction) {
         System.out.println("moving player in direction " + direction);
         if (this.cave.move(direction)) {
+            ui.setNewImages();
             this.player.incrementTurns();
             int n = this.gl.getFallenArrows();
             for (int i = 0; i < n; i++) this.player.addArrows();
@@ -100,6 +101,7 @@ public class GameControl{
     }
 
     public void shoot(int dir){
+        System.out.println("Attempting to shoot");
         if (player.getArrows() > 0){
             player.decrementArrows();
             if (this.cave.shoot(dir, 1) == gl.getWumpusPos()){

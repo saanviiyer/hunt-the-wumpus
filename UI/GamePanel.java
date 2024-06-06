@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Random;
 
 import javax.swing.*;
 
@@ -25,6 +26,8 @@ public class GamePanel extends JPanel{
     private JLabel goldCoinsLabel = new JLabel("Gold Coins: 0");
     private JLabel currentPlayerLabel = new JLabel("Player: ");
     private JLabel arrowLabel = new JLabel("Arrows: 3");
+
+    private JButton[] movementButtons = {new JButton(),new JButton(),new JButton(),new JButton(),new JButton(),new JButton()};
 
     private JButton shootOrMove = new JButton("Move");
     private JButton buyArrows = new JButton("Purchase Arrows");
@@ -128,7 +131,7 @@ public class GamePanel extends JPanel{
             int height = 450;
 
             for(int i = 0; i < 6; i++){
-                JButton cur = new JButton();
+                JButton cur = movementButtons[i];
                 
                 //sets icon of buttons and make them not change when pressed
                 cur.setIcon(movementIcons[i]);
@@ -141,7 +144,7 @@ public class GamePanel extends JPanel{
                 cur.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         if (shootOrMove.getText().equals("Move")) UI.move(dir);
-                        else UI.getGameControl().shoot(dir); 
+                        else UI.shoot(dir); 
                         UI.checkEnd();
                         UI.updateGameLabels();
                     }
@@ -261,6 +264,15 @@ public class GamePanel extends JPanel{
 
     public JPanel getMiniMap(){
         return miniMap;
+    }
+
+    public void setNewImages(){
+        Random r = new Random();
+        int x = r.nextInt(new File("UI\\movementImages\\").listFiles().length) + 1;
+        ImageIcon[] movementIcons = {new ImageIcon("UI\\movementImages\\"+ x +"\\left_top.png"),new ImageIcon("UI\\movementImages\\"+ x +"\\top_mid.png"),new ImageIcon("UI\\movementImages\\"+ x +"\\right_top.png"),new ImageIcon("UI\\movementImages\\"+ x +"\\left_bottom.png"),new ImageIcon("UI\\movementImages\\"+ x +"\\bottom_mid.png"),new ImageIcon("UI\\movementImages\\"+ x +"\\right_bottom.png")};
+        for(int i = 0; i < 6; i++){
+            movementButtons[i].setIcon(movementIcons[i]);
+        }
     }
 
 }
