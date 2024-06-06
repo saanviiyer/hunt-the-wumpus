@@ -4,6 +4,7 @@ public class Question {
     private String[] options;
     private int correctAnswer;
 
+    // constructor
     public Question(String questionText, String[] options, int correctAnswer) {
         this.questionText = questionText;
         this.options = options;
