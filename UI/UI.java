@@ -134,7 +134,7 @@ public class UI extends JFrame{
         if (numQCorrect >= 2) {
             Random rand = new Random();
             int r = rand.nextInt(5);
-            gamePanel.setAlerts(p.getSecret(r));
+            gamePanel.setSecret(p.getSecret(r));
         }
 
 
@@ -173,7 +173,7 @@ public class UI extends JFrame{
         gamePanel.setCave("");
         gamePanel.setHighScore(0);
         gamePanel.setScore(p.calculateScore());
-        gamePanel.setAlerts(ctrl.getHazards());
+        gamePanel.setHazards(ctrl.getHazards());
     }
 
     public static void changeFont(Component component, Font font ){
