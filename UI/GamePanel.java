@@ -198,12 +198,12 @@ public class GamePanel extends JPanel{
 
     //-----------------------METHODS----------------------
 
-    public void setArrows(String s){
-        arrowLabel.setText(s);
+    public void setArrows(int i){
+        arrowLabel.setText("Arrows: " + i);
     }
 
-    public void setGold(String s){
-        goldCoinsLabel.setText(s);
+    public void setGold(int i){
+        goldCoinsLabel.setText("Gold Coins: " + i);
     }
 
     public void setAlerts(String[] strings){
@@ -226,6 +226,14 @@ public class GamePanel extends JPanel{
 
     public void setPlayer(String player){
         currentPlayerLabel.setText("Player: " + player);
+    }
+
+    public void setCave(String s){
+        currentCaveLabel.setText("Cave: " + s);
+    }
+
+    public void setHighScore(int i){
+        highScoreLabel.setText("High Score: " + i);
     }
 
 }
