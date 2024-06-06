@@ -190,8 +190,9 @@ public class UI extends JFrame{
 // Checks if game is over
     public void checkEnd(){
             if(this.ctrl.getGameLocations().atWumpus()){
-                endPanel.lost("THE WUMPUS");
-                crd.show(getContentPane(), EndPanel.IDENTIFIER);   
+                showGameEnd(false, "Ran into the Wumpus");
+            } else if(this.ctrl.getGameLocations().atPit()){
+                fellInPit();
             }
     }
 
@@ -205,7 +206,7 @@ public class UI extends JFrame{
     }
 
     public void fellInPit(){
-        Question[] questions = ctrl.runTrivia5();
+        Question[] questions = ctrl.runTrivia3();
         TriviaUI triviaUI = new TriviaUI(questions, this);
 
         int numQCorrect = triviaUI.getNumCorrectAnswers();
