@@ -195,6 +195,11 @@ public class UI extends JFrame{
             }
     }
 
+    public void winGame(){
+        endPanel.won(this.p);
+        crd.show(getContentPane(), EndPanel.IDENTIFIER);
+    }
+
     public void setNewImages(){
         gamePanel.setNewImages();
     }
