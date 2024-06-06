@@ -43,8 +43,7 @@ public class PlayerNamePanel extends JPanel{
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 playername = enterName.getText();
-                setVisible(false);
-                crd.show(UI.getContentPane(), GamePanel.IDENTIFIER);
+                UI.setPlayer();
             }
         });
 
