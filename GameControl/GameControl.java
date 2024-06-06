@@ -101,9 +101,16 @@ public class GameControl{
     }
 
     public void shoot(int dir){
-        if (this.cave.shoot(dir, 1) == gl.getWumpusPos()){
-            player.addWumpusScore(50);
-            this.endGame(true);
+        if (player.getArrows() > 0){
+            player.decrementArrows();
+            if (this.cave.shoot(dir, 1) == gl.getWumpusPos()){
+                player.addWumpusScore(50);
+                this.endGame(true);
+            } else {
+                System.out.println("You missed.");
+            }
+        } else {
+            System.out.println("Not enough arrows.");
         }
     }
 
