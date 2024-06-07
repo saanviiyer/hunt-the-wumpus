@@ -1,3 +1,11 @@
+/*
+ * Last Editor(s): Jack Gillis
+ * Last Edit @ 05-30-2024
+ */
+
+
+
+
 package Trivia;
 
 import javax.swing.*;
@@ -6,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TriviaGameGUI extends JFrame {
+    
+    // variables
     private Question[] questions;
     private int currentQuestionIndex;
     private int score;
@@ -14,6 +24,8 @@ public class TriviaGameGUI extends JFrame {
     private ButtonGroup buttonGroup;
     private JButton nextButton;
 
+
+    // constructor
     public TriviaGameGUI(Question[] questions) {
         this.questions = questions;
         this.currentQuestionIndex = 0;
@@ -28,6 +40,8 @@ public class TriviaGameGUI extends JFrame {
         setResizable(false);
     }
 
+
+    // Methods
     private void createView() {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());

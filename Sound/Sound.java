@@ -1,7 +1,9 @@
-// Lily Holdhus
-// Sound Object (Hunt the Wumpus)
-// 2/12/2024
-// Period 5
+/*
+ * Last Editor(s): Lily Holdhus
+ * Last Edit @ 06-3-2024
+ */
+
+
 
 // LAST UPDATED: 5/23/2024
 // CURRENT STATUS: runs
