@@ -30,19 +30,19 @@ public class StoryPanel extends JPanel{
         setBackground(Color.GRAY);
 
         //creates a textbox containing text from an html file
-        JEditorPane tutorial = new JEditorPane();
+        JEditorPane story = new JEditorPane();
         URL text = UI.class.getResource("story.html");
         try {
-            tutorial.setPage(text);
+            story.setPage(text);
         } catch (Exception e) {
             System.out.println("html file not found");
         }
-        tutorial.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
-        tutorial.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
-        tutorial.setEditable(false);
-        tutorial.setFocusable(false);
-        tutorial.setOpaque(false);
-        JScrollPane tutorialScrollPane = new JScrollPane(tutorial);
+        story.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
+        story.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
+        story.setEditable(false);
+        story.setFocusable(false);
+        story.setOpaque(false);
+        JScrollPane tutorialScrollPane = new JScrollPane(story);
         tutorialScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         add(tutorialScrollPane, "center, h 500px, w 1000px, push, flowy");
 

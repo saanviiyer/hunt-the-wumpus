@@ -15,14 +15,12 @@ package Cave;
  *    and open to each other
  */
 
-
 import GameLocations.*;
 import javax.swing.*;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.util.Random;
 import java.util.ArrayList;
-
 
 public class Cave {
 
@@ -37,8 +35,6 @@ public class Cave {
     private Hex current;// middle control hex
     private JPanel mini = new JPanel(); // minimap
     private JPanel controls = new JPanel(); // controls
-
-
 
     private boolean[][] paths = new boolean[30][6]; // for each hex, if that path is open
 
@@ -69,7 +65,6 @@ public class Cave {
         }
         this.openPaths();
         loc = new GameLocations(this);
-
     }
 
     public void setLoc(GameLocations gl){
@@ -78,7 +73,6 @@ public class Cave {
     public GameLocations getLoc(){return this.loc;}
 
     public boolean[] getOpenings(){return this.paths[this.loc.getPlayerPos()];}
-
 
     // returns an array of adjacencies
     public int[] getAdj(int id){
@@ -99,7 +93,6 @@ public class Cave {
         }
         return temp;
     }
-
 
     // opens a wall between two adjacent hexes
     public void open(int id, int dir){
