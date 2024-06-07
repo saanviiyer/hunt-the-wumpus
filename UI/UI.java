@@ -31,6 +31,7 @@ public class UI extends JFrame{
     TutorialPanel tutorialPanel;
     EndPanel endPanel;
     PlayerNamePanel PlayerNameP;
+    LeaderboardPanel leaderboardPanel;
     CardLayout crd = new CardLayout();
 
     Font legendOfZeldaFont;
@@ -77,6 +78,10 @@ public class UI extends JFrame{
         endPanel = new EndPanel(this, crd);
         endPanel.setVisible(true);
         add(endPanel, EndPanel.IDENTIFIER);
+
+        leaderboardPanel = new LeaderboardPanel(this, crd);
+        leaderboardPanel.setVisible(true);
+        add(leaderboardPanel, LeaderboardPanel.IDENTIFIER);
 
         setResizable(false);
         setVisible(true);
