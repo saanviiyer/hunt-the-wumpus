@@ -51,6 +51,7 @@ public class PlayerNamePanel extends JPanel{
             public void actionPerformed(ActionEvent e){
                 playername = enterName.getText();
                 UI.setPlayer();
+                crd.show(UI.getContentPane(), StoryPanel.IDENTIFIER);
                 enterName.setText("Player Name");
             }
         });

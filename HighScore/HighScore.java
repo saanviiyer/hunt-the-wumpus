@@ -12,8 +12,6 @@
   * save() saves game
   */
 
-
-
 package HighScore;
 import java.util.ArrayList;
 import java.io.PrintWriter;
@@ -21,9 +19,6 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
-
-
-
 
 // order: coins wumpus turns arrows name
 
@@ -75,8 +70,6 @@ public class HighScore {
         this.scores = new ArrayList<Score>();
     }
 
-
-
     // For Trivia, have public void streakScore() where
     // correctStreak is initialized and then incremented by Trivia 
     // depending on how many Q's have been answered correct in a row, 
@@ -96,5 +89,4 @@ public class HighScore {
         System.out.print(s);
         return s;
     }
-
 }

@@ -56,7 +56,7 @@ public class StartPanel extends JPanel{
         JButton howToPlay = new JButton("How to Play!");
         howToPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                    crd.show(UI.getContentPane(), IDENTIFIER);
+                    crd.show(UI.getContentPane(), TutorialPanel.IDENTIFIER);
                     UI.setTutorialLastCard(IDENTIFIER);
             }
         });
