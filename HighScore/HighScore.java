@@ -1,3 +1,10 @@
+/*
+ * Last Editor(s): Yana Ivanov
+ * Last Edit @ 02-24-2024
+ */
+
+
+
 package HighScore;
 import java.util.ArrayList;
 import java.io.PrintWriter;
@@ -5,10 +12,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
-// Yana Ivanov
-// Period 5
-// Feb 2024
-// High Score Management Object
+
 
 
 

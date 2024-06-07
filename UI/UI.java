@@ -1,5 +1,12 @@
 // Nathan Chiu
 
+/*
+ * Last Editor(s): Nathan Chiu
+ * Last Edit @ 05-30-2024
+ */
+
+
+
 // IMPORTANT TO ADD:
 // PURCHASE ARROWS: YOU CAN PURCHASE 2 MORE ARROWS BY GETTING AT LEAST 2 OUT OF 3 TRIVIA QUESTIONS RIGHT
 // PURCHASE SECRET: PURCHASE SECRET BY GETTING AT LEAST 2 OUT OF 3 TRIVIA QUESTIONS RIGHT
@@ -32,6 +39,7 @@ public class UI extends JFrame{
     EndPanel endPanel;
     PlayerNamePanel PlayerNameP;
     LeaderboardPanel leaderboardPanel;
+    StoryPanel storyPanel;
     CardLayout crd = new CardLayout();
 
     Font legendOfZeldaFont;
@@ -82,6 +90,10 @@ public class UI extends JFrame{
         leaderboardPanel = new LeaderboardPanel(this, crd);
         leaderboardPanel.setVisible(true);
         add(leaderboardPanel, LeaderboardPanel.IDENTIFIER);
+
+        storyPanel = new StoryPanel(this, crd);
+        storyPanel.setVisible(true);
+        add(storyPanel, StoryPanel.IDENTIFIER);
 
         setResizable(false);
         setVisible(true);

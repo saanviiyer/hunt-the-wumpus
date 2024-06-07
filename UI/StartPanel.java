@@ -1,4 +1,9 @@
-//Nathan Chiu
+/*
+ * Last Editor(s): Nathan Chiu
+ * Last Edit @ 05-30-2024
+ */
+
+
 
 package UI;
 
@@ -51,7 +56,7 @@ public class StartPanel extends JPanel{
         JButton howToPlay = new JButton("How to Play!");
         howToPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                    crd.show(UI.getContentPane(), "tutorial");
+                    crd.show(UI.getContentPane(), IDENTIFIER);
                     UI.setTutorialLastCard(IDENTIFIER);
             }
         });
@@ -62,6 +67,21 @@ public class StartPanel extends JPanel{
         howToPlay.setHorizontalAlignment(JButton.CENTER);
         howToPlay.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
         add(howToPlay, "center, h 30px, wrap");
+
+        JButton story = new JButton("Game lore");
+        story.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                    crd.show(UI.getContentPane(), StoryPanel.IDENTIFIER);
+                    UI.setTutorialLastCard(IDENTIFIER);
+            }
+        });
+        story.setForeground(Color.BLACK);
+        story.setBorder(null);
+        story.setContentAreaFilled(false);
+        story.setFocusPainted(false);
+        story.setHorizontalAlignment(JButton.CENTER);
+        story.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
+        add(story, "center, h 30px, wrap");
 
         JButton leaderboard = new JButton("Leaderboard");
         leaderboard.addActionListener(new ActionListener() {

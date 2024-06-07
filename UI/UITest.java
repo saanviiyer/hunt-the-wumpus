@@ -1,7 +1,14 @@
-//Nathan Chiu
-//UI test
-//Per. 5 
-//Reiber
+
+
+/*
+ * Last Editor(s): Nathan Chiu
+ * Last Edit @ 05-30-2024
+ */
+
+/*
+ * Info:
+ * Testing Area for ./UI
+ */
 
 package UI;
 
