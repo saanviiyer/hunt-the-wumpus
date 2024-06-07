@@ -29,7 +29,6 @@
 
 package Player;
 
-import java.util.Random;
 
 public class Player {
 
