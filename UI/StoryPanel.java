@@ -49,7 +49,7 @@ public class StoryPanel extends JPanel{
         JButton back = new JButton("Back");
         back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                crd.show(UI.getContentPane(), previouslyDisplayedCard);
+                crd.show(UI.getContentPane(), StartPanel.IDENTIFIER);
             }
         });
         back.setBackground(Color.WHITE);
