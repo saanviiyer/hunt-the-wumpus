@@ -57,7 +57,7 @@ public class TriviaUI extends JDialog{
     //////////////////////
 
 
-    public TriviaUI(Question[] questions, JFrame frame, boolean inPit){
+    public TriviaUI(Question[] questions, JFrame frame, String cause){
         super(frame, true);
         
         //set jdialog behavior
@@ -92,7 +92,7 @@ public class TriviaUI extends JDialog{
             heading.setFont(font);
             heading.setBackground(Color.GRAY);
             heading.setForeground(Color.BLACK);
-            if(inPit) heading.setText("Pit Time:");
+            heading.setText(cause);
             trivia.add(heading, "north, align center, push, wrap, grow, h 100px");
         }
         
