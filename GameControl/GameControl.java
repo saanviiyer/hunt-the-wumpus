@@ -93,6 +93,11 @@ public class GameControl{
         }
     }
 
+    public int calcScore(boolean won){
+        Score s = new Score(this.player.getGoldCoins(), Boolean.compare(won, false), this.player.getTurns(), this.player.getArrows(), this.player.getName());
+        return s.value();
+    }
+
     public void endGame(boolean won){
         Score s = new Score(this.player.getGoldCoins(), Boolean.compare(won, false), this.player.getTurns(), this.player.getArrows(), this.player.getName());
         System.out.println(s);

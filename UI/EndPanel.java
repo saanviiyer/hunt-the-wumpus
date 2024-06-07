@@ -18,9 +18,11 @@ public class EndPanel extends JPanel{
     public static final String IDENTIFIER = "game done";
     private JLabel title = new JLabel();
     private Font legendOfZeldaFont;
+    private UI ui;
     //-----------------------CONSTRUCTOR----------------------
-    public EndPanel(UI UI, CardLayout crd){
+    public EndPanel(UI ui, CardLayout crd){
         //creates new font to be derived
+        this.ui = ui;
         try{
             legendOfZeldaFont = Font.createFont(Font.TRUETYPE_FONT, new File("UI\\LoZ_Font\\the-legend-of-zelda-nes.ttf"));
         } catch(Exception e){}
@@ -40,7 +42,7 @@ public class EndPanel extends JPanel{
         JButton exit = new JButton("Exit to Title Screen");
         exit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                    crd.show(UI.getContentPane(), StartPanel.IDENTIFIER);
+                    crd.show(ui.getContentPane(), StartPanel.IDENTIFIER);
                     removeAll();
                     add(title, "center, pushx, wrap, h 700px");
                     add(exit, "center, cell 0 2");
@@ -72,7 +74,7 @@ public class EndPanel extends JPanel{
     public void won(Player p){
         title.setText("YOU WONNNN!!!!!!!");
 
-        JLabel[] labels = {new JLabel("Player: " + p.getName()), new JLabel("Score: " + p.calculateScore())};
+        JLabel[] labels = {new JLabel("Player: " + p.getName()), new JLabel("Score: " + ui.getGameControl().calcScore(true))};
 
         for(JLabel label : labels){
             label.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
