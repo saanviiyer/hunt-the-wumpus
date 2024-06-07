@@ -4,8 +4,6 @@
  * Last Edit @ 06-07-2024
  */
 
-
-
 package HighScore;
 
 public class Score {
