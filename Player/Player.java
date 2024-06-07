@@ -38,13 +38,7 @@ public class Player {
     private int arrows;
     private int goldCoins;
     private int turns;
-    private int wumpusScore;
-    int wumpusPos;
-    int playerPos;
-    int[] pitPos;
-    int[] batPos;
-    Random rand = new Random();
-    int int_random = rand.nextInt(5);
+    
 
 // CONSTRUCTOR -------------------------------------------------------------------------------
     public Player(String name) {
@@ -103,25 +97,5 @@ public class Player {
         //addGoldCoins();
     }
 
-    public String getSecret(int int_rand) {
-        String[] secret = new String[5];
-        secret[0] = "There is a bat in room " + batPos;
-        secret[1] = "There is a pit in room " + pitPos;
-        secret[2] = "There is a wumpus in room " + wumpusPos;
-        secret[3] = "You are in room " + playerPos;
-        secret[4] = "Trivia answer: ";
-        return secret[int_rand];
-    }
 
-    public int getWumpusScore() {
-        return wumpusScore;
-    }
-
-    public void addWumpusScore(int w) {
-        wumpusScore += w;
-    }
-
-    public int calculateScore() {
-        return (100 - getTurns() + getGoldCoins() * (5*getArrows()) + getWumpusScore());
-    }
 }
