@@ -3,7 +3,10 @@
  * Last Edit @ 06-07-2024
  */
 
-
+/*
+ * Info: Currently not used.
+ * Class for drawing controls (big hexes) in center of screen to move player
+ */
 
 package Cave;
 
@@ -15,24 +18,24 @@ public class Hex extends JButton{
   public static int LENGTH = 70; // side length, in pixels
   // radius to an edge is sqrt3 * length/2
   // radius to a vertex is length
-  static int offsetX = LENGTH;
-  static int offsetY = LENGTH;
-  static final Color WHITE = new Color(255,255,255);
-  static final Color BLACK = new Color(0,0,0);
-  static final Color RED = new Color(255,0,0);
-  static final Color GREEN = new Color(0,255,0);
-  static final Color BLUE = new Color(0,0,255);
-  static final Color GRAY = new Color(120,120,120);
-  static final Color YELLOW = new Color(255,255,0);
+  private static int offsetX = LENGTH;
+  private static int offsetY = LENGTH;
+  public static final Color WHITE = new Color(255,255,255);
+  public static final Color BLACK = new Color(0,0,0);
+  public static final Color RED = new Color(255,0,0);
+  public static final Color GREEN = new Color(0,255,0);
+  public static final Color BLUE = new Color(0,0,255);
+  public static final Color GRAY = new Color(120,120,120);
+  public static final Color YELLOW = new Color(255,255,0);
 
-  static final int nRows = 3;
-  static final int nCols = 3;
-  String label = "";
-  int id;
-  double x, y;
-  Color color = new Color(255,255,255);
-  Polygon hex;
-  boolean visited;
+  private static final int nRows = 3;
+  private static final int nCols = 3;
+  private String label = "";
+  private int id;
+  private double x, y;
+  private Color color = new Color(255,255,255);
+  private Polygon hex;
+  private boolean visited;
 
   public Hex(int i){
     this.id = i;
