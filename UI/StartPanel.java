@@ -63,6 +63,21 @@ public class StartPanel extends JPanel{
         howToPlay.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
         add(howToPlay, "center, h 30px, wrap");
 
+        JButton leaderboard = new JButton("Leaderboard");
+        leaderboard.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                    crd.show(UI.getContentPane(), LeaderboardPanel.IDENTIFIER);
+                    UI.setLeaderboardLastCard(IDENTIFIER);
+            }
+        });
+        leaderboard.setForeground(Color.BLACK);
+        leaderboard.setBorder(null);
+        leaderboard.setContentAreaFilled(false);
+        leaderboard.setFocusPainted(false);
+        leaderboard.setHorizontalAlignment(JButton.CENTER);
+        leaderboard.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
+        add(leaderboard, "center, h 30px, wrap");
+
         JButton exit = new JButton("Exit");
         exit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
