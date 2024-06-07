@@ -4,7 +4,6 @@
 package GameControl;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -46,7 +45,7 @@ public class GameControl{
 
 //method
 
-// initialize board when game starts
+    // initialize board when game starts
     public void setPlayer(Player p){
         this.player = p;
     }
@@ -58,14 +57,6 @@ public class GameControl{
         this.ui = u;
     }
 
-    public void initBoard() {
-        System.out.println("Initializing board");
-        displayBoard();
-    }
-
-    public void displayBoard() {
-        System.out.println("displaying board rn");
-    }
 
     public void movePlayer(int direction) {
         System.out.println("moving player in direction " + direction);
