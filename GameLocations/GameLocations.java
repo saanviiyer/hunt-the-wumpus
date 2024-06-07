@@ -1,7 +1,6 @@
-/*
- * Last Editor(s): Shunzo Hida
- * Last Edit @ 15:35 06/07
- */
+// Saanvi Subramanian
+// Period 5
+// 3/15/24
 
 package GameLocations;
 import Cave.*;

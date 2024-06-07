@@ -1,3 +1,19 @@
+
+/*
+ * Last Editor(s): Shunzo Hida
+ * Last Edit @ 06-07-2024
+ */
+
+ /*
+  * Info:
+  * Keeps track of past high scores, and ranks them using a ScoreComparator
+  * Only one per player name allowed
+  * print() returns rankings in string
+  * save() saves game
+  */
+
+
+
 package HighScore;
 import java.util.ArrayList;
 import java.io.PrintWriter;
@@ -5,10 +21,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
-// Yana Ivanov
-// Period 5
-// Feb 2024
-// High Score Management Object
+
 
 
 

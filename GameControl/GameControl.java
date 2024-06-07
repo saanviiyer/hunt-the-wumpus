@@ -1,5 +1,14 @@
-// Saanvi Subramanian
-// Game Control
+
+/*
+ * Last Editor(s): Shunzo Hida, Saanvi Subramanian
+ * Last Edit @ 06-07-2024
+ */
+
+/*
+ * Info:
+ * Bridges Cave and UI
+ * Saves game
+ */
 
 package GameControl;
 
