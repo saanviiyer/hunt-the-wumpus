@@ -68,21 +68,6 @@ public class StartPanel extends JPanel{
         howToPlay.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
         add(howToPlay, "center, h 30px, wrap");
 
-        JButton story = new JButton("Game lore");
-        story.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                    crd.show(UI.getContentPane(), StoryPanel.IDENTIFIER);
-                    UI.setStoryLastCard(IDENTIFIER);
-            }
-        });
-        story.setForeground(Color.BLACK);
-        story.setBorder(null);
-        story.setContentAreaFilled(false);
-        story.setFocusPainted(false);
-        story.setHorizontalAlignment(JButton.CENTER);
-        story.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN,15));
-        add(story, "center, h 30px, wrap");
-
         JButton leaderboard = new JButton("Leaderboard");
         leaderboard.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){

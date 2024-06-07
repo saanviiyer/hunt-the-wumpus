@@ -91,16 +91,6 @@ public class GamePanel extends JPanel{
             });
             menu.add(tutorial);
 
-            JMenuItem story = new JMenuItem("Game Lore");
-            story.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 10));
-            story.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    crd.show(UI.getContentPane(), StoryPanel.IDENTIFIER);
-                    UI.setStoryLastCard(IDENTIFIER);
-                }
-            });
-            menu.add(story);
-
             JMenuItem exitToTitle = new JMenuItem("Exit to Title Screen");
             exitToTitle.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 10));
             exitToTitle.addActionListener(new ActionListener() {

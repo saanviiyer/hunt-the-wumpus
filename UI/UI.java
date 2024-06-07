@@ -211,9 +211,6 @@ public class UI extends JFrame{
         leaderboardPanel.setPreviouslyDisplayedCard(s);
     }
 
-    public void setStoryLastCard(String s){
-        storyPanel.setPreviouslyDisplayedCard(s);
-    }
 
 // Checks if game is over
     public void checkEnd(){
