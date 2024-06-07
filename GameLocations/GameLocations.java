@@ -10,6 +10,7 @@ import GameControl.*;
 import java.util.Random;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.ArrayList;
 
 
 // two pits, two bats, arraylist of arrows, one shop
@@ -119,6 +120,7 @@ public class GameLocations {
         visited[id] = true;
     }
 
+
     public void setPlayerPos(int pos) {
         playerPos = pos;
         
@@ -172,5 +174,14 @@ public class GameLocations {
     }
     public void addFallenArrow(int id){
         fallenArrows[id]++;
+    }
+
+    public void runAway(int len){
+        for (int i = 0; i < len; i++){
+            ArrayList<Integer> avail = new ArrayList<Integer>();
+            for (int d = 0; d < 6; d++) if (cave.isNextTo(wumpusPos, cave.getAdj(wumpusPos)[d])) avail.add(d);
+            this.wumpusPos = avail.get((int) (Math.random()*avail.size()));
+        }
+        System.out.println("Wumpus ran away");
     }
 }
