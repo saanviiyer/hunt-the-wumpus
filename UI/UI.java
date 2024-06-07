@@ -193,6 +193,10 @@ public class UI extends JFrame{
         }
     }
 
+    public void setLeaderboardLastCard(String s){
+        leaderboardPanel.setPreviouslyDisplayedCard(s);
+    }
+
 // Checks if game is over
     public void checkEnd(){
             if(this.ctrl.getGameLocations().atWumpus()){
