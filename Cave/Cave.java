@@ -2,13 +2,17 @@ package Cave;
 
 /*
  * Last Editor(s): Shunzo Hida
- * Last Edit @ 05-30-2024
+ * Last Edit @ 06-07-2024
  */
 
 /*
  * Guide:
  * move(int dir), moves player in a direction
+ * shoot(int dir, int len), shoots a arrow in a direction len distance,
+ *    returns hex it landed on, adds fallen arrow to that location
  * setPlayerPos(int id), teleports player to a hex
+ * isNextTo(int cur, int tar) checks if cur and tar are next to each other
+ *    and open to each other
  */
 
 
@@ -22,21 +26,21 @@ import java.util.ArrayList;
 
 public class Cave {
 
-    static final String[] dirs = {"North", "Northeast", "Southeast", "South", "Southwest", "Northwest"};
-    static Random RAND = new Random();
-    GameLocations loc;
+    private static final String[] dirs = {"North", "Northeast", "Southeast", "South", "Southwest", "Northwest"};
+    private static Random RAND = new Random();
+    private GameLocations loc;
     // rooms are represented by ints [0,29]
     // adjacency list is represented by ints, going from north and proceeding clockwise
-    int[][] adj = new int[30][6];
-    MiniHex[] hexes = new MiniHex[30]; // minimap, row = i/6, col = i%6
-    Hex[] view = new Hex[6]; // controls view
-    Hex current;// middle control hex
-    JPanel mini = new JPanel(); // minimap
-    JPanel controls = new JPanel(); // controls
+    private int[][] adj = new int[30][6];
+    private MiniHex[] hexes = new MiniHex[30]; // minimap, row = i/6, col = i%6
+    private Hex[] view = new Hex[6]; // controls view
+    private Hex current;// middle control hex
+    private JPanel mini = new JPanel(); // minimap
+    private JPanel controls = new JPanel(); // controls
 
 
 
-    boolean[][] paths = new boolean[30][6]; // for each hex, if that path is open
+    private boolean[][] paths = new boolean[30][6]; // for each hex, if that path is open
 
     // Cave is made up of hexagonal rooms with staggered columns
     //   6 cols, 5 rows

@@ -1,14 +1,10 @@
-/*
- * Last Editor(s): Saanvi Subrananian
- * Last Edit @ 05-30-2024
- */
-
-
+// Saanvi Subramanian
+// Period 5
+// 3/15/24
 
 package GameLocations;
 import Cave.*;
 import GameControl.*;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
 import java.util.HashSet;

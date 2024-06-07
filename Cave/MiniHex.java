@@ -1,36 +1,40 @@
 /*
  * Last Editor(s): Shunzo Hida
- * Last Edit @ 05-30-2024
+ * Last Edit @ 06-07-2024
+ */
+
+/*
+ * Info:
+ * Class for drawing a hex on the minimap.
  */
 
 package Cave;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.BasicStroke;
 
 public class MiniHex extends JButton{
-  public static int LENGTH = 40; // side length, in pixels
+  private  static int LENGTH = 40; // side length, in pixels
   // radius to an edge is sqrt3 * length/2
   // radius to a vertex is length
-  static int offsetX = LENGTH;
-  static int offsetY = LENGTH;
-  static final Color WHITE = new Color(255,255,255);
-  static final Color BLACK = new Color(0,0,0);
-  static final Color RED = new Color(255,0,0);
-  static final Color GREEN = new Color(0,255,0);
-  static final Color BLUE = new Color(0,0,255);
-  static final Color GRAY = new Color(120,120,120);
-  static final Color YELLOW = new Color(255,255,0);
-  Color def = WHITE;
-  static final int nRows = 5;
-  static final int nCols = 6;
-  int row;
-  int col;
-  int id;
-  double x, y;
-  Color color = new Color(255,255,255);
-  Polygon hex;
+  private static int offsetX = LENGTH;
+  private static int offsetY = LENGTH;
+  public static final Color WHITE = new Color(255,255,255);
+  public static final Color BLACK = new Color(0,0,0);
+  public static final Color RED = new Color(255,0,0);
+  public static final Color GREEN = new Color(0,255,0);
+  public static final Color BLUE = new Color(0,0,255);
+  public static final Color GRAY = new Color(120,120,120);
+  public static final Color YELLOW = new Color(255,255,0);
+  private Color def = WHITE;
+  private static final int nRows = 5;
+  private static final int nCols = 6;
+  private int row;
+  private int col;
+  private int id;
+  private double x, y;
+  private Color color = new Color(255,255,255);
+  private Polygon hex;
 
   public MiniHex(int r, int c){
     super(""+(r*nCols+c));
