@@ -2,12 +2,14 @@ package Cave;
 
 /*
  * Last Editor(s): Shunzo Hida
- * Last Edit @ 05-30-2024
+ * Last Edit @ 06-07-2024
  */
 
 /*
  * Guide:
  * move(int dir), moves player in a direction
+ * shoot(int dir, int len), shoots a arrow in a direction len distance,
+ *    returns hex it landed on, adds fallen arrow to that location
  * setPlayerPos(int id), teleports player to a hex
  */
 
