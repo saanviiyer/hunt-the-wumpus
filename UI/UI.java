@@ -122,7 +122,7 @@ public class UI extends JFrame{
         p.decrementGoldCoins();
 
         Question[] questions = ctrl.runTrivia5();
-        TriviaUI triviaUI = new TriviaUI(questions, this, false);
+        TriviaUI triviaUI = new TriviaUI(questions, this, "Trivia Time:");
         int numQCorrect = triviaUI.getNumCorrectAnswers();
         System.out.println("You got " + numQCorrect + " questions right");
 
@@ -142,7 +142,7 @@ public class UI extends JFrame{
         gamePanel.setGold(p.getGoldCoins());
 
         Question[] questions = ctrl.runTrivia5();
-        TriviaUI triviaUI = new TriviaUI(questions, this, false);
+        TriviaUI triviaUI = new TriviaUI(questions, this, "Trivia Time:");
 
         int numQCorrect = triviaUI.getNumCorrectAnswers();
         System.out.println("You got " + numQCorrect + " questions right");
@@ -213,7 +213,13 @@ public class UI extends JFrame{
 // Checks if game is over
     public void checkEnd(){
             if(this.ctrl.getGameLocations().atWumpus()){
-                showGameEnd(false, "Ran into the Wumpus");
+                Question[] questions = ctrl.runTrivia5();
+                TriviaUI triviaUI = new TriviaUI(questions, this, "Wumpus:");
+
+                if(triviaUI.getNumCorrectAnswers() < 3){
+                    showGameEnd(false, "Ran into the Wumpus");
+                }
+                    
             } else if(this.ctrl.getGameLocations().atPit()){
                 fellInPit();
             }
@@ -230,7 +236,7 @@ public class UI extends JFrame{
 
     public void fellInPit(){
         Question[] questions = ctrl.runTrivia3();
-        TriviaUI triviaUI = new TriviaUI(questions, this, true);
+        TriviaUI triviaUI = new TriviaUI(questions, this, "Pit:");
 
         int numQCorrect = triviaUI.getNumCorrectAnswers();
         System.out.println("You got " + numQCorrect + " questions right");
