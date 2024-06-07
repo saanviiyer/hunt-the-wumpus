@@ -67,7 +67,7 @@ public class StartPanel extends JPanel{
         story.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                     crd.show(UI.getContentPane(), StoryPanel.IDENTIFIER);
-                    UI.setTutorialLastCard(IDENTIFIER);
+                    UI.setStoryLastCard(IDENTIFIER);
             }
         });
         story.setForeground(Color.BLACK);
