@@ -18,7 +18,6 @@ import java.util.Random;
 import javax.swing.*;
 
 import Cave.Cave;
-import GameLocations.GameLocations;
 import net.miginfocom.swing.MigLayout;
 
 public class GamePanel extends JPanel{

@@ -18,9 +18,7 @@ import java.util.Random;
 
 import javax.swing.*;
 
-import Cave.Cave;
 import GameControl.GameControl;
-import GameLocations.GameLocations;
 import Player.Player;
 import Trivia.Question;
 import java.awt.*;
