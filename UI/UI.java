@@ -160,6 +160,7 @@ public class UI extends JFrame{
         p = new Player(PlayerNameP.getPlayerName());
         ctrl.setPlayer(p);
         gamePanel.newCave();
+        gamePanel.setShootOrMove("Move");
         changeFont(gamePanel.getMiniMap(), legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
         updateGameLabels();
         crd.show(getContentPane(), GamePanel.IDENTIFIER);

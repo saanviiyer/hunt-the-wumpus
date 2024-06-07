@@ -275,4 +275,7 @@ public class GamePanel extends JPanel{
         }
     }
 
+    public void setShootOrMove(String s){
+        shootOrMove.setText(s);
+    }
 }
