@@ -46,10 +46,10 @@ public class StoryPanel extends JPanel{
         tutorialScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         add(tutorialScrollPane, "center, h 500px, w 1000px, push, flowy");
 
-        JButton back = new JButton("Back");
+        JButton back = new JButton("Continue");
         back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                crd.show(UI.getContentPane(), previouslyDisplayedCard);
+                UI.resetAndShowGame();
             }
         });
         back.setBackground(Color.WHITE);
