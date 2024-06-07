@@ -4,8 +4,6 @@
  * Last Edit @ 05-30-2024
  */
 
-
-
 // LAST UPDATED: 3/29/2024
 // CURRENT STATUS: runs
 package Wumpus;
