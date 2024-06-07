@@ -15,7 +15,6 @@ import net.miginfocom.swing.MigLayout;
 public class StoryPanel extends JPanel{
      //-----------------------PROPERTIES----------------------
     public static final String IDENTIFIER = "story";
-    private String previouslyDisplayedCard;
 
 
     //-----------------------CONSTRUCTOR----------------------
@@ -60,7 +59,4 @@ public class StoryPanel extends JPanel{
     }
 
     //-----------------------METHODS----------------------
-    public void setPreviouslyDisplayedCard(String s){
-        previouslyDisplayedCard = s;
-    }
 }
