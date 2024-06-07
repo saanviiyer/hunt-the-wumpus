@@ -41,6 +41,9 @@ public class EndPanel extends JPanel{
         exit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                     crd.show(UI.getContentPane(), StartPanel.IDENTIFIER);
+                    removeAll();
+                    add(title, "center, pushx, wrap, h 700px");
+                    add(exit, "center, cell 0 2");
             }
         });
         exit.setForeground(Color.BLACK);
@@ -57,7 +60,7 @@ public class EndPanel extends JPanel{
     //-----------------------METHODS----------------------
 
     public void lost(String cause){
-        title.setText("You lost - womp womp");
+        title.setText("You lost - wump wump");
 
         JLabel causeOfLoss = new JLabel("You lost because of: " + cause);
         causeOfLoss.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
@@ -81,4 +84,6 @@ public class EndPanel extends JPanel{
 
 
     }
+
+
 }
