@@ -99,11 +99,14 @@ public class GameControl{
     }
 
     public void endGame(boolean won){
-        Score s = new Score(this.player.getGoldCoins(), Boolean.compare(won, false), this.player.getTurns(), this.player.getArrows(), this.player.getName());
-        System.out.println(s);
-        this.score.add(s);
-        this.score.print();
+        leaderboard(won);
         if (won) ui.winGame();
+    }
+
+    public String leaderboard(boolean won){
+        Score s = new Score(this.player.getGoldCoins(), Boolean.compare(won, false), this.player.getTurns(), this.player.getArrows(), this.player.getName());
+        this.score.add(s);
+        return this.score.print();
     }
 
     public void shoot(int dir){
@@ -123,20 +126,6 @@ public class GameControl{
 
     public GameLocations getGameLocations(){
         return this.gl;
-    }
-
-    public void chooseCave() {
-        System.out.println("choose cave");
-        // change player's cave
-    }
-
-    public void startTrivia() {
-        System.out.println("start trivia");
-        // tell UI to open trivia view
-    }
-
-    public void playSound() {
-        System.out.println("playing sound");
     }
 
     public String getSecret(int r){
