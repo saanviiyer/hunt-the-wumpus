@@ -110,7 +110,6 @@ public class GameControl{
         if (player.getArrows() > 0){
             player.decrementArrows();
             if (this.cave.shoot(dir, 1) == gl.getWumpusPos()){
-                player.addWumpusScore(50);
                 this.endGame(true);
             } else {
                 System.out.println("You missed.");
