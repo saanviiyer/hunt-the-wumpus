@@ -4,7 +4,6 @@
 package GameControl;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -46,7 +45,7 @@ public class GameControl{
 
 //method
 
-// initialize board when game starts
+    // initialize board when game starts
     public void setPlayer(Player p){
         this.player = p;
     }
@@ -58,14 +57,6 @@ public class GameControl{
         this.ui = u;
     }
 
-    public void initBoard() {
-        System.out.println("Initializing board");
-        displayBoard();
-    }
-
-    public void displayBoard() {
-        System.out.println("displaying board rn");
-    }
 
     public void movePlayer(int direction) {
         System.out.println("moving player in direction " + direction);
@@ -93,12 +84,20 @@ public class GameControl{
         }
     }
 
+    public int calcScore(boolean won){
+        Score s = new Score(this.player.getGoldCoins(), Boolean.compare(won, false), this.player.getTurns(), this.player.getArrows(), this.player.getName());
+        return s.value();
+    }
+
     public void endGame(boolean won){
         Score s = new Score(this.player.getGoldCoins(), Boolean.compare(won, false), this.player.getTurns(), this.player.getArrows(), this.player.getName());
-        System.out.println(s);
         this.score.add(s);
-        this.score.print();
-        if (won) UI.winGame();
+        leaderboard();
+        if (won) ui.winGame();
+    }
+
+    public String leaderboard(){
+        return this.score.print();
     }
 
     public void shoot(int dir){
@@ -118,20 +117,6 @@ public class GameControl{
 
     public GameLocations getGameLocations(){
         return this.gl;
-    }
-
-    public void chooseCave() {
-        System.out.println("choose cave");
-        // change player's cave
-    }
-
-    public void startTrivia() {
-        System.out.println("start trivia");
-        // tell UI to open trivia view
-    }
-
-    public void playSound() {
-        System.out.println("playing sound");
     }
 
     public String getSecret(int r){

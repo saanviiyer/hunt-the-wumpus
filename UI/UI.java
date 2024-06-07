@@ -31,6 +31,7 @@ public class UI extends JFrame{
     TutorialPanel tutorialPanel;
     EndPanel endPanel;
     PlayerNamePanel PlayerNameP;
+    LeaderboardPanel leaderboardPanel;
     CardLayout crd = new CardLayout();
 
     Font legendOfZeldaFont;
@@ -78,6 +79,10 @@ public class UI extends JFrame{
         endPanel.setVisible(true);
         add(endPanel, EndPanel.IDENTIFIER);
 
+        leaderboardPanel = new LeaderboardPanel(this, crd);
+        leaderboardPanel.setVisible(true);
+        add(leaderboardPanel, LeaderboardPanel.IDENTIFIER);
+
         setResizable(false);
         setVisible(true);
     }
@@ -107,7 +112,7 @@ public class UI extends JFrame{
         p.decrementGoldCoins();
 
         Question[] questions = ctrl.runTrivia5();
-        TriviaUI triviaUI = new TriviaUI(questions, this);
+        TriviaUI triviaUI = new TriviaUI(questions, this, false);
         int numQCorrect = triviaUI.getNumCorrectAnswers();
         System.out.println("You got " + numQCorrect + " questions right");
 
@@ -127,7 +132,7 @@ public class UI extends JFrame{
         gamePanel.setGold(p.getGoldCoins());
 
         Question[] questions = ctrl.runTrivia5();
-        TriviaUI triviaUI = new TriviaUI(questions, this);
+        TriviaUI triviaUI = new TriviaUI(questions, this, false);
 
         int numQCorrect = triviaUI.getNumCorrectAnswers();
         System.out.println("You got " + numQCorrect + " questions right");
@@ -150,9 +155,9 @@ public class UI extends JFrame{
         tutorialPanel.setPreviouslyDisplayedCard(s);
     }
 
-    public void showGameEnd(boolean won){
+    public void showGameEnd(boolean won, String cause){
         if(won) endPanel.won(p);
-        else endPanel.lost("");
+        else endPanel.lost(cause);
         crd.show(getContentPane(), EndPanel.IDENTIFIER);
     }
 
@@ -160,6 +165,7 @@ public class UI extends JFrame{
         p = new Player(PlayerNameP.getPlayerName());
         ctrl.setPlayer(p);
         gamePanel.newCave();
+        gamePanel.setShootOrMove("Move");
         changeFont(gamePanel.getMiniMap(), legendOfZeldaFont.deriveFont(Font.PLAIN, 15));
         updateGameLabels();
         crd.show(getContentPane(), GamePanel.IDENTIFIER);
@@ -171,7 +177,7 @@ public class UI extends JFrame{
         gamePanel.setArrows(p.getArrows());
         gamePanel.setGold(p.getGoldCoins());
         gamePanel.setHighScore(0);
-        gamePanel.setScore(p.calculateScore());
+        gamePanel.setScore(ctrl.calcScore(false));
         gamePanel.setHazards(ctrl.getHazards());
     }
 
@@ -190,8 +196,9 @@ public class UI extends JFrame{
 // Checks if game is over
     public void checkEnd(){
             if(this.ctrl.getGameLocations().atWumpus()){
-                endPanel.lost("THE WUMPUS");
-                crd.show(getContentPane(), EndPanel.IDENTIFIER);   
+                showGameEnd(false, "Ran into the Wumpus");
+            } else if(this.ctrl.getGameLocations().atPit()){
+                fellInPit();
             }
     }
 
@@ -202,5 +209,15 @@ public class UI extends JFrame{
 
     public void setNewImages(){
         gamePanel.setNewImages();
+    }
+
+    public void fellInPit(){
+        Question[] questions = ctrl.runTrivia3();
+        TriviaUI triviaUI = new TriviaUI(questions, this, true);
+
+        int numQCorrect = triviaUI.getNumCorrectAnswers();
+        System.out.println("You got " + numQCorrect + " questions right");
+        if(numQCorrect <= 1) showGameEnd(false, "Fell in pit");
+
     }
 }
