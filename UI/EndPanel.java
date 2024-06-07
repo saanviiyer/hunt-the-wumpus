@@ -76,6 +76,7 @@ public class EndPanel extends JPanel{
         causeOfLoss.setHorizontalAlignment(JLabel.CENTER);
         causeOfLoss.setForeground(Color.BLACK);
         add(causeOfLoss, "cell 0 1, center, grow");
+        ui.getGameControl().endGame(false);
     }
 
     public void won(Player p){

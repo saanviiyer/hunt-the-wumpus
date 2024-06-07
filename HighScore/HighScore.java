@@ -44,8 +44,8 @@ public class HighScore {
 
     public void add(Score s){
         int i = this.find(s.getPlayer());
-        if (i != -1 && this.comp.compare(s, this.scores.get(i)) > 0) this.scores.set(i, s);
-        else if (i == -1) this.scores.add(s);
+        if (i == -1) this.scores.add(s);
+        else if (i != -1 && this.comp.compare(s, this.scores.get(i)) < 0) this.scores.set(i, s);
         this.scores.sort(this.comp);
         try{
             this.save();
