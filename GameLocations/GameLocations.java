@@ -1,6 +1,8 @@
-// Saanvi Subramanian
-// Period 5
-// 3/15/24
+
+/*
+ * Last Editor(s): Shunzo Hida
+ * Last Edit @ 06-07-2024
+ */
 
 package GameLocations;
 import Cave.*;
