@@ -82,8 +82,6 @@ public class UI extends JFrame{
         leaderboardPanel = new LeaderboardPanel(this, crd);
         leaderboardPanel.setVisible(true);
         add(leaderboardPanel, LeaderboardPanel.IDENTIFIER);
-        
-        crd.show(getContentPane(), LeaderboardPanel.IDENTIFIER);
 
         setResizable(false);
         setVisible(true);
