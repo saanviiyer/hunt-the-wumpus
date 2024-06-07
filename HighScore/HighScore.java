@@ -1,7 +1,16 @@
+
 /*
- * Last Editor(s): Yana Ivanov
- * Last Edit @ 02-24-2024
+ * Last Editor(s): Shunzo Hida
+ * Last Edit @ 06-07-2024
  */
+
+ /*
+  * Info:
+  * Keeps track of past high scores, and ranks them using a ScoreComparator
+  * Only one per player name allowed
+  * print() returns rankings in string
+  * save() saves game
+  */
 
 
 
