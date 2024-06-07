@@ -99,13 +99,13 @@ public class GameControl{
     }
 
     public void endGame(boolean won){
-        leaderboard(won);
+        Score s = new Score(this.player.getGoldCoins(), Boolean.compare(won, false), this.player.getTurns(), this.player.getArrows(), this.player.getName());
+        this.score.add(s);
+        leaderboard();
         if (won) ui.winGame();
     }
 
-    public String leaderboard(boolean won){
-        Score s = new Score(this.player.getGoldCoins(), Boolean.compare(won, false), this.player.getTurns(), this.player.getArrows(), this.player.getName());
-        this.score.add(s);
+    public String leaderboard(){
         return this.score.print();
     }
 
