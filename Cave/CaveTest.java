@@ -22,8 +22,6 @@ public class CaveTest {
         System.out.println("Constructor called");
     }
 
-
-
     public static void main(String args[])
     {
         JFrame frame = new JFrame("Cave");
