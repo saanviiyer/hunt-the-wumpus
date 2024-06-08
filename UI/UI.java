@@ -186,7 +186,7 @@ public class UI extends JFrame{
         gamePanel.setPlayer(p.getName());
         gamePanel.setArrows(p.getArrows());
         gamePanel.setGold(p.getGoldCoins());
-        gamePanel.setHighScore(0);
+        gamePanel.setHighScore(ctrl.getFirstScore());
         gamePanel.setScore(ctrl.calcScore(false));
         gamePanel.setHazards(ctrl.getHazards());
     }
