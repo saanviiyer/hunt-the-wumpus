@@ -4,18 +4,12 @@
  * Last Edit @ 06-07-2024
  */
 
-
-
 package GameControl;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
-// new change
-// Handles user input (except for High Score and Trivia), coordinates all the other parts of the game.
-// UPDATE: trivia should now work correctly
 
 import Player.*;
 import HighScore.*;
@@ -48,7 +42,7 @@ public class GameControl{
         }
     }
 
-//method
+    // METHODS
 
     // initialize board when game starts
     public void setPlayer(Player p){
@@ -61,7 +55,6 @@ public class GameControl{
     public void setUI(UI u){
         this.ui = u;
     }
-
 
     public void movePlayer(int direction) {
         System.out.println("moving player in direction " + direction);
@@ -137,9 +130,6 @@ public class GameControl{
 
     public Question[] runTrivia3() {
         String[] answers = {"A","B","C","D"};
-
-        //TODO logic for getting the questions should be in the questions class - new method that returns an array of random questions
-        // CHANGE TO BE ACTUAL LENGTH OF QUESTIONS FILE
         int q = 30;
 
         Random r = new Random();
@@ -153,8 +143,6 @@ public class GameControl{
           c = r.nextInt(q);
         }
 
-
-        // ADD CODE TO READ QUESTIONS AND ANSWERS FROM A, B, C, D, E FOR THE FIVE QUESTIONS
         ArrayList<String> linesQ = new ArrayList<String>();
         ArrayList<String> linesA = new ArrayList<String>();
         try {
