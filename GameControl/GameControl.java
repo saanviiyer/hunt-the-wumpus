@@ -140,7 +140,7 @@ public class GameControl{
 
         //TODO logic for getting the questions should be in the questions class - new method that returns an array of random questions
         // CHANGE TO BE ACTUAL LENGTH OF QUESTIONS FILE
-        int q = 15;
+        int q = 30;
 
         Random r = new Random();
         int a = r.nextInt(q);
@@ -219,7 +219,7 @@ public class GameControl{
 
         //TODO logic for getting the questions should be in the questions class - new method that returns an array of random questions
         // CHANGE TO BE ACTUAL LENGTH OF QUESTIONS FILE
-        int q = 15;
+        int q = 30;
 
         Random r = new Random();
         int a = r.nextInt(q);
