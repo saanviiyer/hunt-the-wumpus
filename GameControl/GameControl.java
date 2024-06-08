@@ -106,7 +106,7 @@ public class GameControl{
                 this.endGame(true);
             } else {
                 System.out.println("You missed.");
-                this.gl.runAway((int)(Math.random()*3+1));
+                this.gl.runAway(1, (int)(Math.random()*3+1));
             }
         } else {
             System.out.println("Not enough arrows.");
