@@ -328,7 +328,7 @@ public class GameControl{
     // }
 
     public boolean gameEnded() {
-        if (player.getGoldCoins() <= -2) {
+        if (player.getGoldCoins() <= -1) {
             return true;
         }
         return false;
