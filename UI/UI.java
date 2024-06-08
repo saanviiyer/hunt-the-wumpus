@@ -14,15 +14,13 @@
 
 
 package UI;
-import java.util.Random;
-
-import javax.swing.*;
-
 import GameControl.GameControl;
 import Player.Player;
 import Trivia.Question;
 import java.awt.*;
 import java.io.File;
+import java.util.Random;
+import javax.swing.*;
 
 public class UI extends JFrame{
     //////////////////////
@@ -215,6 +213,7 @@ public class UI extends JFrame{
             if(this.ctrl.getGameLocations().atWumpus()){
                 Question[] questions = ctrl.runTrivia5();
                 TriviaUI triviaUI = new TriviaUI(questions, this, "Wumpus:");
+                this.ctrl.getGameLocations().runAway(2,4);
 
                 if(triviaUI.getNumCorrectAnswers() < 3){
                     showGameEnd(false, "Ran into the Wumpus");
