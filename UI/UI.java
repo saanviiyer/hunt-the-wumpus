@@ -210,6 +210,8 @@ public class UI extends JFrame{
 
 // Checks if game is over
     public void checkEnd(){
+        if(gamePanel.getShootOrMove().equals("Shoot")) {}
+        else {
             if(this.ctrl.getGameLocations().atWumpus()){
                 Question[] questions = ctrl.runTrivia5();
                 TriviaUI triviaUI = new TriviaUI(questions, this, "Wumpus:");
@@ -222,6 +224,7 @@ public class UI extends JFrame{
             } else if(this.ctrl.getGameLocations().atPit()){
                 fellInPit();
             }
+        }
     }
 
     public void winGame(){
