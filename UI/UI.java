@@ -243,4 +243,8 @@ public class UI extends JFrame{
         if(numQCorrect <= 1) showGameEnd(false, "Fell in pit");
 
     }
+
+    public void showLeaderboard(){
+        leaderboardPanel.showAndUpdate();
+    }
 }

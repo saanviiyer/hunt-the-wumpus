@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.net.URL;
 
 import javax.swing.*;
 
@@ -16,9 +15,14 @@ public class LeaderboardPanel extends JPanel{
     //-----------------------PROPERTIES----------------------
     public static final String IDENTIFIER = "leaderboard";
     private String previouslyDisplayedCard;
+    JEditorPane leaderboard = new JEditorPane();
+    UI ui;
+    CardLayout crd;
 
     //-----------------------CONSTRUCTOR----------------------
     public LeaderboardPanel(UI ui, CardLayout crd){
+        this.ui = ui;
+        this.crd = crd;
         //creates new font to be derived
         Font legendOfZeldaFont = null;
         try{
@@ -35,7 +39,7 @@ public class LeaderboardPanel extends JPanel{
         add(heading, "center, pushx, flowy");
 
         //creates a textbox containing text within a scrollpane
-        JEditorPane leaderboard = new JEditorPane();
+        
         leaderboard.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
         leaderboard.setFont(legendOfZeldaFont.deriveFont(Font.PLAIN, 20));
         leaderboard.setEditable(false);
@@ -60,6 +64,11 @@ public class LeaderboardPanel extends JPanel{
     //-----------------------METHODS----------------------
     public void setPreviouslyDisplayedCard(String s){
         previouslyDisplayedCard = s;
+    }
+
+    public void showAndUpdate(){
+        leaderboard.setText(ui.getGameControl().leaderboard());
+        crd.show(ui.getContentPane(), IDENTIFIER);
     }
 }
 

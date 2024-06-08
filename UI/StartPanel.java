@@ -71,7 +71,7 @@ public class StartPanel extends JPanel{
         JButton leaderboard = new JButton("Leaderboard");
         leaderboard.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                    crd.show(UI.getContentPane(), LeaderboardPanel.IDENTIFIER);
+                    UI.showLeaderboard();
                     UI.setLeaderboardLastCard(IDENTIFIER);
             }
         });
