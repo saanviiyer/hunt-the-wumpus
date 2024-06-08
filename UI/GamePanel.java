@@ -273,9 +273,19 @@ public class GamePanel extends JPanel{
     }
 
     public void setNewImages(){
-        Random r = new Random();
-        int x = r.nextInt(new File("UI\\movementImages\\").listFiles().length) + 1;
+        int x;
+        if(UI.getGameControl().getGameLocations().atPit()){
+            x = 29;
+        } else if (UI.getGameControl().getGameLocations().atWumpus()){
+            x = 30;
+        } else if (UI.getGameControl().getGameLocations().atBats()) {
+            x = 31;
+        } else {
+            x = new Random().nextInt(new File("UI\\movementImages\\").listFiles().length) + 1;
+        }
+        
         ImageIcon[] movementIcons = {new ImageIcon("UI\\movementImages\\"+ x +"\\left_top.png"),new ImageIcon("UI\\movementImages\\"+ x +"\\top_mid.png"),new ImageIcon("UI\\movementImages\\"+ x +"\\right_top.png"),new ImageIcon("UI\\movementImages\\"+ x +"\\left_bottom.png"),new ImageIcon("UI\\movementImages\\"+ x +"\\bottom_mid.png"),new ImageIcon("UI\\movementImages\\"+ x +"\\right_bottom.png")};
+        
         for(int i = 0; i < 6; i++){
             movementButtons[i].setIcon(movementIcons[i]);
         }
