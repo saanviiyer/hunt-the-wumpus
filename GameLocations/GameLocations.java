@@ -176,8 +176,8 @@ public class GameLocations {
         fallenArrows[id]++;
     }
 
-    public void runAway(int len){
-        for (int i = 0; i < len; i++){
+    public void runAway(int len1, int len2){
+        for (int i = len1; i <= len2; i++){
             ArrayList<Integer> avail = new ArrayList<Integer>();
             for (int d = 0; d < 6; d++) if (cave.isNextTo(wumpusPos, cave.getAdj(wumpusPos)[d])) avail.add(cave.getAdj(wumpusPos)[d]);
             this.wumpusPos = avail.get((int) (Math.random()*avail.size()));
