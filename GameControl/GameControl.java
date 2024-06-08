@@ -312,7 +312,9 @@ public class GameControl{
     }
 
 
-
+    public int getFirstScore(){
+        return score.getScores().get(0).value();
+    }
 
 
 
