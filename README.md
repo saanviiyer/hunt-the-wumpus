@@ -11,6 +11,9 @@ Go to [this guide](https://www.markdownguide.org/cheat-sheet/) for a detailed de
 
  THE THEME FOR WUMPUS !!!! : Bothell hs, after the APOCALYPSE 
 
+## UPDATE: Won 2nd place in the competition!
+VIDEO SUBMISSION LINK: https://drive.google.com/file/d/1-QNKBsAATWcPJFlhdUuxaY-LAwe09ek7/view?usp=sharing
+
 ## WUMPUS ROLES
 | Role                                   | Name   |
 |----------------------------------------|--------|
@@ -74,7 +77,7 @@ To-do:
 ### Graphical Interface - Nathan
 
 ### Game Control - Saanvi
-i need everyone to finish their stuff so then i can connnect the stuff
+Finished project! 
 
 ### High Score - Yana
 
